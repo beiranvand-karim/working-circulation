@@ -11,3 +11,15 @@ x86/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+
+/WorkingCirculation/DirectoryManagement/obj/DirectoryManagement.csproj.nuget.dgspec.json
+/WorkingCirculation/DirectoryManagement/obj/DirectoryManagement.csproj.nuget.g.props
+/WorkingCirculation/DirectoryManagement/obj/DirectoryManagement.csproj.nuget.g.targets
+/WorkingCirculation/DirectoryManagement/obj/project.assets.json
+/WorkingCirculation/DirectoryManagement/obj/project.nuget.cache
+
+/WorkingCirculation/DockerComposeStops/obj/DockerComposeStops.csproj.nuget.dgspec.json
+/WorkingCirculation/DockerComposeStops/obj/DockerComposeStops.csproj.nuget.g.props
+/WorkingCirculation/DockerComposeStops/obj/DockerComposeStops.csproj.nuget.g.targets
+/WorkingCirculation/DockerComposeStops/obj/project.assets.json
+/WorkingCirculation/DockerComposeStops/obj/project.nuget.cache
