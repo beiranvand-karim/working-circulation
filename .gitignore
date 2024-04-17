@@ -1,1 +1,13 @@
 .vs
+
+
+# build results
+[Dd]bug/
+[Dd]bugPublic/
+[Re]lease/
+[Re]leases/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
