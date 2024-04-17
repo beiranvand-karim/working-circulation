@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoryManagement", "DirectoryManagement\DirectoryManagement.csproj", "{58D9B42E-C024-4A70-8B3E-0599088BA531}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerComposeStops", "DockerComposeStops\DockerComposeStops.csproj", "{AEC890CF-DF83-4710-ADCA-0095FD53D4C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{58D9B42E-C024-4A70-8B3E-0599088BA531}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58D9B42E-C024-4A70-8B3E-0599088BA531}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58D9B42E-C024-4A70-8B3E-0599088BA531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEC890CF-DF83-4710-ADCA-0095FD53D4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEC890CF-DF83-4710-ADCA-0095FD53D4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEC890CF-DF83-4710-ADCA-0095FD53D4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEC890CF-DF83-4710-ADCA-0095FD53D4C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
