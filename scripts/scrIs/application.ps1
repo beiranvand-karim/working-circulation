@@ -1,3 +1,5 @@
+<#> fina = file name = application.ps1 #>
+
 get-content application.env | foreach {
     $name, $value = $_.split("=")
     set-content env:\$name $value
