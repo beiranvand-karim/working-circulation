@@ -1,6 +1,6 @@
 <#> fina = file name = rider guest application.ps1 #>
 
-get-content "rider guest application.env" | foreach {
+get-content "rider guest application.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
