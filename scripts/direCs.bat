@@ -1,5 +1,8 @@
 @echo off
 
+REM direCs
+REM direCs.bat
+
 C:/Users/....../source/repos/working-circulation/WorkingCirculation/DirectoryManagement/bin/Debug/net8.0/DirectoryManagement.exe "C:/feature naming/...../fend"
 C:/Users/....../source/repos/working-circulation/WorkingCirculation/DirectoryManagement/bin/Debug/net8.0/DirectoryManagement.exe "C:/feature naming/...../fend/fend...."
 C:/Users/....../source/repos/working-circulation/WorkingCirculation/DirectoryManagement/bin/Debug/net8.0/DirectoryManagement.exe "C:/feature naming/...../fend/fend...."
