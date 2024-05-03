@@ -3,4 +3,4 @@
 REM infrastructure
 REM infrastructure.bat
 
-Powershell.exe -executionpolicy remotesigned -File "scrIs/infrastructure.ps1" 
+Powershell.exe -ExecutionPolicy RemoteSigned -File "scrIs/infrastructure.ps1" 
