@@ -16,5 +16,3 @@ string workingDirectory = Environment.GetCommandLineArgs()[1];
 string commandToExecute = Environment.GetCommandLineArgs()[2];
 
 RunCommand(commandToExecute, workingDirectory);
-Console.Write("press a key ...");
-Console.ReadLine();
