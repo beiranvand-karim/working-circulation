@@ -10,3 +10,5 @@ x86/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+
+scripts/environment-variables-files/
