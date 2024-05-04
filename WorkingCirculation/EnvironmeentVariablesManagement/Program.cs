@@ -6,7 +6,8 @@ string destinationDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-c
 
 foreach (string file in Directory.EnumerateFiles(sourceDirectory))
 {
-    string contents = File.ReadAllText(file);
-    Console.WriteLine(file);
+    string destPath =  destinationDirectory + '/' + Path.GetFileName(file);
+    File.Copy(file, destPath);
 }
 
+//  todo add conds that t both direcs would exists
