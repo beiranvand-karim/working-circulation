@@ -11,3 +11,12 @@ foreach (string file in Directory.EnumerateFiles(sourceDirectory))
 }
 
 //  todo add conds that t both direcs would exists
+
+
+string phrase = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-files/application user interface.env.example";
+string[] words = phrase.Split('.');
+
+foreach (var word in words)
+{
+    System.Console.WriteLine($"<{word}>");
+}
