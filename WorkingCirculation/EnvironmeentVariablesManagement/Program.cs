@@ -16,7 +16,7 @@ foreach (string file in Directory.EnumerateFiles(sourceDirectory))
 string phrase = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-files/application user interface.env.example";
 string[] words = phrase.Split('.');
 
-foreach (var word in words)
-{
-    System.Console.WriteLine($"<{word}>");
-}
+
+string destFilePathName = words[0]  + '.' +  words[1];
+
+Console.WriteLine(destFilePathName);
