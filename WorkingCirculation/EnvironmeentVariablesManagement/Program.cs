@@ -26,29 +26,27 @@ if (choice == 1) {
 string environmentVariablesSourceDirectory  = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-source";
 
 
-Dictionary<string, string>  keyValuePairs  =  new Dictionary<string, string>();
+Dictionary<string, string>  keyValuePairs  =  [];
 
 if (choice == 2) 
 {
     foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
     {
-
-
         const Int32 BufferSize = 128;
-        using (var fileStream = File.OpenRead(file))
-            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize)) 
-            {
-                String line;
-                while ((line = streamReader.ReadLine()) != null)
-                {
-                    string[] brokenLine =  line.Split("=");
-                    string? key1 = brokenLine[0];
-                    string? value1 = brokenLine[1];
-                    Console.WriteLine(key1);
-                    Console.WriteLine(value1);
-                    keyValuePairs.Add(key1,  value1);
-                }
-            }
+        using var fileStream = File.OpenRead(file);
+        using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
+        String line;
+        while ((line = streamReader.ReadLine()) != null)
+        {
+            string[] brokenLine = line.Split("=");
+            string key = brokenLine[0];
+            string value = brokenLine[1];
+            keyValuePairs.Add(key, value);
+        }
     }
 }
 
+foreach (KeyValuePair<string, string> kvp in keyValuePairs)
+{
+    Console.WriteLine("Key = {0}, Value = {1}", kvp.Key, kvp.Value);
+}
