@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿
+// Program.cs
+using System.IO;
 
 string sourceDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-example-files";
 
