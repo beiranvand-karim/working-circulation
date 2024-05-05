@@ -25,6 +25,9 @@ if (choice == 1) {
 
 string environmentVariablesSourceDirectory  = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-source";
 
+
+Dictionary<string, string>  keyValuePairs  =  new Dictionary<string, string>();
+
 if (choice == 2) 
 {
     foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
@@ -38,8 +41,12 @@ if (choice == 2)
                 String line;
                 while ((line = streamReader.ReadLine()) != null)
                 {
-                    Console.WriteLine(line);
-
+                    string[] brokenLine =  line.Split("=");
+                    string? key1 = brokenLine[0];
+                    string? value1 = brokenLine[1];
+                    Console.WriteLine(key1);
+                    Console.WriteLine(value1);
+                    keyValuePairs.Add(key1,  value1);
                 }
             }
     }
