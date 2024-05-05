@@ -1,14 +1,13 @@
 ﻿
 // Program.cs
 using System.IO;
+using System.Text;
 
 int choice=2;
 
 string sourceDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-example-files";
 
 string destinationDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-files";
-
-string environmentVariablesSourceDirectory  = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-source";
 
 if (choice == 1) {
     foreach (string file in Directory.EnumerateFiles(sourceDirectory))
@@ -24,12 +23,25 @@ if (choice == 1) {
 //  todo add conds that t both direcs would exists
 
 
+string environmentVariablesSourceDirectory  = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-source";
+
 if (choice == 2) 
 {
     foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
     {
-        string contents = File.ReadAllText(file);
-        Console.WriteLine(contents);
+
+
+        const Int32 BufferSize = 128;
+        using (var fileStream = File.OpenRead(file))
+            using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize)) 
+            {
+                String line;
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    Console.WriteLine(line);
+
+                }
+            }
     }
 }
 
