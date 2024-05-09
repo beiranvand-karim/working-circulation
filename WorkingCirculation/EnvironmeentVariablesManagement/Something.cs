@@ -4,6 +4,17 @@ namespace EnvironmentVariablesManagement
 {
     internal class Something 
     {
+        public static string GetCommandLineArgByKey(string CommandLineArgKey)
+        {
+            var commandLineArgs =  Environment.GetCommandLineArgs();
+
+            int index = Array.FindIndex(commandLineArgs, x => x.StartsWith(CommandLineArgKey));
+            string CommandLineArgValue = commandLineArgs[index+1];
+
+            return CommandLineArgValue;
+
+        }
+
         public static Dictionary<string, string> PairUpVariablesWithTheirValue(string fileNamePath, Dictionary<string, string> environmentVariablesSourceDictionary) {
 
             Dictionary<string, string> fileContentDictionaryToWriteToFile = [];

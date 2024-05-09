@@ -1,6 +1,24 @@
 ﻿// Program.cs
 using EnvironmentVariablesManagement;
 
+string templatesDirectoryNameKey = "--templates-directory";
+string destinationDirectoryNameKey = "--destination-directory";
+string environmentVariablesSourceDirectoryNameKey = "--environment-variables-source-directory";
+string featureNameKey = "--feature-name";
+string executiveFileDirectoryNameKey = "--executive-file-directory";
+string scriptsDirectoryNameKey = "--scripts-directory";
+string repositoryDirectoryNameKey = "--repository-directory";
+string hostingDirectoryNameKey = "--hosting-directory";
+
+Console.WriteLine(Something.GetCommandLineArgByKey(templatesDirectoryNameKey));
+Console.WriteLine(Something.GetCommandLineArgByKey(destinationDirectoryNameKey));
+Console.WriteLine(Something.GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey));
+Console.WriteLine(Something.GetCommandLineArgByKey(featureNameKey));
+Console.WriteLine(Something.GetCommandLineArgByKey(executiveFileDirectoryNameKey));
+Console.WriteLine(Something.GetCommandLineArgByKey(scriptsDirectoryNameKey));
+Console.WriteLine(Something.GetCommandLineArgByKey(repositoryDirectoryNameKey));
+Console.WriteLine(Something.GetCommandLineArgByKey(hostingDirectoryNameKey));
+
 int choice = 2;
 
 if (choice == 1)
