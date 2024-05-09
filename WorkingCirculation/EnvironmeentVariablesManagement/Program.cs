@@ -16,18 +16,12 @@ IConfiguration config = builder.Build();
 string templatesDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:TemplatesDirectoryNameKey"];
 string destinationDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:DestinationDirectoryNameKey"];
 string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
-string featureNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:FeatureNameKey"];
-string executiveFileDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ExecutiveFileDirectoryNameKey"];
 string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
-string hostingDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:HostingDirectoryNameKey"];
 
 string templatesDirectoryName =  Something.GetCommandLineArgByKey(templatesDirectoryNameKey);
 string destinationDirectoryName =  Something.GetCommandLineArgByKey(destinationDirectoryNameKey);
 string environmentVariablesSourceDirectoryName =  Something.GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
-string featureName =  Something.GetCommandLineArgByKey(featureNameKey);
-string executiveFileDirectoryName =  Something.GetCommandLineArgByKey(executiveFileDirectoryNameKey);
 string scriptsDirectoryName =  Something.GetCommandLineArgByKey(scriptsDirectoryNameKey);
-string hostingDirectoryName =  Something.GetCommandLineArgByKey(hostingDirectoryNameKey);
 
 //  todo add conds that t both direcs would exists
 
