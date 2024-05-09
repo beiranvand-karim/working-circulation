@@ -1,5 +1,6 @@
 ﻿// Program.cs
 using EnvironmentVariablesManagement;
+using Microsoft.Extensions.Configuration;
 
 string templatesDirectoryNameKey = "--templates-directory";
 string destinationDirectoryNameKey = "--destination-directory";
@@ -18,6 +19,13 @@ Console.WriteLine(Something.GetCommandLineArgByKey(executiveFileDirectoryNameKey
 Console.WriteLine(Something.GetCommandLineArgByKey(scriptsDirectoryNameKey));
 Console.WriteLine(Something.GetCommandLineArgByKey(repositoryDirectoryNameKey));
 Console.WriteLine(Something.GetCommandLineArgByKey(hostingDirectoryNameKey));
+
+
+var builder = new ConfigurationBuilder();
+builder.SetBasePath(Directory.GetCurrentDirectory())
+       .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+ 
+IConfiguration config = builder.Build();
 
 int choice = 2;
 
