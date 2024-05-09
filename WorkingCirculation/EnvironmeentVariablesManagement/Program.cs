@@ -28,9 +28,9 @@ if (choice == 2)
 
         string destFileName = Path.GetFileNameWithoutExtension(templateFile);
         string destFile = Path.Combine(destinationDirectory, destFileName);
-        using (File.Create(destFile)){}
+        using var fs = File.Create(destFile);
 
-        using StreamWriter writer = new(destFile);
+        using StreamWriter writer = new(fs);
         foreach (KeyValuePair<string, string> entry in contentToWrite)
         {
             string valueToWrite = $"""{entry.Key}={entry.Value}""";
