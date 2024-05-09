@@ -26,7 +26,7 @@ if (choice == 2)
     {
         Dictionary<string, string> contentToWrite = Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
 
-        string destFileName = Something.ConstructDestinationFileName(templateFile);
+        string destFileName = Path.GetFileNameWithoutExtension(templateFile);
         string destFile = Path.Combine(destinationDirectory, destFileName);
         using (File.Create(destFile)){}
 
