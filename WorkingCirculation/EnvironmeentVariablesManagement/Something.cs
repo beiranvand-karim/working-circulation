@@ -18,10 +18,8 @@ namespace EnvironmentVariablesManagement
                 string[] brokenLine = line.Split("=");
                 string key = brokenLine[0];
                 string value = brokenLine[1];
-                string val;
-                environmentVariablesSourceDictionary.TryGetValue(key, out val);
-                fileContentDictionaryToWriteToFile.Add(key, val);
-                Console.WriteLine("{0}={1}", key, val);
+                _ = environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
+                fileContentDictionaryToWriteToFile.Add(key, val ?? "");
             }
 
             return fileContentDictionaryToWriteToFile;
@@ -66,25 +64,27 @@ namespace EnvironmentVariablesManagement
             return destFileName;
         }
 
-        public static string ConstructDestinationFileNameIncludingPath(string destinationDirectory, string destinationFileName)
+        public static void CopyFileToDestinationDirectory(string file, string destinationDirectory)
         {
-            return  destinationDirectory + '/' + destinationFileName;
-        }
-
-        public  static void CopyFileToDestinationDirectory(string file, string destinationDirectory)
-        {
-            string fileNMame = Path.GetFileName(file);
-            string destFileName = Something.DropTemplateExtensionFromFileName(fileNMame);
-            string destFilePathIncludingName = Something.ConstructDestinationFileNameIncludingPath(destinationDirectory, destFileName);
+            string fileName = Path.GetFileName(file);
+            string destFileName = Something.DropTemplateExtensionFromFileName(fileName);
+            string destFilePathIncludingName = Path.Combine(destinationDirectory, destFileName);
             File.Copy(file, destFilePathIncludingName);
         }
 
-        public  static void CopyContentOfSourceDireectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
+        public static void CopyContentOfSourceDireectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
         {
             foreach (string file in Directory.EnumerateFiles(sourceDirectory))
             {
                 Something.CopyFileToDestinationDirectory(file, destinationDirectory);
             }
+        }
+
+        public static string ConstructDestinationFileName(string sourcefile)
+        {
+            string fileName = Path.GetFileName(sourcefile);
+            string destFileName = Something.DropTemplateExtensionFromFileName(fileName);
+            return destFileName;
         }
     }
 }
