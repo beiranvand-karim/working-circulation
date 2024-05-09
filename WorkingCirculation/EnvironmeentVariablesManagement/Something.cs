@@ -9,10 +9,13 @@ namespace EnvironmentVariablesManagement
             var commandLineArgs =  Environment.GetCommandLineArgs();
 
             int index = Array.FindIndex(commandLineArgs, x => x.StartsWith(CommandLineArgKey));
-            string CommandLineArgValue = commandLineArgs[index+1];
+            if(index  >  -1)
+            {
+                string CommandLineArgValue = commandLineArgs[index+1];
+                return CommandLineArgValue;
+            }
 
-            return CommandLineArgValue;
-
+            return $"""could'nt find environment variable "{CommandLineArgKey}" ...""";
         }
 
         public static Dictionary<string, string> PairUpVariablesWithTheirValue(string fileNamePath, Dictionary<string, string> environmentVariablesSourceDictionary) {
