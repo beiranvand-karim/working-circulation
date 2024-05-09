@@ -6,7 +6,7 @@ namespace EnvironmentVariablesManagement
     {
         public static Dictionary<string, string> PairUpVariablesWithTheirValue(string fileNamePath, Dictionary<string, string> environmentVariablesSourceDictionary) {
 
-            Dictionary<string, string>  fileContentDictionaryToWriteToFile = [];
+            Dictionary<string, string> fileContentDictionaryToWriteToFile = [];
 
             const Int32 BufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
@@ -27,7 +27,6 @@ namespace EnvironmentVariablesManagement
 
         public static Dictionary<string, string> ReadKeyValueFromFile(string fileNamePath) 
         {
-
             Dictionary<string, string>  fileContentDictionary  =  [];
 
             const Int32 BufferSize = 128;
@@ -35,7 +34,7 @@ namespace EnvironmentVariablesManagement
             using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
             String line;
 
-            while ((line = streamReader.ReadLine()) != null) 
+            while ((line = streamReader.ReadLine()) != null)
             {
                 string[] brokenLine = line.Split("=");
                 string key = brokenLine[0];
@@ -57,17 +56,10 @@ namespace EnvironmentVariablesManagement
             return keyValuePairs;
         }
 
-        public static string DropTemplateExtensionFromFileName(string fileName)  
-        {
-            string[] words = fileName.Split('.');
-            string destFileName = words[0] + '.' + words[1];
-            return destFileName;
-        }
-
         public static void CopyFileToDestinationDirectory(string file, string destinationDirectory)
         {
             string fileName = Path.GetFileName(file);
-            string destFileName = Something.DropTemplateExtensionFromFileName(fileName);
+            string destFileName = Path.GetFileNameWithoutExtension(fileName);
             string destFilePathIncludingName = Path.Combine(destinationDirectory, destFileName);
             File.Copy(file, destFilePathIncludingName);
         }
