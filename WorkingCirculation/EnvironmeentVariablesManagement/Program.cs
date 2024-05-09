@@ -14,13 +14,13 @@ builder.SetBasePath(Directory.GetCurrentDirectory())
  
 IConfiguration config = builder.Build();
 
-string templatesDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumeentsNameKeys:TemplatesDirectoryNameKey"];
-string destinationDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumeentsNameKeys:DestinationDirectoryNameKey"];
-string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumeentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
-string featureNameKey = config["EnvironmentVariablesCommandLineArgumeentsNameKeys:FeatureNameKey"];
-string executiveFileDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumeentsNameKeys:ExecutiveFileDirectoryNameKey"];
-string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumeentsNameKeys:ScriptsDirectoryNameKey"];
-string hostingDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumeentsNameKeys:HostingDirectoryNameKey"];
+string templatesDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:TemplatesDirectoryNameKey"];
+string destinationDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:DestinationDirectoryNameKey"];
+string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
+string featureNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:FeatureNameKey"];
+string executiveFileDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ExecutiveFileDirectoryNameKey"];
+string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
+string hostingDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:HostingDirectoryNameKey"];
 
 string templatesDirectoryName =  Something.GetCommandLineArgByKey(templatesDirectoryNameKey);
 string destinationDirectoryName =  Something.GetCommandLineArgByKey(destinationDirectoryNameKey);
@@ -31,21 +31,12 @@ string scriptsDirectoryName =  Something.GetCommandLineArgByKey(scriptsDirectory
 string hostingDirectoryName =  Something.GetCommandLineArgByKey(hostingDirectoryNameKey);
 
 
-Console.WriteLine(templatesDirectoryName);
-Console.WriteLine(destinationDirectoryName);
-Console.WriteLine(environmentVariablesSourceDirectoryName);
-Console.WriteLine(featureName);
-Console.WriteLine(executiveFileDirectoryName);
-Console.WriteLine(scriptsDirectoryName);
-Console.WriteLine(hostingDirectoryName);
-
-
 int choice = 2;
 
 if (choice == 1)
 {
-    string sourceDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-example-files";
-    string destinationDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-files";
+    string sourceDirectory = Path.Combine(scriptsDirectoryName, templatesDirectoryName);
+    string destinationDirectory = Path.Combine(scriptsDirectoryName, destinationDirectoryName);
 
     Something.CopyContentOfSourceDireectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
 
@@ -55,9 +46,9 @@ if (choice == 1)
 
 if (choice == 2)
 {
-    string environmentVariablesSourceDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-source";
-    string templateSourceDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-example-files";
-    string destinationDirectory = "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts/environment-variables-files";
+    string environmentVariablesSourceDirectory = Path.Combine(scriptsDirectoryName, environmentVariablesSourceDirectoryName);
+    string templateSourceDirectory = Path.Combine(scriptsDirectoryName, templatesDirectoryName);
+    string destinationDirectory = Path.Combine(scriptsDirectoryName, destinationDirectoryName);
 
     Dictionary<string, string> environmentVariablesSourceDictionary = Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(environmentVariablesSourceDirectory);
 
