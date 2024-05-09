@@ -13,3 +13,5 @@ x86/
 
 scripts/environment-variables-files/
 scripts/environment-variables-source/
+
+.DS_Store
