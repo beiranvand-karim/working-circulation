@@ -79,12 +79,5 @@ namespace EnvironmentVariablesManagement
                 Something.CopyFileToDestinationDirectory(file, destinationDirectory);
             }
         }
-
-        public static string ConstructDestinationFileName(string sourcefile)
-        {
-            string fileName = Path.GetFileName(sourcefile);
-            string destFileName = Something.DropTemplateExtensionFromFileName(fileName);
-            return destFileName;
-        }
     }
 }
