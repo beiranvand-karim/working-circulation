@@ -58,5 +58,33 @@ namespace EnvironmentVariablesManagement
 
             return keyValuePairs;
         }
+
+        public static string DropTemplateExtensionFromFileName(string fileName)  
+        {
+            string[] words = fileName.Split('.');
+            string destFileName = words[0] + '.' + words[1];
+            return destFileName;
+        }
+
+        public static string ConstructDestinationFileNameIncludingPath(string destinationDirectory, string destinationFileName)
+        {
+            return  destinationDirectory + '/' + destinationFileName;
+        }
+
+        public  static void CopyFileToDestinationDirectory(string file, string destinationDirectory)
+        {
+            string fileNMame = Path.GetFileName(file);
+            string destFileName = Something.DropTemplateExtensionFromFileName(fileNMame);
+            string destFilePathIncludingName = Something.ConstructDestinationFileNameIncludingPath(destinationDirectory, destFileName);
+            File.Copy(file, destFilePathIncludingName);
+        }
+
+        public  static void CopyContentOfSourceDireectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
+        {
+            foreach (string file in Directory.EnumerateFiles(sourceDirectory))
+            {
+                Something.CopyFileToDestinationDirectory(file, destinationDirectory);
+            }
+        }
     }
 }
