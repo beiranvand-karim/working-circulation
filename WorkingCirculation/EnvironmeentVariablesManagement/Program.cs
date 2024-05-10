@@ -8,27 +8,27 @@ builder.SetBasePath(Something.GetEnvironmeentVariablesManagementDirectoryName())
  
 IConfiguration config = builder.Build();
 
-string templatesDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:TemplatesDirectoryNameKey"];
-string destinationDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:DestinationDirectoryNameKey"];
-string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
-string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
-
-string templatesDirectoryName = Something.GetCommandLineArgByKey(templatesDirectoryNameKey);
-string destinationDirectoryName = Something.GetCommandLineArgByKey(destinationDirectoryNameKey);
-string environmentVariablesSourceDirectoryName = Something.GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
-string scriptsDirectoryName = Something.GetCommandLineArgByKey(scriptsDirectoryNameKey);
-
 //  todo add conds that t both direcs would exists
 
-string environmentVariablesSourceDirectory = Path.Combine(scriptsDirectoryName, environmentVariablesSourceDirectoryName);
-string templateSourceDirectory = Path.Combine(scriptsDirectoryName, templatesDirectoryName);
-string destinationDirectory = Path.Combine(scriptsDirectoryName, destinationDirectoryName);
+string templateSourceDirectory = Path.Combine(
+        Something.GetSriptsDirectoryName(config),
+        Something.GetTemplatesDirectoryName(config)
+    );
 
-Dictionary<string, string> environmentVariablesSourceDictionary = Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(environmentVariablesSourceDirectory);
+string destinationDirectory = Path.Combine(
+        Something.GetSriptsDirectoryName(config),
+        Something.GetDestinationDirectoryName(config)
+    );
+
+Dictionary<string, string> environmentVariablesSourceDictionary =
+        Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
+            Something.GetEnvironmentVariablesSourceDirectoryName(config)
+        );
 
 foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))  
 {
-    Dictionary<string, string> contentToWrite = Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
+    Dictionary<string, string> contentToWrite =
+        Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
 
     string destFileName = Path.GetFileNameWithoutExtension(templateFile);
     string destFile = Path.Combine(destinationDirectory, destFileName);

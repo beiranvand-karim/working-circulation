@@ -1,9 +1,40 @@
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace EnvironmentVariablesManagement
 {
     internal class Something 
     {
+        public static string GetSriptsDirectoryName(IConfiguration config)
+        {
+            string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
+            string scriptsDirectoryName = GetCommandLineArgByKey(scriptsDirectoryNameKey);
+            return scriptsDirectoryName;
+        }
+
+        public static string GetEnvironmentVariablesSourceDirectoryName(IConfiguration config)
+        {
+            string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
+            string environmentVariablesSourceDirectoryName = GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
+            string environmentVariablesSourceDirectory = Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
+            return environmentVariablesSourceDirectory;
+
+        }
+
+        public static string GetTemplatesDirectoryName(IConfiguration config)
+        {
+            string templatesDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:TemplatesDirectoryNameKey"];
+            string templatesDirectoryName = GetCommandLineArgByKey(templatesDirectoryNameKey);
+            return templatesDirectoryName;
+        }
+
+        public static string GetDestinationDirectoryName(IConfiguration config)
+        {
+            string destinationDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:DestinationDirectoryNameKey"];
+            string destinationDirectoryName = GetCommandLineArgByKey(destinationDirectoryNameKey);
+            return destinationDirectoryName;
+        }
+
         public static string GetEnvironmeentVariablesManagementDirectoryName()
         {
             string repositoryDirectoryNameKey = "--repository-directory";
