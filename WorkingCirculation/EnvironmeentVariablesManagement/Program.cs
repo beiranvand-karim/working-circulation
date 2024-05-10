@@ -49,5 +49,3 @@ catch (System.ArgumentException)
 {
     Console.WriteLine("necess --repository-directory");
 }
-
-
