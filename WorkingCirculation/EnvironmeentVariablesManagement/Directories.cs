@@ -7,16 +7,15 @@ namespace EnvironmentVariablesManagement
     {
         public static string GetSriptsDirectoryName(IConfiguration config)
         {
-            string scriptsDirectoryNameKey =
-                config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
+            string scriptsDirectoryNameKey = CommandLineArgs.GetKey(config, "ScriptsDirectoryNameKey");
             string scriptsDirectoryName = CommandLineArgs.GetByKey(scriptsDirectoryNameKey);
             return scriptsDirectoryName;
         }
 
         public static string GetEnvironmentVariablesSourceDirectoryName(IConfiguration config)
         {
-            string environmentVariablesSourceDirectoryNameKey =
-                config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
+             string environmentVariablesSourceDirectoryNameKey =
+                CommandLineArgs.GetKey(config, "EnvironmentVariablesSourceDirectoryNameKey");         
 
             string environmentVariablesSourceDirectoryName = CommandLineArgs.GetByKey(environmentVariablesSourceDirectoryNameKey);
 
@@ -29,7 +28,7 @@ namespace EnvironmentVariablesManagement
         public static string GetTemplatesDirectoryName(IConfiguration config)
         {
             string templatesDirectoryNameKey =
-                config["EnvironmentVariablesCommandLineArgumentsNameKeys:TemplatesDirectoryNameKey"];
+                CommandLineArgs.GetKey(config, "TemplatesDirectoryNameKey");
 
             string templatesDirectoryName = CommandLineArgs.GetByKey(templatesDirectoryNameKey);
             return templatesDirectoryName;
@@ -38,7 +37,7 @@ namespace EnvironmentVariablesManagement
         public static string GetDestinationDirectoryName(IConfiguration config)
         {
             string destinationDirectoryNameKey =
-            config["EnvironmentVariablesCommandLineArgumentsNameKeys:DestinationDirectoryNameKey"];
+                CommandLineArgs.GetKey(config, "DestinationDirectoryNameKey");            
             
             string destinationDirectoryName = CommandLineArgs.GetByKey(destinationDirectoryNameKey);
             return destinationDirectoryName;
@@ -55,6 +54,5 @@ namespace EnvironmentVariablesManagement
 
             return environmeentVariablesManagementDirectoryName;
         }
-
     }
 }

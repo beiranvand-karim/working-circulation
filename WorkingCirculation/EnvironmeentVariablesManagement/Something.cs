@@ -1,5 +1,4 @@
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace EnvironmentVariablesManagement
 {
@@ -9,7 +8,6 @@ namespace EnvironmentVariablesManagement
             string fileNamePath,
             Dictionary<string, string> environmentVariablesSourceDictionary
         ) {
-
             Dictionary<string, string> fileContentDictionaryToWriteToFile = [];
 
             const Int32 BufferSize = 128;
