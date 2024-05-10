@@ -9,7 +9,7 @@ namespace EnvironmentVariablesManagement
         {
             string scriptsDirectoryNameKey =
                 config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
-            string scriptsDirectoryName = CommandLineArgs.GetCommandLineArgByKey(scriptsDirectoryNameKey);
+            string scriptsDirectoryName = CommandLineArgs.GetByKey(scriptsDirectoryNameKey);
             return scriptsDirectoryName;
         }
 
@@ -18,7 +18,7 @@ namespace EnvironmentVariablesManagement
             string environmentVariablesSourceDirectoryNameKey =
                 config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
 
-            string environmentVariablesSourceDirectoryName = CommandLineArgs.GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
+            string environmentVariablesSourceDirectoryName = CommandLineArgs.GetByKey(environmentVariablesSourceDirectoryNameKey);
 
             string environmentVariablesSourceDirectory =
                 Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
@@ -31,7 +31,7 @@ namespace EnvironmentVariablesManagement
             string templatesDirectoryNameKey =
                 config["EnvironmentVariablesCommandLineArgumentsNameKeys:TemplatesDirectoryNameKey"];
 
-            string templatesDirectoryName = CommandLineArgs.GetCommandLineArgByKey(templatesDirectoryNameKey);
+            string templatesDirectoryName = CommandLineArgs.GetByKey(templatesDirectoryNameKey);
             return templatesDirectoryName;
         }
 
@@ -40,7 +40,7 @@ namespace EnvironmentVariablesManagement
             string destinationDirectoryNameKey =
             config["EnvironmentVariablesCommandLineArgumentsNameKeys:DestinationDirectoryNameKey"];
             
-            string destinationDirectoryName = CommandLineArgs.GetCommandLineArgByKey(destinationDirectoryNameKey);
+            string destinationDirectoryName = CommandLineArgs.GetByKey(destinationDirectoryNameKey);
             return destinationDirectoryName;
         }
 
@@ -48,7 +48,7 @@ namespace EnvironmentVariablesManagement
         {
             string repositoryDirectoryNameKey = "--repository-directory";
             string workingCirculationDirectoryName =
-                Path.Combine(CommandLineArgs.GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
+                Path.Combine(CommandLineArgs.GetByKey(repositoryDirectoryNameKey), "WorkingCirculation");
 
             string environmeentVariablesManagementDirectoryName =
                 Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");

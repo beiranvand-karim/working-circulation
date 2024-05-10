@@ -3,7 +3,7 @@ namespace EnvironmentVariablesManagement
 {
     internal class CommandLineArgs 
     {
-        public static string GetCommandLineArgByKey(string CommandLineArgKey)
+        public static string GetByKey(string CommandLineArgKey)
         {
             var commandLineArgs = Environment.GetCommandLineArgs();
 
