@@ -10,13 +10,13 @@ try
 
     IConfiguration config = builder.Build();
 
-    string templateSourceDirectory = 
+    string templateSourceDirectory =
         Path.Combine(
             Dictionaries.GetSriptsDirectoryName(config),
             Dictionaries.GetTemplatesDirectoryName(config)
         );
 
-    string destinationDirectory = 
+    string destinationDirectory =
         Path.Combine(
             Dictionaries.GetSriptsDirectoryName(config),
             Dictionaries.GetDestinationDirectoryName(config)
