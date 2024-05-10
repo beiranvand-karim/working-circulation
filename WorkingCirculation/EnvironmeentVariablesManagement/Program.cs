@@ -8,7 +8,7 @@ builder.SetBasePath(Something.GetEnvironmeentVariablesManagementDirectoryName())
  
 IConfiguration config = builder.Build();
 
-//  todo add conds that t both direcs would exists
+// todo add condis that both direcs would exists
 
 string templateSourceDirectory = Path.Combine(
         Something.GetSriptsDirectoryName(config),
