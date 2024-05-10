@@ -15,14 +15,9 @@ namespace EnvironmentVariablesManagement
 
         public static string GetEnvironmentVariablesSourceDirectoryName(IConfiguration config)
         {
-            string environmentVariablesSourceDirectoryNameKey =
-                config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
-
+            string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
             string environmentVariablesSourceDirectoryName = GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
-
-            string environmentVariablesSourceDirectory =
-                Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
-
+            string environmentVariablesSourceDirectory = Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
             return environmentVariablesSourceDirectory;
         }
 
