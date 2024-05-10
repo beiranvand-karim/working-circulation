@@ -10,12 +10,14 @@ IConfiguration config = builder.Build();
 
 // todo add condis that both direcs would exists
 
-string templateSourceDirectory = Path.Combine(
+string templateSourceDirectory = 
+    Path.Combine(
         Dictionaries.GetSriptsDirectoryName(config),
         Dictionaries.GetTemplatesDirectoryName(config)
     );
 
-string destinationDirectory = Path.Combine(
+string destinationDirectory = 
+    Path.Combine(
         Dictionaries.GetSriptsDirectoryName(config),
         Dictionaries.GetDestinationDirectoryName(config)
     );
