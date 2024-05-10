@@ -18,7 +18,6 @@ namespace EnvironmentVariablesManagement
             string environmentVariablesSourceDirectoryName = GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
             string environmentVariablesSourceDirectory = Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
             return environmentVariablesSourceDirectory;
-
         }
 
         public static string GetTemplatesDirectoryName(IConfiguration config)
