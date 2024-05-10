@@ -6,10 +6,10 @@ namespace EnvironmentVariablesManagement
     {
         public static string GetCommandLineArgByKey(string CommandLineArgKey)
         {
-            var commandLineArgs =  Environment.GetCommandLineArgs();
+            var commandLineArgs = Environment.GetCommandLineArgs();
 
             int index = Array.FindIndex(commandLineArgs, x => x.StartsWith(CommandLineArgKey));
-            if(index  >  -1)
+            if(index > -1)
             {
                 string CommandLineArgValue = commandLineArgs[index+1];
                 return CommandLineArgValue;
@@ -41,7 +41,7 @@ namespace EnvironmentVariablesManagement
 
         public static Dictionary<string, string> ReadKeyValueFromFile(string fileNamePath) 
         {
-            Dictionary<string, string>  fileContentDictionary  =  [];
+            Dictionary<string, string> fileContentDictionary = [];
 
             const Int32 BufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
@@ -60,7 +60,7 @@ namespace EnvironmentVariablesManagement
 
         public static Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceFile(string environmentVariablesSourceDirectory)
         {
-            Dictionary<string, string>  keyValuePairs  = [];
+            Dictionary<string, string> keyValuePairs = [];
 
             foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {

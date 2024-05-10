@@ -18,10 +18,10 @@ string destinationDirectoryNameKey = config["EnvironmentVariablesCommandLineArgu
 string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
 string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
 
-string templatesDirectoryName =  Something.GetCommandLineArgByKey(templatesDirectoryNameKey);
-string destinationDirectoryName =  Something.GetCommandLineArgByKey(destinationDirectoryNameKey);
-string environmentVariablesSourceDirectoryName =  Something.GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
-string scriptsDirectoryName =  Something.GetCommandLineArgByKey(scriptsDirectoryNameKey);
+string templatesDirectoryName = Something.GetCommandLineArgByKey(templatesDirectoryNameKey);
+string destinationDirectoryName = Something.GetCommandLineArgByKey(destinationDirectoryNameKey);
+string environmentVariablesSourceDirectoryName = Something.GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
+string scriptsDirectoryName = Something.GetCommandLineArgByKey(scriptsDirectoryNameKey);
 
 //  todo add conds that t both direcs would exists
 
