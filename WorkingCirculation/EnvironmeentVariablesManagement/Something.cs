@@ -7,16 +7,19 @@ namespace EnvironmentVariablesManagement
     {
         public static string GetSriptsDirectoryName(IConfiguration config)
         {
-            string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
+            string scriptsDirectoryNameKey =
+                config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
             string scriptsDirectoryName = GetCommandLineArgByKey(scriptsDirectoryNameKey);
             return scriptsDirectoryName;
         }
 
         public static string GetEnvironmentVariablesSourceDirectoryName(IConfiguration config)
         {
-            string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
+            string environmentVariablesSourceDirectoryNameKey =
+                config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
             string environmentVariablesSourceDirectoryName = GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
-            string environmentVariablesSourceDirectory = Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
+            string environmentVariablesSourceDirectory =
+                Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
             return environmentVariablesSourceDirectory;
         }
 
@@ -37,7 +40,7 @@ namespace EnvironmentVariablesManagement
         public static string GetEnvironmeentVariablesManagementDirectoryName()
         {
             string repositoryDirectoryNameKey = "--repository-directory";
-            string workingCirculationDirectoryName = Path.Combine(Something.GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
+            string workingCirculationDirectoryName = Path.Combine(GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
             string environmeentVariablesManagementDirectoryName = Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
             return environmeentVariablesManagementDirectoryName;
         }
