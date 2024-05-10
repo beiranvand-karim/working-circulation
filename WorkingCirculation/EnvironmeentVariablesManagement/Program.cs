@@ -10,8 +10,6 @@ try
 
     IConfiguration config = builder.Build();
 
-    // todo add condis that both direcs would exists
-
     string templateSourceDirectory = 
         Path.Combine(
             Dictionaries.GetSriptsDirectoryName(config),
