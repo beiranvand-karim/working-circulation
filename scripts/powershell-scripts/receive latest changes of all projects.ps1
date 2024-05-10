@@ -1,6 +1,6 @@
 <#> fina = file name = receive latest changes of all projects.ps1 #>
 
-get-content "scrIs/receive latest changes of all projects.env" | ForEach-Object {
+get-content "receive-latest-changes-of-all-projects.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
