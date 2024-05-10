@@ -30,42 +30,26 @@ string executiveFileDirectoryName =  Something.GetCommandLineArgByKey(executiveF
 string scriptsDirectoryName =  Something.GetCommandLineArgByKey(scriptsDirectoryNameKey);
 string hostingDirectoryName =  Something.GetCommandLineArgByKey(hostingDirectoryNameKey);
 
-
-int choice = 2;
-
-if (choice == 1)
-{
-    string sourceDirectory = Path.Combine(scriptsDirectoryName, templatesDirectoryName);
-    string destinationDirectory = Path.Combine(scriptsDirectoryName, destinationDirectoryName);
-
-    Something.CopyContentOfSourceDireectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
-
-}
-
 //  todo add conds that t both direcs would exists
 
-if (choice == 2)
+string environmentVariablesSourceDirectory = Path.Combine(scriptsDirectoryName, environmentVariablesSourceDirectoryName);
+string templateSourceDirectory = Path.Combine(scriptsDirectoryName, templatesDirectoryName);
+string destinationDirectory = Path.Combine(scriptsDirectoryName, destinationDirectoryName);
+
+Dictionary<string, string> environmentVariablesSourceDictionary = Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(environmentVariablesSourceDirectory);
+
+foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))  
 {
-    string environmentVariablesSourceDirectory = Path.Combine(scriptsDirectoryName, environmentVariablesSourceDirectoryName);
-    string templateSourceDirectory = Path.Combine(scriptsDirectoryName, templatesDirectoryName);
-    string destinationDirectory = Path.Combine(scriptsDirectoryName, destinationDirectoryName);
+    Dictionary<string, string> contentToWrite = Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
 
-    Dictionary<string, string> environmentVariablesSourceDictionary = Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(environmentVariablesSourceDirectory);
+    string destFileName = Path.GetFileNameWithoutExtension(templateFile);
+    string destFile = Path.Combine(destinationDirectory, destFileName);
+    using var fs = File.Create(destFile);
 
-    foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))  
+    using StreamWriter writer = new(fs);
+    foreach (KeyValuePair<string, string> entry in contentToWrite)
     {
-        Dictionary<string, string> contentToWrite = Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-
-        string destFileName = Path.GetFileNameWithoutExtension(templateFile);
-        string destFile = Path.Combine(destinationDirectory, destFileName);
-        using var fs = File.Create(destFile);
-
-        using StreamWriter writer = new(fs);
-        foreach (KeyValuePair<string, string> entry in contentToWrite)
-        {
-            string valueToWrite = $"""{entry.Key}={entry.Value}""";
-            writer.WriteLine(valueToWrite);
-        }
+        string valueToWrite = $"""{entry.Key}={entry.Value}""";
+        writer.WriteLine(valueToWrite);
     }
 }
-
