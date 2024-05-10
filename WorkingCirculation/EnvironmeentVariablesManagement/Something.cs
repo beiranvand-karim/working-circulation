@@ -19,9 +19,12 @@ namespace EnvironmentVariablesManagement
         {
             string environmentVariablesSourceDirectoryNameKey =
                 config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
+
             string environmentVariablesSourceDirectoryName = GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
+
             string environmentVariablesSourceDirectory =
                 Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
+
             return environmentVariablesSourceDirectory;
         }
 
@@ -46,8 +49,12 @@ namespace EnvironmentVariablesManagement
         public static string GetEnvironmeentVariablesManagementDirectoryName()
         {
             string repositoryDirectoryNameKey = "--repository-directory";
-            string workingCirculationDirectoryName = Path.Combine(GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
-            string environmeentVariablesManagementDirectoryName = Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
+            string workingCirculationDirectoryName =
+                Path.Combine(GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
+
+            string environmeentVariablesManagementDirectoryName =
+                Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
+
             return environmeentVariablesManagementDirectoryName;
         }
 
