@@ -3,7 +3,7 @@ using EnvironmentVariablesManagement;
 using Microsoft.Extensions.Configuration;
 
 var builder = new ConfigurationBuilder();
-builder.SetBasePath(Something.GetEnvironmeentVariablesManagementDirectoryName())
+builder.SetBasePath(Dictionaries.GetEnvironmeentVariablesManagementDirectoryName())
        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
  
 IConfiguration config = builder.Build();
@@ -11,18 +11,18 @@ IConfiguration config = builder.Build();
 // todo add condis that both direcs would exists
 
 string templateSourceDirectory = Path.Combine(
-        Something.GetSriptsDirectoryName(config),
-        Something.GetTemplatesDirectoryName(config)
+        Dictionaries.GetSriptsDirectoryName(config),
+        Dictionaries.GetTemplatesDirectoryName(config)
     );
 
 string destinationDirectory = Path.Combine(
-        Something.GetSriptsDirectoryName(config),
-        Something.GetDestinationDirectoryName(config)
+        Dictionaries.GetSriptsDirectoryName(config),
+        Dictionaries.GetDestinationDirectoryName(config)
     );
 
 Dictionary<string, string> environmentVariablesSourceDictionary =
         Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
-            Something.GetEnvironmentVariablesSourceDirectoryName(config)
+            Dictionaries.GetEnvironmentVariablesSourceDirectoryName(config)
         );
 
 foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))  
