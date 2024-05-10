@@ -6,11 +6,10 @@ string repositoryDirectoryNameKey = "--repository-directory";
 
 string workingCirculationDirectoryName = Path.Combine(Something.GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
 string environmeentVariablesManagementDirectoryName = Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
-string appsettings = Path.Combine(environmeentVariablesManagementDirectoryName, "appsettings.json");
 
 var builder = new ConfigurationBuilder();
-builder.SetBasePath(Directory.GetCurrentDirectory())
-       .AddJsonFile(appsettings, optional: false, reloadOnChange: true);
+builder.SetBasePath(environmeentVariablesManagementDirectoryName)
+       .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
  
 IConfiguration config = builder.Build();
 
