@@ -10,13 +10,15 @@ try
 
     IConfiguration config = builder.Build();
 
-    string templateSourceDirectory =
+    // todo add condis that both direcs would exists
+
+    string templateSourceDirectory = 
         Path.Combine(
             Dictionaries.GetSriptsDirectoryName(config),
             Dictionaries.GetTemplatesDirectoryName(config)
         );
 
-    string destinationDirectory =
+    string destinationDirectory = 
         Path.Combine(
             Dictionaries.GetSriptsDirectoryName(config),
             Dictionaries.GetDestinationDirectoryName(config)
@@ -49,3 +51,5 @@ catch (System.ArgumentException)
 {
     Console.WriteLine("necess --repository-directory");
 }
+
+
