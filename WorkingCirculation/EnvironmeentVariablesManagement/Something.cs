@@ -5,6 +5,43 @@ namespace EnvironmentVariablesManagement
 {
     internal class Something 
     {
+        public static string GetSriptsDirectoryName(IConfiguration config)
+        {
+            string scriptsDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:ScriptsDirectoryNameKey"];
+            string scriptsDirectoryName = GetCommandLineArgByKey(scriptsDirectoryNameKey);
+            return scriptsDirectoryName;
+        }
+
+        public static string GetEnvironmentVariablesSourceDirectoryName(IConfiguration config)
+        {
+            string environmentVariablesSourceDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:EnvironmentVariablesSourceDirectoryNameKey"];
+            string environmentVariablesSourceDirectoryName = GetCommandLineArgByKey(environmentVariablesSourceDirectoryNameKey);
+            string environmentVariablesSourceDirectory = Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
+            return environmentVariablesSourceDirectory;
+        }
+
+        public static string GetTemplatesDirectoryName(IConfiguration config)
+        {
+            string templatesDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:TemplatesDirectoryNameKey"];
+            string templatesDirectoryName = GetCommandLineArgByKey(templatesDirectoryNameKey);
+            return templatesDirectoryName;
+        }
+
+        public static string GetDestinationDirectoryName(IConfiguration config)
+        {
+            string destinationDirectoryNameKey = config["EnvironmentVariablesCommandLineArgumentsNameKeys:DestinationDirectoryNameKey"];
+            string destinationDirectoryName = GetCommandLineArgByKey(destinationDirectoryNameKey);
+            return destinationDirectoryName;
+        }
+
+        public static string GetEnvironmeentVariablesManagementDirectoryName()
+        {
+            string repositoryDirectoryNameKey = "--repository-directory";
+            string workingCirculationDirectoryName = Path.Combine(Something.GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
+            string environmeentVariablesManagementDirectoryName = Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
+            return environmeentVariablesManagementDirectoryName;
+        }
+
         public static string GetCommandLineArgByKey(string CommandLineArgKey)
         {
             var commandLineArgs = Environment.GetCommandLineArgs();
@@ -19,10 +56,7 @@ namespace EnvironmentVariablesManagement
             return $"""could'nt find environment variable "{CommandLineArgKey}" ...""";
         }
 
-        public static Dictionary<string, string> PairUpVariablesWithTheirValue(
-            string fileNamePath,
-            Dictionary<string, string> environmentVariablesSourceDictionary
-        ) {
+        public static Dictionary<string, string> PairUpVariablesWithTheirValue(string fileNamePath, Dictionary<string, string> environmentVariablesSourceDictionary) {
 
             Dictionary<string, string> fileContentDictionaryToWriteToFile = [];
 
@@ -62,9 +96,8 @@ namespace EnvironmentVariablesManagement
             return fileContentDictionary;
         }
 
-        public static Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceFile(
-            string environmentVariablesSourceDirectory
-        ){
+        public static Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceFile(string environmentVariablesSourceDirectory)
+        {
             Dictionary<string, string> keyValuePairs = [];
 
             foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
