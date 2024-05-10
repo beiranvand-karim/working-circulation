@@ -2,13 +2,8 @@
 using EnvironmentVariablesManagement;
 using Microsoft.Extensions.Configuration;
 
-string repositoryDirectoryNameKey = "--repository-directory";
-
-string workingCirculationDirectoryName = Path.Combine(Something.GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
-string environmeentVariablesManagementDirectoryName = Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
-
 var builder = new ConfigurationBuilder();
-builder.SetBasePath(environmeentVariablesManagementDirectoryName)
+builder.SetBasePath(Something.GetEnvironmeentVariablesManagementDirectoryName())
        .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
  
 IConfiguration config = builder.Build();
