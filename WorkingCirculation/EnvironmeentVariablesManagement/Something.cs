@@ -4,6 +4,14 @@ namespace EnvironmentVariablesManagement
 {
     internal class Something 
     {
+        public static string GetEnvironmeentVariablesManagementDirectoryName()
+        {
+            string repositoryDirectoryNameKey = "--repository-directory";
+            string workingCirculationDirectoryName = Path.Combine(Something.GetCommandLineArgByKey(repositoryDirectoryNameKey), "WorkingCirculation");
+            string environmeentVariablesManagementDirectoryName = Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
+            return environmeentVariablesManagementDirectoryName;
+        }
+
         public static string GetCommandLineArgByKey(string CommandLineArgKey)
         {
             var commandLineArgs = Environment.GetCommandLineArgs();
@@ -25,7 +33,7 @@ namespace EnvironmentVariablesManagement
             const Int32 BufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
             using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
-            String line;
+            String? line;
 
             while ((line = streamReader.ReadLine()) != null) 
             {
@@ -46,7 +54,7 @@ namespace EnvironmentVariablesManagement
             const Int32 BufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
             using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
-            String line;
+            String? line;
 
             while ((line = streamReader.ReadLine()) != null)
             {
@@ -64,7 +72,7 @@ namespace EnvironmentVariablesManagement
 
             foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {
-                keyValuePairs = Something.ReadKeyValueFromFile(file);
+                keyValuePairs = ReadKeyValueFromFile(file);
             }
 
             return keyValuePairs;
