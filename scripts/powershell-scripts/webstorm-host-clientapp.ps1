@@ -5,4 +5,4 @@ get-content "webstorm-host-clientapp.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-start-process -FilePath $env:WEBSTORM_LOCATION  -ArgumentList $env:HOST_CLIENTAPP_LOCATION
+start-process -FilePath $env:WEBSTORM_LOCATION -ArgumentList $env:HOST_CLIENTAPP_LOCATION
