@@ -9,7 +9,7 @@ namespace EnvironmentVariablesManagement
         {
             string groupKey = "EnvironmentVariablesCommandLineArgumentsNameKeys";
             string commandLineArgumentKey = $""""{groupKey}:{key}"""";
-            return config.GetValue<string>(commandLineArgumentKey);
+            return config.GetValue<string>(commandLineArgumentKey) ?? $"""could'nt find key "{key}" ...""";
         }
         
         public static string GetByKey(string CommandLineArgKey)
