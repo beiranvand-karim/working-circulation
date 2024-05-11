@@ -1,6 +1,6 @@
 <#> fina = file name = application.ps1 #>
 
-get-content application.env | ForEach-Object {
+get-content "application.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
