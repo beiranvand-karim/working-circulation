@@ -5,4 +5,4 @@ get-content "rider-host-application.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-start-process -FilePath $env:RIDER_LOCATION  -ArgumentList $env:HOST_APPLICATION_LOCATION
+start-process -FilePath $env:RIDER_LOCATION -ArgumentList $env:HOST_APPLICATION_LOCATION
