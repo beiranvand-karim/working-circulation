@@ -3,4 +3,4 @@
 REM populate-environment-variables
 REM populate-environment-variables.bat
 
-Powershell.exe -ExecutionPolicy RemoteSigned  -File "scripts/populate-environment-variables.ps1" 
+Powershell.exe -ExecutionPolicy RemoteSigned -File "populate-environment-variables.ps1" 
