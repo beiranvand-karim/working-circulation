@@ -5,6 +5,23 @@ namespace EnvironmentVariablesManagement
 {
     internal class Dictionaries 
     {
+
+        public static void CreateFeatureNameDirectory(IConfiguration config)
+        {
+            string featureNameDirectoryNameKey =  CommandLineArgs.GetKey(config, "FeatureNameKey");
+            string featureNameDirectoryName = CommandLineArgs.GetByKey(featureNameDirectoryNameKey);
+            string hostingDirectoryName = GetHostingDirectoryName(config);
+            string featureNameDirectoryPath = Path.Combine(hostingDirectoryName, featureNameDirectoryName);
+            Directory.CreateDirectory(featureNameDirectoryPath);
+
+        }
+        public static string GetHostingDirectoryName(IConfiguration config)
+        {
+            string hostingDirectoryNameKey = CommandLineArgs.GetKey(config, "HostingDirectoryNameKey");
+            string hostingDirectoryName = CommandLineArgs.GetByKey(hostingDirectoryNameKey);
+            return hostingDirectoryName;
+        }
+
         public static string GetSriptsDirectoryName(IConfiguration config)
         {
             string scriptsDirectoryNameKey = CommandLineArgs.GetKey(config, "ScriptsDirectoryNameKey");

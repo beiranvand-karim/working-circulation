@@ -10,6 +10,8 @@ try
 
     IConfiguration config = builder.Build();
 
+    Dictionaries.CreateFeatureNameDirectory(config);
+
     string templateSourceDirectory =
         Path.Combine(
             Dictionaries.GetSriptsDirectoryName(config),
