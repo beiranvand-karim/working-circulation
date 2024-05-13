@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace EnvironmentVariablesManagement
 {
-    internal class Dictionaries 
+    internal class Directories 
     {
 
         public static void CreateFeatureNameDirectory(IConfiguration config)
