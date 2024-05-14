@@ -5,6 +5,13 @@ namespace EnvironmentVariablesManagement
 {
     internal class Directories 
     {
+        public static string CreatePathToTargetDirectory()
+        {
+            string environmeentVariablesManagementDirectoryName = GetEnvironmeentVariablesManagementDirectoryName();
+            string targetDirectoryPath = Path.Combine(environmeentVariablesManagementDirectoryName, "target");
+            return targetDirectoryPath;
+        }
+
         public static void CreateFeatureNameDirectory(IConfiguration config)
         {
             string featureNameDirectoryNameKey =  CommandLineArgs.GetKey(config, "FeatureNameKey");
