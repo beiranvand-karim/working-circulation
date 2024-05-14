@@ -12,6 +12,8 @@ try
 
     Directories.CreateFeatureNameDirectory(config);
 
+    Directories.CopyBatchScriptsToTargetDicrectory(config);
+
     string templateSourceDirectory =
         Path.Combine(
             Directories.GetSriptsDirectoryName(config),
