@@ -20,3 +20,6 @@ scripts/environment-variables-source/
 
 # jetbrains ides
 .idea/
+
+# output of scripts interpolations
+target/
