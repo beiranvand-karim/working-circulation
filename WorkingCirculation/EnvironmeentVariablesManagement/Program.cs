@@ -14,9 +14,9 @@ try
 
     Directories.CopyBatchScriptsToTargetDicrectory(config);
 
-    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToEnvironmentVariablesFilesDirectoryInTargetDirectory());
+    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInTargetDirectory());
 
-    EnvironmentVariablesFilesDirectory.CopyEnvironmentVariablesFilesDirectoryContentToTargetDicrectory(config);
+    EnvironmentVariablesFilesDirectory.CopyContentToTargetDicrectory(config);
 
     string templateSourceDirectory =
         Path.Combine(
