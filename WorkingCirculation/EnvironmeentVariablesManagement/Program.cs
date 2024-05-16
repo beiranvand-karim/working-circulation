@@ -5,28 +5,28 @@ using Microsoft.Extensions.Configuration;
 try
 {
     var builder = new ConfigurationBuilder();
-    builder.SetBasePath(Dictionaries.GetEnvironmeentVariablesManagementDirectoryName())
+    builder.SetBasePath(Directories.GetEnvironmeentVariablesManagementDirectoryName())
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
     IConfiguration config = builder.Build();
 
-    Dictionaries.CreateFeatureNameDirectory(config);
+    Directories.CreateFeatureNameDirectory(config);
 
     string templateSourceDirectory =
         Path.Combine(
-            Dictionaries.GetSriptsDirectoryName(config),
-            Dictionaries.GetTemplatesDirectoryName(config)
+            Directories.GetSriptsDirectoryName(config),
+            Directories.GetTemplatesDirectoryName(config)
         );
 
     string destinationDirectory =
         Path.Combine(
-            Dictionaries.GetSriptsDirectoryName(config),
-            Dictionaries.GetDestinationDirectoryName(config)
+            Directories.GetSriptsDirectoryName(config),
+            Directories.GetDestinationDirectoryName(config)
         );
 
     Dictionary<string, string> environmentVariablesSourceDictionary =
             Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
-                Dictionaries.GetEnvironmentVariablesSourceDirectoryName(config)
+                Directories.GetEnvironmentVariablesSourceDirectoryName(config)
             );
 
     foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))  
