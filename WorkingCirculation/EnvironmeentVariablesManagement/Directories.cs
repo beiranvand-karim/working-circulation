@@ -5,7 +5,6 @@ namespace EnvironmentVariablesManagement
 {
     internal class Directories 
     {
-
         public static void CreateFeatureNameDirectory(IConfiguration config)
         {
             string featureNameDirectoryNameKey =  CommandLineArgs.GetKey(config, "FeatureNameKey");
