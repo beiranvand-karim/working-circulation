@@ -5,6 +5,12 @@ namespace EnvironmentVariablesManagement
 {
     internal class Directories 
     {
+        public static string CreatePathToBatchScriptsDirectory(IConfiguration configuration){
+            string scriptsDirectoryName = GetSriptsDirectoryName(configuration);
+            string batchScriptsDirectoryPath = Path.Combine(scriptsDirectoryName, "batch-scripts");
+            return batchScriptsDirectoryPath;
+        }
+
         public static string CreatePathToTargetDirectory()
         {
             string environmeentVariablesManagementDirectoryName = GetEnvironmeentVariablesManagementDirectoryName();
