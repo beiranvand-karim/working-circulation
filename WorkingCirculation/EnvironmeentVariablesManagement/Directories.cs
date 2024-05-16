@@ -5,6 +5,13 @@ namespace EnvironmentVariablesManagement
 {
     internal class Directories 
     {
+        public static string CreatePathToEnvironmentVariablesFilesDirectoryInTargetDirectory()
+        {
+            string destinationDirectory = CreatePathToTargetDirectory();
+            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
+            return environmentVariablesFilesDirectory;
+        }
+
         public static void CopyBatchScriptsToTargetDicrectory(IConfiguration configuration){
             string sourceDirectory = CreatePathToBatchScriptsDirectory(configuration);
             string destinationDirectory = CreatePathToTargetDirectory();
