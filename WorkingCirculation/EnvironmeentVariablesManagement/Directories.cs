@@ -21,13 +21,6 @@ namespace EnvironmentVariablesManagement
             }
         }
 
-        public static string GetHostingDirectoryName(IConfiguration config)
-        {
-            string hostingDirectoryNameKey = CommandLineArgs.GetKey(config, "HostingDirectoryNameKey");
-            string hostingDirectoryName = CommandLineArgs.GetByKey(hostingDirectoryNameKey);
-            return hostingDirectoryName;
-        }
-
         public static string GetEnvironmeentVariablesManagementDirectoryName()
         {
             string workingCirculationDirectoryName = CreatePathToWorkingCirculationDirectory();
