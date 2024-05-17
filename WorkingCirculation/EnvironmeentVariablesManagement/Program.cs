@@ -10,7 +10,7 @@ try
 
     IConfiguration config = builder.Build();
 
-    Directories.CreateFeatureNameDirectory(config);
+    FeatureNameDirectory.CreateSelf(config);
 
     BatchScriptsDicrectory.CopyToTargetDicrectory(config);
 
