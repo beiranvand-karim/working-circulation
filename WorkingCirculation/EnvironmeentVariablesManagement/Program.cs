@@ -21,7 +21,7 @@ try
     string templateSourceDirectory =
         Path.Combine(
             SriptsDirectory.GetName(config),
-            Directories.GetTemplatesDirectoryName(config)
+            TemplatesDirectory.GetName(config)
         );
 
     string destinationDirectory =
