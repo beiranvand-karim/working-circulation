@@ -6,6 +6,13 @@ namespace EnvironmentVariablesManagement
 {
     internal class EnvironmentVariablesFilesDirectory
     {
+        public static void CopyContentToFeatureNameDicrectory(IConfiguration configuration){
+            string sourceDirectory = CreatePathToSelfInScriptsDirectory(configuration);
+            string destinationDirectory = CreatePathToSelfInFeatureNameDirectory(configuration);
+
+            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+        }
+
         public static void CopyContentToTargetDicrectory(IConfiguration configuration){
             string sourceDirectory = CreatePathToSelfInScriptsDirectory(configuration);
             string destinationDirectory = CreatePathToSelfInTargetDirectory();
@@ -17,6 +24,13 @@ namespace EnvironmentVariablesManagement
         {
             string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
             string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "environment-variables-files");
+            return environmentVariablesFilesDirectory;
+        }
+
+        public static string CreatePathToSelfInFeatureNameDirectory(IConfiguration configuration)
+        {
+            string destinationDirectory = FeatureNameDirectory.GetPath(configuration);
+            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }
 
