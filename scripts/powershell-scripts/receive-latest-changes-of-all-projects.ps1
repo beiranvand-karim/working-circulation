@@ -1,4 +1,4 @@
-<#> fina = file name = receive latest changes of all projects.ps1 #>
+<#> fina = file name = receive-latest-changes-of-all-projects.ps1 #>
 
 get-content "receive-latest-changes-of-all-projects.env" | ForEach-Object {
     $name, $value = $_.split("=")

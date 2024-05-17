@@ -1,4 +1,4 @@
-<#> fina = file name = rider guest application.ps1 #>
+<#> fina = file name = rider-guest-application.ps1 #>
 
 get-content "rider-guest-application.env" | ForEach-Object {
     $name, $value = $_.split("=")
