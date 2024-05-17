@@ -4,12 +4,18 @@ namespace EnvironmentVariablesManagement
 {
     internal class PowerShellScriptsDirectory
     {
-        public static void replaceFileNameWithPath(string receiverPath, string giverPath)
-        {
-            string fileName= Path.GetFileName(giverPath);
-            string text = File.ReadAllText(receiverPath);
-            text = text.Replace(fileName, giverPath);
-            File.WriteAllText(receiverPath, text);
+        internal static void replaceFileNamesWithPaths()
+        {            
+            string direcName = "powershell-scripts";
+            string pathInTarget = ConstructPathToSelfInTargetDirectory(direcName);
+            string giversPath = EnvironmentVariablesFilesDirectory.CreatePathToSelfInTargetDirectory();
+            foreach (string filePath in Directory.EnumerateFiles(pathInTarget)) 
+            {
+                string fileName = Path.GetFileNameWithoutExtension(filePath);
+                string giverFileName = $"""{fileName}.env""";
+                string giverPath = Path.Combine(giversPath, giverFileName);
+                Directories.replaceFileNameWithPath(filePath, giverPath);
+            }
         }
 
         public static void CopyContentToTargetDicrectory(IConfiguration configuration){
