@@ -1,3 +1,6 @@
+
+rm -rf ../WorkingCirculation/EnvironmeentVariablesManagement/target/*
+
 /Users/karimbeiranvand/Documents/GitHub/working-circulation/WorkingCirculation/EnvironmeentVariablesManagement/bin/Debug/net8.0/EnvironmeentVariablesManagement \
 --templates-directory "environment-variables-example-files" \
 --destination-directory  "environment-variables-files" \
