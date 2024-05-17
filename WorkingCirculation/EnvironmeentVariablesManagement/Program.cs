@@ -23,6 +23,10 @@ try
     PowerShellScriptsDirectory.CopyContentToTargetDicrectory(config);
     PowerShellScriptsDirectory.replaceFileNamesWithPaths();
 
+    PowerShellScriptsDirectory.CopyContentToFeatureNameDicrectory(config);
+    PowerShellScriptsDirectory.replaceFileNamesWithPaths(config);
+
+
     BatchScriptsDicrectory.CopyContentToTargetDicrectory(config);
     BatchScriptsDicrectory.replaceFileNamesWithPaths();
 
