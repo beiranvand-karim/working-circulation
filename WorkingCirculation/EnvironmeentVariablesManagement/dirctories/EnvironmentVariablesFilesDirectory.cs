@@ -15,7 +15,7 @@ namespace EnvironmentVariablesManagement
 
         public static string CreatePathToSelfInScriptsDirectory(IConfiguration configuration)
         {
-            string scriptsDirectoryName = Directories.GetSriptsDirectoryName(configuration);
+            string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
             string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }

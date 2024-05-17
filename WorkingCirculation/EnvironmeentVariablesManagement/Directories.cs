@@ -44,13 +44,6 @@ namespace EnvironmentVariablesManagement
             return hostingDirectoryName;
         }
 
-        public static string GetSriptsDirectoryName(IConfiguration config)
-        {
-            string scriptsDirectoryNameKey = CommandLineArgs.GetKey(config, "ScriptsDirectoryNameKey");
-            string scriptsDirectoryName = CommandLineArgs.GetByKey(scriptsDirectoryNameKey);
-            return scriptsDirectoryName;
-        }
-
         public static string GetEnvironmentVariablesSourceDirectoryName(IConfiguration config)
         {
              string environmentVariablesSourceDirectoryNameKey =
@@ -59,7 +52,7 @@ namespace EnvironmentVariablesManagement
             string environmentVariablesSourceDirectoryName = CommandLineArgs.GetByKey(environmentVariablesSourceDirectoryNameKey);
 
             string environmentVariablesSourceDirectory =
-                Path.Combine(GetSriptsDirectoryName(config), environmentVariablesSourceDirectoryName);
+                Path.Combine(SriptsDirectory.GetName(config), environmentVariablesSourceDirectoryName);
 
             return environmentVariablesSourceDirectory;
         }

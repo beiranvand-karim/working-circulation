@@ -20,13 +20,13 @@ try
 
     string templateSourceDirectory =
         Path.Combine(
-            Directories.GetSriptsDirectoryName(config),
+            SriptsDirectory.GetName(config),
             Directories.GetTemplatesDirectoryName(config)
         );
 
     string destinationDirectory =
         Path.Combine(
-            Directories.GetSriptsDirectoryName(config),
+            SriptsDirectory.GetName(config),
             EnvironmentVariablesFilesDirectory.GetName(config)
         );
 
