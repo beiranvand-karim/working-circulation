@@ -55,6 +55,8 @@ try
             writer.WriteLine(valueToWrite);
         }
     }
+
+    Directories.MoveAll(FeatureNameDirectory.GetPath(config), TargetDirectory.CreatePathToSelf());
  
 }
 catch (System.ArgumentException)
