@@ -12,11 +12,13 @@ try
 
     FeatureNameDirectory.CreateSelf(config);
 
-    BatchScriptsDicrectory.CopyToTargetDicrectory(config);
 
     Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInTargetDirectory());
-
     EnvironmentVariablesFilesDirectory.CopyContentToTargetDicrectory(config);
+
+    PowerShellScriptsDirectory.CopyContentToTargetDicrectory(config);
+
+    BatchScriptsDicrectory.CopyToTargetDicrectory(config);
 
     string templateSourceDirectory =
         Path.Combine(
