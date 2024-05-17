@@ -10,7 +10,7 @@ namespace EnvironmentVariablesManagement
             string sourceDirectory = CreatePathToSelfInScriptsDirectory(configuration);
             string destinationDirectory = CreatePathToSelfInTargetDirectory();
 
-            Directories.CopyContentOfSourceDireectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public static string CreatePathToSelfInScriptsDirectory(IConfiguration configuration)

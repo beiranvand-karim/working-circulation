@@ -9,7 +9,7 @@ namespace EnvironmentVariablesManagement
             string sourceDirectory = CreatePathToSelf(configuration);
             string destinationDirectory = TargetDirectory.CreatePathToSelf();
 
-            Directories.CopyContentOfSourceDireectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public static string CreatePathToSelf(IConfiguration configuration){
