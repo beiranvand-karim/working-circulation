@@ -19,24 +19,6 @@ namespace EnvironmentVariablesManagement
             {
                 CopyFileToDestinationDirectory(file, destinationDirectory);
             }
-        }
-
-        public static string GetEnvironmeentVariablesManagementDirectoryName()
-        {
-            string workingCirculationDirectoryName = CreatePathToWorkingCirculationDirectory();
-
-            string environmeentVariablesManagementDirectoryName =
-                Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
-
-            return environmeentVariablesManagementDirectoryName;
-        }
-
-        public static string CreatePathToWorkingCirculationDirectory()
-        {
-            string repositoryDirectoryNameKey = "--repository-directory";
-            string workingCirculationDirectoryName =
-                Path.Combine(CommandLineArgs.GetByKey(repositoryDirectoryNameKey), "WorkingCirculation");
-            return workingCirculationDirectoryName;         
-        }        
+        }     
     }
 }
