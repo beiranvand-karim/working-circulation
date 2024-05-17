@@ -7,7 +7,7 @@ namespace EnvironmentVariablesManagement
     {
         public static void CopyToTargetDicrectory(IConfiguration configuration){
             string sourceDirectory = CreatePathToSelf(configuration);
-            string destinationDirectory = Directories.CreatePathToTargetDirectory();
+            string destinationDirectory = TargetDirectory.CreatePathToSelf();
 
             Directories.CopyContentOfSourceDireectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
