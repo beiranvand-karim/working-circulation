@@ -5,13 +5,6 @@ namespace EnvironmentVariablesManagement
 {
     internal class Directories 
     {
-        public static void CopyBatchScriptsToTargetDicrectory(IConfiguration configuration){
-            string sourceDirectory = CreatePathToBatchScriptsDirectory(configuration);
-            string destinationDirectory = CreatePathToTargetDirectory();
-
-            CopyContentOfSourceDireectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
-        }
-
         public static void CopyFileToDestinationDirectory(string file, string destinationDirectory)
         {
             string fileName = Path.GetFileName(file);
@@ -26,12 +19,6 @@ namespace EnvironmentVariablesManagement
             {
                 CopyFileToDestinationDirectory(file, destinationDirectory);
             }
-        }
-
-        public static string CreatePathToBatchScriptsDirectory(IConfiguration configuration){
-            string scriptsDirectoryName = GetSriptsDirectoryName(configuration);
-            string batchScriptsDirectoryPath = Path.Combine(scriptsDirectoryName, "batch-scripts");
-            return batchScriptsDirectoryPath;
         }
 
         public static string CreatePathToTargetDirectory()
