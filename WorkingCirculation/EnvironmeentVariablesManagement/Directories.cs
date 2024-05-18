@@ -28,15 +28,6 @@ namespace EnvironmentVariablesManagement
             return hostingDirectoryName;
         }
 
-        public static string GetTemplatesDirectoryName(IConfiguration config)
-        {
-            string templatesDirectoryNameKey =
-                CommandLineArgs.GetKey(config, "TemplatesDirectoryNameKey");
-
-            string templatesDirectoryName = CommandLineArgs.GetByKey(templatesDirectoryNameKey);
-            return templatesDirectoryName;
-        }
-
         public static string GetEnvironmeentVariablesManagementDirectoryName()
         {
             string workingCirculationDirectoryName = CreatePathToWorkingCirculationDirectory();
