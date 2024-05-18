@@ -12,7 +12,7 @@ try
 
     Directories.CreateFeatureNameDirectory(config);
 
-    Directories.CopyBatchScriptsToTargetDicrectory(config);
+    BatchScriptsDicrectory.CopyToTargetDicrectory(config);
 
     Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInTargetDirectory());
 
