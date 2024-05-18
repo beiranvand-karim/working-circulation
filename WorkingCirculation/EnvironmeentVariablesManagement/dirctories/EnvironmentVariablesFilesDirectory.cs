@@ -22,7 +22,7 @@ namespace EnvironmentVariablesManagement
 
         public static string CreatePathToSelfInTargetDirectory()
         {
-            string destinationDirectory = Directories.CreatePathToTargetDirectory();
+            string destinationDirectory = TargetDirectory.CreatePathToSelf();
             string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }
