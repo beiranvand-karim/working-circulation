@@ -26,5 +26,14 @@ namespace EnvironmentVariablesManagement
             string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }
+
+        public static string GetName(IConfiguration config)
+        {
+            string destinationDirectoryNameKey =
+                CommandLineArgs.GetKey(config, "DestinationDirectoryNameKey");            
+            
+            string destinationDirectoryName = CommandLineArgs.GetByKey(destinationDirectoryNameKey);
+            return destinationDirectoryName;
+        }        
     }
 }

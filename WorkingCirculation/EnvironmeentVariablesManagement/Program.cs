@@ -27,7 +27,7 @@ try
     string destinationDirectory =
         Path.Combine(
             Directories.GetSriptsDirectoryName(config),
-            Directories.GetDestinationDirectoryName(config)
+            EnvironmentVariablesFilesDirectory.GetName(config)
         );
 
     Dictionary<string, string> environmentVariablesSourceDictionary =

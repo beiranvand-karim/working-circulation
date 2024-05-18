@@ -73,15 +73,6 @@ namespace EnvironmentVariablesManagement
             return templatesDirectoryName;
         }
 
-        public static string GetDestinationDirectoryName(IConfiguration config)
-        {
-            string destinationDirectoryNameKey =
-                CommandLineArgs.GetKey(config, "DestinationDirectoryNameKey");            
-            
-            string destinationDirectoryName = CommandLineArgs.GetByKey(destinationDirectoryNameKey);
-            return destinationDirectoryName;
-        }
-
         public static string GetEnvironmeentVariablesManagementDirectoryName()
         {
             string workingCirculationDirectoryName = CreatePathToWorkingCirculationDirectory();
