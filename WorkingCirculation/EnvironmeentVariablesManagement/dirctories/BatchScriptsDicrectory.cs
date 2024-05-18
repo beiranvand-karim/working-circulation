@@ -13,7 +13,7 @@ namespace EnvironmentVariablesManagement
         }
 
         public static string CreatePathToSelf(IConfiguration configuration){
-            string scriptsDirectoryName = Directories.GetSriptsDirectoryName(configuration);
+            string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
             string batchScriptsDirectoryPath = Path.Combine(scriptsDirectoryName, "batch-scripts");
             return batchScriptsDirectoryPath;
         }                
