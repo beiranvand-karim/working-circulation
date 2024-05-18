@@ -6,5 +6,5 @@ get-content "application-stops.env" | ForEach-Object {
 }
 
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
-set-location $env:COMPOSE_FILE_LOCATION
+set-location $env:APPLICATION_COMPOSE_FILE_LOCATION
 start-process -FilePath $env:DOCKER_COMPOSE_STOPS_EXECUTIVE_FILE_ADDRESS -ArgumentList $env:SERVICES_TO_STOP

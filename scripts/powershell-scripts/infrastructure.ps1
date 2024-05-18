@@ -6,6 +6,6 @@ get-content "infrastructure.env" | ForEach-Object {
 }
 
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
-set-location $env:COMPOSE_FILE_LOCATION
+set-location $env:INFRASTRUCTURE_COMPOSE_FILE_LOCATION
 docker compose pull
 docker compose up -d
