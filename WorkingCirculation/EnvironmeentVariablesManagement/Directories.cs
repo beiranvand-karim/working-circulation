@@ -28,19 +28,6 @@ namespace EnvironmentVariablesManagement
             return hostingDirectoryName;
         }
 
-        public static string GetEnvironmentVariablesSourceDirectoryName(IConfiguration config)
-        {
-             string environmentVariablesSourceDirectoryNameKey =
-                CommandLineArgs.GetKey(config, "EnvironmentVariablesSourceDirectoryNameKey");         
-
-            string environmentVariablesSourceDirectoryName = CommandLineArgs.GetByKey(environmentVariablesSourceDirectoryNameKey);
-
-            string environmentVariablesSourceDirectory =
-                Path.Combine(SriptsDirectory.GetName(config), environmentVariablesSourceDirectoryName);
-
-            return environmentVariablesSourceDirectory;
-        }
-
         public static string GetTemplatesDirectoryName(IConfiguration config)
         {
             string templatesDirectoryNameKey =

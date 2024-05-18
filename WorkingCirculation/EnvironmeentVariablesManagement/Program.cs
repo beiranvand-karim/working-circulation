@@ -32,7 +32,7 @@ try
 
     Dictionary<string, string> environmentVariablesSourceDictionary =
             Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
-                Directories.GetEnvironmentVariablesSourceDirectoryName(config)
+                EnvironmentVariablesSourceDirectory.GetName(config)
             );
 
     foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))  
