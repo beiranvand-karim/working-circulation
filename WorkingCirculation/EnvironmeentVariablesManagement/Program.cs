@@ -16,6 +16,8 @@ try
 
     Directory.CreateDirectory(Directories.CreatePathToEnvironmentVariablesFilesDirectoryInTargetDirectory());
 
+    Directories.CopyEnvironmentVariablesFilesDirectoryContentToTargetDicrectory(config);
+
     string templateSourceDirectory =
         Path.Combine(
             Directories.GetSriptsDirectoryName(config),
