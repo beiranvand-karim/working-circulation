@@ -10,7 +10,7 @@ namespace EnvironmentVariablesManagement
         {
             string featureNameDirectoryNameKey =  CommandLineArgs.GetKey(config, "FeatureNameKey");
             string featureNameDirectoryName = CommandLineArgs.GetByKey(featureNameDirectoryNameKey);
-            string hostingDirectoryName = Directories.GetHostingDirectoryName(config);
+            string hostingDirectoryName = HostingDirectory.GetName(config);
             string featureNameDirectoryPath = Path.Combine(hostingDirectoryName, featureNameDirectoryName);
             Directory.CreateDirectory(featureNameDirectoryPath);
 
