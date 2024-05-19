@@ -19,7 +19,8 @@ try
     PowerShellScriptsDirectory.CopyContentToTargetDicrectory(config);
     PowerShellScriptsDirectory.replaceFileNamesWithPaths();
 
-    BatchScriptsDicrectory.CopyToTargetDicrectory(config);
+    BatchScriptsDicrectory.CopyContentToTargetDicrectory(config);
+    BatchScriptsDicrectory.replaceFileNamesWithPaths();
 
     string templateSourceDirectory =
         Path.Combine(
