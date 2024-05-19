@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 try
 {
     var builder = new ConfigurationBuilder();
-    builder.SetBasePath(Directories.GetEnvironmeentVariablesManagementDirectoryName())
+    builder.SetBasePath(WorkingCirculationDirectory.GetName())
         .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
     IConfiguration config = builder.Build();
