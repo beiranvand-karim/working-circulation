@@ -5,6 +5,25 @@ namespace EnvironmentVariablesManagement
 {
     internal class Directories 
     {
+        public  static void MoveAll(string featureNameDirectory, string targetDiretory)
+        {
+            DirectoryInfo dirInfo = new DirectoryInfo(featureNameDirectory);
+            if (dirInfo.Exists == false)
+                Directory.CreateDirectory(featureNameDirectory);
+
+            List<String> MyMusicFiles = Directory
+                            .GetFiles(targetDiretory, "*.*", SearchOption.AllDirectories).ToList();
+
+            foreach (string file in MyMusicFiles)
+            {
+                FileInfo mFile = new FileInfo(file);
+                if (new FileInfo(dirInfo + "/" + mFile.Name).Exists == false) 
+                {
+                    mFile.MoveTo(dirInfo + "/" + mFile.Name);
+                }
+            }
+        }
+
         public static void replaceFileNameWithPath(string receiverPath, string giverPath)
         {
             string fileName= Path.GetFileName(giverPath);
