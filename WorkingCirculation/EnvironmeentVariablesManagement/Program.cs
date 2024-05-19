@@ -30,6 +30,10 @@ try
     BatchScriptsDicrectory.CopyContentToTargetDicrectory(config);
     BatchScriptsDicrectory.replaceFileNamesWithPaths();
 
+     BatchScriptsDicrectory.CopyContentToFeaureNameDicrectory(config);
+    BatchScriptsDicrectory.replaceFileNamesWithPaths(config);
+
+
     string templateSourceDirectory =
         Path.Combine(
             SriptsDirectory.GetName(config),

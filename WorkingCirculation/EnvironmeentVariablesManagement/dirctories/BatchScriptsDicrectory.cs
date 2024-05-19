@@ -5,6 +5,19 @@ namespace EnvironmentVariablesManagement
 {
     internal class BatchScriptsDicrectory 
     {
+        internal static void replaceFileNamesWithPaths(IConfiguration configuration)
+        {            
+            string pathToTarget = FeatureNameDirectory.GetPath(configuration);
+            string giversPath = PowerShellScriptsDirectory.ConstructPathToSelfInFeatureNameDirectory(configuration, "powershell-scripts");
+            foreach (string filePath in Directory.EnumerateFiles(pathToTarget)) 
+            {
+                string fileName = Path.GetFileNameWithoutExtension(filePath);
+                string giverFileName = $"""{fileName}.ps1""";
+                string giverPath = Path.Combine(giversPath, giverFileName);
+                Directories.replaceFileNameWithPath(filePath, giverPath);
+            }
+        }
+
         internal static void replaceFileNamesWithPaths()
         {            
             string pathToTarget = TargetDirectory.CreatePathToSelf();
@@ -25,14 +38,29 @@ namespace EnvironmentVariablesManagement
             return environmentVariablesFilesDirectory;
         }
 
-        public static void CopyContentToTargetDicrectory(IConfiguration configuration){
-            string sourceDirectory = CreatePathToSelf(configuration);
+        public static string CreatePathToSelfInFeatureNameDirector(IConfiguration configuration){
+            string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
+            string batchScriptsDirectoryPath = Path.Combine(scriptsDirectoryName, "batch-scripts");
+            return batchScriptsDirectoryPath;
+        }  
+
+        public static void CopyContentToFeaureNameDicrectory(IConfiguration configuration)
+        {
+            string sourceDirectory = CreatePathToSelfInScriptsDirectory(configuration);
+            string destinationDirectory = FeatureNameDirectory.GetPath(configuration);
+
+            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+        }
+
+        public static void CopyContentToTargetDicrectory(IConfiguration configuration)
+        {
+            string sourceDirectory = CreatePathToSelfInScriptsDirectory(configuration);
             string destinationDirectory = TargetDirectory.CreatePathToSelf();
 
             Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
-        public static string CreatePathToSelf(IConfiguration configuration){
+        public static string CreatePathToSelfInScriptsDirectory(IConfiguration configuration){
             string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
             string batchScriptsDirectoryPath = Path.Combine(scriptsDirectoryName, "batch-scripts");
             return batchScriptsDirectoryPath;
