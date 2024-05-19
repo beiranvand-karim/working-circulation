@@ -1,4 +1,4 @@
-<#> fina = file name = webstorm host clientapp.ps1 #>
+<#> fina = file name = webstorm-host-clientapp.ps1 #>
 
 get-content "webstorm-host-clientapp.env" | ForEach-Object {
     $name, $value = $_.split("=")
