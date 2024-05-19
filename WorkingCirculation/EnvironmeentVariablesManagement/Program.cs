@@ -17,6 +17,7 @@ try
     EnvironmentVariablesFilesDirectory.CopyContentToTargetDicrectory(config);
 
     PowerShellScriptsDirectory.CopyContentToTargetDicrectory(config);
+    PowerShellScriptsDirectory.replaceFileNamesWithPaths();
 
     BatchScriptsDicrectory.CopyToTargetDicrectory(config);
 
