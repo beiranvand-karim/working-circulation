@@ -13,7 +13,7 @@ namespace EnvironmentVariablesManagement
             File.Copy(file, destFilePathIncludingName);
         }
 
-        public static void CopyContentOfSourceDireectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
+        public static void CopyContentOfSourceDirectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
         {
             foreach (string file in Directory.EnumerateFiles(sourceDirectory))
             {
