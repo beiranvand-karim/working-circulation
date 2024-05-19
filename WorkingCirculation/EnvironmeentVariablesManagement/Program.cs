@@ -16,6 +16,10 @@ try
     Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInTargetDirectory());
     EnvironmentVariablesFilesDirectory.CopyContentToTargetDicrectory(config);
 
+    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config));
+    EnvironmentVariablesFilesDirectory.CopyContentToFeatureNameDicrectory(config);
+
+
     PowerShellScriptsDirectory.CopyContentToTargetDicrectory(config);
     PowerShellScriptsDirectory.replaceFileNamesWithPaths();
 
@@ -56,8 +60,6 @@ try
         }
     }
 
-    Directories.MoveAll(FeatureNameDirectory.GetPath(config), TargetDirectory.CreatePathToSelf());
- 
 }
 catch (System.ArgumentException)
 {

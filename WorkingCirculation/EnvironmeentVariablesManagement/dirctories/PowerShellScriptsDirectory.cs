@@ -23,7 +23,7 @@ namespace EnvironmentVariablesManagement
             Directory.CreateDirectory(ConstructPathToSelfInTargetDirectory(direcName));
             string sourceDirectory = ConstructPathToSelfInScriptsDirectory(configuration, direcName);
             string destinationDirectory = ConstructPathToSelfInTargetDirectory(direcName);
-
+          
             Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
         public static string ConstructPathToSelfInScriptsDirectory(IConfiguration configuration, string direcName)
