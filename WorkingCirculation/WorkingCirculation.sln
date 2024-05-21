@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerComposeStops", "Docke
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnvironmeentVariablesManagement", "EnvironmeentVariablesManagement\EnvironmeentVariablesManagement.csproj", "{B5B87991-1A96-4C86-8CF2-4469DF03E111}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtractJavascriptObjectFromEdgeConsoleLogs", "ExtractJavascriptObjectFromEdgeConsoleLogs\ExtractJavascriptObjectFromEdgeConsoleLogs.csproj", "{8D21E448-255A-4532-8067-34A9F137F739}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{B5B87991-1A96-4C86-8CF2-4469DF03E111}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5B87991-1A96-4C86-8CF2-4469DF03E111}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5B87991-1A96-4C86-8CF2-4469DF03E111}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D21E448-255A-4532-8067-34A9F137F739}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D21E448-255A-4532-8067-34A9F137F739}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D21E448-255A-4532-8067-34A9F137F739}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D21E448-255A-4532-8067-34A9F137F739}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
