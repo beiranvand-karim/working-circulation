@@ -1,6 +1,6 @@
 @echo off
 
-REM webstorm-guest-clientapp
-REM webstorm-guest-clientapp.bat
+REM webstorm-host-clientapp
+REM webstorm-host-clientapp.bat
 
-Powershell.exe -ExecutionPolicy RemoteSigned -File "webstorm-guest-clientapp.ps1"
+Powershell.exe -ExecutionPolicy RemoteSigned -File "webstorm-host-clientapp.ps1"
