@@ -12,7 +12,7 @@ try
 
     string templateSourceDirectory =
         Path.Combine(
-            SriptsDirectory.GetName(config),
+            ScriptsDirectory.GetName(config),
             TemplatesDirectory.GetName(config)
         );
 

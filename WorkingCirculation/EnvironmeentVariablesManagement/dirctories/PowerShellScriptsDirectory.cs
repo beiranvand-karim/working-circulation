@@ -52,7 +52,7 @@ namespace EnvironmentVariablesManagement
 
         public static string ConstructPathToSelfInScriptsDirectory(IConfiguration configuration, string direcName)
         {
-            string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
+            string scriptsDirectoryName = ScriptsDirectory.GetName(configuration);
             string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, direcName);
             return environmentVariablesFilesDirectory;
         }
@@ -73,7 +73,7 @@ namespace EnvironmentVariablesManagement
 
         public static string ConstructPathToSelfInScriptsDirectory(IConfiguration configuration)
         {
-            string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
+            string scriptsDirectoryName = ScriptsDirectory.GetName(configuration);
             string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "powershell-scripts");
             return environmentVariablesFilesDirectory;
         }

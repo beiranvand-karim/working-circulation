@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace EnvironmentVariablesManagement
 {
-    internal class SriptsDirectory
+    internal class ScriptsDirectory
     {
         public static string GetName(IConfiguration config)
         {
