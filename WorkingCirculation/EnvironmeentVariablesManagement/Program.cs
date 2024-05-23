@@ -64,7 +64,7 @@ try
     }
 
 }
-catch (System.ArgumentException)
+catch (System.Exception exception)
 {
-    Console.WriteLine("necess --repository-directory");
+    Console.WriteLine(exception.Message);
 }
