@@ -8,6 +8,8 @@
 --executive-file-directory "/EnvironmeentVariablesManagement/bin/Debug/net8.0/EnvironmeentVariablesManagement" ^
 --scripts-directory "" ^
 --repository-directory "" ^
---hosting-directory "" 
+--hosting-directory "" ^
+--host-application-name "augustus" ^
+--guest-application-name "julius"
 
 pause

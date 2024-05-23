@@ -6,4 +6,6 @@
 --executive-file-directory "/EnvironmeentVariablesManagement/bin/Debug/net8.0/EnvironmeentVariablesManagement"  \
 --scripts-directory "/home/karim/Documents/GitHub/working-circulation/scripts" \
 --repository-directory "/home/karim/Documents/GitHub/working-circulation" \
---hosting-directory "/home/karim/Documents"
+--hosting-directory "/home/karim/Documents" \
+--host-application-name "augustus" \
+--guest-application-name "julius"

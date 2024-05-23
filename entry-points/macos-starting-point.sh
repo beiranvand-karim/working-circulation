@@ -9,4 +9,6 @@ rm -rf ../WorkingCirculation/EnvironmeentVariablesManagement/target/*
 --executive-file-directory "/EnvironmeentVariablesManagement/bin/Debug/net8.0/EnvironmeentVariablesManagement"  \
 --scripts-directory "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts" \
 --repository-directory "/Users/karimbeiranvand/Documents/GitHub/working-circulation" \
---hosting-directory "/Users/karimbeiranvand" 
+--hosting-directory "/Users/karimbeiranvand" \
+--host-application-name "augustus" \
+--guest-application-name "julius"
