@@ -5,7 +5,7 @@
 --destination-directory  "environment-variables-files" ^
 --environment-variables-source-directory  "environment-variables-source"  ^
 --feature-name "wonderful feature" ^
---executive-file-directory "/EnvironmeentVariablesManagement/bin/Debug/net8.0/EnvironmeentVariablesManagement" ^
+--executive-file-directory "/EnvironmeentVariablesManagement/bin/Release/net8.0/EnvironmeentVariablesManagement" ^
 --scripts-directory "" ^
 --repository-directory "" ^
 --hosting-directory "" ^
