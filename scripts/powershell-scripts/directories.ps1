@@ -5,8 +5,6 @@ get-content "directories.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS "C:/feature naming/...../fend"
-& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS "C:/feature naming/...../fend/fend...."
-& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS "C:/feature naming/...../fend/fend...."
-& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS "C:/feature naming/...../calls"
-& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS "C:/feature naming/...../bend"
+& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS $env:FEND_ADDRESS
+& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS $env:BEND_ADDRESS
+& $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS $env:CALLS_ADDRESS
