@@ -26,14 +26,25 @@ try
                 EnvironmentVariablesSourceDirectory.GetName(config)
             );
 
-    foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))  
+    foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))
     {
-        Dictionary<string, string> contentToWrite =
-            Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
 
         string destFileName = Path.GetFileNameWithoutExtension(templateFile);
         string destFile = Path.Combine(destinationDirectory, destFileName);
         using var fs = File.Create(destFile);
+
+        Dictionary<string, string> contentToWrite = [];
+
+        if(templateFile.Contains("directories")) 
+        {
+            contentToWrite =
+            Something.FeatureNameDirectory.PairUpVariablesWithTheirValue(config, templateFile, environmentVariablesSourceDictionary);
+        } 
+        else
+        {
+            contentToWrite =
+            Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
+        }
 
         using StreamWriter writer = new(fs);
         foreach (KeyValuePair<string, string> entry in contentToWrite)
