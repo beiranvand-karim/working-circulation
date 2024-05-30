@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
 
-void RunCommand(string commandToExecute, string workingDirectory) {
+void RunCommand(string commandToExecute) {
     Process process = new Process();
-    process.StartInfo.WorkingDirectory = workingDirectory;
     process.StartInfo.FileName = "cmd.exe";
     process.StartInfo.Arguments = $"/c {commandToExecute}";
     process.StartInfo.RedirectStandardOutput= true;
@@ -12,7 +11,6 @@ void RunCommand(string commandToExecute, string workingDirectory) {
     Console.WriteLine(output);
 }
 
-string workingDirectory = Environment.GetCommandLineArgs()[1];
-string commandToExecute = Environment.GetCommandLineArgs()[2];
+string commandToExecute = Environment.GetCommandLineArgs()[1];
 
-RunCommand(commandToExecute, workingDirectory);
+RunCommand(commandToExecute);
