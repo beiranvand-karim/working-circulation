@@ -6,6 +6,7 @@ get-content "application.env" | ForEach-Object {
 }
 
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
-set-location $env:APPLICATION_COMPOSE_FILE_LOCATION
+push-location $env:APPLICATION_COMPOSE_FILE_LOCATION
 docker compose pull
 docker compose up -d
+pop-location
