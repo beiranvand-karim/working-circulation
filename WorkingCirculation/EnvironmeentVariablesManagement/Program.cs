@@ -13,21 +13,16 @@ try
     FeatureNameDirectory.CreateSelf(config);
 
 
-    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInTargetDirectory());
-    EnvironmentVariablesFilesDirectory.CopyContentToTargetDicrectory(config);
-
     Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config));
     EnvironmentVariablesFilesDirectory.CopyContentToFeatureNameDicrectory(config);
 
 
-    PowerShellScriptsDirectory.CopyContentToTargetDicrectory(config);
     PowerShellScriptsDirectory.replaceFileNamesWithPaths();
 
     PowerShellScriptsDirectory.CopyContentToFeatureNameDicrectory(config);
     PowerShellScriptsDirectory.replaceFileNamesWithPaths(config);
 
 
-    BatchScriptsDicrectory.CopyContentToTargetDicrectory(config);
     BatchScriptsDicrectory.replaceFileNamesWithPaths();
 
      BatchScriptsDicrectory.CopyContentToFeaureNameDicrectory(config);
