@@ -39,7 +39,7 @@ namespace EnvironmentVariablesManagement
         }
 
         public static string CreatePathToSelfInFeatureNameDirector(IConfiguration configuration){
-            string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
+            string scriptsDirectoryName = ScriptsDirectory.GetName(configuration);
             string batchScriptsDirectoryPath = Path.Combine(scriptsDirectoryName, "batch-scripts");
             return batchScriptsDirectoryPath;
         }  
@@ -61,7 +61,7 @@ namespace EnvironmentVariablesManagement
         }
 
         public static string CreatePathToSelfInScriptsDirectory(IConfiguration configuration){
-            string scriptsDirectoryName = SriptsDirectory.GetName(configuration);
+            string scriptsDirectoryName = ScriptsDirectory.GetName(configuration);
             string batchScriptsDirectoryPath = Path.Combine(scriptsDirectoryName, "batch-scripts");
             return batchScriptsDirectoryPath;
         }                

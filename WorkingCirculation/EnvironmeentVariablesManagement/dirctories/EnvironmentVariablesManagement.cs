@@ -13,7 +13,7 @@ namespace EnvironmentVariablesManagement
             string environmentVariablesSourceDirectoryName = CommandLineArgs.GetByKey(environmentVariablesSourceDirectoryNameKey);
 
             string environmentVariablesSourceDirectory =
-                Path.Combine(SriptsDirectory.GetName(config), environmentVariablesSourceDirectoryName);
+                Path.Combine(ScriptsDirectory.GetName(config), environmentVariablesSourceDirectoryName);
 
             return environmentVariablesSourceDirectory;
         }        
