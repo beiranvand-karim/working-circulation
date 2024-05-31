@@ -24,5 +24,6 @@ scripts/environment-variables-source/
 # output of scripts interpolations
 target/
 
-# file that tells compliere  which version to use
+# file that tells compiler which version to use
 WorkingCirculation/EnvironmeentVariablesManagement/global.json
+WorkingCirculation/ExtractJavascriptObjectFromEdgeConsoleLogs/global.json
