@@ -16,11 +16,10 @@ try
             TemplatesDirectory.GetName(config)
         );
 
-    string destinationDirectory =
-        Path.Combine(
-            SriptsDirectory.GetName(config),
-            EnvironmentVariablesFilesDirectory.GetName(config)
-        );
+    FeatureNameDirectory.CreateSelf(config);
+
+    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config));
+    string destinationDirectory = EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config);
 
     Dictionary<string, string> environmentVariablesSourceDictionary =
             Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
@@ -44,11 +43,6 @@ try
         }
     }
 
-    FeatureNameDirectory.CreateSelf(config);
-
-    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config));
-    EnvironmentVariablesFilesDirectory.CopyContentToFeatureNameDicrectory(config);
-
     PowerShellScriptsDirectory.CopyContentToFeatureNameDicrectory(config);
     PowerShellScriptsDirectory.replaceFileNamesWithPaths(config);
 
@@ -56,7 +50,7 @@ try
     BatchScriptsDicrectory.replaceFileNamesWithPaths(config);
 
 }
-catch (System.Exception exception)
+catch (Exception exception)
 {
     Console.WriteLine(exception.Message);
 }
