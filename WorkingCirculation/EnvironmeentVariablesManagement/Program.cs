@@ -16,16 +16,10 @@ try
     Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config));
     EnvironmentVariablesFilesDirectory.CopyContentToFeatureNameDicrectory(config);
 
-
-    PowerShellScriptsDirectory.replaceFileNamesWithPaths();
-
     PowerShellScriptsDirectory.CopyContentToFeatureNameDicrectory(config);
     PowerShellScriptsDirectory.replaceFileNamesWithPaths(config);
 
-
-    BatchScriptsDicrectory.replaceFileNamesWithPaths();
-
-     BatchScriptsDicrectory.CopyContentToFeaureNameDicrectory(config);
+    BatchScriptsDicrectory.CopyContentToFeaureNameDicrectory(config);
     BatchScriptsDicrectory.replaceFileNamesWithPaths(config);
 
 
