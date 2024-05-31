@@ -10,19 +10,6 @@ try
 
     IConfiguration config = builder.Build();
 
-    FeatureNameDirectory.CreateSelf(config);
-
-
-    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config));
-    EnvironmentVariablesFilesDirectory.CopyContentToFeatureNameDicrectory(config);
-
-    PowerShellScriptsDirectory.CopyContentToFeatureNameDicrectory(config);
-    PowerShellScriptsDirectory.replaceFileNamesWithPaths(config);
-
-    BatchScriptsDicrectory.CopyContentToFeaureNameDicrectory(config);
-    BatchScriptsDicrectory.replaceFileNamesWithPaths(config);
-
-
     string templateSourceDirectory =
         Path.Combine(
             SriptsDirectory.GetName(config),
@@ -56,6 +43,17 @@ try
             writer.WriteLine(valueToWrite);
         }
     }
+
+    FeatureNameDirectory.CreateSelf(config);
+
+    Directory.CreateDirectory(EnvironmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory(config));
+    EnvironmentVariablesFilesDirectory.CopyContentToFeatureNameDicrectory(config);
+
+    PowerShellScriptsDirectory.CopyContentToFeatureNameDicrectory(config);
+    PowerShellScriptsDirectory.replaceFileNamesWithPaths(config);
+
+    BatchScriptsDicrectory.CopyContentToFeaureNameDicrectory(config);
+    BatchScriptsDicrectory.replaceFileNamesWithPaths(config);
 
 }
 catch (System.Exception exception)
