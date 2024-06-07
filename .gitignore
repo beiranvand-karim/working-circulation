@@ -30,8 +30,4 @@ WorkingCirculation/ExtractJavascriptObjectFromEdgeConsoleLogs/global.json
 
 
 # javafx target directories
-WorkingCirculation/commoditypricetracker/target/
-WorkingCirculation/CompressedWordsExtenderDictionary/target/
-WorkingCirculation/currencydealersmanagement/target/
-WorkingCirculation/newfeatureworkflowcreator/target/
-WorkingCirculation/StringCombinationsGenerator/target/
+target/
