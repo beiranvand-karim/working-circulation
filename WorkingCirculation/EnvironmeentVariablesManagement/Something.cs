@@ -31,6 +31,36 @@ namespace EnvironmentVariablesManagement
                     {
                         fileContentDictionaryToWriteToFile.Add(key, val ?? "");
                     }
+                    else if(key == "FEND_HOST_ADDRESS")
+                    {
+                        var directoryName = CommandLineArgs.DirectoriesNameToKeyMap.GetValue(configuration, key);
+                        var featureNameDirectoryPath = EnvironmentVariablesManagement.FeatureNameDirectory.GetPath(configuration);
+                        var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
+
+                        var hostApplicationName = CommandLineArgs.GetByKey("--host-application-name");
+
+                        var x = string.Format("{0}.{1}",directoryName, hostApplicationName);
+
+                        var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
+
+                        string valueToWrite = string.Format("\"{0}\"", directoryThatIsGoingToBeOpen2);
+                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                    }
+                    else if(key == "FEND_GUEST_ADDRESS")
+                    {
+                        var directoryName = CommandLineArgs.DirectoriesNameToKeyMap.GetValue(configuration, key);
+                        var featureNameDirectoryPath = EnvironmentVariablesManagement.FeatureNameDirectory.GetPath(configuration);
+                        var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
+
+                        var guestApplicationName = CommandLineArgs.GetByKey("--guest-application-name");
+
+                        var x = string.Format("{0}.{1}",directoryName, guestApplicationName);
+
+                        var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
+
+                        string valueToWrite = string.Format("\"{0}\"", directoryThatIsGoingToBeOpen2);
+                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                    }
                     else
                     {
                         var directoryName = CommandLineArgs.DirectoriesNameToKeyMap.GetValue(configuration, key);

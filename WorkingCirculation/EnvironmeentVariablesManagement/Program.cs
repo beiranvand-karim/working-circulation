@@ -39,7 +39,7 @@ try
         {
             contentToWrite =
             Something.FeatureNameDirectory.PairUpVariablesWithTheirValue(config, templateFile, environmentVariablesSourceDictionary);
-        } 
+        }
         else
         {
             contentToWrite =
