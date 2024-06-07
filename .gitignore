@@ -27,3 +27,7 @@ target/
 # file that tells compiler which version to use
 WorkingCirculation/EnvironmeentVariablesManagement/global.json
 WorkingCirculation/ExtractJavascriptObjectFromEdgeConsoleLogs/global.json
+
+
+# javafx target directories
+/commoditypricetracker/target
