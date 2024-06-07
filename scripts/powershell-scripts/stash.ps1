@@ -5,5 +5,6 @@ get-content "stash.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-set-location $env:LOCATION
+push-location $env:LOCATION
 git stash --include-untracked
+pop-location
