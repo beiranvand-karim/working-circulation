@@ -1,20 +1,16 @@
 package commoditypricetracker;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.event.EventHandler;
-import javafx.event.ActionEvent;
 import java.io.IOException;
 
 /**
  * JavaFX App
  */
-public class App extends Application implements EventHandler<ActionEvent> {
+public class App extends Application {
 
     private static Scene scene;
     private static Button button;
@@ -25,7 +21,7 @@ public class App extends Application implements EventHandler<ActionEvent> {
 
         button = new Button();
         button.setText("click me");
-        button.setOnAction(this);
+        button.setOnAction(e -> System.out.println("hello from other side"));
         
         layout = new StackPane();
         layout.getChildren().add(button);
@@ -36,16 +32,8 @@ public class App extends Application implements EventHandler<ActionEvent> {
         stage.setTitle("title of window");
         stage.show();
     }
-    
-    @Override
-    public void handle(ActionEvent event) {
-    	if(event.getSource() == button) {
-    		System.out.println("halo");
-    	}
-    }
 
     static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
     }
 
     public static void main(String[] args) {
