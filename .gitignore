@@ -30,4 +30,4 @@ WorkingCirculation/ExtractJavascriptObjectFromEdgeConsoleLogs/global.json
 
 
 # javafx target directories
-/commoditypricetracker/target
+WorkingCirculation/commoditypricetracker/target/
