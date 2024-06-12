@@ -28,6 +28,8 @@ public class App extends Application {
         layout1.getChildren().addAll(label1,button1);
 
         scene1 = new Scene(layout1, 400,400);
+        scene1.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
 
 
         Button button2 = new Button("go back to scene 1");
@@ -37,6 +39,8 @@ public class App extends Application {
         layout2.getChildren().addAll(button2);
 
         scene2 = new Scene(layout2, 500,500);
+        scene2.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
 
         window.setScene(scene1);
         window.setTitle("window title");
