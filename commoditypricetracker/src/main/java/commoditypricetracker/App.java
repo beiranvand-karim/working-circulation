@@ -21,7 +21,11 @@ public class App extends Application {
         window.setTitle("the new buttton");
 
         buttton = new Button("click me");
-        buttton.setOnAction(e-> AlertBox.display("title of window", "alert box is awesome"));
+        buttton.setOnAction(e-> {
+            boolean result = ConfirmBox.display("title","do you want to proceed");
+            System.out.println(result);
+
+        });
         StackPane stackPane =  new StackPane();
         stackPane.getChildren().add(buttton);
         Scene scene = new Scene(stackPane, 300,300);
