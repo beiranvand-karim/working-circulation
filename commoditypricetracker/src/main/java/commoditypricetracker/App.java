@@ -19,19 +19,26 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         window = stage;
         window.setTitle("the new buttton");
-
-        buttton = new Button("click me");
-        buttton.setOnAction(e-> {
-            boolean result = ConfirmBox.display("title","do you want to proceed");
-            System.out.println(result);
-
+        window.setOnCloseRequest(e-> {
+            e.consume();
+            closeProgram();
         });
+
+        buttton = new Button("Close program");
+        buttton.setOnAction(e-> closeProgram());
         StackPane stackPane =  new StackPane();
         stackPane.getChildren().add(buttton);
         Scene scene = new Scene(stackPane, 300,300);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         window.setScene(scene);
         window.show();
+    }
+
+    private void closeProgram(){
+        boolean result = ConfirmBox.display("title","do you want to proceed");
+        if (result) {
+            window.close();
+        }
     }
 
     public static void main(String[] args) {
