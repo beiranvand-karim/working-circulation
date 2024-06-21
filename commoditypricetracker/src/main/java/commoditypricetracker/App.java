@@ -1,12 +1,12 @@
 package commoditypricetracker;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -16,38 +16,42 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Stage window;
-    private static Button buttton;
 
     @Override
     public void start(Stage stage) throws IOException {
         window = stage;
-        window.setTitle("the new buttton");
+        window.setTitle("the new window");
         window.setOnCloseRequest(e-> {
             e.consume();
             closeProgram();
         });
 
-        HBox topMenu =new HBox();
-        Button butttonA = new Button("File");
-        Button butttonB = new Button("Edit");
-        Button butttonC = new Button("View");
-        topMenu.getChildren().addAll(butttonA,butttonB, butttonC);
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(10));
+        gridPane.setVgap(8);
+        gridPane.setHgap(10);
+
+        Label nameLabel = new Label("Username: ");
+        GridPane.setConstraints(nameLabel, 0, 0);
+
+        TextField nameTextField = new TextField("Bucky");
+        GridPane.setConstraints(nameTextField, 1, 0);
 
 
-        VBox leftMenu =new VBox();
-        Button butttonD = new Button("D");
-        Button butttonE = new Button("E");
-        Button butttonF = new Button("F");
-        leftMenu.getChildren().addAll(butttonD,butttonE, butttonF);
+        Label passLabel = new Label("Password: ");
+        GridPane.setConstraints(passLabel, 0, 1);
 
-        buttton = new Button("Close program");
-        buttton.setOnAction(e-> closeProgram());
+        TextField passwordTextField = new TextField();
+        passwordTextField.setPromptText("password");
+        GridPane.setConstraints(passwordTextField, 1, 1);
 
-        BorderPane borderPane =  new BorderPane();
-        borderPane.setTop(topMenu);
-        borderPane.setLeft(leftMenu);
 
-        Scene scene = new Scene(borderPane, 300,300);
+        Button loginButton = new Button("login");
+        GridPane.setConstraints(loginButton, 1, 2);
+
+        gridPane.getChildren().addAll(nameLabel,  nameTextField, passLabel, passwordTextField,  loginButton);
+
+        Scene scene = new Scene(gridPane, 300,300);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         window.setScene(scene);
         window.show();
