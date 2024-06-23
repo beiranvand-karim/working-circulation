@@ -48,6 +48,9 @@ public class App extends Application {
 
         Button loginButton = new Button("login");
         GridPane.setConstraints(loginButton, 1, 2);
+        loginButton.setOnAction(event -> {
+            setUserAgentStylesheet(STYLESHEET_CASPIAN);
+        });
 
         gridPane.getChildren().addAll(nameLabel,  nameTextField, passLabel, passwordTextField,  loginButton);
 
