@@ -37,7 +37,7 @@ public class ConfirmBox {
         vbox.setAlignment(Pos.CENTER);
 
         Scene scene = new Scene(vbox);
-        scene.getStylesheets().add("Viper.css");
+        scene.getStylesheets().add(App.class.getResource("application.css").toExternalForm());
         window.setScene(scene);
         window.showAndWait();
 

@@ -1,4 +1,4 @@
-.root{
+.root {
     -fx-font-size: 14pt;
     font-size: 14pt;
     -fx-font-family: "Courier New";
@@ -6,4 +6,21 @@
     -fx-base: rgb(132, 145, 47);
     -fx-background: rgb(225, 228, 203);
     background: rgb(225, 228, 203);
+}
+
+.label {
+    -fx-text-fill: #000;
+}
+
+.button-blue {
+    background-color: blue;
+    fill: white;
+    -fx-background-color: blue;
+    -fx-fill: white;
+    -fx-background-radius: 4;
+}
+
+#bold-label {
+    font-weight: bold;
+    -fx-font-weight: bold;
 }
