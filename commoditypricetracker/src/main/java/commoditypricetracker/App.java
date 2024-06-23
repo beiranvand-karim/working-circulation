@@ -34,7 +34,9 @@ public class App extends Application {
         Label nameLabel = new Label("Username: ");
         GridPane.setConstraints(nameLabel, 0, 0);
 
-        TextField nameTextField = new TextField("Bucky");
+        TextField nameTextField = new TextField();
+        nameTextField.setPromptText("bucky");
+        nameTextField.setMinWidth(300);
         GridPane.setConstraints(nameTextField, 1, 0);
 
 
@@ -48,13 +50,26 @@ public class App extends Application {
 
         Button loginButton = new Button("login");
         GridPane.setConstraints(loginButton, 1, 2);
+        loginButton.setOnAction(event -> isInt(nameTextField,nameTextField.getText()));
 
         gridPane.getChildren().addAll(nameLabel,  nameTextField, passLabel, passwordTextField,  loginButton);
 
-        Scene scene = new Scene(gridPane, 300,300);
+        Scene scene = new Scene(gridPane, 600,300);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         window.setScene(scene);
         window.show();
+    }
+
+    private boolean isInt(TextField nameTextField, String text) {
+
+        try {
+            int  age = Integer.parseInt(nameTextField.getText());
+            System.out.println("user is: "  +  age);
+            return  true;
+        } catch (NumberFormatException e) {
+            System.out.println("Error: " +text+ "is not a number");
+            return  false;
+        }
     }
 
     private void closeProgram(){
