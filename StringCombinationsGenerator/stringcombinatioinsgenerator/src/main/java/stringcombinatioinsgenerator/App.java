@@ -1,9 +1,12 @@
 package stringcombinatioinsgenerator;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,22 +16,56 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private static Stage window;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        window = stage;
+        window.setTitle("the new window");
+        window.setOnCloseRequest(e-> {
+            e.consume();
+            closeProgram();
+        });
+
+        GridPane gridPane = new GridPane();
+        gridPane.setPadding(new Insets(10));
+        gridPane.setVgap(8);
+        gridPane.setHgap(10);
+
+        Label nameLabel = new Label("Username: ");
+        GridPane.setConstraints(nameLabel, 0, 0);
+
+        TextField nameTextField = new TextField();
+        nameTextField.setPromptText("bucky");
+        nameTextField.setMinWidth(300);
+        GridPane.setConstraints(nameTextField, 1, 0);
+
+
+        Label passLabel = new Label("Password: ");
+        GridPane.setConstraints(passLabel, 0, 1);
+
+        TextField passwordTextField = new TextField();
+        passwordTextField.setPromptText("password");
+        GridPane.setConstraints(passwordTextField, 1, 1);
+
+
+        Button loginButton = new Button("login");
+        GridPane.setConstraints(loginButton, 1, 2);
+        loginButton.setOnAction(event -> System.out.println(nameTextField.getText()));
+
+        gridPane.getChildren().addAll(nameLabel,  nameTextField, passLabel, passwordTextField,  loginButton);
+
+        Scene scene = new Scene(gridPane, 600,300);
+        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+        window.setScene(scene);
+        window.show();
     }
 
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+    private void closeProgram(){
+        boolean result = ConfirmBox.display("title","do you want to proceed");
+        if (result) {
+            window.close();
+        }
     }
 
     public static void main(String[] args) {
