@@ -32,6 +32,7 @@ public class App extends Application {
         gridPane.setHgap(10);
 
         Label nameLabel = new Label("Username: ");
+        nameLabel.setId("bold-label");
         GridPane.setConstraints(nameLabel, 0, 0);
 
         TextField nameTextField = new TextField();
@@ -48,29 +49,22 @@ public class App extends Application {
         GridPane.setConstraints(passwordTextField, 1, 1);
 
 
-        Button loginButton = new Button("login");
-        GridPane.setConstraints(loginButton, 1, 2);
-        loginButton.setOnAction(event -> {
+        Button logInButton = new Button("Log in");
+        GridPane.setConstraints(logInButton, 1, 2);
+        logInButton.setOnAction(event -> {
         });
 
-        gridPane.getChildren().addAll(nameLabel,  nameTextField, passLabel, passwordTextField,  loginButton);
+        Button signUpButton = new Button("Sign up");
+        signUpButton.getStyleClass().add("button-blue");
+        GridPane.setConstraints(signUpButton, 1, 3);
+
+
+        gridPane.getChildren().addAll(nameLabel,  nameTextField, passLabel, passwordTextField,  logInButton, signUpButton);
 
         Scene scene = new Scene(gridPane, 600,300);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         window.setScene(scene);
         window.show();
-    }
-
-    private boolean isInt(TextField nameTextField, String text) {
-
-        try {
-            int  age = Integer.parseInt(nameTextField.getText());
-            System.out.println("user is: "  +  age);
-            return  true;
-        } catch (NumberFormatException e) {
-            System.out.println("Error: " +text+ "is not a number");
-            return  false;
-        }
     }
 
     private void closeProgram(){

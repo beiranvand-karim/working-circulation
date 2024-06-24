@@ -11,3 +11,16 @@
 .label {
     -fx-text-fill: #000;
 }
+
+.button-blue {
+    background-color: blue;
+    fill: white;
+    -fx-background-color: blue;
+    -fx-fill: white;
+    -fx-background-radius: 4;
+}
+
+#bold-label {
+    font-weight: bold;
+    -fx-font-weight: bold;
+}
