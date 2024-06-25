@@ -21,6 +21,14 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         window = stage;
         window.setTitle("the new window");
+
+        Person bucky = new Person();
+        bucky.firstNameProperty().addListener((value, oldValue, newValue) -> {
+            System.out.println("Named changed to " + newValue);
+            System.out.println("firstNameProperty " + bucky.firstNameProperty());
+            System.out.println("getFirstName " + bucky.getFirstName());
+        });
+
         window.setOnCloseRequest(e-> {
             e.consume();
             closeProgram();
