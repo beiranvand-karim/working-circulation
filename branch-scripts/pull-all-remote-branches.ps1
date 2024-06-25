@@ -1,4 +1,5 @@
 
 61..63 | ForEach-Object {$_} {
-    git fetch -f origin ${_}:${_}
+    $local = "git fetch -f origin ${_}:${_}"
+    Write-Host $local
 }
