@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -24,9 +25,16 @@ public class App extends Application {
 
         Person bucky = new Person();
         bucky.firstNameProperty().addListener((value, oldValue, newValue) -> {
-            System.out.println("Named changed to " + newValue);
-            System.out.println("firstNameProperty " + bucky.firstNameProperty());
-            System.out.println("getFirstName " + bucky.getFirstName());
+            System.err.println("value -> " + value);
+            System.err.println("oldValue -> " + oldValue);
+            System.out.println("Named changed to: " + newValue);
+            System.out.println("firstNameProperty():" + bucky.firstNameProperty());
+            System.out.println("getFirstName():" + bucky.getFirstName());
+        });
+
+        Button submiButton = new Button("submit");
+        submiButton.setOnAction(event -> {
+            bucky.setFirstName("gus");
         });
 
         window.setOnCloseRequest(e-> {
@@ -34,42 +42,10 @@ public class App extends Application {
             closeProgram();
         });
 
-        GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(10));
-        gridPane.setVgap(8);
-        gridPane.setHgap(10);
+        StackPane layout = new StackPane();
+        layout.getChildren().add(submiButton);
 
-        Label nameLabel = new Label("Username: ");
-        nameLabel.setId("bold-label");
-        GridPane.setConstraints(nameLabel, 0, 0);
-
-        TextField nameTextField = new TextField();
-        nameTextField.setPromptText("bucky");
-        nameTextField.setMinWidth(300);
-        GridPane.setConstraints(nameTextField, 1, 0);
-
-
-        Label passLabel = new Label("Password: ");
-        GridPane.setConstraints(passLabel, 0, 1);
-
-        TextField passwordTextField = new TextField();
-        passwordTextField.setPromptText("password");
-        GridPane.setConstraints(passwordTextField, 1, 1);
-
-
-        Button logInButton = new Button("Log in");
-        GridPane.setConstraints(logInButton, 1, 2);
-        logInButton.setOnAction(event -> {
-        });
-
-        Button signUpButton = new Button("Sign up");
-        signUpButton.getStyleClass().add("button-blue");
-        GridPane.setConstraints(signUpButton, 1, 3);
-
-
-        gridPane.getChildren().addAll(nameLabel,  nameTextField, passLabel, passwordTextField,  logInButton, signUpButton);
-
-        Scene scene = new Scene(gridPane, 600,300);
+        Scene scene = new Scene(layout, 600,300);
         scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         window.setScene(scene);
         window.show();
