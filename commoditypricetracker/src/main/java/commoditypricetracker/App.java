@@ -1,6 +1,8 @@
 package commoditypricetracker;
 
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -18,6 +20,20 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         window = stage;
         window.setTitle("the new window");
+
+
+        IntegerProperty x= new SimpleIntegerProperty(3);
+        IntegerProperty y= new SimpleIntegerProperty();
+        y.bind(x.multiply(10));
+
+        System.err.println("x: " + x.getValue());
+        System.err.println("y: " + y.getValue());
+
+        x.setValue(10);
+
+        System.err.println("x: " + x.getValue());
+        System.err.println("y: " + y.getValue());
+
 
         Person bucky = new Person();
         bucky.firstNameProperty().addListener((value, oldValue, newValue) -> {
