@@ -3,4 +3,4 @@
 REM all
 REM all.bat
 
-Powershell.exe -ExecutionPolicy RemoteSigned -File ".\powershell-scripts\all.ps1"
+Powershell.exe -ExecutionPolicy RemoteSigned -File "all.ps1"
