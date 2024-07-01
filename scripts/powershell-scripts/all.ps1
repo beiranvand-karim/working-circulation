@@ -1,4 +1,4 @@
-<#> fina = file name = run-all.ps1 #>
+<#> fina = file name = all.ps1 #>
 
 & "$(Split-Path $MyInvocation.MyCommand.Path)/receive-latest-changes-of-all-projects.ps1"
 Start-Sleep -Seconds 10
