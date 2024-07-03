@@ -1,0 +1,2 @@
+# file name: winos-run.bat
+mvn javafx:run -f "[...]\working-circulation\commoditypricetracker\pom.xml"

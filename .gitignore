@@ -28,6 +28,8 @@ target/
 WorkingCirculation/EnvironmeentVariablesManagement/global.json
 WorkingCirculation/ExtractJavascriptObjectFromEdgeConsoleLogs/global.json
 
-
 # javafx target directories
 target/
+
+#windows batch files
+winos-run.bat
