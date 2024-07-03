@@ -1,4 +1,4 @@
-
+# file name: rebase-all-rest.ps1
 
 62 | ForEach-Object {$_} {
     $current_branch = ($_ - 0)
