@@ -33,3 +33,51 @@ target/
 
 #windows batch files
 winos-run.bat
+
+
+# angular git ignore file
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+learnings/angular/slide-in-over-lay/dist
+learnings/angular/slide-in-over-lay/tmp
+learnings/angular/slide-in-over-lay/out-tsc
+learnings/angular/slide-in-over-lay/bazel-out
+
+# Node
+learnings/angular/slide-in-over-lay/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+learnings/angular/slide-in-over-lay/.angular/cache
+.sass-cache/
+learnings/angular/slide-in-over-lay/connect.lock
+learnings/angular/slide-in-over-lay/coverage
+learnings/angular/slide-in-over-lay/libpeerconnection.log
+testem.log
+learnings/angular/slide-in-over-lay/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+
+
