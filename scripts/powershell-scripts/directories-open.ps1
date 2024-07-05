@@ -1,6 +1,6 @@
-<#> fina = file name = directories.ps1 #>
+<#> fina = file name = directories-open.ps1 #>
 
-get-content "directories.env" | ForEach-Object {
+get-content "directories-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
