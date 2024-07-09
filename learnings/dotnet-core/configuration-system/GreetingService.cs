@@ -3,16 +3,11 @@ using Microsoft.Extensions.Logging;
 
 namespace configuration_system
 {
-    public class GreetingService : IGreetingService
+    public class GreetingService(ILogger<GreetingService> log, IConfiguration config) : IGreetingService
     {
-        private readonly ILogger<GreetingService> log;
-        private readonly IConfiguration config;
+        private readonly ILogger<GreetingService> log = log;
+        private readonly IConfiguration config = config;
 
-        public GreetingService(ILogger<GreetingService> log, IConfiguration config)
-        {
-            this.log = log;
-            this.config = config;
-        }
         public void Run()
         {
             for (int i = 0; i < config.GetValue<int>("LoopTimes"); i++)
