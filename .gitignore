@@ -39,6 +39,16 @@ linos-starting-point.worker.sh
 macos-starting-point.worker.sh
 winos-starting-point.worker.bat
 
+# branch scripts worker files
+drop-commit-by-index.worker.ps1
+pull-all-remote-branches.worker.ps1
+rebase-all-rest.worker.ps1
+rebase-only-one-to-master.worker.ps1
+rebase-only-one-to-previous.worker.ps1
+remove-all-branches-local.worker.ps1
+remove-all-branches.worker.ps1
+reset-all-to-origin.worker.ps1
+
 # version setting files
 global.json
 
