@@ -52,6 +52,12 @@ reset-all-to-origin.worker.ps1
 # version setting files
 global.json
 
+# angular scripts worker files
+create-worker-files.worker.ps1
+component.worker.ps1
+module-with-component.worker.ps1
+project.worker.ps1
+
 # angular git ignore file
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 

@@ -1,4 +1,4 @@
-# file name: create-new-module-with-component.ps1
+# file name: module-with-component.ps1
 
 "" | ForEach-Object {$_} {
     ng g module $_ --routing;
