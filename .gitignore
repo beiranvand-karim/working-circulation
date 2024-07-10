@@ -34,6 +34,13 @@ target/
 #windows batch files
 winos-run.bat
 
+# worker files
+linos-starting-point.worker.sh
+macos-starting-point.worker.sh
+winos-starting-point.worker.bat
+
+# version setting files
+global.json
 
 # angular git ignore file
 # See http://help.github.com/ignore-files/ for more about ignoring files.
