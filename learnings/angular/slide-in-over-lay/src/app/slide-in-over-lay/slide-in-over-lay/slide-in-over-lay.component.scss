@@ -1,14 +1,13 @@
-
 :host {
-    position: relative;
+  position: relative;
 }
 
 .slide-in-over-lay {
-    width: 305px;
-    border: 1px solid lightsalmon;
-    height: 970px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: translateX(100%);
+  width: 305px;
+  border: 1px solid lightsalmon;
+  height: 970px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(100%);
 }
