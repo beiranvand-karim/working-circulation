@@ -1,5 +1,16 @@
 :host {
+}
+
+.head-block {
+  height: 200px;
+  background-color: aquamarine;
+}
+
+.body-block {
   position: relative;
+  background-color: bisque;
+  height: calc(100vh - 200px);
+  z-index: 2;
 }
 
 .slide-in-over-lay {
