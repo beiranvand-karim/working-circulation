@@ -1,9 +1,11 @@
 # file name: create-worker-files.ps1
 
-$FileNames = Get-ChildItem -Path '/home'
+$RawPathName = "          "
+$PathName = $RawPathName.TrimStart().TrimEnd()
 
-foreach ($FileName in $FileNames) 
-{
+$FileNames = Get-ChildItem -Path $PathName
+
+foreach ($FileName in $FileNames) {
   $WorkerExtension = ".worker"
 
   if ($FileName -contains $WorkerExtension) {
@@ -14,11 +16,10 @@ foreach ($FileName in $FileNames)
   $Basename = (Get-Item $FileName).Basename
   $Extension = (Get-Item $FileName).Extension
   
-  $NewName = $Basename  + $WorkerExtension + $Extension
-  $WorkerFile =  Join-Path -Path $DirectoryName -ChildPath $NewName
+  $NewName = $Basename + $WorkerExtension + $Extension
+  $WorkerFile = Join-Path -Path $DirectoryName -ChildPath $NewName
 
-  if(Test-Path $WorkerFile)
-  {
+  if (Test-Path $WorkerFile) {
     continue
   }
 
