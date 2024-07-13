@@ -1,5 +1,9 @@
 # file name: component.ps1
 
-"" | ForEach-Object {$_} {
-    ng generate c $_ --skip-tests;
+
+$name = "      ";
+
+$name | ForEach-Object { $_ } {
+    $RefinedName = $_.TrimStart().TrimEnd().Replace(" ", "-")
+    ng generate c $RefinedName --skip-tests;
 }
