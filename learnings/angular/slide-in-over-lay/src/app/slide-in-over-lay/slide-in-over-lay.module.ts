@@ -1,17 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
 
-import { SlideInOverLayRoutingModule } from './slide-in-over-lay-routing.module';
-import { SlideInOverLayComponent } from './slide-in-over-lay/slide-in-over-lay.component';
-
+import { SlideInOverLayRoutingModule } from './slide-in-over-lay-routing.module'
+import { SlideInOverLayComponent } from './slide-in-over-lay/slide-in-over-lay.component'
 
 @NgModule({
-  declarations: [
-    SlideInOverLayComponent
-  ],
-  imports: [
-    CommonModule,
-    SlideInOverLayRoutingModule
-  ]
+  declarations: [SlideInOverLayComponent],
+  imports: [CommonModule, SlideInOverLayRoutingModule],
 })
-export class SlideInOverLayModule { }
+export class SlideInOverLayModule {}
