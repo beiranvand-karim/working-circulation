@@ -1,5 +1,8 @@
 # file name: drop-commit-by-index.ps1
 
-2 | ForEach-Object {$_} {
+$CommitIndexNumber = "        ";
+$RefinedCommitIndexNumber = [int]$CommitIndexNumber.TrimStart().TrimEnd();
+
+$RefinedCommitIndexNumber  | ForEach-Object { $_ } {
     git rebase -i HEAD~$_;
 }
