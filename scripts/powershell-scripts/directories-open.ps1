@@ -19,3 +19,5 @@ start-process -FilePath$env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -Argumen
 Start-Sleep -Seconds 2
 start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList $env:TOOLS_ADDRESS
 Start-Sleep -Seconds 2
+start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList $env:MESSAGES_ADDRESS
+Start-Sleep -Seconds 2
