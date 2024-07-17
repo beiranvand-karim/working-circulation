@@ -66,6 +66,12 @@ namespace cross_application_feature_development_management.Dirctories
                     string valueToWrite = string.Format("\"{0}\"", directoryThatIsGoingToBeOpen2);
                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                 }
+                else if (key == "FEATURE_SELF_ADDRESS")
+                {
+                    var featureNameDirectoryPath = featureNameDirectory.GetPath();
+                    string valueToWrite = string.Format("\"{0}\"", featureNameDirectoryPath);
+                    fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                }
                 else
                 {
                     var directoryName = directoriesNameToKeyMap.GetValue(key);
