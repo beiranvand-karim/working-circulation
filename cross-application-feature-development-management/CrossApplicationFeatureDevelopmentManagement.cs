@@ -1,4 +1,5 @@
 using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management
@@ -12,7 +13,8 @@ namespace cross_application_feature_development_management
             IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
             ISomethingFeatureNameDirectory somethingFeatureNameDirectory,
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
-            IBatchScriptsDicrectory batchScriptsDicrectory
+            IBatchScriptsDicrectory batchScriptsDicrectory,
+            IHostApplicationName hostApplicationName
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -25,6 +27,7 @@ namespace cross_application_feature_development_management
         private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
+        private readonly IHostApplicationName hostApplicationName = hostApplicationName;
 
         public void Run()
         {
@@ -44,9 +47,9 @@ namespace cross_application_feature_development_management
                 Dictionary<string, string> environmentVariablesSourceDictionary =
                         Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
                             environmentVariablesSourceDirectory.GetName()
-                        );            
+                        );
 
-                foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory)) 
+                foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))
                 {
                     string destFileName = Path.GetFileNameWithoutExtension(templateFile);
                     string destFile = Path.Combine(destinationDirectory, destFileName);
@@ -54,7 +57,7 @@ namespace cross_application_feature_development_management
 
                     Dictionary<string, string> contentToWrite = [];
 
-                    if(templateFile.Contains("directories")) 
+                    if (templateFile.Contains("directories"))
                     {
                         contentToWrite =
                         somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
@@ -71,7 +74,7 @@ namespace cross_application_feature_development_management
                         string valueToWrite = $"""{entry.Key}={entry.Value}""";
                         writer.WriteLine(valueToWrite);
                     }
-            
+
                 }
                 powerShellScriptsDirectory.CopyContentToFeatureNameDicrectory();
                 powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
@@ -79,7 +82,7 @@ namespace cross_application_feature_development_management
                 batchScriptsDicrectory.CopyContentToFeaureNameDicrectory();
                 batchScriptsDicrectory.ReplaceFileNamesWithPaths();
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 logger.LogError("{exception}", exception.Message);
             }
