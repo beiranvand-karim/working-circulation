@@ -6,10 +6,10 @@ namespace cross_application_feature_development_management.Names.Classses
 {
     public class Something(
         ILogger<Something> logger,
-        IHostApplicationName hostApplicationName
+        IGuestApplicationName guestApplicationName
         ) : ISomething
     {
-        private readonly IHostApplicationName hostApplicationName = hostApplicationName;
+        private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
         private readonly ILogger<Something> logger = logger;
 
         public static Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -64,9 +64,9 @@ namespace cross_application_feature_development_management.Names.Classses
             foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {
 
-                if(file.Contains(hostApplicationName.GetName()))
+                if(file.Contains(guestApplicationName.GetName()))
                 {
-                    logger.LogInformation("{hostApplicationName}", hostApplicationName.GetName());
+                    logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
                     logger.LogInformation("{file}", file);
                     keyValuePairs = ReadKeyValueFromFile(file);
                 }
