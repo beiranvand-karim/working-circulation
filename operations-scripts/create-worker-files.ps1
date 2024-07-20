@@ -3,6 +3,9 @@
 $RawPathName = "          "
 $PathName = $RawPathName.TrimStart().TrimEnd()
 
+Push-Location $PathName;
+Remove-Item *.worker.ps1;
+
 $FileNames = Get-ChildItem -Path $PathName
 
 foreach ($FileName in $FileNames) {
@@ -26,3 +29,5 @@ foreach ($FileName in $FileNames) {
   Copy-Item $FileName -Destination $WorkerFile
 
 }
+
+Pop-Location
