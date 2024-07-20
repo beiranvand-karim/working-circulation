@@ -31,6 +31,7 @@ WorkingCirculation/ExtractJavascriptObjectFromEdgeConsoleLogs/global.json
 # javafx target directories
 target/
 
+
 #windows batch files
 winos-run.bat
 
@@ -38,6 +39,7 @@ winos-run.bat
 *.worker.sh
 *.worker.bat
 *.worker.ps1
+*.worker.json
 
 # version setting files
 global.json
