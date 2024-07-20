@@ -39,6 +39,11 @@ linos-starting-point.worker.sh
 macos-starting-point.worker.sh
 winos-starting-point.worker.bat
 
+#run scripts worker files
+linos.worker.sh
+winos.worker.bat
+macos.worker.sh
+
 # branch scripts worker files
 drop-commit-by-index.worker.ps1
 pull-all-remote-branches.worker.ps1
