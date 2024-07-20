@@ -40,6 +40,9 @@ internal class Program
                 services.AddTransient<IPowerShellScriptsDirectory, PowerShellScriptsDirectory>();
                 services.AddTransient<IBatchScriptsDicrectory, BatchScriptsDicrectory>();
                 services.AddTransient<IHostApplicationName, HostApplicationName>();
+                services.AddTransient<IGuestApplicationName, GuestApplicationName>();
+                services.AddTransient<ISomething, Something>();
+
             })
             .UseSerilog()
             .Build();

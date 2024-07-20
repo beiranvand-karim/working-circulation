@@ -1,4 +1,5 @@
 using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Names.Classses;
 using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -14,7 +15,7 @@ namespace cross_application_feature_development_management
             ISomethingFeatureNameDirectory somethingFeatureNameDirectory,
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
             IBatchScriptsDicrectory batchScriptsDicrectory,
-            IHostApplicationName hostApplicationName
+            ISomething something
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -27,7 +28,7 @@ namespace cross_application_feature_development_management
         private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
-        private readonly IHostApplicationName hostApplicationName = hostApplicationName;
+        private readonly ISomething something = something;
 
         public void Run()
         {
@@ -45,7 +46,7 @@ namespace cross_application_feature_development_management
                 string destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
 
                 Dictionary<string, string> environmentVariablesSourceDictionary =
-                        Something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
+                        something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
                             environmentVariablesSourceDirectory.GetName()
                         );
 

@@ -1,9 +1,17 @@
 using System.Text;
+using cross_application_feature_development_management.Names.Interfaces;
+using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management
+namespace cross_application_feature_development_management.Names.Classses
 {
-    public class Something
+    public class Something(
+        ILogger<Something> logger,
+        IGuestApplicationName guestApplicationName
+        ) : ISomething
     {
+        private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
+        private readonly ILogger<Something> logger = logger;
+
         public static Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
             Dictionary<string, string> environmentVariablesSourceDictionary
@@ -47,7 +55,7 @@ namespace cross_application_feature_development_management
             return fileContentDictionary;
         }
 
-        public static Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceFile(
+        public Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceFile(
             string environmentVariablesSourceDirectory
         )
         {
@@ -55,7 +63,13 @@ namespace cross_application_feature_development_management
 
             foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {
-                keyValuePairs = ReadKeyValueFromFile(file);
+
+                if(file.Contains(guestApplicationName.GetName()))
+                {
+                    logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
+                    logger.LogInformation("{file}", file);
+                    keyValuePairs = ReadKeyValueFromFile(file);
+                }
             }
 
             return keyValuePairs;
