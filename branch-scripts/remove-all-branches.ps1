@@ -1,8 +1,11 @@
 # file name: remove-all-branches.ps1
 
+$BranchIndexNumber = "        ";
+$RefinedBranchIndexNumber = [int]$BranchIndexNumber.TrimStart().TrimEnd();
+
 git checkout master;
 
-1..10 | ForEach-Object {$_} {
+$RefinedBranchIndexNumber  | ForEach-Object { $_ } {
     # remote
     git push -d origin $_;
 
