@@ -50,6 +50,7 @@ remove-all-branches.worker.ps1
 reset-all-to-origin.worker.ps1
 create-branch-with-commit.worker.ps1
 drop-commit-by-hard-resetting.worker.ps1
+squash-commits-resetting-soft.worker.ps1
 
 # version setting files
 global.json
