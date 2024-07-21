@@ -1,4 +1,4 @@
-# file name: module-with-component.ps1
+# file name: create.ps1
 # https://angular.dev/cli/generate/component#Options
 
 $name = "      ";
