@@ -1,8 +1,9 @@
 # file name: edit-last-commit.ps1
 
 $thisScript = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent;
-$jsonData1 = Join-Path -Path $thisScript -ChildPath "input.worker.json";
-$json = Get-Content -Path $jsonData1 -Raw | ConvertFrom-Json;
+$ThisScriptParent = Split-Path -Path $ThisScript -Parent;
+$JsonFileContent = Join-Path -Path $ThisScriptParent -ChildPath "input.worker.json";
+$json = Get-Content -Path $JsonFileContent -Raw | ConvertFrom-Json;
 
 $CommitIndexNumber = $json.CommitIndexNumber;
 $RefinedCommitIndexNumber = [int]$CommitIndexNumber.TrimStart().TrimEnd();
