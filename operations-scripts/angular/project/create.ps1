@@ -1,4 +1,4 @@
-# file name: project.ps1
+# file name: create.ps1
 # https://angular.dev/cli/new#Options
 
 $name = "      ";
