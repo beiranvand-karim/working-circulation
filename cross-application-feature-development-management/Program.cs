@@ -14,7 +14,11 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = new ConfigurationBuilder();
-        BuildConfig(builder);
+        builder.SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Prodcution"}.json", optional: true)
+            .AddCommandLine(args)
+            .AddEnvironmentVariables();
 
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(builder.Build())
@@ -51,11 +55,8 @@ internal class Program
         svc.Run();
     }
 
-    static void BuildConfig(IConfigurationBuilder builder)
+    static void BuildConfig(IConfigurationBuilder builder, string[] args)
     {
-        builder.SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-            .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Prodcution"}.json", optional: true)
-            .AddEnvironmentVariables();
+
     }
 }
