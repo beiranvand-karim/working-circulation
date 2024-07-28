@@ -1,17 +1,22 @@
 using System.Text;
 using cross_application_feature_development_management.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Dirctories
 {
     public class SomethingFeatureNameDirectory(
         ICommandLineArgs commandLineArgs,
         IDirectoriesNameToKeyMap directoriesNameToKeyMap,
-        IFeatureNameDirectory featureNameDirectory
+        IFeatureNameDirectory featureNameDirectory,
+        IHostingDirectory hostingDirectory,
+        ILogger<SomethingFeatureNameDirectory> logger
         ) : ISomethingFeatureNameDirectory
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly IDirectoriesNameToKeyMap directoriesNameToKeyMap = directoriesNameToKeyMap;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
+        private readonly IHostingDirectory hostingDirectory = hostingDirectory;
+        private readonly ILogger<SomethingFeatureNameDirectory> logger = logger;
 
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
@@ -31,6 +36,10 @@ namespace cross_application_feature_development_management.Dirctories
                 string key = brokenLine[0];
                 string value = brokenLine[1];
                 _ = environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
+
+
+                logger.LogInformation("{key}", key);
+
 
                 if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS")
                 {
@@ -70,6 +79,13 @@ namespace cross_application_feature_development_management.Dirctories
                 {
                     var featureNameDirectoryPath = featureNameDirectory.GetPath();
                     string valueToWrite = string.Format("\"{0}\"", featureNameDirectoryPath);
+                    fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                }
+                else if (key == "ALL_INCLUSIVE_DIRECTOY_ADDRESS")
+                {
+                    var hostingDirectoryPath = hostingDirectory.GetName();
+                    string allInclusiveBatchFilePath = Path.Combine(hostingDirectoryPath, "all-inclusive.bat");
+                    string valueToWrite = string.Format("\"{0}\"", allInclusiveBatchFilePath);
                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                 }
                 else
