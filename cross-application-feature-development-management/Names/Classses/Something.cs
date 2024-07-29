@@ -12,7 +12,7 @@ namespace cross_application_feature_development_management.Names.Classses
         private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
         private readonly ILogger<Something> logger = logger;
 
-        public static Dictionary<string, string> PairUpVariablesWithTheirValue(
+        public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
             Dictionary<string, string> environmentVariablesSourceDictionary
         )

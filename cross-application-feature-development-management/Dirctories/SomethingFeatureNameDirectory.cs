@@ -1,17 +1,22 @@
 using System.Text;
 using cross_application_feature_development_management.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Dirctories
 {
     public class SomethingFeatureNameDirectory(
         ICommandLineArgs commandLineArgs,
         IDirectoriesNameToKeyMap directoriesNameToKeyMap,
-        IFeatureNameDirectory featureNameDirectory
+        IFeatureNameDirectory featureNameDirectory,
+        IHostingDirectory hostingDirectory,
+        ILogger<SomethingFeatureNameDirectory> logger
         ) : ISomethingFeatureNameDirectory
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly IDirectoriesNameToKeyMap directoriesNameToKeyMap = directoriesNameToKeyMap;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
+        private readonly IHostingDirectory hostingDirectory = hostingDirectory;
+        private readonly ILogger<SomethingFeatureNameDirectory> logger = logger;
 
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
@@ -31,6 +36,7 @@ namespace cross_application_feature_development_management.Dirctories
                 string key = brokenLine[0];
                 string value = brokenLine[1];
                 _ = environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
+
 
                 if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS")
                 {

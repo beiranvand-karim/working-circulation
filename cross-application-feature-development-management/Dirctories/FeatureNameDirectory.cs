@@ -12,10 +12,8 @@ namespace cross_application_feature_development_management.Dirctories
 
         public void CreateSelf()
         {
-
             string featureNameDirectoryPath = GetPath();
             Directory.CreateDirectory(featureNameDirectoryPath);
-
         }
 
         public string GetPath()
