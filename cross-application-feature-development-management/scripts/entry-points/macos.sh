@@ -1,3 +1,7 @@
+#!/bin/bash
+
+hosting_directory=${PWD}
+
 cd /Users/karimbeiranvand/Documents/GitHub/working-circulation/cross-application-feature-development-management/bin/Debug/net8.0
 
 ./cross-application-feature-development-management \
@@ -8,6 +12,6 @@ cd /Users/karimbeiranvand/Documents/GitHub/working-circulation/cross-application
 --executive-file-directory "/cross-application-feature-development-management/bin/Debug/net8.0/cross-application-feature-development-management"  \
 --scripts-directory "/Users/karimbeiranvand/Documents/GitHub/working-circulation/scripts" \
 --repository-directory "/Users/karimbeiranvand/Documents/GitHub/working-circulation" \
---hosting-directory "/Users/karimbeiranvand/Documents" \
+--hosting-directory "${hosting_directory}" \
 --host-application-name "augustus" \
 --guest-application-name "julius"
