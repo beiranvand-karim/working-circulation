@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Classses;
 using cross_application_feature_development_management.Names.Interfaces;
@@ -15,7 +16,8 @@ namespace cross_application_feature_development_management
             ISomethingFeatureNameDirectory somethingFeatureNameDirectory,
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
             IBatchScriptsDicrectory batchScriptsDicrectory,
-            ISomething something
+            ISomething something,
+            IAddToStartupScript addToStartupScript
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -29,6 +31,7 @@ namespace cross_application_feature_development_management
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
         private readonly ISomething something = something;
+        private readonly IAddToStartupScript addToStartupScript = addToStartupScript;
 
         public void Run()
         {
@@ -63,10 +66,15 @@ namespace cross_application_feature_development_management
                         contentToWrite =
                         somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
                     }
+                    else if (templateFile.Contains("add-to-startup"))
+                    {
+                        contentToWrite =
+                        addToStartupScript.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
+                    }
                     else
                     {
                         contentToWrite =
-                        Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
+                        something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
                     }
 
                     using StreamWriter writer = new(fs);
