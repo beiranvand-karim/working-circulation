@@ -41,6 +41,12 @@ winos-run.bat
 *.worker.ps1
 *.worker.json
 
+# worker directories
+worker/
+workers/
+*.worker
+*.workers
+
 # version setting files
 global.json
 
