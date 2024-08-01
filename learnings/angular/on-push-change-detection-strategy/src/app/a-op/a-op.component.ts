@@ -13,9 +13,6 @@ export class AOpComponent {
   user: User = { name: 'A' }
 
   changeName() {
-    this.user = {
-      ...this.user,
-      name: 'B'
-    }
+    this.user.name = 'B'
   }
 }
