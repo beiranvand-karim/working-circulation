@@ -9,14 +9,4 @@ import { User } from '../a-op/a-op.component';
 })
 export class BOpComponent {
   @Input() user: User | null = null
-  previousUserName: string |undefined = ''
-
-  constructor(private readonly cd: ChangeDetectorRef) {}
-
-  ngDoCheck() {
-    if (this.user?.name !== this.previousUserName) {
-      this.cd.markForCheck()
-      this.previousUserName = this.user?.name
-    }
-  }
 }
