@@ -1,11 +1,12 @@
+using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
     public class FeatureNameDirectory(
             ICommandLineArgs commandLineArgs,
             IHostingDirectory hostingDirectory
-        ): IFeatureNameDirectory
+        ) : IFeatureNameDirectory
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly IHostingDirectory hostingDirectory = hostingDirectory;

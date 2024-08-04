@@ -1,18 +1,20 @@
-using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Dirctories.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
     public class BatchScriptsDicrectory(
         IPowerShellScriptsDirectory powerShellScriptsDirectory,
         IFeatureNameDirectory featureNameDirectory,
         ITargetDirectory targetDirectory,
-        IScriptsDirectory scriptsDirectory
-        ): IBatchScriptsDicrectory
+        IScriptsDirectory scriptsDirectory,
+        IDirectories directories
+        ) : IBatchScriptsDicrectory
     {
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly ITargetDirectory targetDirectory = targetDirectory;
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
+        private readonly IDirectories directories = directories;
 
         public void ReplaceFileNamesWithPaths()
         {
@@ -23,7 +25,7 @@ namespace cross_application_feature_development_management.Dirctories
                 string fileName = Path.GetFileNameWithoutExtension(filePath);
                 string giverFileName = $"""{fileName}.ps1""";
                 string giverPath = Path.Combine(giversPath, giverFileName);
-                Directories.ReplaceFileNameWithPath(filePath, giverPath);
+                directories.ReplaceFileNameWithPath(filePath, giverPath);
             }
         }
 
@@ -46,7 +48,7 @@ namespace cross_application_feature_development_management.Dirctories
             string sourceDirectory = CreatePathToSelfInScriptsDirectory();
             string destinationDirectory = featureNameDirectory.GetPath();
 
-            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public void CopyContentToTargetDicrectory()
@@ -54,7 +56,7 @@ namespace cross_application_feature_development_management.Dirctories
             string sourceDirectory = CreatePathToSelfInScriptsDirectory();
             string destinationDirectory = targetDirectory.CreatePathToSelf();
 
-            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public string CreatePathToSelfInScriptsDirectory()
