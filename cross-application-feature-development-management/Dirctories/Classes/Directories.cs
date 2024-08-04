@@ -1,0 +1,33 @@
+
+using cross_application_feature_development_management.Dirctories.Interfaces;
+
+namespace cross_application_feature_development_management.Dirctories.Classes
+{
+    public class Directories: IDirectories
+    {
+        public void ReplaceFileNameWithPath(string receiverPath, string giverPath)
+        {
+            string fileName = Path.GetFileName(giverPath);
+            string text = File.ReadAllText(receiverPath);
+            text = text.Replace(fileName, giverPath);
+            File.WriteAllText(receiverPath, text);
+        }
+
+        public void CopyFileToDestinationDirectory(string file, string destinationDirectory)
+        {
+            string fileName = Path.GetFileName(file);
+            string destFileName = Path.GetFileName(fileName);
+            string destFilePathIncludingName = Path.Combine(destinationDirectory, destFileName);
+            File.Copy(file, destFilePathIncludingName);
+        }
+
+        public void CopyContentOfSourceDirectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
+        {
+            foreach (string file in Directory.EnumerateFiles(sourceDirectory))
+            {
+                CopyFileToDestinationDirectory(file, destinationDirectory);
+            }
+        }
+    }
+}
+// placeholder commit and branch to move IDirectories Directories changes to it.
