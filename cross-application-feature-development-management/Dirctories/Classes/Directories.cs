@@ -1,8 +1,11 @@
-namespace cross_application_feature_development_management.Dirctories
+
+using cross_application_feature_development_management.Dirctories.Interfaces;
+
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
-    internal class Directories
+    public class Directories: IDirectories
     {
-        public static void ReplaceFileNameWithPath(string receiverPath, string giverPath)
+        public void ReplaceFileNameWithPath(string receiverPath, string giverPath)
         {
             string fileName = Path.GetFileName(giverPath);
             string text = File.ReadAllText(receiverPath);
@@ -10,7 +13,7 @@ namespace cross_application_feature_development_management.Dirctories
             File.WriteAllText(receiverPath, text);
         }
 
-        public static void CopyFileToDestinationDirectory(string file, string destinationDirectory)
+        public void CopyFileToDestinationDirectory(string file, string destinationDirectory)
         {
             string fileName = Path.GetFileName(file);
             string destFileName = Path.GetFileName(fileName);
@@ -18,7 +21,7 @@ namespace cross_application_feature_development_management.Dirctories
             File.Copy(file, destFilePathIncludingName);
         }
 
-        public static void CopyContentOfSourceDirectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
+        public void CopyContentOfSourceDirectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
         {
             foreach (string file in Directory.EnumerateFiles(sourceDirectory))
             {
