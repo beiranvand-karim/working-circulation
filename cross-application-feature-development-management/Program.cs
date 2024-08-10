@@ -50,6 +50,7 @@ internal class Program
                 services.AddTransient<ISomething, Something>();
                 services.AddTransient<IAddToStartupScript, AddToStartupScript>();
                 services.AddTransient<IStringHelpers, StringHelpers>();
+                services.AddTransient<IDirectories, Directories>();
             })
             .UseSerilog()
             .Build();

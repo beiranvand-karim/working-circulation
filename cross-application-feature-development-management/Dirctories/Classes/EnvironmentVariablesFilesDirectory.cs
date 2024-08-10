@@ -7,20 +7,22 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             IScriptsDirectory scriptsDirectory,
             IFeatureNameDirectory featureNameDirectory,
             ICommandLineArgs commandLineArgs,
-            ITargetDirectory targetDirectory
+            ITargetDirectory targetDirectory,
+            IDirectories directories
         ) : IEnvironmentVariablesFilesDirectory
     {
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly ITargetDirectory targetDirectory = targetDirectory;
+        private readonly IDirectories directories = directories;
 
         public void CopyContentToFeatureNameDicrectory()
         {
             string sourceDirectory = CreatePathToSelfInScriptsDirectory();
             string destinationDirectory = CreatePathToSelfInFeatureNameDirectory();
 
-            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public void CopyContentToTargetDicrectory()
@@ -28,7 +30,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             string sourceDirectory = CreatePathToSelfInScriptsDirectory();
             string destinationDirectory = CreatePathToSelfInTargetDirectory();
 
-            Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public string CreatePathToSelfInScriptsDirectory()
