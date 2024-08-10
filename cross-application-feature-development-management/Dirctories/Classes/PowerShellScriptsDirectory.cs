@@ -1,13 +1,13 @@
-using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Dirctories.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
     public class PowerShellScriptsDirectory(
         IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
         ITargetDirectory targetDirectory,
         IScriptsDirectory scriptsDirectory,
         IFeatureNameDirectory featureNameDirectory
-        ): IPowerShellScriptsDirectory
+        ) : IPowerShellScriptsDirectory
     {
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
         private readonly ITargetDirectory targetDirectory = targetDirectory;
@@ -33,7 +33,7 @@ namespace cross_application_feature_development_management.Dirctories
             string direcName = "powershell-scripts";
             Directory.CreateDirectory(ConstructPathToSelfInFeatureNameDirectory(direcName));
             string sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
-            string destinationDirectory = ConstructPathToSelfInFeatureNameDirectory( direcName);
+            string destinationDirectory = ConstructPathToSelfInFeatureNameDirectory(direcName);
 
             Directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }

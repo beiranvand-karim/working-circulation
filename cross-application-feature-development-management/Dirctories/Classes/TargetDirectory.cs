@@ -1,8 +1,8 @@
-using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Dirctories.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
-    public class TargetDirectory(IWorkingCirculationDirectory workingCirculationDirectory): ITargetDirectory
+    public class TargetDirectory(IWorkingCirculationDirectory workingCirculationDirectory) : ITargetDirectory
     {
         private readonly IWorkingCirculationDirectory workingCirculationDirectory = workingCirculationDirectory;
 

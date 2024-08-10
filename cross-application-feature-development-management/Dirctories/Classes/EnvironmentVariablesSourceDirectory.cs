@@ -1,9 +1,10 @@
+using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
     public class EnvironmentVariablesSourceDirectory(ICommandLineArgs commandLineArgs, IScriptsDirectory scriptsDirectory)
-    :IEnvironmentVariablesSourceDirectory
+    : IEnvironmentVariablesSourceDirectory
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
