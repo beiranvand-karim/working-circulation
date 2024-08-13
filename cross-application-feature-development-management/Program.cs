@@ -1,6 +1,10 @@
 ﻿
 using cross_application_feature_development_management;
+using cross_application_feature_development_management.Combiners.Classes;
+using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Dirctories;
+using cross_application_feature_development_management.Helpers.Classes;
+using cross_application_feature_development_management.Helpers.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Classses;
 using cross_application_feature_development_management.Names.Interfaces;
@@ -42,7 +46,8 @@ internal class Program
                 services.AddTransient<IHostApplicationName, HostApplicationName>();
                 services.AddTransient<IGuestApplicationName, GuestApplicationName>();
                 services.AddTransient<ISomething, Something>();
-
+                services.AddTransient<IAddToStartupScript, AddToStartupScript>();
+                services.AddTransient<IStringHelpers, StringHelpers>();
             })
             .UseSerilog()
             .Build();
