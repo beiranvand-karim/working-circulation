@@ -33,4 +33,4 @@ if ($env:IS_WEBSTORM_GUEST_CLIENTAPP_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
 }
 
 Start-Sleep -Seconds 10
-& "$(Split-Path $MyInvocation.MyCommand.Path)/application-user-interface.ps1"
+Invoke-Expression 'cmd /c start powershell -Command {pwsh "run-host-application.ps1";}'

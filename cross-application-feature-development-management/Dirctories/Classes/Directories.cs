@@ -16,6 +16,13 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             File.WriteAllText(receiverPath, text);
         }
 
+        public void ReplaceFileNameWithPath(string receiverPath, string repalcee, string replacer)
+        {
+            string text = File.ReadAllText(receiverPath);
+            text = text.Replace(repalcee, replacer);
+            File.WriteAllText(receiverPath, text);
+        }
+
         public void CopyFileToDestinationDirectory(string file, string destinationDirectory)
         {
             string fileName = Path.GetFileName(file);
