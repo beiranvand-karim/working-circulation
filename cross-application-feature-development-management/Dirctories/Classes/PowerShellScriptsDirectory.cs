@@ -25,6 +25,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             string pathInTarget = ConstructPathToSelfInFeatureNameDirectory(direcName);
             string giversPath = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
             string runHostApplicationPath = Path.Combine(pathInTarget, "run-host-application.ps1");
+            string runGuestApplicationPath = Path.Combine(pathInTarget, "run-guest-application.ps1");
+
 
             foreach (string filePath in Directory.EnumerateFiles(pathInTarget))
             {
@@ -38,10 +40,12 @@ namespace cross_application_feature_development_management.Dirctories.Classes
                 if (filePath.Contains("all-inclusive.ps1"))
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
                 if (filePath.Contains("all.ps1"))
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
             }
         }
