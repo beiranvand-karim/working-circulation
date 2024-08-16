@@ -1,4 +1,5 @@
 using cross_application_feature_development_management.Dirctories.Interfaces;
+using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Dirctories.Classes
 {
@@ -7,7 +8,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         ITargetDirectory targetDirectory,
         IScriptsDirectory scriptsDirectory,
         IFeatureNameDirectory featureNameDirectory,
-        IDirectories directories
+        IDirectories directories,
+        ILogger<PowerShellScriptsDirectory> logger
         ) : IPowerShellScriptsDirectory
     {
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
@@ -15,18 +17,32 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly IDirectories directories = directories;
+        private readonly ILogger<PowerShellScriptsDirectory> logger = logger;
 
         public void ReplaceFileNamesWithPaths()
         {
             string direcName = "powershell-scripts";
             string pathInTarget = ConstructPathToSelfInFeatureNameDirectory(direcName);
             string giversPath = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
+            string runHostApplicationPath = Path.Combine(pathInTarget, "run-host-application.ps1");
+
             foreach (string filePath in Directory.EnumerateFiles(pathInTarget))
             {
+
                 string fileName = Path.GetFileNameWithoutExtension(filePath);
                 string giverFileName = $"""{fileName}.env""";
                 string giverPath = Path.Combine(giversPath, giverFileName);
+
                 directories.ReplaceFileNameWithPath(filePath, giverPath);
+
+                if (filePath.Contains("all-inclusive.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                }
+                if (filePath.Contains("all.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                }
             }
         }
 
