@@ -1,4 +1,4 @@
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
     internal class Directories
     {

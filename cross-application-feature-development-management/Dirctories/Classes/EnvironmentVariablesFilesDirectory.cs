@@ -1,9 +1,10 @@
+using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
     public class EnvironmentVariablesFilesDirectory(
-            IScriptsDirectory scriptsDirectory, 
+            IScriptsDirectory scriptsDirectory,
             IFeatureNameDirectory featureNameDirectory,
             ICommandLineArgs commandLineArgs,
             ITargetDirectory targetDirectory

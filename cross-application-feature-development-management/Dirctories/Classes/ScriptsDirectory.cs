@@ -1,9 +1,9 @@
-
+using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
-    public class ScriptsDirectory(ICommandLineArgs commandLineArgs): IScriptsDirectory
+    public class ScriptsDirectory(ICommandLineArgs commandLineArgs) : IScriptsDirectory
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
 

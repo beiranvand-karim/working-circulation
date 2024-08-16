@@ -1,13 +1,13 @@
-using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Dirctories.Interfaces;
 
-namespace cross_application_feature_development_management.Dirctories
+namespace cross_application_feature_development_management.Dirctories.Classes
 {
     public class BatchScriptsDicrectory(
         IPowerShellScriptsDirectory powerShellScriptsDirectory,
         IFeatureNameDirectory featureNameDirectory,
         ITargetDirectory targetDirectory,
         IScriptsDirectory scriptsDirectory
-        ): IBatchScriptsDicrectory
+        ) : IBatchScriptsDicrectory
     {
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
