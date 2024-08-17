@@ -12,8 +12,8 @@ x86/
 [Oo]bj/
 [Ll]og/
 
-scripts/environment-variables-files/
-scripts/environment-variables-source/
+environment-variables-files/
+environment-variables-source/
 
 # macos files
 .DS_Store
