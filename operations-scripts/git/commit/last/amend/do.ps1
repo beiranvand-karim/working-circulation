@@ -1,4 +1,4 @@
-# file name: git/commit/last/amend.ps1
+# file name: /git/commit/last/amend/do.bat
 
 $CommandOutput = git branch --show-current | Out-String
 $CurrentBranchName = [string]::join("", ($CommandOutput.Split("`n")))
