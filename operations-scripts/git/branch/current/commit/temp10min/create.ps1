@@ -1,4 +1,4 @@
-# file name: create-temp10min.ps1
+# file name: create.ps1
 
 $cmdOutput = git branch --show-current | Out-String
 $my_string = [string]::join("", ($cmdOutput.Split("`n")))
