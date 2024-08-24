@@ -4,6 +4,7 @@ using cross_application_feature_development_management.Combiners.Classes;
 using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Dirctories;
 using cross_application_feature_development_management.Dirctories.Classes;
+using cross_application_feature_development_management.Dirctories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Helpers.Classes;
 using cross_application_feature_development_management.Helpers.Interfaces;
@@ -51,6 +52,8 @@ internal class Program
                 services.AddTransient<IAddToStartupScript, AddToStartupScript>();
                 services.AddTransient<IStringHelpers, StringHelpers>();
                 services.AddTransient<IDirectories, Directories>();
+                services.AddTransient<IFeatureName, FeatureName>();
+                services.AddTransient<INotePadPlusPlusOpenAll, NotePadPlusPlusOpenAll>();
             })
             .UseSerilog()
             .Build();
