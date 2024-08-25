@@ -60,16 +60,6 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
-        public void CopyContentToTargetDicrectory()
-        {
-            string direcName = "powershell-scripts";
-            Directory.CreateDirectory(ConstructPathToSelfInTargetDirectory(direcName));
-            string sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
-            string destinationDirectory = ConstructPathToSelfInTargetDirectory(direcName);
-
-            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
-        }
-
         public string ConstructPathToSelfInScriptsDirectory(string direcName)
         {
             string scriptsDirectoryName = scriptsDirectory.GetName();
@@ -81,27 +71,6 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         {
             string destinationDirectory = featureNameDirectory.GetPath();
             string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInTargetDirectory(string direcName)
-        {
-            string destinationDirectory = targetDirectory.CreatePathToSelf();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInScriptsDirectory()
-        {
-            string scriptsDirectoryName = scriptsDirectory.GetName();
-            string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "powershell-scripts");
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInTargetDirectory()
-        {
-            string destinationDirectory = targetDirectory.CreatePathToSelf();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "powershell-scripts");
             return environmentVariablesFilesDirectory;
         }
     }
