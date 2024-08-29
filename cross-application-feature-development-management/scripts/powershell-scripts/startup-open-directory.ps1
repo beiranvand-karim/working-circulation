@@ -5,4 +5,6 @@ get-content "startup-open-directory.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList $env:STARTUP_DIRECTORY_LOCATION
+Push-Location $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
+start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:STARTUP_DIRECTORY_LOCATION"
+Pop-Location

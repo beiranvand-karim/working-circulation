@@ -23,6 +23,8 @@ internal class Program
             {
                 services.AddTransient<IDirectoryManager, DirectoryManager>();
                 services.AddTransient<IDirectoryOperations, DirectoryOperations>();
+                services.AddTransient<ICommandLineArgs, CommandLineArgs>();
+                services.AddTransient<IDirectoryToBeOpen, DirectoryToBeOpen>();
             })
             .UseSerilog()
             .Build();
