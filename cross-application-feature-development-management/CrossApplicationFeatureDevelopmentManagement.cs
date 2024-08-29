@@ -70,7 +70,7 @@ namespace cross_application_feature_development_management
                         contentToWrite =
                         somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
                     }
-                    else if (templateFile.Contains("add-to-startup"))
+                    else if (templateFile.Contains("startup"))
                     {
                         contentToWrite =
                         addToStartupScript.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);

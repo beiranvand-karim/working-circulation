@@ -1,5 +1,6 @@
 using System.Text;
 using cross_application_feature_development_management.Dirctories.Interfaces;
+using cross_application_feature_development_management.Helpers.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -10,7 +11,8 @@ namespace cross_application_feature_development_management.Dirctories
         IDirectoriesNameToKeyMap directoriesNameToKeyMap,
         IFeatureNameDirectory featureNameDirectory,
         IHostingDirectory hostingDirectory,
-        ILogger<SomethingFeatureNameDirectory> logger
+        ILogger<SomethingFeatureNameDirectory> logger,
+        IStringHelpers stringHelpers
         ) : ISomethingFeatureNameDirectory
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
@@ -18,6 +20,7 @@ namespace cross_application_feature_development_management.Dirctories
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly IHostingDirectory hostingDirectory = hostingDirectory;
         private readonly ILogger<SomethingFeatureNameDirectory> logger = logger;
+        private readonly IStringHelpers stringHelpers = stringHelpers;
 
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
@@ -42,6 +45,16 @@ namespace cross_application_feature_development_management.Dirctories
                 if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS")
                 {
                     fileContentDictionaryToWriteToFile.Add(key, val ?? "");
+                }
+                else if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY")
+                {
+                    environmentVariablesSourceDictionary.TryGetValue(
+                        "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
+                        out string? directoryManagementExecutiveFileAddress
+                        );
+                    var striped = stringHelpers.StripQoutationMarks(directoryManagementExecutiveFileAddress ?? "");
+                    var dirName = Path.GetDirectoryName(striped);
+                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
                 }
                 else if (key == "FEND_HOST_ADDRESS")
                 {
