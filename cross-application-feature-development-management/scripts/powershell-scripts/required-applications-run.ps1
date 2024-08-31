@@ -10,5 +10,3 @@ Start-Sleep -Seconds 3
 start-process -FilePath $env:OUTLOOK_EMAIL_CLIENT_LOCATION
 Start-Sleep -Seconds 3
 start-process -FilePath $env:GITHUB_DESKTOP_LOCATION
-Start-Sleep -Seconds 3
-start-process -FilePath $env:NOTEPADDPP_EXECUTE_FILE_LOCATION
