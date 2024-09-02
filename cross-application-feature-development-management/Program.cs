@@ -4,6 +4,7 @@ using cross_application_feature_development_management.Combiners.Classes;
 using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Dirctories;
 using cross_application_feature_development_management.Dirctories.Classes;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
 using cross_application_feature_development_management.Dirctories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Helpers.Classes;
@@ -54,6 +55,7 @@ internal class Program
                 services.AddTransient<IDirectories, Directories>();
                 services.AddTransient<IFeatureName, FeatureName>();
                 services.AddTransient<INotePadPlusPlusOpenAll, NotePadPlusPlusOpenAll>();
+                services.AddTransient<IBatchScriptFilesDirectory, BatchScriptFilesDirectory>();
             })
             .UseSerilog()
             .Build();
