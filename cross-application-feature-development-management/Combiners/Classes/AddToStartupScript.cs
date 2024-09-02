@@ -1,5 +1,6 @@
 using System.Text;
 using cross_application_feature_development_management.Combiners.Interfaces;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Helpers.Interfaces;
 using cross_application_feature_development_management.Interfaces;
@@ -13,7 +14,8 @@ namespace cross_application_feature_development_management.Combiners.Classes
         IFeatureNameDirectory featureNameDirectory,
         IHostingDirectory hostingDirectory,
         ILogger<AddToStartupScript> logger,
-        IStringHelpers stringHelpers
+        IStringHelpers stringHelpers,
+        IAutomationsDirectory automationsDirectory
         ) : IAddToStartupScript
     {
 
@@ -23,6 +25,7 @@ namespace cross_application_feature_development_management.Combiners.Classes
         private readonly IHostingDirectory hostingDirectory = hostingDirectory;
         private readonly ILogger<AddToStartupScript> logger = logger;
         private readonly IStringHelpers stringHelpers = stringHelpers;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
@@ -44,7 +47,7 @@ namespace cross_application_feature_development_management.Combiners.Classes
 
                 if (key == "ALL_INCLUSIVE_DIRECTOY_ADDRESS")
                 {
-                    string featureDirectoryPath = featureNameDirectory.GetPath();
+                    string featureDirectoryPath = automationsDirectory.GetPath();
                     string addToStartupPath = Path.Combine(featureDirectoryPath, "all-inclusive.bat");
                     fileContentDictionaryToWriteToFile.Add(key, addToStartupPath);
                 }
