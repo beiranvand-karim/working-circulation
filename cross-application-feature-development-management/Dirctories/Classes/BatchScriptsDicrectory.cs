@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 
 namespace cross_application_feature_development_management.Dirctories.Classes
@@ -7,7 +8,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         IFeatureNameDirectory featureNameDirectory,
         ITargetDirectory targetDirectory,
         IScriptsDirectory scriptsDirectory,
-        IDirectories directories
+        IDirectories directories,
+        IAutomationsDirectory automationsDirectory
         ) : IBatchScriptsDicrectory
     {
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
@@ -15,6 +17,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly ITargetDirectory targetDirectory = targetDirectory;
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
         private readonly IDirectories directories = directories;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public void ReplaceFileNamesWithPaths()
         {
@@ -46,7 +49,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         public void CopyContentToFeaureNameDicrectory()
         {
             string sourceDirectory = CreatePathToSelfInScriptsDirectory();
-            string destinationDirectory = featureNameDirectory.GetPath();
+            string destinationDirectory = automationsDirectory.GetPath();
 
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }

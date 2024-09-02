@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
@@ -16,7 +17,8 @@ namespace cross_application_feature_development_management
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
             IBatchScriptsDicrectory batchScriptsDicrectory,
             ISomething something,
-            IBatchScriptFilesDirectory batchScriptFilesDirectory
+            IBatchScriptFilesDirectory batchScriptFilesDirectory,
+            IAutomationsDirectory automationsDirectory
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -30,6 +32,7 @@ namespace cross_application_feature_development_management
         private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
         private readonly ISomething something = something;
         private readonly IBatchScriptFilesDirectory batchScriptFilesDirectory = batchScriptFilesDirectory;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public void Run()
         {
@@ -42,6 +45,8 @@ namespace cross_application_feature_development_management
                     );
 
                 featureNameDirectory.CreateSelf();
+
+                automationsDirectory.Create();
 
                 Directory.CreateDirectory(environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory());
                 string destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
