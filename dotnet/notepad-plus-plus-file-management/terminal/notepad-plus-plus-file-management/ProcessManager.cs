@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using notepad_plus_plus_file_management.Dirctories.Interfaces;
 using notepad_plus_plus_file_management.Files.Executabes.Interfaces;
@@ -30,13 +31,17 @@ namespace notepad_plus_plus_file_management
                 var a = frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS");
                 var b = frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS");
                 var c = notesAndMessagesDirectory.GetPath("NOTES_MESSAGES_ADDRESS");
+                ProccessInformationGroup proccessInformationGroup = new();
 
-                this.StartProcess(a);
+
+                this.StartProcess(a, proccessInformationGroup);
                 Thread.Sleep(5000);
-                this.StartProcess(b);
+                this.StartProcess(b, proccessInformationGroup);
                 Thread.Sleep(5000);
-                this.StartProcess(c);
+                this.StartProcess(c, proccessInformationGroup);
                 Thread.Sleep(5000);
+
+                logger.LogInformation("Proccess information group: {proccessInformationGroup}", JsonSerializer.Serialize(proccessInformationGroup));
             }
             catch (Exception e)
             {
@@ -44,7 +49,7 @@ namespace notepad_plus_plus_file_management
             }
         }
 
-        public void StartProcess(string openeeFilesContainingDirectoryLocation)
+        public void StartProcess(string openeeFilesContainingDirectoryLocation, ProccessInformationGroup proccessInformationGroup)
         {
             try
             {
@@ -60,6 +65,11 @@ namespace notepad_plus_plus_file_management
                     myProcess.StartInfo.ArgumentList.Add(file);
                 }
                 myProcess.Start();
+                logger.LogInformation("Process id: {Id}", myProcess.Id);
+                DirectoryInfo directoryInfo = new(openeeFilesContainingDirectoryLocation);
+                string dirName = directoryInfo.Name;
+                ProccessInformation proccessInformation = new() { GroupName = dirName, Id = myProcess.Id };
+                proccessInformationGroup.Add(proccessInformation);
 
             }
             catch (Exception e)
