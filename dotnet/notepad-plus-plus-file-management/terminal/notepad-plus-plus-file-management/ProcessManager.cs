@@ -1,0 +1,80 @@
+using System.Diagnostics;
+using System.Text.Json;
+using Microsoft.Extensions.Logging;
+using notepad_plus_plus_file_management.Dirctories.Interfaces;
+using notepad_plus_plus_file_management.Files.Executabes.Interfaces;
+
+namespace notepad_plus_plus_file_management
+{
+    public class ProcessManager(
+        INotePadPlusPlus notePadPlusPlus,
+        ILogger<ProcessManager> logger,
+        IDirectoryOperations directoryOperations,
+        IFeatureNameDirectory featureNameDirectory,
+        IFrontEndHostDirectory frontEndHostDirectory,
+        IFrontEndGuestDirectory frontEndGuestDirectory,
+        INotesAndMessagesDirectory notesAndMessagesDirectory
+        ) : IProcessManager
+    {
+        private readonly INotePadPlusPlus notePadPlusPlus = notePadPlusPlus;
+        private readonly ILogger<ProcessManager> logger = logger;
+        private readonly IDirectoryOperations directoryOperations = directoryOperations;
+        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
+        private readonly IFrontEndHostDirectory frontEndHostDirectory = frontEndHostDirectory;
+        private readonly IFrontEndGuestDirectory frontEndGuestDirectory = frontEndGuestDirectory;
+        private readonly INotesAndMessagesDirectory notesAndMessagesDirectory = notesAndMessagesDirectory;
+
+        public void Run()
+        {
+            try
+            {
+                var a = frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS");
+                var b = frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS");
+                var c = notesAndMessagesDirectory.GetPath("NOTES_MESSAGES_ADDRESS");
+                var proccessInformationGroup = new ProccessInformationGroup();
+
+
+                this.StartProcess(a, proccessInformationGroup);
+                Thread.Sleep(5000);
+                this.StartProcess(b, proccessInformationGroup);
+                Thread.Sleep(5000);
+                this.StartProcess(c, proccessInformationGroup);
+                Thread.Sleep(5000);
+
+                logger.LogInformation("Proccess information group: {proccessInformationGroup}", JsonSerializer.Serialize(proccessInformationGroup));
+            }
+            catch (Exception e)
+            {
+                logger.LogInformation("{Message}", e.Message);
+            }
+        }
+
+        public void StartProcess(string openeeFilesContainingDirectoryLocation, ProccessInformationGroup proccessInformationGroup)
+        {
+            try
+            {
+                string exceutiveFileLocation = notePadPlusPlus.GetPath();
+
+                using Process myProcess = new();
+                myProcess.StartInfo.UseShellExecute = false;
+                myProcess.StartInfo.FileName = exceutiveFileLocation;
+                myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.StartInfo.ArgumentList.Add("-multiInst");
+                foreach (string file in Directory.EnumerateFiles(openeeFilesContainingDirectoryLocation))
+                {
+                    myProcess.StartInfo.ArgumentList.Add(file);
+                }
+                myProcess.Start();
+                logger.LogInformation("Process id: {Id}", myProcess.Id);
+                string dirName = new DirectoryInfo(openeeFilesContainingDirectoryLocation).Name;
+                var proccessInformation = new ProccessInformation { GroupName = dirName, Id = myProcess.Id };
+                proccessInformationGroup.Add(proccessInformation);
+
+            }
+            catch (Exception e)
+            {
+                logger.LogInformation("{Message}", e.Message);
+            }
+        }
+    }
+}
