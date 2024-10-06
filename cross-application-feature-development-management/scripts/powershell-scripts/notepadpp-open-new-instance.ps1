@@ -5,4 +5,4 @@ get-content "notepadpp-open-new-instance.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-start-process -FilePath $env:NOTEPADDPP_EXECUTE_FILE_LOCATION -ArgumentList "-multiInst"
+start-process -FilePath $env:NOTEPADDPP_EXECUTE_FILE_LOCATION -ArgumentList "-multiInst -nosession"
