@@ -73,6 +73,11 @@ namespace cross_application_feature_development_management.Dirctories.Feature.En
                     string wrappedVal = stringHelpers.WrappInQoutationMarks(val);
                     fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                 }
+                else if (key == "COMMAND")
+                {
+                    string wrappedVal = stringHelpers.WrappInQoutationMarks("open");
+                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                }
                 else if (key == "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY")
                 {
                     environmentVariablesSourceDictionary.TryGetValue(
