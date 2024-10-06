@@ -1,5 +1,6 @@
 using System.Text;
 using cross_application_feature_development_management.Combiners.Interfaces;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Helpers.Interfaces;
 using cross_application_feature_development_management.Interfaces;
@@ -13,7 +14,8 @@ namespace cross_application_feature_development_management.Combiners.Classes
         IFeatureNameDirectory featureNameDirectory,
         IHostingDirectory hostingDirectory,
         ILogger<AddToStartupScript> logger,
-        IStringHelpers stringHelpers
+        IStringHelpers stringHelpers,
+        IAutomationsDirectory automationsDirectory
         ) : IAddToStartupScript
     {
 
@@ -23,6 +25,7 @@ namespace cross_application_feature_development_management.Combiners.Classes
         private readonly IHostingDirectory hostingDirectory = hostingDirectory;
         private readonly ILogger<AddToStartupScript> logger = logger;
         private readonly IStringHelpers stringHelpers = stringHelpers;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
@@ -44,13 +47,23 @@ namespace cross_application_feature_development_management.Combiners.Classes
 
                 if (key == "ALL_INCLUSIVE_DIRECTOY_ADDRESS")
                 {
-                    string featureDirectoryPath = featureNameDirectory.GetPath();
+                    string featureDirectoryPath = automationsDirectory.GetPath();
                     string addToStartupPath = Path.Combine(featureDirectoryPath, "all-inclusive.bat");
                     fileContentDictionaryToWriteToFile.Add(key, addToStartupPath);
                 }
+                else if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY")
+                {
+                    environmentVariablesSourceDictionary.TryGetValue(
+                        "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
+                        out string? directoryManagementExecutiveFileAddress
+                        );
+                    var striped = stringHelpers.StripQoutationMarks(directoryManagementExecutiveFileAddress ?? "");
+                    var dirName = Path.GetDirectoryName(striped);
+                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                }
                 else
                 {
-                    _ = environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
+                    environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
                     fileContentDictionaryToWriteToFile.Add(key, val ?? "");
                 }
             }
