@@ -51,20 +51,6 @@ namespace notepad_plus_plus_file_management
                 var notepadPlusPlusFileProcessesMetaDataDirectory = Path.Combine(processesMetaDataDirectory.GetPath(), "notepad-plus-plus-file-processes-meta-data.json");
                 File.WriteAllText(notepadPlusPlusFileProcessesMetaDataDirectory, dddd);
 
-                using StreamReader r = new(notepadPlusPlusFileProcessesMetaDataDirectory);
-                string json = r.ReadToEnd();
-                ProccessInformationGroup? readProccessInformationGroup = Newtonsoft.Json.JsonConvert.DeserializeObject<ProccessInformationGroup>(json);
-
-                logger.LogInformation("items, {items}", readProccessInformationGroup);
-
-                foreach (var pInfo in readProccessInformationGroup?.Group)
-                {
-                    logger.LogInformation("Id: {Id}", pInfo?.Id);
-                    var p = Process.GetProcessById((int)pInfo?.Id);
-                    p.Kill();
-                    Thread.Sleep(2000);
-                }
-
             }
             catch (Exception e)
             {
