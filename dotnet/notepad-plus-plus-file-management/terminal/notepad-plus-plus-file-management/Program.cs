@@ -46,6 +46,7 @@ namespace notepad_plus_plus_file_management
                     services.AddTransient<IStringHelpers, StringHelpers>();
                     services.AddTransient<IAutomationsDirectory, AutomationsDirectory>();
                     services.AddTransient<IProcessesMetaDataDirectory, ProcessesMetaDataDirectory>();
+                    services.AddTransient<ICloseProcessManagement, CloseProcessManagement>();
                 })
                 .UseSerilog()
                 .Build();
