@@ -5,5 +5,6 @@ get-content "run-host-application.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-set-location $env:HOST_APPLICATION_PROJECT_LOCATION
+Push-Location $env:HOST_APPLICATION_PROJECT_LOCATION
 dotnet run
+Pop-Location
