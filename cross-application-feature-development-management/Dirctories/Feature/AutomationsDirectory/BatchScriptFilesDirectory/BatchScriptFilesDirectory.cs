@@ -17,7 +17,8 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
             INotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
             ISomething something,
             IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-            INotePadPlusPlusAllClose notePadPlusPlusAllClose
+            INotePadPlusPlusAllClose notePadPlusPlusAllClose,
+            INotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen
         ) : IBatchScriptFilesDirectory
     {
         private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
@@ -25,6 +26,7 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
         private readonly INotePadPlusPlusOpenAll notePadPlusPlusOpenAll = notePadPlusPlusOpenAll;
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
         private readonly INotePadPlusPlusAllClose notePadPlusPlusAllClose = notePadPlusPlusAllClose;
+        private readonly INotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen = notepadPlusPlusMultitudeAllOrderReverseActionOpen;
 
         public string GetPath()
         {
@@ -55,6 +57,11 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
                 {
                     contentToWrite =
                     notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
+                }
+                else if (templateFile.Contains("notepadplusplus-multitude-all-order-reverse-action-open"))
+                {
+                    contentToWrite =
+                    notepadPlusPlusMultitudeAllOrderReverseActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
                 }
                 else if (templateFile.Contains("notepadpp-all-close"))
                 {
