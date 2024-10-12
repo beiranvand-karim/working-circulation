@@ -16,13 +16,15 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
             IAddToStartupScript addToStartupScript,
             INotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
             ISomething something,
-            IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory
+            IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
+            INotePadPlusPlusAllClose notePadPlusPlusAllClose
         ) : IBatchScriptFilesDirectory
     {
         private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
         private readonly IAddToStartupScript addToStartupScript = addToStartupScript;
         private readonly INotePadPlusPlusOpenAll notePadPlusPlusOpenAll = notePadPlusPlusOpenAll;
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
+        private readonly INotePadPlusPlusAllClose notePadPlusPlusAllClose = notePadPlusPlusAllClose;
 
         public string GetPath()
         {
@@ -53,6 +55,11 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
                 {
                     contentToWrite =
                     notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
+                }
+                else if (templateFile.Contains("notepadpp-all-close"))
+                {
+                    contentToWrite =
+                    notePadPlusPlusAllClose.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
                 }
                 else
                 {
