@@ -58,6 +58,7 @@ internal class Program
                 services.AddTransient<INotePadPlusPlusOpenAll, NotePadPlusPlusOpenAll>();
                 services.AddTransient<IBatchScriptFilesDirectory, BatchScriptFilesDirectory>();
                 services.AddTransient<IAutomationsDirectory, AutomationsDirectory>();
+                services.AddTransient<INotePadPlusPlusAllClose, NotePadPlusPlusAllClose>();
             })
             .UseSerilog()
             .Build();
