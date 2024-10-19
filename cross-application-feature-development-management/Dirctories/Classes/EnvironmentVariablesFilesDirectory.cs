@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 
@@ -8,7 +9,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             IFeatureNameDirectory featureNameDirectory,
             ICommandLineArgs commandLineArgs,
             ITargetDirectory targetDirectory,
-            IDirectories directories
+            IDirectories directories,
+            IAutomationsDirectory automationsDirectory
         ) : IEnvironmentVariablesFilesDirectory
     {
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
@@ -16,6 +18,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly ITargetDirectory targetDirectory = targetDirectory;
         private readonly IDirectories directories = directories;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public void CopyContentToFeatureNameDicrectory()
         {
@@ -42,7 +45,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string CreatePathToSelfInFeatureNameDirectory()
         {
-            string destinationDirectory = featureNameDirectory.GetPath();
+            string destinationDirectory = automationsDirectory.GetPath();
             string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }
