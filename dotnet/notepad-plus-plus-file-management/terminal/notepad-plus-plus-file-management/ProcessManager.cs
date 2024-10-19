@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using notepad_plus_plus_file_management.Dirctories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using notepad_plus_plus_file_management.Dirctories.Interfaces;
 using notepad_plus_plus_file_management.Files.Executabes.Interfaces;
+using notepad_plus_plus_file_management.Interfaces;
 
 namespace notepad_plus_plus_file_management
 {
@@ -15,7 +16,8 @@ namespace notepad_plus_plus_file_management
         IFrontEndHostDirectory frontEndHostDirectory,
         IFrontEndGuestDirectory frontEndGuestDirectory,
         INotesAndMessagesDirectory notesAndMessagesDirectory,
-        IProcessesMetaDataDirectory processesMetaDataDirectory
+        IProcessesMetaDataDirectory processesMetaDataDirectory,
+        ICommandLineArgs commandLineArgs
         ) : IProcessManager
     {
         private readonly INotePadPlusPlus notePadPlusPlus = notePadPlusPlus;
@@ -26,6 +28,7 @@ namespace notepad_plus_plus_file_management
         private readonly IFrontEndGuestDirectory frontEndGuestDirectory = frontEndGuestDirectory;
         private readonly INotesAndMessagesDirectory notesAndMessagesDirectory = notesAndMessagesDirectory;
         private readonly IProcessesMetaDataDirectory processesMetaDataDirectory = processesMetaDataDirectory;
+        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
 
         public void Run()
         {
@@ -37,12 +40,24 @@ namespace notepad_plus_plus_file_management
                 ProccessInformationGroup proccessInformationGroup = new();
 
 
-                this.StartProcess(a, proccessInformationGroup);
-                Thread.Sleep(5000);
-                this.StartProcess(b, proccessInformationGroup);
-                Thread.Sleep(5000);
-                this.StartProcess(c, proccessInformationGroup);
-                Thread.Sleep(5000);
+                var orderValue = commandLineArgs.GetByKey("--order");
+
+                if (orderValue == "reverse")
+                {
+                    this.StartProcess(b, proccessInformationGroup);
+                    Thread.Sleep(3000);
+                    this.StartProcess(a, proccessInformationGroup);
+                    Thread.Sleep(3000);
+                    this.StartProcess(c, proccessInformationGroup);
+                }
+                else
+                {
+                    this.StartProcess(a, proccessInformationGroup);
+                    Thread.Sleep(3000);
+                    this.StartProcess(b, proccessInformationGroup);
+                    Thread.Sleep(3000);
+                    this.StartProcess(c, proccessInformationGroup);
+                }
 
                 logger.LogInformation("Proccess information group: {proccessInformationGroup}", JsonSerializer.Serialize(proccessInformationGroup));
 
