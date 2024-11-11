@@ -1,3 +1,7 @@
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndHostDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -9,7 +13,11 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         IScriptsDirectory scriptsDirectory,
         IFeatureNameDirectory featureNameDirectory,
         IDirectories directories,
-        ILogger<PowerShellScriptsDirectory> logger
+        IAutomationsDirectory automationsDirectory,
+        ILogger<PowerShellScriptsDirectory> logger,
+        IFrontEndDirectory frontEndDirectory,
+        IFrontEndHostDirectory frontEndHostDirectory,
+        IFrontEndGuestDirectory frontEndGuestDirectory
         ) : IPowerShellScriptsDirectory
     {
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
@@ -17,7 +25,11 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly IDirectories directories = directories;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
         private readonly ILogger<PowerShellScriptsDirectory> logger = logger;
+        private readonly IFrontEndDirectory frontEndDirectory = frontEndDirectory;
+        private readonly IFrontEndHostDirectory frontEndHostDirectory = frontEndHostDirectory;
+        private readonly IFrontEndGuestDirectory frontEndGuestDirectory = frontEndGuestDirectory;
 
         public void ReplaceFileNamesWithPaths()
         {
@@ -42,9 +54,33 @@ namespace cross_application_feature_development_management.Dirctories.Classes
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
-                if (filePath.Contains("all.ps1"))
+                else if (filePath.Contains("all-inclusive-order-reverse.ps1"))
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                }
+                else if (filePath.Contains("directories-multitude-all-action-close.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath("FEND_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", frontEndDirectory.GetPath("BEND_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", frontEndDirectory.GetPath("CALLS_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", frontEndDirectory.GetPath("TOOLS_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", frontEndDirectory.GetPath("NOTES_MESSAGES_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", frontEndDirectory.GetPath("WEB_LINKS_ADDRESS"));
+                }
+                else if (filePath.Contains("all.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                }
+                else if (filePath.Contains("run-primary-application.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                }
+                else if (filePath.Contains("run-seconday-application.ps1"))
+                {
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
             }
@@ -60,16 +96,6 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
-        public void CopyContentToTargetDicrectory()
-        {
-            string direcName = "powershell-scripts";
-            Directory.CreateDirectory(ConstructPathToSelfInTargetDirectory(direcName));
-            string sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
-            string destinationDirectory = ConstructPathToSelfInTargetDirectory(direcName);
-
-            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
-        }
-
         public string ConstructPathToSelfInScriptsDirectory(string direcName)
         {
             string scriptsDirectoryName = scriptsDirectory.GetName();
@@ -79,29 +105,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string ConstructPathToSelfInFeatureNameDirectory(string direcName)
         {
-            string destinationDirectory = featureNameDirectory.GetPath();
+            string destinationDirectory = automationsDirectory.GetPath();
             string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInTargetDirectory(string direcName)
-        {
-            string destinationDirectory = targetDirectory.CreatePathToSelf();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInScriptsDirectory()
-        {
-            string scriptsDirectoryName = scriptsDirectory.GetName();
-            string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "powershell-scripts");
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInTargetDirectory()
-        {
-            string destinationDirectory = targetDirectory.CreatePathToSelf();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "powershell-scripts");
             return environmentVariablesFilesDirectory;
         }
     }
