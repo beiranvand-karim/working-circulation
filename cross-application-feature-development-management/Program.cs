@@ -4,6 +4,12 @@ using cross_application_feature_development_management.Combiners.Classes;
 using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Dirctories;
 using cross_application_feature_development_management.Dirctories.Classes;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.EnvironmentVariablesTemplateFiles;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndHostDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Helpers.Classes;
 using cross_application_feature_development_management.Helpers.Interfaces;
@@ -51,11 +57,20 @@ internal class Program
                 services.AddTransient<IAddToStartupScript, AddToStartupScript>();
                 services.AddTransient<IStringHelpers, StringHelpers>();
                 services.AddTransient<IDirectories, Directories>();
+                services.AddTransient<IFeatureName, FeatureName>();
+                services.AddTransient<INotePadPlusPlusOpenAll, NotePadPlusPlusOpenAll>();
+                services.AddTransient<IBatchScriptFilesDirectory, BatchScriptFilesDirectory>();
+                services.AddTransient<IAutomationsDirectory, AutomationsDirectory>();
+                services.AddTransient<INotePadPlusPlusAllClose, NotePadPlusPlusAllClose>();
+                services.AddTransient<INotepadPlusPlusMultitudeAllOrderReverseActionOpen, NotepadPlusPlusMultitudeAllOrderReverseActionOpen>();
+                services.AddTransient<IFrontEndDirectory, FrontEndDirectory>();
+                services.AddTransient<IFrontEndHostDirectory, FrontEndHostDirectory>();
+                services.AddTransient<IFrontEndGuestDirectory, FrontEndGuestDirectory>();
             })
             .UseSerilog()
             .Build();
 
-        var svc = ActivatorUtilities.CreateInstance<CrossApplicationFeatureDevelopmentManagement>(host.Services);
+        var svc = ActivatorUtilities.CreateInstance<CommandSwitcher>(host.Services);
         svc.Run();
     }
 
