@@ -48,9 +48,19 @@ namespace cross_application_feature_development_management.Combiners.Classes
                     string addToStartupPath = Path.Combine(featureDirectoryPath, "all-inclusive.bat");
                     fileContentDictionaryToWriteToFile.Add(key, addToStartupPath);
                 }
+                else if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY")
+                {
+                    environmentVariablesSourceDictionary.TryGetValue(
+                        "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
+                        out string? directoryManagementExecutiveFileAddress
+                        );
+                    var striped = stringHelpers.StripQoutationMarks(directoryManagementExecutiveFileAddress ?? "");
+                    var dirName = Path.GetDirectoryName(striped);
+                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                }
                 else
                 {
-                    _ = environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
+                    environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
                     fileContentDictionaryToWriteToFile.Add(key, val ?? "");
                 }
             }
