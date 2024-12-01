@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -9,6 +10,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         IScriptsDirectory scriptsDirectory,
         IFeatureNameDirectory featureNameDirectory,
         IDirectories directories,
+        IAutomationsDirectory automationsDirectory,
         ILogger<PowerShellScriptsDirectory> logger
         ) : IPowerShellScriptsDirectory
     {
@@ -17,6 +19,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly IDirectories directories = directories;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
         private readonly ILogger<PowerShellScriptsDirectory> logger = logger;
 
         public void ReplaceFileNamesWithPaths()
@@ -42,9 +45,22 @@ namespace cross_application_feature_development_management.Dirctories.Classes
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
-                if (filePath.Contains("all.ps1"))
+                else if (filePath.Contains("all-inclusive-order-reverse.ps1"))
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                }
+                else if (filePath.Contains("all.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                }
+                else if (filePath.Contains("run-primary-application.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                }
+                else if (filePath.Contains("run-seconday-application.ps1"))
+                {
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
             }
@@ -60,16 +76,6 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
-        public void CopyContentToTargetDicrectory()
-        {
-            string direcName = "powershell-scripts";
-            Directory.CreateDirectory(ConstructPathToSelfInTargetDirectory(direcName));
-            string sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
-            string destinationDirectory = ConstructPathToSelfInTargetDirectory(direcName);
-
-            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
-        }
-
         public string ConstructPathToSelfInScriptsDirectory(string direcName)
         {
             string scriptsDirectoryName = scriptsDirectory.GetName();
@@ -79,29 +85,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string ConstructPathToSelfInFeatureNameDirectory(string direcName)
         {
-            string destinationDirectory = featureNameDirectory.GetPath();
+            string destinationDirectory = automationsDirectory.GetPath();
             string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInTargetDirectory(string direcName)
-        {
-            string destinationDirectory = targetDirectory.CreatePathToSelf();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInScriptsDirectory()
-        {
-            string scriptsDirectoryName = scriptsDirectory.GetName();
-            string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "powershell-scripts");
-            return environmentVariablesFilesDirectory;
-        }
-
-        public string ConstructPathToSelfInTargetDirectory()
-        {
-            string destinationDirectory = targetDirectory.CreatePathToSelf();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "powershell-scripts");
             return environmentVariablesFilesDirectory;
         }
     }
