@@ -1,7 +1,7 @@
-using cross_application_feature_development_management.Combiners.Interfaces;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
-using cross_application_feature_development_management.Names.Classses;
 using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -14,11 +14,11 @@ namespace cross_application_feature_development_management
             IFeatureNameDirectory featureNameDirectory,
             IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
             IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
-            ISomethingFeatureNameDirectory somethingFeatureNameDirectory,
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
             IBatchScriptsDicrectory batchScriptsDicrectory,
             ISomething something,
-            IAddToStartupScript addToStartupScript
+            IBatchScriptFilesDirectory batchScriptFilesDirectory,
+            IAutomationsDirectory automationsDirectory
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -28,11 +28,11 @@ namespace cross_application_feature_development_management
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
         private readonly IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory = environmentVariablesSourceDirectory;
-        private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
         private readonly ISomething something = something;
-        private readonly IAddToStartupScript addToStartupScript = addToStartupScript;
+        private readonly IBatchScriptFilesDirectory batchScriptFilesDirectory = batchScriptFilesDirectory;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public void Run()
         {
@@ -46,6 +46,8 @@ namespace cross_application_feature_development_management
 
                 featureNameDirectory.CreateSelf();
 
+                automationsDirectory.Create();
+
                 Directory.CreateDirectory(environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory());
                 string destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
 
@@ -54,38 +56,8 @@ namespace cross_application_feature_development_management
                             environmentVariablesSourceDirectory.GetName()
                         );
 
-                foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))
-                {
-                    string destFileName = Path.GetFileNameWithoutExtension(templateFile);
-                    string destFile = Path.Combine(destinationDirectory, destFileName);
-                    using var fs = File.Create(destFile);
+                batchScriptFilesDirectory.Populate(destinationDirectory, templateSourceDirectory, environmentVariablesSourceDictionary);
 
-                    Dictionary<string, string> contentToWrite = [];
-
-                    if (templateFile.Contains("directories"))
-                    {
-                        contentToWrite =
-                        somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                    }
-                    else if (templateFile.Contains("add-to-startup"))
-                    {
-                        contentToWrite =
-                        addToStartupScript.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                    }
-                    else
-                    {
-                        contentToWrite =
-                        something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                    }
-
-                    using StreamWriter writer = new(fs);
-                    foreach (KeyValuePair<string, string> entry in contentToWrite)
-                    {
-                        string valueToWrite = $"""{entry.Key}={entry.Value}""";
-                        writer.WriteLine(valueToWrite);
-                    }
-
-                }
                 powerShellScriptsDirectory.CopyContentToFeatureNameDicrectory();
                 powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
 
