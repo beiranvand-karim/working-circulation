@@ -55,3 +55,7 @@ create-worker-files.worker.ps1
 component.worker.ps1
 module-with-component.worker.ps1
 project.worker.ps1
+
+# local development settings files
+appsettings.Development.json
+dotnet/notepad-plus-plus-file-management/settings/notepad-plus-plus-file-management/appsettings.json
