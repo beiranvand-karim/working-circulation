@@ -79,6 +79,11 @@ namespace cross_application_feature_development_management.Dirctories
                     string valueToWrite = string.Format("\"{0}\"", featureNameDirectoryPath);
                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                 }
+                else if (key == "STARTUP_DIRECTORY_LOCATION")
+                {
+                    environmentVariablesSourceDictionary.TryGetValue(key, out string? val1);
+                    fileContentDictionaryToWriteToFile.Add(key, val1 ?? "");
+                }
                 else
                 {
                     var directoryName = directoriesNameToKeyMap.GetValue(key);
