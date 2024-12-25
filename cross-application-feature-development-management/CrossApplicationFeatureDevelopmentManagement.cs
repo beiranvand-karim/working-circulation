@@ -1,4 +1,5 @@
 using cross_application_feature_development_management.Combiners.Interfaces;
+using cross_application_feature_development_management.Dirctories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Classses;
@@ -18,7 +19,8 @@ namespace cross_application_feature_development_management
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
             IBatchScriptsDicrectory batchScriptsDicrectory,
             ISomething something,
-            IAddToStartupScript addToStartupScript
+            IAddToStartupScript addToStartupScript,
+            INotePadPlusPlusOpenAll notePadPlusPlusOpenAll
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -33,6 +35,7 @@ namespace cross_application_feature_development_management
         private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
         private readonly ISomething something = something;
         private readonly IAddToStartupScript addToStartupScript = addToStartupScript;
+        private readonly INotePadPlusPlusOpenAll notePadPlusPlusOpenAll = notePadPlusPlusOpenAll;
 
         public void Run()
         {
@@ -71,6 +74,11 @@ namespace cross_application_feature_development_management
                     {
                         contentToWrite =
                         addToStartupScript.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
+                    }
+                    else if (templateFile.Contains("notepadpp-open-all"))
+                    {
+                        contentToWrite =
+                        notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
                     }
                     else
                     {
