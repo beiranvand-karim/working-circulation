@@ -7,7 +7,6 @@ namespace DirectoryManagement
     {
         public void OpenDirectoryThroughExplorer(string directoryPath);
 
-        public void OpenDirectoryThroughCommandLine(string commandToExecute, string workingDirectory);
     }
     public class DirectoryOperations(ILogger<DirectoryOperations> logger) : IDirectoryOperations
     {
@@ -25,19 +24,6 @@ namespace DirectoryManagement
                 Process.Start(startInfo);
             }
 
-        }
-
-        public void OpenDirectoryThroughCommandLine(string commandToExecute, string workingDirectory)
-        {
-            Process process = new();
-            process.StartInfo.WorkingDirectory = workingDirectory;
-            process.StartInfo.FileName = "cmd.exe";
-            process.StartInfo.Arguments = $"/c {commandToExecute}";
-            process.StartInfo.RedirectStandardOutput = true;
-            process.Start();
-            process.WaitForExit();
-            string output = process.StandardOutput.ReadToEnd();
-            Console.WriteLine(output);
         }
     }
 }

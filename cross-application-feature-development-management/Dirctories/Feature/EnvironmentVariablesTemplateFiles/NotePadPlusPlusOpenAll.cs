@@ -79,7 +79,8 @@ namespace cross_application_feature_development_management.Dirctories.Feature.En
                         "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_LOCATION",
                         out string? notepadPlusPlusFileManagementExecutiveFileLocation
                         );
-                    var dirName = Path.GetDirectoryName(notepadPlusPlusFileManagementExecutiveFileLocation);
+                    var striped = stringHelpers.StripQoutationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
+                    var dirName = Path.GetDirectoryName(striped);
                     fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
                 }
                 else

@@ -7,28 +7,22 @@ namespace DirectoryManagement
         public void Run();
     }
 
-    public class DirectoryManager(ILogger<DirectoryManager> logger, IDirectoryOperations directoryOperations) : IDirectoryManager
+    public class DirectoryManager(
+            ILogger<DirectoryManager> logger,
+            IDirectoryOperations directoryOperations,
+            IDirectoryToBeOpen directoryToBeOpen
+        ) : IDirectoryManager
     {
         private readonly ILogger<DirectoryManager> logger = logger;
         private readonly IDirectoryOperations directoryOperations = directoryOperations;
+        private readonly IDirectoryToBeOpen directoryToBeOpen = directoryToBeOpen;
 
         public void Run()
         {
             try
             {
-                string choice = "2";
-                string workingDirectory = Environment.GetCommandLineArgs()[1];
-
-                if (choice == "1")
-                {
-                    string commandToExecute = Environment.GetCommandLineArgs()[2];
-                    directoryOperations.OpenDirectoryThroughCommandLine(commandToExecute, workingDirectory);
-                }
-
-                if (choice == "2")
-                {
-                    directoryOperations.OpenDirectoryThroughExplorer(workingDirectory);
-                }
+                string workingDirectory = directoryToBeOpen.GetPath();
+                directoryOperations.OpenDirectoryThroughExplorer(workingDirectory);
             }
             catch (Exception exception)
             {
