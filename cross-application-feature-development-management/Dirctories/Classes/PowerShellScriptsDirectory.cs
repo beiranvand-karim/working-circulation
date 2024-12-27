@@ -42,9 +42,17 @@ namespace cross_application_feature_development_management.Dirctories.Classes
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
-                if (filePath.Contains("all.ps1"))
+                else if (filePath.Contains("all.ps1"))
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                }
+                else if (filePath.Contains("run-primary-application.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                }
+                else if (filePath.Contains("run-seconday-application.ps1"))
+                {
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }
             }
