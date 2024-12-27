@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -9,6 +10,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         IScriptsDirectory scriptsDirectory,
         IFeatureNameDirectory featureNameDirectory,
         IDirectories directories,
+        IAutomationsDirectory automationsDirectory,
         ILogger<PowerShellScriptsDirectory> logger
         ) : IPowerShellScriptsDirectory
     {
@@ -17,6 +19,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
         private readonly IDirectories directories = directories;
+        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
         private readonly ILogger<PowerShellScriptsDirectory> logger = logger;
 
         public void ReplaceFileNamesWithPaths()
@@ -77,7 +80,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string ConstructPathToSelfInFeatureNameDirectory(string direcName)
         {
-            string destinationDirectory = featureNameDirectory.GetPath();
+            string destinationDirectory = automationsDirectory.GetPath();
             string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
             return environmentVariablesFilesDirectory;
         }
