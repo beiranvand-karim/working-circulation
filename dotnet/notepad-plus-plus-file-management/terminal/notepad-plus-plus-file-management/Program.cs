@@ -50,7 +50,7 @@ namespace notepad_plus_plus_file_management
                 .UseSerilog()
                 .Build();
 
-            var svc = ActivatorUtilities.CreateInstance<ProcessManager>(host.Services);
+            var svc = ActivatorUtilities.CreateInstance<CommandSwitcher>(host.Services);
             svc.Run();
         }
 
