@@ -5,5 +5,6 @@ get-content "run-guest-application.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-set-location $env:GUEST_APPLICATION_PROJECT_LOCATION
+Push-Location $env:GUEST_APPLICATION_PROJECT_LOCATION
 dotnet run --project $env:GUEST_APPLICATION_PROJECT_NAME
+Pop-Location
