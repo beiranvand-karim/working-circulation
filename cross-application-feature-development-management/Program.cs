@@ -70,7 +70,7 @@ internal class Program
             .UseSerilog()
             .Build();
 
-        var svc = ActivatorUtilities.CreateInstance<CrossApplicationFeatureDevelopmentManagement>(host.Services);
+        var svc = ActivatorUtilities.CreateInstance<CommandSwitcher>(host.Services);
         svc.Run();
     }
 
