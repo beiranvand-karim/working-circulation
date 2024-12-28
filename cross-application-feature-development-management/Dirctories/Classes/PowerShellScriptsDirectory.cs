@@ -1,4 +1,7 @@
 using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndHostDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -11,7 +14,10 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         IFeatureNameDirectory featureNameDirectory,
         IDirectories directories,
         IAutomationsDirectory automationsDirectory,
-        ILogger<PowerShellScriptsDirectory> logger
+        ILogger<PowerShellScriptsDirectory> logger,
+        IFrontEndDirectory frontEndDirectory,
+        IFrontEndHostDirectory frontEndHostDirectory,
+        IFrontEndGuestDirectory frontEndGuestDirectory
         ) : IPowerShellScriptsDirectory
     {
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
@@ -21,6 +27,9 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly IDirectories directories = directories;
         private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
         private readonly ILogger<PowerShellScriptsDirectory> logger = logger;
+        private readonly IFrontEndDirectory frontEndDirectory = frontEndDirectory;
+        private readonly IFrontEndHostDirectory frontEndHostDirectory = frontEndHostDirectory;
+        private readonly IFrontEndGuestDirectory frontEndGuestDirectory = frontEndGuestDirectory;
 
         public void ReplaceFileNamesWithPaths()
         {
@@ -49,6 +58,17 @@ namespace cross_application_feature_development_management.Dirctories.Classes
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                }
+                else if (filePath.Contains("directories-multitude-all-action-close.ps1"))
+                {
+                    directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath("FEND_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", frontEndDirectory.GetPath("BEND_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", frontEndDirectory.GetPath("CALLS_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", frontEndDirectory.GetPath("TOOLS_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", frontEndDirectory.GetPath("NOTES_MESSAGES_ADDRESS"));
+                    directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", frontEndDirectory.GetPath("WEB_LINKS_ADDRESS"));
                 }
                 else if (filePath.Contains("all.ps1"))
                 {
