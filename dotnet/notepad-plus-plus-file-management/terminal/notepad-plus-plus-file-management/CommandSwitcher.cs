@@ -4,11 +4,13 @@ namespace notepad_plus_plus_file_management
 {
     public class CommandSwitcher(
         ICommandLineArgs commandLineArgs,
-        IProcessManager processManager
+        IProcessManager processManager,
+        ICloseProcessManagement closeProcessManagement
         ) : ICommandSwitcher
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly IProcessManager processManager = processManager;
+        private readonly ICloseProcessManagement closeProcessManagement = closeProcessManagement;
 
         public string GetCommand()
         {
@@ -16,11 +18,25 @@ namespace notepad_plus_plus_file_management
             return command;
         }
 
+        private Boolean isOpen()
+        {
+            return GetCommand() == "open";
+        }
+
+        private Boolean isClose()
+        {
+            return GetCommand() == "close";
+        }
+
         public void Run()
         {
-            if (GetCommand() == "open")
+            if (isOpen())
             {
                 processManager.Run();
+            }
+            else if (isClose())
+            {
+                closeProcessManagement.Run();
             }
         }
     }
