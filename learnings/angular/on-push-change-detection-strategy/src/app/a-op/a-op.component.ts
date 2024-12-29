@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { produce } from 'immer';
 
 export interface User {
   name: string;
@@ -13,6 +14,8 @@ export class AOpComponent {
   user: User = { name: 'A' }
 
   changeName() {
-    this.user.name = 'B'
+    this.user = produce(this.user, draft => {
+      draft.name = 'B'
+    })
   }
 }
