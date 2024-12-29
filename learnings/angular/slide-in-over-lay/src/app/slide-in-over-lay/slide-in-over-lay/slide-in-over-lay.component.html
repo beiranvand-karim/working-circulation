@@ -1,5 +1,10 @@
-<div>slide-in-over-lay works!</div>
+<div class="head-block">slide-in-over-lay works!</div>
 
-<button (click)="flipOverLayVisiblilityStatus()">click me</button>
+<div class="body-block">
+  <button (click)="flipOverLayVisiblilityStatus()">click me</button>
 
-<div class="slide-in-over-lay" @overLayTrigger *ngIf="isOverLayVisible()"></div>
+  <div
+    class="slide-in-over-lay"
+    @overLayTrigger
+    *ngIf="isOverLayVisible()"></div>
+</div>
