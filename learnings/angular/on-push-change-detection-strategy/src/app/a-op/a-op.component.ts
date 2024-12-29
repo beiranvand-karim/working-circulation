@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { produce } from 'immer';
+import { BehaviorSubject } from 'rxjs';
 
 export interface User {
   name: string;
@@ -11,11 +12,14 @@ export interface User {
   styleUrl: './a-op.component.scss',
 })
 export class AOpComponent {
-  user: User = { name: 'A' }
+  user$ = new BehaviorSubject({ name: 'A' })
 
   changeName() {
-    this.user = produce(this.user, draft => {
-      draft.name = 'B'
-    })
+    const user = this.user$.getValue()
+    this.user$.next(
+      produce(user, draft => {
+        draft.name = 'B'
+      })
+    )
   }
 }
