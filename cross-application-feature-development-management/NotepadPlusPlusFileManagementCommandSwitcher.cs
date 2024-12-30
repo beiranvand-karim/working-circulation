@@ -1,12 +1,12 @@
-using notepad_plus_plus_file_management.Interfaces;
+using cross_application_feature_development_management.Interfaces;
 
-namespace notepad_plus_plus_file_management
+namespace cross_application_feature_development_management
 {
-    public class CommandSwitcher(
+    public class NotepadPlusPlusFileManagementCommandSwitcher(
         ICommandLineArgs commandLineArgs,
         IProcessManager processManager,
         ICloseProcessManagement closeProcessManagement
-        ) : ICommandSwitcher
+        ) : INotepadPlusPlusFileManagementCommandSwitcher
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly IProcessManager processManager = processManager;
@@ -18,30 +18,30 @@ namespace notepad_plus_plus_file_management
             return command;
         }
 
-        private Boolean isOpen()
+        private bool IsOpen()
         {
             return GetCommand() == "open";
         }
 
-        private Boolean isClose()
+        private bool IsClose()
         {
             return GetCommand() == "close";
         }
 
         public void Run()
         {
-            if (isOpen())
+            if (IsOpen())
             {
                 processManager.Run();
             }
-            else if (isClose())
+            else if (IsClose())
             {
                 closeProcessManagement.Run();
             }
         }
     }
 
-    public interface ICommandSwitcher
+    public interface INotepadPlusPlusFileManagementCommandSwitcher
     {
         public string GetCommand();
         public void Run();

@@ -2,10 +2,10 @@ using cross_application_feature_development_management.Interfaces;
 
 namespace cross_application_feature_development_management
 {
-    public class CommandSwitcher(
+    public class CrossApplicationFeatureDevelopmentManagementCommandSwitcher(
         ICommandLineArgs commandLineArgs,
         ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement
-        ) : ICommandSwitcher
+        ) : ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement = crossApplicationFeatureDevelopmentManagement;
@@ -21,16 +21,27 @@ namespace cross_application_feature_development_management
             return GetCommand() == "create-scripts";
         }
 
+        private Boolean IsNotepadPlusPlusFileManagementCommand()
+        {
+            return GetCommand() == "cross-application-feature-development-management";
+        }
+
         public void Run()
         {
             if (IsCreateScriptsCommand())
             {
                 crossApplicationFeatureDevelopmentManagement.Run();
             }
+
+            if (IsNotepadPlusPlusFileManagementCommand())
+            {
+                crossApplicationFeatureDevelopmentManagement.Run();
+            }
         }
+
     }
 
-    public interface ICommandSwitcher
+    public interface ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
     {
         public string GetCommand();
         public void Run();
