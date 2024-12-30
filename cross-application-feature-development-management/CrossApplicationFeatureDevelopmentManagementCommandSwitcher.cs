@@ -21,13 +21,24 @@ namespace cross_application_feature_development_management
             return GetCommand() == "create-scripts";
         }
 
+        private Boolean IsNotepadPlusPlusFileManagementCommand()
+        {
+            return GetCommand() == "cross-application-feature-development-management";
+        }
+
         public void Run()
         {
             if (IsCreateScriptsCommand())
             {
                 crossApplicationFeatureDevelopmentManagement.Run();
             }
+
+            if (IsNotepadPlusPlusFileManagementCommand())
+            {
+                crossApplicationFeatureDevelopmentManagement.Run();
+            }
         }
+
     }
 
     public interface ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
