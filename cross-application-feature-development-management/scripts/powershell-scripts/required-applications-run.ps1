@@ -6,9 +6,6 @@ get-content "required-applications-run.env" | ForEach-Object {
 }
 
 start-process -FilePath $env:DOCKER_DESKTOP_LOCATION
-Start-Sleep -Seconds 3
 start-process -FilePath $env:OUTLOOK_EMAIL_CLIENT_LOCATION -ArgumentList "/recycle"
-Start-Sleep -Seconds 3
 start-process -FilePath $env:GITHUB_DESKTOP_LOCATION
-Start-Sleep -Seconds 1
 start-process -FilePath $env:ZSCALER_CLIENT_CONNECTOR

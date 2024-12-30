@@ -2,10 +2,10 @@ using cross_application_feature_development_management.Interfaces;
 
 namespace cross_application_feature_development_management
 {
-    public class CommandSwitcher(
+    public class CrossApplicationFeatureDevelopmentManagementCommandSwitcher(
         ICommandLineArgs commandLineArgs,
         ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement
-        ) : ICommandSwitcher
+        ) : ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement = crossApplicationFeatureDevelopmentManagement;
@@ -30,7 +30,7 @@ namespace cross_application_feature_development_management
         }
     }
 
-    public interface ICommandSwitcher
+    public interface ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
     {
         public string GetCommand();
         public void Run();
