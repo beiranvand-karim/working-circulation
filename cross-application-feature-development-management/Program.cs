@@ -6,11 +6,14 @@ using cross_application_feature_development_management.Dirctories;
 using cross_application_feature_development_management.Dirctories.Classes;
 using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
+using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Dirctories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory;
 using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Dirctories.Feature.FrontEndDirectory.FrontEndHostDirectory;
 using cross_application_feature_development_management.Dirctories.Interfaces;
+using cross_application_feature_development_management.Files.Executables;
+using cross_application_feature_development_management.Files.Interfaces;
 using cross_application_feature_development_management.Helpers.Classes;
 using cross_application_feature_development_management.Helpers.Interfaces;
 using cross_application_feature_development_management.Interfaces;
@@ -66,6 +69,14 @@ internal class Program
                 services.AddTransient<IFrontEndDirectory, FrontEndDirectory>();
                 services.AddTransient<IFrontEndHostDirectory, FrontEndHostDirectory>();
                 services.AddTransient<IFrontEndGuestDirectory, FrontEndGuestDirectory>();
+                services.AddTransient<INotepadPlusPlusFileManagementCommandSwitcher, NotepadPlusPlusFileManagementCommandSwitcher>();
+                services.AddTransient<IProcessManager, ProcessManager>();
+                services.AddTransient<INotePadPlusPlus, NotePadPlusPlus>();
+                services.AddTransient<IDirectoryOperations, DirectoryOperations>();
+                services.AddTransient<INotesAndMessagesDirectory, NotesAndMessagesDirectory>();
+                services.AddTransient<IProcessesMetaDataDirectory, ProcessesMetaDataDirectory>();
+                services.AddTransient<ICloseProcessManagement, CloseProcessManagement>();
+
             })
             .UseSerilog()
             .Build();
