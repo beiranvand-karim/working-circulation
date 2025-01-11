@@ -46,7 +46,7 @@ namespace cross_application_feature_development_management.Combiners.Classes
 
                 switch (key)
                 {
-                    case "ALL_INCLUSIVE_DIRECTOY_ADDRESS":
+                    case "ALL_INCLUSIVE_DIRECTORY_ADDRESS":
                     {
                         var featureDirectoryPath = automationsDirectory.GetPath();
                         var addToStartupPath = Path.Combine(featureDirectoryPath, "all-inclusive.bat");
