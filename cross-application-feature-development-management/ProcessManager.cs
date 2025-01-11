@@ -39,7 +39,7 @@ namespace cross_application_feature_development_management
                 var a = frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS");
                 var b = frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS");
                 var c = notesAndMessagesDirectory.GetPath("NOTES_MESSAGES_ADDRESS");
-                ProccessInformationGroup processInformationGroup = new();
+                ProcessInformationGroup processInformationGroup = new();
 
 
                 var orderValue = commandLineArgs.GetByKey("--order");
@@ -87,10 +87,10 @@ namespace cross_application_feature_development_management
             var notepadPlusPlusFileProcessesMetaDataDirectory = Path.Combine(processesMetaDataDirectory.GetPath(), "notepad-plus-plus-file-processes-meta-data.json");
             using StreamReader r = new(notepadPlusPlusFileProcessesMetaDataDirectory);
             var json = r.ReadToEnd();
-            ProccessInformationGroup? items = Newtonsoft.Json.JsonConvert.DeserializeObject<ProccessInformationGroup>(json);
+            var items = Newtonsoft.Json.JsonConvert.DeserializeObject<ProcessInformationGroup>(json);
         }
 
-        private void StartProcess(string openeeFilesContainingDirectoryLocation, ProccessInformationGroup processInformationGroup)
+        private void StartProcess(string openeeFilesContainingDirectoryLocation, ProcessInformationGroup processInformationGroup)
         {
             try
             {
@@ -110,7 +110,7 @@ namespace cross_application_feature_development_management
                 logger.LogInformation("Process id: {Id}", myProcess.Id);
                 DirectoryInfo directoryInfo = new(openeeFilesContainingDirectoryLocation);
                 var dirName = directoryInfo.Name;
-                ProccessInformation processInformation = new() { GroupName = dirName, Id = myProcess.Id };
+                ProcessInformation processInformation = new() { groupName = dirName, id = myProcess.Id };
                 processInformationGroup.AddInFront(processInformation);
 
             }
