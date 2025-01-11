@@ -8,8 +8,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string CreatePathToSelf()
         {
-            string environmeentVariablesManagementDirectoryName = workingCirculationDirectory.GetName();
-            string targetDirectoryPath = Path.Combine(environmeentVariablesManagementDirectoryName, "target");
+            var environmentVariablesManagementDirectoryName = workingCirculationDirectory.GetName();
+            var targetDirectoryPath = Path.Combine(environmentVariablesManagementDirectoryName, "target");
             return targetDirectoryPath;
         }
     }

@@ -15,7 +15,7 @@ namespace cross_application_feature_development_management
             IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
             IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
-            IBatchScriptsDicrectory batchScriptsDicrectory,
+            IBatchScriptsDirectory batchScriptsDirectory,
             ISomething something,
             IBatchScriptFilesDirectory batchScriptFilesDirectory,
             IAutomationsDirectory automationsDirectory
@@ -29,7 +29,7 @@ namespace cross_application_feature_development_management
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
         private readonly IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory = environmentVariablesSourceDirectory;
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
-        private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
+        private readonly IBatchScriptsDirectory batchScriptsDirectory = batchScriptsDirectory;
         private readonly ISomething something = something;
         private readonly IBatchScriptFilesDirectory batchScriptFilesDirectory = batchScriptFilesDirectory;
         private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
@@ -38,7 +38,7 @@ namespace cross_application_feature_development_management
         {
             try
             {
-                string templateSourceDirectory =
+                var templateSourceDirectory =
                     Path.Combine(
                         scriptsDirectory.GetName(),
                         templatesDirectory.GetName()
@@ -49,9 +49,9 @@ namespace cross_application_feature_development_management
                 automationsDirectory.Create();
 
                 Directory.CreateDirectory(environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory());
-                string destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
+                var destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
 
-                Dictionary<string, string> environmentVariablesSourceDictionary =
+                var environmentVariablesSourceDictionary =
                         something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
                             environmentVariablesSourceDirectory.GetName()
                         );
@@ -61,8 +61,8 @@ namespace cross_application_feature_development_management
                 powerShellScriptsDirectory.CopyContentToFeatureNameDicrectory();
                 powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
 
-                batchScriptsDicrectory.CopyContentToFeaureNameDicrectory();
-                batchScriptsDicrectory.ReplaceFileNamesWithPaths();
+                batchScriptsDirectory.CopyContentToFeatureNameDirectory();
+                batchScriptsDirectory.ReplaceFileNamesWithPaths();
             }
             catch (Exception exception)
             {
