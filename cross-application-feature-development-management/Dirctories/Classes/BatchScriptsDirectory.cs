@@ -3,14 +3,14 @@ using cross_application_feature_development_management.Dirctories.Interfaces;
 
 namespace cross_application_feature_development_management.Dirctories.Classes
 {
-    public class BatchScriptsDicrectory(
+    public class BatchScriptsDirectory(
         IPowerShellScriptsDirectory powerShellScriptsDirectory,
         IFeatureNameDirectory featureNameDirectory,
         ITargetDirectory targetDirectory,
         IScriptsDirectory scriptsDirectory,
         IDirectories directories,
         IAutomationsDirectory automationsDirectory
-        ) : IBatchScriptsDicrectory
+        ) : IBatchScriptsDirectory
     {
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
@@ -46,7 +46,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             return batchScriptsDirectoryPath;
         }
 
-        public void CopyContentToFeaureNameDicrectory()
+        public void CopyContentToFeatureNameDirectory()
         {
             var sourceDirectory = CreatePathToSelfInScriptsDirectory();
             var destinationDirectory = automationsDirectory.GetPath();
@@ -54,7 +54,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
-        public void CopyContentToTargetDicrectory()
+        public void CopyContentToTargetDirectory()
         {
             var sourceDirectory = CreatePathToSelfInScriptsDirectory();
             var destinationDirectory = targetDirectory.CreatePathToSelf();
