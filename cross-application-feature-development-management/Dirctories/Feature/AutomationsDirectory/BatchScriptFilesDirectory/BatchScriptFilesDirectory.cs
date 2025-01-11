@@ -1,6 +1,7 @@
 using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Dirctories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Dirctories.Interfaces;
+using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Interfaces;
 
 namespace cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory
@@ -35,13 +36,13 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
 
         public void Populate(string destinationDirectory, string templateSourceDirectory, Dictionary<string, string> environmentVariablesSourceDictionary)
         {
-            foreach (string templateFile in Directory.EnumerateFiles(templateSourceDirectory))
+            foreach (var templateFile in Directory.EnumerateFiles(templateSourceDirectory))
             {
-                string destFileName = Path.GetFileNameWithoutExtension(templateFile);
-                string destFile = Path.Combine(destinationDirectory, destFileName);
+                var destFileName = Path.GetFileNameWithoutExtension(templateFile);
+                var destFile = Path.Combine(destinationDirectory, destFileName);
                 using var fs = File.Create(destFile);
 
-                Dictionary<string, string> contentToWrite = [];
+                Dictionary<string, string> contentToWrite;
 
                 if (templateFile.Contains("directories"))
                 {
@@ -77,7 +78,7 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
                 using StreamWriter writer = new(fs);
                 foreach (KeyValuePair<string, string> entry in contentToWrite)
                 {
-                    string valueToWrite = $"""{entry.Key}={entry.Value}""";
+                    var valueToWrite = $"{entry.Key}={entry.Value}";
                     writer.WriteLine(valueToWrite);
                 }
 

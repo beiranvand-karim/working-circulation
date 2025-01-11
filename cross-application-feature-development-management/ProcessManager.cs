@@ -39,32 +39,32 @@ namespace cross_application_feature_development_management
                 var a = frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS");
                 var b = frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS");
                 var c = notesAndMessagesDirectory.GetPath("NOTES_MESSAGES_ADDRESS");
-                ProccessInformationGroup proccessInformationGroup = new();
+                ProccessInformationGroup processInformationGroup = new();
 
 
                 var orderValue = commandLineArgs.GetByKey("--order");
 
                 if (orderValue == "reverse")
                 {
-                    this.StartProcess(b, proccessInformationGroup);
+                    this.StartProcess(b, processInformationGroup);
                     Thread.Sleep(3000);
-                    this.StartProcess(a, proccessInformationGroup);
+                    this.StartProcess(a, processInformationGroup);
                     Thread.Sleep(3000);
-                    this.StartProcess(c, proccessInformationGroup);
+                    this.StartProcess(c, processInformationGroup);
                 }
                 else
                 {
-                    this.StartProcess(a, proccessInformationGroup);
+                    this.StartProcess(a, processInformationGroup);
                     Thread.Sleep(3000);
-                    this.StartProcess(b, proccessInformationGroup);
+                    this.StartProcess(b, processInformationGroup);
                     Thread.Sleep(3000);
-                    this.StartProcess(c, proccessInformationGroup);
+                    this.StartProcess(c, processInformationGroup);
                 }
 
-                logger.LogInformation("Proccess information group: {proccessInformationGroup}", JsonSerializer.Serialize(proccessInformationGroup));
+                logger.LogInformation("Process information group: {processInformationGroup}", JsonSerializer.Serialize(processInformationGroup));
 
-                var dddd = JsonSerializer.Serialize(proccessInformationGroup);
-                logger.LogInformation("Proccess information group: {proccessInformationGroup}", dddd);
+                var dddd = JsonSerializer.Serialize(processInformationGroup);
+                logger.LogInformation("Process information group: {processInformationGroup}", dddd);
                 var x = processesMetaDataDirectory.GetPath();
 
                 if (!Directory.Exists(x))
@@ -86,32 +86,32 @@ namespace cross_application_feature_development_management
         {
             var notepadPlusPlusFileProcessesMetaDataDirectory = Path.Combine(processesMetaDataDirectory.GetPath(), "notepad-plus-plus-file-processes-meta-data.json");
             using StreamReader r = new(notepadPlusPlusFileProcessesMetaDataDirectory);
-            string json = r.ReadToEnd();
+            var json = r.ReadToEnd();
             ProccessInformationGroup? items = Newtonsoft.Json.JsonConvert.DeserializeObject<ProccessInformationGroup>(json);
         }
 
-        public void StartProcess(string openeeFilesContainingDirectoryLocation, ProccessInformationGroup proccessInformationGroup)
+        private void StartProcess(string openeeFilesContainingDirectoryLocation, ProccessInformationGroup processInformationGroup)
         {
             try
             {
-                string exceutiveFileLocation = notePadPlusPlus.GetPath();
+                var executiveFileLocation = notePadPlusPlus.GetPath();
 
                 using Process myProcess = new();
                 myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.FileName = exceutiveFileLocation;
+                myProcess.StartInfo.FileName = executiveFileLocation;
                 myProcess.StartInfo.CreateNoWindow = true;
                 myProcess.StartInfo.ArgumentList.Add("-multiInst");
                 myProcess.StartInfo.ArgumentList.Add("-nosession");
-                foreach (string file in Directory.EnumerateFiles(openeeFilesContainingDirectoryLocation))
+                foreach (var file in Directory.EnumerateFiles(openeeFilesContainingDirectoryLocation))
                 {
                     myProcess.StartInfo.ArgumentList.Add(file);
                 }
                 myProcess.Start();
                 logger.LogInformation("Process id: {Id}", myProcess.Id);
                 DirectoryInfo directoryInfo = new(openeeFilesContainingDirectoryLocation);
-                string dirName = directoryInfo.Name;
-                ProccessInformation proccessInformation = new() { GroupName = dirName, Id = myProcess.Id };
-                proccessInformationGroup.AddInFront(proccessInformation);
+                var dirName = directoryInfo.Name;
+                ProccessInformation processInformation = new() { GroupName = dirName, Id = myProcess.Id };
+                processInformationGroup.AddInFront(processInformation);
 
             }
             catch (Exception e)
