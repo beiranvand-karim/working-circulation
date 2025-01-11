@@ -51,7 +51,7 @@ namespace notepad_plus_plus_file_management
                 .UseSerilog()
                 .Build();
 
-            var svc = ActivatorUtilities.CreateInstance<CommandSwitcher>(host.Services);
+            var svc = ActivatorUtilities.CreateInstance<NotepadPlusPlusFileManagementCommandSwitcher>(host.Services);
             svc.Run();
         }
 
