@@ -29,17 +29,16 @@ namespace cross_application_feature_development_management.Dirctories
         {
             Dictionary<string, string> fileContentDictionaryToWriteToFile = [];
 
-            const int BufferSize = 128;
+            const int bufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
-            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
-            string? line;
+            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize);
 
-            while ((line = streamReader.ReadLine()) != null)
+            while (streamReader.ReadLine() is { } line)
             {
-                string[] brokenLine = line.Split("=");
-                string key = brokenLine[0];
-                string value = brokenLine[1];
-                _ = environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
+                var brokenLine = line.Split("=");
+                var key = brokenLine[0];
+                var value = brokenLine[1];
+                _ = environmentVariablesSourceDictionary.TryGetValue(key, out var val);
 
 
                 if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS")
@@ -50,7 +49,7 @@ namespace cross_application_feature_development_management.Dirctories
                 {
                     environmentVariablesSourceDictionary.TryGetValue(
                         "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
-                        out string? directoryManagementExecutiveFileAddress
+                        out var directoryManagementExecutiveFileAddress
                         );
                     var striped = stringHelpers.StripQoutationMarks(directoryManagementExecutiveFileAddress ?? "");
                     var dirName = Path.GetDirectoryName(striped);
@@ -64,11 +63,11 @@ namespace cross_application_feature_development_management.Dirctories
 
                     var hostApplicationName = commandLineArgs.GetByKey("--host-application-name");
 
-                    var x = string.Format("{0}.{1}", directoryName, hostApplicationName);
+                    var x = $"{directoryName}.{hostApplicationName}";
 
                     var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
 
-                    string valueToWrite = string.Format("\"{0}\"", directoryThatIsGoingToBeOpen2);
+                    var valueToWrite = $"\"{directoryThatIsGoingToBeOpen2}\"";
                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                 }
                 else if (key == "FEND_GUEST_ADDRESS")
@@ -79,22 +78,22 @@ namespace cross_application_feature_development_management.Dirctories
 
                     var guestApplicationName = commandLineArgs.GetByKey("--guest-application-name");
 
-                    var x = string.Format("{0}.{1}", directoryName, guestApplicationName);
+                    var x = $"{directoryName}.{guestApplicationName}";
 
                     var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
 
-                    string valueToWrite = string.Format("\"{0}\"", directoryThatIsGoingToBeOpen2);
+                    var valueToWrite = $"\"{directoryThatIsGoingToBeOpen2}\"";
                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                 }
                 else if (key == "FEATURE_SELF_ADDRESS")
                 {
                     var featureNameDirectoryPath = featureNameDirectory.GetPath();
-                    string valueToWrite = string.Format("\"{0}\"", featureNameDirectoryPath);
+                    var valueToWrite = $"\"{featureNameDirectoryPath}\"";
                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                 }
                 else if (key == "STARTUP_DIRECTORY_LOCATION")
                 {
-                    environmentVariablesSourceDictionary.TryGetValue(key, out string? val1);
+                    environmentVariablesSourceDictionary.TryGetValue(key, out var val1);
                     fileContentDictionaryToWriteToFile.Add(key, val1 ?? "");
                 }
                 else
@@ -102,7 +101,7 @@ namespace cross_application_feature_development_management.Dirctories
                     var directoryName = directoriesNameToKeyMap.GetValue(key);
                     var featureNameDirectoryPath = featureNameDirectory.GetPath();
                     var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
-                    string valueToWrite = string.Format("\"{0}\"", directoryThatIsGoingToBeOpen);
+                    var valueToWrite = $"\"{directoryThatIsGoingToBeOpen}\"";
                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                 }
             }

@@ -22,47 +22,47 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public void CopyContentToFeatureNameDicrectory()
         {
-            string sourceDirectory = CreatePathToSelfInScriptsDirectory();
-            string destinationDirectory = CreatePathToSelfInFeatureNameDirectory();
+            var sourceDirectory = CreatePathToSelfInScriptsDirectory();
+            var destinationDirectory = CreatePathToSelfInFeatureNameDirectory();
 
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public void CopyContentToTargetDicrectory()
         {
-            string sourceDirectory = CreatePathToSelfInScriptsDirectory();
-            string destinationDirectory = CreatePathToSelfInTargetDirectory();
+            var sourceDirectory = CreatePathToSelfInScriptsDirectory();
+            var destinationDirectory = CreatePathToSelfInTargetDirectory();
 
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public string CreatePathToSelfInScriptsDirectory()
         {
-            string scriptsDirectoryName = scriptsDirectory.GetName();
-            string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "environment-variables-files");
+            var scriptsDirectoryName = scriptsDirectory.GetName();
+            var environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }
 
         public string CreatePathToSelfInFeatureNameDirectory()
         {
-            string destinationDirectory = automationsDirectory.GetPath();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
+            var destinationDirectory = automationsDirectory.GetPath();
+            var environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }
 
         public string CreatePathToSelfInTargetDirectory()
         {
-            string destinationDirectory = targetDirectory.CreatePathToSelf();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
+            var destinationDirectory = targetDirectory.CreatePathToSelf();
+            var environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, "environment-variables-files");
             return environmentVariablesFilesDirectory;
         }
 
         public string GetName()
         {
-            string destinationDirectoryNameKey =
+            var destinationDirectoryNameKey =
                 commandLineArgs.GetKey("DestinationDirectoryNameKey");
 
-            string destinationDirectoryName = commandLineArgs.GetByKey(destinationDirectoryNameKey);
+            var destinationDirectoryName = commandLineArgs.GetByKey(destinationDirectoryNameKey);
             return destinationDirectoryName;
         }
     }

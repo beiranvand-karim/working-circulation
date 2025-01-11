@@ -33,19 +33,19 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public void ReplaceFileNamesWithPaths()
         {
-            string direcName = "powershell-scripts";
-            string pathInTarget = ConstructPathToSelfInFeatureNameDirectory(direcName);
-            string giversPath = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
-            string runHostApplicationPath = Path.Combine(pathInTarget, "run-host-application.ps1");
-            string runGuestApplicationPath = Path.Combine(pathInTarget, "run-guest-application.ps1");
+            const string direcName = "powershell-scripts";
+            var pathInTarget = ConstructPathToSelfInFeatureNameDirectory(direcName);
+            var giversPath = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
+            var runHostApplicationPath = Path.Combine(pathInTarget, "run-host-application.ps1");
+            var runGuestApplicationPath = Path.Combine(pathInTarget, "run-guest-application.ps1");
 
 
-            foreach (string filePath in Directory.EnumerateFiles(pathInTarget))
+            foreach (var filePath in Directory.EnumerateFiles(pathInTarget))
             {
 
-                string fileName = Path.GetFileNameWithoutExtension(filePath);
-                string giverFileName = $"""{fileName}.env""";
-                string giverPath = Path.Combine(giversPath, giverFileName);
+                var fileName = Path.GetFileNameWithoutExtension(filePath);
+                var giverFileName = $"{fileName}.env";
+                var giverPath = Path.Combine(giversPath, giverFileName);
 
                 directories.ReplaceFileNameWithPath(filePath, giverPath);
 
@@ -88,25 +88,25 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public void CopyContentToFeatureNameDicrectory()
         {
-            string direcName = "powershell-scripts";
+            const string direcName = "powershell-scripts";
             Directory.CreateDirectory(ConstructPathToSelfInFeatureNameDirectory(direcName));
-            string sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
-            string destinationDirectory = ConstructPathToSelfInFeatureNameDirectory(direcName);
+            var sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
+            var destinationDirectory = ConstructPathToSelfInFeatureNameDirectory(direcName);
 
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public string ConstructPathToSelfInScriptsDirectory(string direcName)
         {
-            string scriptsDirectoryName = scriptsDirectory.GetName();
-            string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, direcName);
+            var scriptsDirectoryName = scriptsDirectory.GetName();
+            var environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, direcName);
             return environmentVariablesFilesDirectory;
         }
 
         public string ConstructPathToSelfInFeatureNameDirectory(string direcName)
         {
-            string destinationDirectory = automationsDirectory.GetPath();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
+            var destinationDirectory = automationsDirectory.GetPath();
+            var environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
             return environmentVariablesFilesDirectory;
         }
     }
