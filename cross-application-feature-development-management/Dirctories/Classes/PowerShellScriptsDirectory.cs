@@ -33,80 +33,74 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public void ReplaceFileNamesWithPaths()
         {
-            string direcName = "powershell-scripts";
-            string pathInTarget = ConstructPathToSelfInFeatureNameDirectory(direcName);
-            string giversPath = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
-            string runHostApplicationPath = Path.Combine(pathInTarget, "run-host-application.ps1");
-            string runGuestApplicationPath = Path.Combine(pathInTarget, "run-guest-application.ps1");
+            const string direcName = "powershell-scripts";
+            var pathInTarget = ConstructPathToSelfInFeatureNameDirectory(direcName);
+            var giversPath = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
+            var runHostApplicationPath = Path.Combine(pathInTarget, "run-host-application.ps1");
+            var runGuestApplicationPath = Path.Combine(pathInTarget, "run-guest-application.ps1");
 
 
-            foreach (string filePath in Directory.EnumerateFiles(pathInTarget))
+            foreach (var filePath in Directory.EnumerateFiles(pathInTarget))
             {
 
-                string fileName = Path.GetFileNameWithoutExtension(filePath);
-                string giverFileName = $"""{fileName}.env""";
-                string giverPath = Path.Combine(giversPath, giverFileName);
+                var fileName = Path.GetFileNameWithoutExtension(filePath);
+                var giverFileName = $"{fileName}.env";
+                var giverPath = Path.Combine(giversPath, giverFileName);
 
                 directories.ReplaceFileNameWithPath(filePath, giverPath);
 
-                if (filePath.Contains("all-inclusive.ps1"))
+                switch (filePath)
                 {
-                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
-                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
-                }
-                else if (filePath.Contains("all-inclusive-order-reverse.ps1"))
-                {
-                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
-                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
-                }
-                else if (filePath.Contains("directories-multitude-all-action-close.ps1"))
-                {
-                    directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath("FEND_ADDRESS"));
-                    directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS"));
-                    directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS"));
-                    directories.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", frontEndDirectory.GetPath("BEND_ADDRESS"));
-                    directories.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", frontEndDirectory.GetPath("CALLS_ADDRESS"));
-                    directories.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", frontEndDirectory.GetPath("TOOLS_ADDRESS"));
-                    directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", frontEndDirectory.GetPath("NOTES_MESSAGES_ADDRESS"));
-                    directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", frontEndDirectory.GetPath("WEB_LINKS_ADDRESS"));
-                }
-                else if (filePath.Contains("all.ps1"))
-                {
-                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
-                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
-                }
-                else if (filePath.Contains("run-primary-application.ps1"))
-                {
-                    directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
-                }
-                else if (filePath.Contains("run-seconday-application.ps1"))
-                {
-                    directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                    case "all-inclusive.ps1":
+                    case "all-inclusive-order-reverse.ps1":
+                        directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                        directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                        break;
+                    case "directories-multitude-all-action-close.ps1":
+                        directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath("FEND_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", frontEndDirectory.GetPath("BEND_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", frontEndDirectory.GetPath("CALLS_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", frontEndDirectory.GetPath("TOOLS_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", frontEndDirectory.GetPath("NOTES_MESSAGES_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", frontEndDirectory.GetPath("WEB_LINKS_ADDRESS"));
+                        break;
+                    case "all.ps1":
+                        directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                        directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                        break;
+                    case "run-primary-application.ps1":
+                        directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
+                        break;
+                    case "run-seconday-application.ps1":
+                        directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                        break;
                 }
             }
         }
 
         public void CopyContentToFeatureNameDicrectory()
         {
-            string direcName = "powershell-scripts";
+            const string direcName = "powershell-scripts";
             Directory.CreateDirectory(ConstructPathToSelfInFeatureNameDirectory(direcName));
-            string sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
-            string destinationDirectory = ConstructPathToSelfInFeatureNameDirectory(direcName);
+            var sourceDirectory = ConstructPathToSelfInScriptsDirectory(direcName);
+            var destinationDirectory = ConstructPathToSelfInFeatureNameDirectory(direcName);
 
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public string ConstructPathToSelfInScriptsDirectory(string direcName)
         {
-            string scriptsDirectoryName = scriptsDirectory.GetName();
-            string environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, direcName);
+            var scriptsDirectoryName = scriptsDirectory.GetName();
+            var environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, direcName);
             return environmentVariablesFilesDirectory;
         }
 
         public string ConstructPathToSelfInFeatureNameDirectory(string direcName)
         {
-            string destinationDirectory = automationsDirectory.GetPath();
-            string environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
+            var destinationDirectory = automationsDirectory.GetPath();
+            var environmentVariablesFilesDirectory = Path.Combine(destinationDirectory, direcName);
             return environmentVariablesFilesDirectory;
         }
     }
