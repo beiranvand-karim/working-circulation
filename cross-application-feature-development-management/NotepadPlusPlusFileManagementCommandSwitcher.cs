@@ -14,7 +14,7 @@ namespace cross_application_feature_development_management
 
         public string GetCommand()
         {
-            string command = commandLineArgs.GetByKey("--command");
+            var command = commandLineArgs.GetByKey("--command");
             return command;
         }
 

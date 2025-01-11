@@ -8,7 +8,7 @@ namespace cross_application_feature_development_management
 
         public void ListFilesToConsole(string sourceDirectory)
         {
-            foreach (string file in Directory.EnumerateFiles(sourceDirectory))
+            foreach (var file in Directory.EnumerateFiles(sourceDirectory))
             {
                 logger.LogInformation("{file}", file);
             }
