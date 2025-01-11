@@ -34,37 +34,40 @@ namespace cross_application_feature_development_management.Combiners.Classes
         {
             Dictionary<string, string> fileContentDictionaryToWriteToFile = [];
 
-            const int BufferSize = 128;
+            const int bufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
-            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
-            string? line;
+            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize);
 
-            while ((line = streamReader.ReadLine()) != null)
+            while (streamReader.ReadLine() is { } line)
             {
-                string[] brokenLine = line.Split("=");
-                string key = brokenLine[0];
-                string value = brokenLine[1];
+                var brokenLine = line.Split("=");
+                var key = brokenLine[0];
+                var value = brokenLine[1];
 
-                if (key == "ALL_INCLUSIVE_DIRECTOY_ADDRESS")
+                switch (key)
                 {
-                    string featureDirectoryPath = automationsDirectory.GetPath();
-                    string addToStartupPath = Path.Combine(featureDirectoryPath, "all-inclusive.bat");
-                    fileContentDictionaryToWriteToFile.Add(key, addToStartupPath);
-                }
-                else if (key == "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY")
-                {
-                    environmentVariablesSourceDictionary.TryGetValue(
-                        "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
-                        out string? directoryManagementExecutiveFileAddress
+                    case "ALL_INCLUSIVE_DIRECTOY_ADDRESS":
+                    {
+                        var featureDirectoryPath = automationsDirectory.GetPath();
+                        var addToStartupPath = Path.Combine(featureDirectoryPath, "all-inclusive.bat");
+                        fileContentDictionaryToWriteToFile.Add(key, addToStartupPath);
+                        break;
+                    }
+                    case "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
+                    {
+                        environmentVariablesSourceDictionary.TryGetValue(
+                            "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
+                            out var directoryManagementExecutiveFileAddress
                         );
-                    var striped = stringHelpers.StripQoutationMarks(directoryManagementExecutiveFileAddress ?? "");
-                    var dirName = Path.GetDirectoryName(striped);
-                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
-                }
-                else
-                {
-                    environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
-                    fileContentDictionaryToWriteToFile.Add(key, val ?? "");
+                        var striped = stringHelpers.StripQoutationMarks(directoryManagementExecutiveFileAddress ?? "");
+                        var dirName = Path.GetDirectoryName(striped);
+                        fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                        break;
+                    }
+                    default:
+                        environmentVariablesSourceDictionary.TryGetValue(key, out var val);
+                        fileContentDictionaryToWriteToFile.Add(key, val ?? "");
+                        break;
                 }
             }
 
