@@ -42,43 +42,25 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                 var destFile = Path.Combine(destinationDirectory, destFileName);
                 using var fs = File.Create(destFile);
 
-                Dictionary<string, string> contentToWrite;
-
-                if (templateFile.Contains("directories"))
+                var contentToWrite = destFileName switch
                 {
-                    contentToWrite =
-                    somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                }
-                else if (templateFile.Contains("startup"))
-                {
-                    contentToWrite =
-                    addToStartupScript.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                }
-                else if (templateFile.Contains("notepadpp-open-all"))
-                {
-                    contentToWrite =
-                    notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                }
-                else if (templateFile.Contains("notepadplusplus-multitude-all-order-reverse-action-open"))
-                {
-                    contentToWrite =
-                    notepadPlusPlusMultitudeAllOrderReverseActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                }
-                else if (templateFile.Contains("notepadpp-all-close"))
-                {
-                    contentToWrite =
-                    notePadPlusPlusAllClose.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                }
-                else
-                {
-                    contentToWrite =
-                    something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary);
-                }
+                    "directories" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "startup" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "notepadpp-open-all" => notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "notepadplusplus-multitude-all-order-reverse-action-open" =>
+                        notepadPlusPlusMultitudeAllOrderReverseActionOpen.PairUpVariablesWithTheirValue(templateFile,
+                            environmentVariablesSourceDictionary),
+                    "notepadpp-all-close" => notePadPlusPlusAllClose.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    _ => something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                };
 
                 using StreamWriter writer = new(fs);
-                foreach (KeyValuePair<string, string> entry in contentToWrite)
+                foreach (var valueToWrite in contentToWrite.Select(entry => $"{entry.Key}={entry.Value}"))
                 {
-                    var valueToWrite = $"{entry.Key}={entry.Value}";
                     writer.WriteLine(valueToWrite);
                 }
 
