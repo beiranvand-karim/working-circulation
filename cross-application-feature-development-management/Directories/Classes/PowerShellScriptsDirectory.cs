@@ -79,7 +79,7 @@ namespace cross_application_feature_development_management.Directories.Classes
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                 }
-                else if (filePath.Contains("run-seconday-application.ps1"))
+                else if (filePath.Contains("run-secondary-application.ps1"))
                 {
                     directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                 }

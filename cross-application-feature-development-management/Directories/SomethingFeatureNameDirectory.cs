@@ -52,7 +52,7 @@ namespace cross_application_feature_development_management.Directories
                             "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
                             out var directoryManagementExecutiveFileAddress
                         );
-                        var striped = stringHelpers.StripQoutationMarks(directoryManagementExecutiveFileAddress ?? "");
+                        var striped = stringHelpers.StripQuotationMarks(directoryManagementExecutiveFileAddress ?? "");
                         var dirName = Path.GetDirectoryName(striped);
                         fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
                         break;
