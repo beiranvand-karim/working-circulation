@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management
