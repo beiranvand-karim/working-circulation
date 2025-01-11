@@ -13,16 +13,16 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public void CreateSelf()
         {
-            string featureNameDirectoryPath = GetPath();
+            var featureNameDirectoryPath = GetPath();
             Directory.CreateDirectory(featureNameDirectoryPath);
         }
 
         public string GetPath()
         {
-            string featureNameDirectoryNameKey = commandLineArgs.GetKey("FeatureNameKey");
-            string featureNameDirectoryName = commandLineArgs.GetByKey(featureNameDirectoryNameKey);
-            string hostingDirectoryName = hostingDirectory.GetName();
-            string featureNameDirectoryPath = Path.Combine(hostingDirectoryName, featureNameDirectoryName);
+            var featureNameDirectoryNameKey = commandLineArgs.GetKey("FeatureNameKey");
+            var featureNameDirectoryName = commandLineArgs.GetByKey(featureNameDirectoryNameKey);
+            var hostingDirectoryName = hostingDirectory.GetName();
+            var featureNameDirectoryPath = Path.Combine(hostingDirectoryName, featureNameDirectoryName);
             return featureNameDirectoryPath;
         }
     }
