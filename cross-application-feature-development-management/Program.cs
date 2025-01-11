@@ -53,7 +53,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<ISomethingFeatureNameDirectory, SomethingFeatureNameDirectory>();
                     services.AddTransient<IDirectoriesNameToKeyMap, DirectoriesNameToKeyMap>();
                     services.AddTransient<IPowerShellScriptsDirectory, PowerShellScriptsDirectory>();
-                    services.AddTransient<IBatchScriptsDicrectory, BatchScriptsDicrectory>();
+                    services.AddTransient<IBatchScriptsDirectory, BatchScriptsDirectory>();
                     services.AddTransient<IHostApplicationName, HostApplicationName>();
                     services.AddTransient<IGuestApplicationName, GuestApplicationName>();
                     services.AddTransient<ISomething, Something>();
@@ -89,7 +89,7 @@ namespace cross_application_feature_development_management
         {
             builder.SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Prodcution"}.json", optional: true)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true)
                 .AddEnvironmentVariables();
         }
     }
