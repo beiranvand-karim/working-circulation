@@ -1,4 +1,6 @@
 using System.Text;
+using System.Text.Json;
+using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource;
 using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -53,6 +55,35 @@ namespace cross_application_feature_development_management.Names.Classses
             return fileContentDictionary;
         }
 
+        public static string ToUnderscoreCase(string str) {
+            return string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower();
+        }
+
+        private Dictionary<string, string> ReadKeyValueFromJsonFile(string fileNamePath)
+        {
+
+
+            Dictionary<string, string> fileContentDictionary = [];
+
+            using StreamReader r = new(fileNamePath);
+            var json = r.ReadToEnd();
+
+            var environmentVariables = Newtonsoft.Json.JsonConvert
+                .DeserializeObject<EnvironmentVariables>(json);
+
+            var dddd = JsonSerializer.Serialize(environmentVariables);
+            var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(dddd);
+
+            foreach(var kv in dict)
+            {
+                var key = ToUnderscoreCase(kv.Key).ToUpper();
+                var value1 = kv.Value;               
+                fileContentDictionary.Add(key, value1);
+            }
+
+            return fileContentDictionary;
+        }
+
         public Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceFile(
             string environmentVariablesSourceDirectory
         )
@@ -67,6 +98,26 @@ namespace cross_application_feature_development_management.Names.Classses
                     logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
                     logger.LogInformation("{file}", file);
                     keyValuePairs = ReadKeyValueFromFile(file);
+                }
+            }
+
+            return keyValuePairs;
+        }
+
+        public Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceJsonFile(
+            string environmentVariablesSourceDirectory
+        )
+        {
+            Dictionary<string, string> keyValuePairs = [];
+
+            foreach (var file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
+            {
+
+                if(file.Contains(guestApplicationName.GetName()) && Path.GetExtension(file) == ".json" )
+                {
+                    logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
+                    logger.LogInformation("{file}", file);
+                    keyValuePairs = ReadKeyValueFromJsonFile(file);
                 }
             }
 

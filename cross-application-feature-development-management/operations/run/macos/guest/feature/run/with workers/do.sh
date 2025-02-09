@@ -13,6 +13,7 @@ rm -rf "${current_directory}/workers/features/${feature_name}"
 dotnet run \
 --application "cross-application-feature-development-management" \
 --command "create-scripts" \
+--format "json" \
 --templates-directory "environment-variables-template-files" \
 --destination-directory  "environment-variables-files" \
 --environment-variables-source-directory  "environment-variables-source"  \
