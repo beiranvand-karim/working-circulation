@@ -52,7 +52,7 @@ namespace cross_application_feature_development_management
                 var destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
 
                 var environmentVariablesSourceDictionary =
-                        something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
+                        something.GetAllEnvironmentVariablesAndValuesFromSourceJsonFile(
                             environmentVariablesSourceDirectory.GetName()
                         );
 
