@@ -18,7 +18,8 @@ namespace cross_application_feature_development_management
             IBatchScriptsDirectory batchScriptsDirectory,
             ISomething something,
             IBatchScriptFilesDirectory batchScriptFilesDirectory,
-            IAutomationsDirectory automationsDirectory
+            IAutomationsDirectory automationsDirectory,
+            ICommandLineArgs commandLineArgs
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -33,6 +34,17 @@ namespace cross_application_feature_development_management
         private readonly ISomething something = something;
         private readonly IBatchScriptFilesDirectory batchScriptFilesDirectory = batchScriptFilesDirectory;
         private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
+
+        public string GetFormat()
+        {
+            var format = commandLineArgs.GetByKey("--format");
+            return format;
+        }
+
+        private bool IsFormatJson()
+        {
+            return GetFormat() == "json";
+        }
 
         public void Run()
         {
@@ -51,10 +63,23 @@ namespace cross_application_feature_development_management
                 Directory.CreateDirectory(environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory());
                 var destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
 
-                var environmentVariablesSourceDictionary =
+                Dictionary<string, string> environmentVariablesSourceDictionary;
+                
+                if(IsFormatJson())
+                {
+                    environmentVariablesSourceDictionary =
+                        something.GetAllEnvironmentVariablesAndValuesFromSourceJsonFile(
+                            environmentVariablesSourceDirectory.GetName()
+                        );
+                }
+                else
+                {
+                    environmentVariablesSourceDictionary =
                         something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
                             environmentVariablesSourceDirectory.GetName()
                         );
+                }
+                
 
                 batchScriptFilesDirectory.Populate(destinationDirectory, templateSourceDirectory, environmentVariablesSourceDictionary);
 
