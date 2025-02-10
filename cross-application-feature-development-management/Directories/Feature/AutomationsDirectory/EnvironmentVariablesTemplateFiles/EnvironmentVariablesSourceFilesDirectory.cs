@@ -3,7 +3,7 @@ using cross_application_feature_development_management.Directories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Interfaces;
 
-namespace cross_application_feature_development_management.Directories.Feature.EnvironmentVariablesTemplateFiles
+namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public interface IEnvironmentVariablesSourceFilesDirectory
     {
