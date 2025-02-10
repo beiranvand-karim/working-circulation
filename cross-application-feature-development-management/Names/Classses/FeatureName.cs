@@ -12,7 +12,7 @@ namespace cross_application_feature_development_management.Names.Classses
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         public string GetName()
         {
-            string guestApplicationNameKey = "--feature-name";
+            const string guestApplicationNameKey = "--feature-name";
             var name = commandLineArgs.GetByKey(guestApplicationNameKey);
             return name;
         }
