@@ -1,5 +1,6 @@
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Interfaces;
@@ -19,7 +20,8 @@ namespace cross_application_feature_development_management
             ISomething something,
             IEnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
             IAutomationsDirectory automationsDirectory,
-            ICommandLineArgs commandLineArgs
+            ICommandLineArgs commandLineArgs,
+            IOperationsDirectory operationsDirectory
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
@@ -85,7 +87,8 @@ namespace cross_application_feature_development_management
 
                 powerShellScriptsDirectory.CopyContentToFeatureNameDirectory();
                 powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
-
+                
+                operationsDirectory.Create();
                 batchScriptsDirectory.CopyContentToFeatureNameDirectory();
                 batchScriptsDirectory.ReplaceFileNamesWithPaths();
             }
