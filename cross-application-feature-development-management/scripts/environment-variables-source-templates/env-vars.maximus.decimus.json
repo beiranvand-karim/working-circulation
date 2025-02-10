@@ -2,7 +2,7 @@
     "IsRiderGuestApplicationRunningPermissionGrantable": true,
     "IsWebstormGuestClientappRunningPermissionGrantable": false,
     "DockerCliLocation": "docker/cli/location/",
-    "ApplicationComposeFileLocation": "DockerCliLocation",
+    "ApplicationComposeFileLocation": "application/compose/file/location",
     "DockerComposeStopAlongWithArguments": "DockerCliLocation",
     "DirectoryManagementExecutiveFileAddress": "DockerCliLocation",
     "DirectoryManagementExecutiveFileAddressContainingDirectory": "DockerCliLocation",
