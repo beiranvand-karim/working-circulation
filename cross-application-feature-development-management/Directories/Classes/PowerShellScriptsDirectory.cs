@@ -3,6 +3,7 @@ using cross_application_feature_development_management.Directories.Feature.Front
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndHostDirectory;
 using cross_application_feature_development_management.Directories.Interfaces;
+using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.Classes
@@ -17,7 +18,9 @@ namespace cross_application_feature_development_management.Directories.Classes
         ILogger<PowerShellScriptsDirectory> logger,
         IFrontEndDirectory frontEndDirectory,
         IFrontEndHostDirectory frontEndHostDirectory,
-        IFrontEndGuestDirectory frontEndGuestDirectory
+        IFrontEndGuestDirectory frontEndGuestDirectory,
+        IGuestApplicationName guestApplicationName,
+        IHostApplicationName hostApplicationName
         ) : IPowerShellScriptsDirectory
     {
         private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
@@ -30,6 +33,8 @@ namespace cross_application_feature_development_management.Directories.Classes
         private readonly IFrontEndDirectory frontEndDirectory = frontEndDirectory;
         private readonly IFrontEndHostDirectory frontEndHostDirectory = frontEndHostDirectory;
         private readonly IFrontEndGuestDirectory frontEndGuestDirectory = frontEndGuestDirectory;
+        private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
+        private readonly IHostApplicationName hostApplicationName = hostApplicationName;
 
         public void ReplaceFileNamesWithPaths()
         {
@@ -75,6 +80,10 @@ namespace cross_application_feature_development_management.Directories.Classes
                         break;
                     case "run-secondary-application.ps1":
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                        break;
+                    case "docker-network-application-multitude-two-action-stop":
+                        directories.ReplaceFileNameWithPath(filePath, "host-application-name", hostApplicationName.GetName());
+                        directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
                         break;
                 }
             }
