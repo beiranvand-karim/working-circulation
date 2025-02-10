@@ -4,6 +4,7 @@ using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Classes;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
@@ -75,7 +76,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<INotesAndMessagesDirectory, NotesAndMessagesDirectory>();
                     services.AddTransient<IProcessesMetaDataDirectory, ProcessesMetaDataDirectory>();
                     services.AddTransient<ICloseProcessManagement, CloseProcessManagement>();
-
+                    services.AddTransient<IOperationsDirectory, OperationsDirectory>();
                 })
                 .UseSerilog()
                 .Build();
