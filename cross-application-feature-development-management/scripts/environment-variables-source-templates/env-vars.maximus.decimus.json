@@ -1,7 +1,7 @@
 {
     "IsRiderGuestApplicationRunningPermissionGrantable": true,
     "IsWebstormGuestClientappRunningPermissionGrantable": false,
-    "DockerCliLocation": "DockerCliLocation",
+    "DockerCliLocation": "docker/cli/location/",
     "ApplicationComposeFileLocation": "DockerCliLocation",
     "DockerComposeStopAlongWithArguments": "DockerCliLocation",
     "DirectoryManagementExecutiveFileAddress": "DockerCliLocation",
@@ -16,7 +16,7 @@
     "FeatureSelfAddress": "DockerCliLocation",
     "FendAddress": "DockerCliLocation",
     "StartupDirectoryLocation": "DockerCliLocation",
-    "InfrastructureComposeFileLocation": "DockerCliLocation",
+    "InfrastructureComposeFileLocation": "infrastructure/compose/file/location",
     "NotepadPlusPlusFileManagementExecutiveFileContainingDirectory": "DockerCliLocation",
     "NotepadPlusPlusFileManagementExecutiveFileLocation": "DockerCliLocation",
     "NotepaddppExecuteFileLocation": "DockerCliLocation",
