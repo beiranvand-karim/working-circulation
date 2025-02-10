@@ -5,9 +5,9 @@ using cross_application_feature_development_management.Names.Classses;
 using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management.Directories.Feature.EnvironmentVariablesTemplateFiles
+namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
-    public interface INotepadPlusPlusMultitudeAllOrderReverseActionOpen
+    public interface INotePadPlusPlusAllClose
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
@@ -15,14 +15,14 @@ namespace cross_application_feature_development_management.Directories.Feature.E
         );
     }
 
-    public class NotepadPlusPlusMultitudeAllOrderReverseActionOpen(
+    public class NotePadPlusPlusAllClose(
         IFeatureName featureName,
         IGuestApplicationName guestApplicationName,
         IHostApplicationName hostApplicationName,
         IHostingDirectory hostingDirectory,
         ILogger<NotePadPlusPlusOpenAll> logger,
         IStringHelpers stringHelpers
-    ) : INotepadPlusPlusMultitudeAllOrderReverseActionOpen
+    ) : INotePadPlusPlusAllClose
     {
         private readonly IFeatureName featureName = featureName;
         private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
@@ -80,13 +80,7 @@ namespace cross_application_feature_development_management.Directories.Feature.E
                     }
                     case "COMMAND":
                     {
-                        var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
-                        fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                        break;
-                    }
-                    case "ORDER":
-                    {
-                        var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks("close");
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
