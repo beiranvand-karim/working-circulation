@@ -1,18 +1,17 @@
 using cross_application_feature_development_management.Combiners.Interfaces;
-using cross_application_feature_development_management.Directories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Interfaces;
 
-namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.BatchScriptFilesDirectory
+namespace cross_application_feature_development_management.Directories.Feature.EnvironmentVariablesTemplateFiles
 {
-    public interface IBatchScriptFilesDirectory
+    public interface IEnvironmentVariablesSourceFilesDirectory
     {
         public string GetPath();
         public void Populate(string destinationDirectory, string templateSourceDirectory, Dictionary<string, string> environmentVariablesSourceDictionary);
     }
 
-    public class BatchScriptFilesDirectory(
+    public class EnvironmentVariablesSourceFilesDirectory(
             ISomethingFeatureNameDirectory somethingFeatureNameDirectory,
             IAddToStartupScript addToStartupScript,
             INotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
@@ -20,7 +19,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
             IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
             INotePadPlusPlusAllClose notePadPlusPlusAllClose,
             INotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen
-        ) : IBatchScriptFilesDirectory
+        ) : IEnvironmentVariablesSourceFilesDirectory
     {
         private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
         private readonly IAddToStartupScript addToStartupScript = addToStartupScript;

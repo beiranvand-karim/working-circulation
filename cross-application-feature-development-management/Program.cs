@@ -3,7 +3,6 @@ using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Classes;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Directories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory;
@@ -62,7 +61,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<IDirectories, Directories.Classes.Directories>();
                     services.AddTransient<IFeatureName, FeatureName>();
                     services.AddTransient<INotePadPlusPlusOpenAll, NotePadPlusPlusOpenAll>();
-                    services.AddTransient<IBatchScriptFilesDirectory, BatchScriptFilesDirectory>();
+                    services.AddTransient<IEnvironmentVariablesSourceFilesDirectory, EnvironmentVariablesSourceFilesDirectory>();
                     services.AddTransient<IAutomationsDirectory, AutomationsDirectory>();
                     services.AddTransient<INotePadPlusPlusAllClose, NotePadPlusPlusAllClose>();
                     services.AddTransient<INotepadPlusPlusMultitudeAllOrderReverseActionOpen, NotepadPlusPlusMultitudeAllOrderReverseActionOpen>();
