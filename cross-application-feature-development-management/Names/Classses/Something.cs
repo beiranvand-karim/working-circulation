@@ -1,4 +1,6 @@
 using System.Text;
+using System.Text.Json;
+using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource;
 using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
@@ -19,39 +21,66 @@ namespace cross_application_feature_development_management.Names.Classses
         {
             Dictionary<string, string> fileContentDictionaryToWriteToFile = [];
 
-            const int BufferSize = 128;
+            const int bufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
-            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
-            string? line;
+            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize);
 
-            while ((line = streamReader.ReadLine()) != null)
+            while (streamReader.ReadLine() is { } line)
             {
-                string[] brokenLine = line.Split("=");
-                string key = brokenLine[0];
-                string value = brokenLine[1];
-                _ = environmentVariablesSourceDictionary.TryGetValue(key, out string? val);
+                var brokenLine = line.Split("=");
+                var key = brokenLine[0];
+                var value = brokenLine[1];
+                _ = environmentVariablesSourceDictionary.TryGetValue(key, out var val);
                 fileContentDictionaryToWriteToFile.Add(key, val ?? "");
             }
 
             return fileContentDictionaryToWriteToFile;
         }
 
-        public static Dictionary<string, string> ReadKeyValueFromFile(string fileNamePath)
+        private static Dictionary<string, string> ReadKeyValueFromFile(string fileNamePath)
         {
             Dictionary<string, string> fileContentDictionary = [];
 
-            const int BufferSize = 128;
+            const int bufferSize = 128;
             using var fileStream = File.OpenRead(fileNamePath);
-            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, BufferSize);
-            string? line;
+            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize);
 
-            while ((line = streamReader.ReadLine()) != null)
+            while (streamReader.ReadLine() is { } line)
             {
-                string[] brokenLine = line.Split("=");
-                string key = brokenLine[0];
-                string value = brokenLine[1];
+                var brokenLine = line.Split("=");
+                var key = brokenLine[0];
+                var value = brokenLine[1];
                 fileContentDictionary.Add(key, value);
             }
+            return fileContentDictionary;
+        }
+
+        public static string ToUnderscoreCase(string str) {
+            return string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower();
+        }
+
+        private Dictionary<string, string> ReadKeyValueFromJsonFile(string fileNamePath)
+        {
+
+
+            Dictionary<string, string> fileContentDictionary = [];
+
+            using StreamReader r = new(fileNamePath);
+            var json = r.ReadToEnd();
+
+            var environmentVariables = Newtonsoft.Json.JsonConvert
+                .DeserializeObject<EnvironmentVariables>(json);
+
+            var dddd = JsonSerializer.Serialize(environmentVariables);
+            var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(dddd);
+
+            foreach(var kv in dict)
+            {
+                var key = ToUnderscoreCase(kv.Key).ToUpper();
+                var value1 = kv.Value;               
+                fileContentDictionary.Add(key, value1);
+            }
+
             return fileContentDictionary;
         }
 
@@ -61,7 +90,7 @@ namespace cross_application_feature_development_management.Names.Classses
         {
             Dictionary<string, string> keyValuePairs = [];
 
-            foreach (string file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
+            foreach (var file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {
 
                 if(file.Contains(guestApplicationName.GetName()))
@@ -69,6 +98,26 @@ namespace cross_application_feature_development_management.Names.Classses
                     logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
                     logger.LogInformation("{file}", file);
                     keyValuePairs = ReadKeyValueFromFile(file);
+                }
+            }
+
+            return keyValuePairs;
+        }
+
+        public Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceJsonFile(
+            string environmentVariablesSourceDirectory
+        )
+        {
+            Dictionary<string, string> keyValuePairs = [];
+
+            foreach (var file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
+            {
+
+                if(file.Contains(guestApplicationName.GetName()) && Path.GetExtension(file) == ".json" )
+                {
+                    logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
+                    logger.LogInformation("{file}", file);
+                    keyValuePairs = ReadKeyValueFromJsonFile(file);
                 }
             }
 
