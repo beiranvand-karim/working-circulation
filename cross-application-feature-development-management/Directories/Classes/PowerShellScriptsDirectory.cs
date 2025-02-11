@@ -85,6 +85,9 @@ namespace cross_application_feature_development_management.Directories.Classes
                         directories.ReplaceFileNameWithPath(filePath, "host-application-name", hostApplicationName.GetName());
                         directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
                         break;
+                    case "docker-network-application-multitude-primary-action-stop":
+                        directories.ReplaceFileNameWithPath(filePath, "host-application-name", hostApplicationName.GetName());
+                        break;
                 }
             }
         }
