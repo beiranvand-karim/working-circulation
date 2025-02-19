@@ -6,6 +6,6 @@ get-content "startup-add-to.env" | ForEach-Object {
 }
 $startup_directory_location = [string]$env:STARTUP_DIRECTORY_LOCATION;
 $destination = $startup_directory_location.Replace("`"", "");
-$all_inclusive_directoy_address = [string]$env:ALL_INCLUSIVE_DIRECTOY_ADDRESS;
-$object = $all_inclusive_directoy_address.Replace("`"", "");
+$all_inclusive_directory_address = [string]$env:ALL_INCLUSIVE_DIRECTORY_ADDRESS;
+$object = $all_inclusive_directory_address.Replace("`"", "");
 Copy-Item $object -Destination $destination;
