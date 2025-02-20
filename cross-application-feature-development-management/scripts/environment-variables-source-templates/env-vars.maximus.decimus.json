@@ -43,6 +43,7 @@
     "RiderLocation": "rider/location",
     "GuestApplicationLocation": "guest/application/location",
     "HostApplicationLocation": "host/application/location",
+    "PrimaryApplicationLocation": "primary/application/location",
     "GuestApplicationProjectLocation": "guest/application/project/location",
     "GuestApplicationProjectName": "guest/application/project/name",
     "HostApplicationProjectLocation": "host/application/project/location",
