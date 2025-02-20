@@ -54,3 +54,4 @@ WEBSTORM_LOCATION=webstorm/location
 GUEST_CLIENTAPP_LOCATION=guest/clientapp/location
 HOST_CLIENTAPP_LOCATION=host/clientapp/location
 PRIMARY_CLIENTAPP_LOCATION=primary/clientapp/location
+SECONDARY_CLIENTAPP_LOCATION=secondary/clientapp/location
