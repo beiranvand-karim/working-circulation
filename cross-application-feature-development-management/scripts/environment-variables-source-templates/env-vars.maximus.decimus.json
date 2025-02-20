@@ -34,6 +34,7 @@
     "HostApplicationName": "host/application/name",
     "GuestApplicationName": "guest/application/name",
     "SecondaryApplicationName": "secondary/application/name",
+    "PrimaryApplicationName": "host/application/name",
     "Command": "command",
     "Order": "order",
     "ReceiverLocation": "receiver/location",

@@ -33,6 +33,7 @@ HostingDirectory
 HostApplicationName
 GuestApplicationName
 SecondaryApplicationName
+PrimaryApplicationName
 Command
 Order
 ReceiverLocation
