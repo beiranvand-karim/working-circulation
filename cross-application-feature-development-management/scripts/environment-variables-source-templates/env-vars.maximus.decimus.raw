@@ -42,6 +42,7 @@ ZscalerClientConnector
 RiderLocation
 GuestApplicationLocation
 HostApplicationLocation
+PrimaryApplicationLocation
 GuestApplicationProjectLocation
 GuestApplicationProjectName
 HostApplicationProjectLocation
