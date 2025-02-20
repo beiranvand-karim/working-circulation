@@ -53,5 +53,6 @@
     "Location": "location",
     "WebstormLocation": "webstorm/location",
     "GuestClientappLocation": "guest/clientapp/location",
-    "HostClientappLocation": "host/clientapp/location"
+    "HostClientappLocation": "host/clientapp/location",
+    "PrimaryClientappLocation":"primary/clientapp/location"
 }
