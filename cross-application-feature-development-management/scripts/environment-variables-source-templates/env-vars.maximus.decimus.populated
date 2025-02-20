@@ -43,6 +43,7 @@ RIDER_LOCATION=rider/location
 GUEST_APPLICATION_LOCATION=guest/application/location
 HOST_APPLICATION_LOCATION=host/application/location
 PRIMARY_APPLICATION_LOCATION=primary/application/location
+SECONDARY_APPLICATION_LOCATION=secondary/application/location
 GUEST_APPLICATION_PROJECT_LOCATION=guest/application/project/location
 GUEST_APPLICATION_PROJECT_NAME=guest/application/project/name
 HOST_APPLICATION_PROJECT_LOCATION=host/application/project/location
