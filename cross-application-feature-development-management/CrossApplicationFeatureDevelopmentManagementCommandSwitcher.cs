@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Applications.IdeManagement;
 using cross_application_feature_development_management.Interfaces;
 
 namespace cross_application_feature_development_management
@@ -5,12 +6,14 @@ namespace cross_application_feature_development_management
     public class CrossApplicationFeatureDevelopmentManagementCommandSwitcher(
         ICommandLineArgs commandLineArgs,
         ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement,
-        INotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher
+        INotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher,
+        IIdeManagement  ideManagement 
         ) : ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
     {
         private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
         private readonly ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement = crossApplicationFeatureDevelopmentManagement;
         private readonly INotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher = notepadPlusPlusFileManagementCommandSwitcher;
+        private readonly IIdeManagement ideManagement = ideManagement;
 
         public string GetApplication()
         {
@@ -28,6 +31,11 @@ namespace cross_application_feature_development_management
             return GetApplication() == "notepad-plus-plus-file-management";
         }
 
+        private bool IsIdeManagementApplication()
+        {
+            return GetApplication() == "ide-management";
+        }
+
         public void Run()
         {
             if (IsCrossApplicationFeatureDevelopmentManagementApplication())
@@ -38,6 +46,11 @@ namespace cross_application_feature_development_management
             if (IsNotepadPlusPlusFileManagementApplication())
             {
                 notepadPlusPlusFileManagementCommandSwitcher.Run();
+            }
+
+            if(IsIdeManagementApplication())
+            {
+                ideManagement.Run();
             }
         }
 
