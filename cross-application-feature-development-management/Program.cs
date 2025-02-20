@@ -1,6 +1,8 @@
-﻿using cross_application_feature_development_management.Combiners.Classes;
+﻿using cross_application_feature_development_management.Applications.IdeManagement;
+using cross_application_feature_development_management.Combiners.Classes;
 using cross_application_feature_development_management.Combiners.Interfaces;
 using cross_application_feature_development_management.Directories;
+using cross_application_feature_development_management.Directories.Applications;
 using cross_application_feature_development_management.Directories.Classes;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
@@ -77,6 +79,10 @@ namespace cross_application_feature_development_management
                     services.AddTransient<IProcessesMetaDataDirectory, ProcessesMetaDataDirectory>();
                     services.AddTransient<ICloseProcessManagement, CloseProcessManagement>();
                     services.AddTransient<IOperationsDirectory, OperationsDirectory>();
+                    services.AddTransient<IIdeProcessManagement, IdeProcessManagement>();
+                    services.AddTransient<IIdeManagement, IdeManagement>();
+                    services.AddTransient<IApplicationLocation, ApplicationLocation>();
+                    services.AddTransient<IIdeExecutiveFileLocation, IdeExecutiveFileLocation>();
                 })
                 .UseSerilog()
                 .Build();
