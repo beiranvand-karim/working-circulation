@@ -32,6 +32,7 @@ FEATURE_NAME=feature/name
 HOSTING_DIRECTORY=hosting/directory
 HOST_APPLICATION_NAME=host/application/name
 GUEST_APPLICATION_NAME=guest/application/name
+SECONDARY_APPLICATION_NAME=secondary/application/name
 COMMAND=command
 ORDER=order
 RECEIVER_LOCATION=receiver/location

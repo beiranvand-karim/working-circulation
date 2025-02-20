@@ -33,6 +33,7 @@
     "HostingDirectory": "hosting/directory",
     "HostApplicationName": "host/application/name",
     "GuestApplicationName": "guest/application/name",
+    "SecondaryApplicationName": "secondary/application/name",
     "Command": "command",
     "Order": "order",
     "ReceiverLocation": "receiver/location",
