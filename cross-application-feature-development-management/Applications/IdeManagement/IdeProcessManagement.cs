@@ -3,6 +3,7 @@ using System.Text.Json;
 using cross_application_feature_development_management.Directories.Applications;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Files.Executables;
+using cross_application_feature_development_management.Names.Classses;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Applications.IdeManagement
@@ -11,7 +12,9 @@ namespace cross_application_feature_development_management.Applications.IdeManag
         IIdeExecutiveFileLocation ideExecutiveFileLocation,
         ILogger<IdeProcessManagement> logger,
         IProcessesMetaDataDirectory processesMetaDataDirectory,
-        IApplicationLocation  applicationLocation
+        IApplicationLocation  applicationLocation,
+        IIdeName ideName,
+        IApplicationName applicationName
     ): IIdeProcessManagement
     {
         private readonly IIdeExecutiveFileLocation ideExecutiveFileLocation = ideExecutiveFileLocation;
@@ -20,14 +23,10 @@ namespace cross_application_feature_development_management.Applications.IdeManag
 
         public void Open()
         {
-                ProcessInformationGroup processInformationGroup = new();
+                IdeProcessInformationGroup ideProcessInformationGroup = new();
 
-                this.StartProcess(processInformationGroup);
+                var pro = this.StartProcess();
 
-                logger.LogInformation("Process information group: {processInformationGroup}", JsonSerializer.Serialize(processInformationGroup));
-
-                var processInformationGroup_Serialized = JsonSerializer.Serialize(processInformationGroup);
-                logger.LogInformation("Process information group: {processInformationGroup}", processInformationGroup_Serialized);
                 var processesMetaDataDirectory_path = processesMetaDataDirectory.GetPath();
 
                 if (!Directory.Exists(processesMetaDataDirectory_path))
@@ -36,7 +35,23 @@ namespace cross_application_feature_development_management.Applications.IdeManag
                 }
 
                 var ideManagementProcessesMetaDataFile = Path.Combine(processesMetaDataDirectory_path, "ide-management-processes-meta-data.json");
-                File.WriteAllText(ideManagementProcessesMetaDataFile, processInformationGroup_Serialized);
+
+                if(File.Exists(ideManagementProcessesMetaDataFile))
+                {
+                    using StreamReader r = new(ideManagementProcessesMetaDataFile);
+                    var json = r.ReadToEnd();
+                    r.Close();
+                    var ideProcessInformationGroup_json = Newtonsoft.Json.JsonConvert.DeserializeObject<IdeProcessInformationGroup>(json);
+                    ideProcessInformationGroup_json?.AddInFront(pro);
+                    var ideProcessInformationGroup_Serialized1 = JsonSerializer.Serialize(ideProcessInformationGroup_json);
+                    File.WriteAllText(ideManagementProcessesMetaDataFile, ideProcessInformationGroup_Serialized1);
+                }
+                else
+                {
+                    ideProcessInformationGroup.Add(pro);
+                    var ideProcessInformationGroup_Serialized1 = JsonSerializer.Serialize(ideProcessInformationGroup);
+                    File.WriteAllText(ideManagementProcessesMetaDataFile, ideProcessInformationGroup_Serialized1);
+                }
         }
 
         public void Close()
@@ -45,42 +60,62 @@ namespace cross_application_feature_development_management.Applications.IdeManag
 
             using StreamReader r = new(ideManagementProcessesMetaDataFile);
             var json = r.ReadToEnd();
-            var readProcessInformationGroup = Newtonsoft.Json.JsonConvert.DeserializeObject<ProcessInformationGroup>(json);
+            var ideProcessInformationGroup_json = Newtonsoft.Json.JsonConvert.DeserializeObject<IdeProcessInformationGroup>(json);
 
-            logger.LogInformation("items, {items}", readProcessInformationGroup);
 
-            foreach (var pInfo in readProcessInformationGroup?.group)
+            var ideProcessInformation_selected = ideProcessInformationGroup_json?
+                .Group?
+                .Where(
+                    ideProcessInformation =>  ideProcessInformation.IdeName == ideName.GetName()
+                    && ideProcessInformation.ApplicationName == applicationName.GetName()
+                )
+                .ToList()
+                .First();
+
+            logger.LogInformation("ApplicationName, {ApplicationName}", ideProcessInformation_selected?.ApplicationName);
+            logger.LogInformation("IdeName, {IdeName}", ideProcessInformation_selected?.IdeName);
+            logger.LogInformation("Id, {Id}", ideProcessInformation_selected?.Id);
+
+            var p = Process.GetProcessById((int)(ideProcessInformation_selected?.Id ?? 0));
+            p.Kill();
+
+            var ideProcessInformation_selected_2 = ideProcessInformationGroup_json?.Group
+                ?.SingleOrDefault(
+                    ideProcessInformation =>  ideProcessInformation.IdeName == ideName.GetName()
+                    && ideProcessInformation.ApplicationName == applicationName.GetName()
+                );
+
+            if (ideProcessInformation_selected_2 != null)
             {
-                logger.LogInformation("Id: {Id}", pInfo?.id);
-                var p = Process.GetProcessById((int)pInfo?.id);
-                p.Kill();
-                Thread.Sleep(2000);
+                ideProcessInformationGroup_json?.Group?.Remove(ideProcessInformation_selected_2);
+                var ideProcessInformationGroup_Serialized1 = JsonSerializer.Serialize(ideProcessInformationGroup_json);
+                File.WriteAllText(ideManagementProcessesMetaDataFile, ideProcessInformationGroup_Serialized1);
             }
         }
 
 
-        private void StartProcess(ProcessInformationGroup processInformationGroup)
+        private IdeProcessInformation StartProcess()
         {
-            try
-            {
-                var executiveFileLocation = ideExecutiveFileLocation.GetPath();
-                var applicationLocation_path = applicationLocation.GetPath();
 
-                using Process myProcess = new();
-                myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.FileName = executiveFileLocation;
-                myProcess.StartInfo.CreateNoWindow = true;
-                myProcess.StartInfo.ArgumentList.Add(applicationLocation_path);
+            var executiveFileLocation = ideExecutiveFileLocation.GetPath();
+            var applicationLocation_path = applicationLocation.GetPath();
 
-                myProcess.Start();
-                logger.LogInformation("Process id: {Id}", myProcess.Id);
-                ProcessInformation processInformation = new() { groupName = "ide", id = myProcess.Id };
-                processInformationGroup.AddInFront(processInformation);
-            }
-            catch (Exception e)
-            {
-                logger.LogInformation("{Message}", e.Message);
-            }
+            using Process myProcess = new();
+            myProcess.StartInfo.UseShellExecute = false;
+            myProcess.StartInfo.FileName = executiveFileLocation;
+            myProcess.StartInfo.CreateNoWindow = true;
+            myProcess.StartInfo.ArgumentList.Add(applicationLocation_path);
+
+            myProcess.Start();
+            logger.LogInformation("Process id: {Id}", myProcess.Id);
+            IdeProcessInformation ideProcessInformation = new() 
+            { 
+                GroupName = "ide",
+                Id = myProcess.Id,
+                IdeName = ideName.GetName(),
+                ApplicationName= applicationName.GetName()
+            };
+            return ideProcessInformation;
         }
     }
 
