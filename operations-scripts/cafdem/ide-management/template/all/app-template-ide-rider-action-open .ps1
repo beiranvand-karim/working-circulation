@@ -4,8 +4,10 @@ $hosting_directory="$current_directory/workers/features"
 
 dotnet run `
 --application "ide-management" `
---command "close" `
+--command "open" `
 --ide-execute-file-location  "" `
 --application-location  "" `
 --feature-name "$feature_name" `
---hosting-directory "$hosting_directory"
+--hosting-directory "$hosting_directory" `
+--ide-name "rider" `
+--application-name ""
