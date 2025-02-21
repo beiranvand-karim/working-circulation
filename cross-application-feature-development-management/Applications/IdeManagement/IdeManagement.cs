@@ -9,11 +9,6 @@ namespace cross_application_feature_development_management.Applications.IdeManag
         IIdeProcessManagement ideProcessManagement
     ): IIdeManagement
     {
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
-        private readonly IProcessManager processManager = processManager;
-        private readonly ICloseProcessManagement closeProcessManagement = closeProcessManagement;
-        private readonly IIdeProcessManagement ideProcessManagement = ideProcessManagement;
-
         public string GetCommand()
         {
             var command = commandLineArgs.GetByKey("--command");
