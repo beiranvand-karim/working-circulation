@@ -9,7 +9,7 @@ namespace cross_application_feature_development_management.Names.Classses
 
         public string GetName()
         {
-            string hostApplicationNameKey = "--host-application-name";
+            const string hostApplicationNameKey = "--host-application-name";
             var name = commandLineArgs.GetByKey(hostApplicationNameKey);
             return name;
         }
