@@ -19,7 +19,8 @@ namespace cross_application_feature_development_management.Directories.Feature.A
             IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
             INotePadPlusPlusAllClose notePadPlusPlusAllClose,
             INotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen,
-            IdeJetbrainsRiderMultitudePrimaryActionOpen  ideJetbrainsRiderMultitudePrimaryActionOpen
+            IdeJetbrainsRiderMultitudePrimaryActionOpen  ideJetbrainsRiderMultitudePrimaryActionOpen,
+            IdeJetbrainsRiderMultitudeSecondaryActionOpen ideJetbrainsRiderMultitudeSecondaryActionOpen
         ) : IEnvironmentVariablesSourceFilesDirectory
     {
         private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
@@ -56,6 +57,8 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                     "notepadpp-all-close" => notePadPlusPlusAllClose.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "ide-jetbrains-rider-multitude-primary-action-open.env" => ideJetbrainsRiderMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "ide-jetbrains-rider-multitude-secondary-action-open.env" => ideJetbrainsRiderMultitudeSecondaryActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     _ => something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                 };
