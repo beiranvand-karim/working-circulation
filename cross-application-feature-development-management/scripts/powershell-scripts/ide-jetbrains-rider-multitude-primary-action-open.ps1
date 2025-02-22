@@ -5,4 +5,19 @@ get-content "ide-jetbrains-rider-multitude-primary-action-open.env" | ForEach-Ob
     set-content env:\$name $value
 }
 
-start-process -FilePath $env:RIDER_LOCATION -ArgumentList $env:PRIMARY_APPLICATION_LOCATION
+$ArgumentList=@"
+--application "ide-management" `
+--command "close"
+--ide-execute-file-location $env:RIDER_LOCATION `
+--application-location $env:PRIMARY_APPLICATION_LOCATION `
+--ide-name "rider" `
+--application-name $env:HOST_APPLICATION_NAME
+"@
+
+Push-Location $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
+
+start-process -FilePath `
+    $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList `
+    $ArgumentList
+
+Pop-Location
