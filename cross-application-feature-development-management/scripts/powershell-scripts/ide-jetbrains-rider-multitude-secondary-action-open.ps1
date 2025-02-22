@@ -5,4 +5,8 @@ get-content "ide-jetbrains-rider-multitude-secondary-action-open.env" | ForEach-
     set-content env:\$name $value
 }
 
-start-process -FilePath $env:RIDER_LOCATION -ArgumentList $env:SECONDARY_APPLICATION_LOCATION
+Push-Location $env:CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
+
+start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList "--application $env:APPLICATION --command $env:COMMAND --ide-execute-file-location $env:RIDER_LOCATION  --application-location $env:SECONDARY_APPLICATION_LOCATION --ide-name $env:IDE_NAME --application-name $env:GUEST_APPLICATION_NAME --feature-name $env:FEATURE_NAME --hosting-directory $env:HOSTING_DIRECTORY"
+
+Pop-Location
