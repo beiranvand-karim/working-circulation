@@ -22,7 +22,8 @@ namespace cross_application_feature_development_management.Directories.Feature.A
             IdeJetbrainsRiderMultitudePrimaryActionOpen  ideJetbrainsRiderMultitudePrimaryActionOpen,
             IdeJetbrainsRiderMultitudeSecondaryActionOpen ideJetbrainsRiderMultitudeSecondaryActionOpen,
             IdeJetbrainsWebstormMultitudePrimaryActionOpen ideJetbrainsWebstormMultitudePrimaryActionOpen,
-            IdeJetbrainsWebstormMultitudeSecondaryActionOpen ideJetbrainsWebstormMultitudeSecondaryActionOpen
+            IdeJetbrainsWebstormMultitudeSecondaryActionOpen ideJetbrainsWebstormMultitudeSecondaryActionOpen,
+            IdeJetbrainsWebstormMultitudePrimaryActionShut ideJetbrainsWebstormMultitudePrimaryActionShut
         ) : IEnvironmentVariablesSourceFilesDirectory
     {
         private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
@@ -65,6 +66,8 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                     "ide-jetbrains-webstorm-multitude-primary-action-open.env" => ideJetbrainsWebstormMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "ide-jetbrains-webstorm-multitude-secondary-action-open.env" => ideJetbrainsWebstormMultitudeSecondaryActionOpen.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "ide-jetbrains-webstorm-multitude-primary-action-shut.env" => ideJetbrainsWebstormMultitudePrimaryActionShut.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     _ => something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                 };

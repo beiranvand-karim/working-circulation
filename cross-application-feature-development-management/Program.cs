@@ -89,6 +89,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<IdeJetbrainsRiderMultitudeSecondaryActionOpen>();
                     services.AddTransient<IdeJetbrainsWebstormMultitudePrimaryActionOpen>();
                     services.AddTransient<IdeJetbrainsWebstormMultitudeSecondaryActionOpen>();
+                    services.AddTransient<IdeJetbrainsWebstormMultitudePrimaryActionShut>();
                 })
                 .UseSerilog()
                 .Build();
