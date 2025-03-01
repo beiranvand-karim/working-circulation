@@ -23,19 +23,6 @@ namespace cross_application_feature_development_management.Directories.Classes
         IHostApplicationName hostApplicationName
         ) : IPowerShellScriptsDirectory
     {
-        private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
-        private readonly ITargetDirectory targetDirectory = targetDirectory;
-        private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
-        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
-        private readonly IDirectories directories = directories;
-        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
-        private readonly ILogger<PowerShellScriptsDirectory> logger = logger;
-        private readonly IFrontEndDirectory frontEndDirectory = frontEndDirectory;
-        private readonly IFrontEndHostDirectory frontEndHostDirectory = frontEndHostDirectory;
-        private readonly IFrontEndGuestDirectory frontEndGuestDirectory = frontEndGuestDirectory;
-        private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
-        private readonly IHostApplicationName hostApplicationName = hostApplicationName;
-
         public void ReplaceFileNamesWithPaths()
         {
             const string direcName = "powershell-scripts";
@@ -56,12 +43,12 @@ namespace cross_application_feature_development_management.Directories.Classes
 
                 switch (fileName)
                 {
-                    case "all-inclusive.ps1":
-                    case "all-inclusive-order-reverse.ps1":
+                    case "all-inclusive":
+                    case "all-inclusive-order-reverse":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
-                    case "directories-multitude-all-action-close.ps1":
+                    case "directories-multitude-all-action-close":
                         directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath("FEND_ADDRESS"));
                         directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS"));
                         directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS"));
@@ -71,14 +58,14 @@ namespace cross_application_feature_development_management.Directories.Classes
                         directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", frontEndDirectory.GetPath("NOTES_MESSAGES_ADDRESS"));
                         directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", frontEndDirectory.GetPath("WEB_LINKS_ADDRESS"));
                         break;
-                    case "all.ps1":
+                    case "all":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
-                    case "run-primary-application.ps1":
+                    case "run-primary-application":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         break;
-                    case "run-secondary-application.ps1":
+                    case "run-secondary-application":
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
                     case "docker-network-application-multitude-two-action-stop":

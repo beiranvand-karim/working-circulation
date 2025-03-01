@@ -1,6 +1,4 @@
-using cross_application_feature_development_management.Applications.IdeManagement;
-
-namespace cross_application_feature_development_management
+namespace cross_application_feature_development_management.Applications.IdeManagement
 {
     public class IdeProcessInformationGroup : IIdeProcessInformationGroup
     {
