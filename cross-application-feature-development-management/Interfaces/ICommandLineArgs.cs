@@ -4,6 +4,6 @@ namespace cross_application_feature_development_management.Interfaces
     {
         public string GetKey(string key);
         public string GetKey2(string groupKey, string key);
-        public string GetByKey(string CommandLineArgKey);
+        public string GetByKey(string commandLineArgKey);
     }
 }
