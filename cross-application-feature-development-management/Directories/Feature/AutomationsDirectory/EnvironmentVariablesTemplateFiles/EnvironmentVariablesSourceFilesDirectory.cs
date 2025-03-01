@@ -29,13 +29,6 @@ namespace cross_application_feature_development_management.Directories.Feature.A
             IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut
         ) : IEnvironmentVariablesSourceFilesDirectory
     {
-        private readonly ISomethingFeatureNameDirectory somethingFeatureNameDirectory = somethingFeatureNameDirectory;
-        private readonly IAddToStartupScript addToStartupScript = addToStartupScript;
-        private readonly INotePadPlusPlusOpenAll notePadPlusPlusOpenAll = notePadPlusPlusOpenAll;
-        private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
-        private readonly INotePadPlusPlusAllClose notePadPlusPlusAllClose = notePadPlusPlusAllClose;
-        private readonly INotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen = notepadPlusPlusMultitudeAllOrderReverseActionOpen;
-
         public string GetPath()
         {
             throw new NotImplementedException();
@@ -51,7 +44,17 @@ namespace cross_application_feature_development_management.Directories.Feature.A
 
                 var contentToWrite = destFileName switch
                 {
-                    "directories" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-include-nothing-order-reverse-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "directories-inclusive-order-reverse-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "directories-multitude-all-action-close.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "directories-open-inclusive.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "directories-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                        environmentVariablesSourceDictionary),
+                    "directories-startup-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "startup" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
