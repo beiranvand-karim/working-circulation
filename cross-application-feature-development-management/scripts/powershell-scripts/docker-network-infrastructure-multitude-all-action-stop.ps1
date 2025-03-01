@@ -8,4 +8,5 @@ get-content "docker-network-infrastructure-multitude-all-action-stop.env" | ForE
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
 push-location $env:INFRASTRUCTURE_COMPOSE_FILE_LOCATION
 docker compose stop
+docker compose rm -f
 pop-location
