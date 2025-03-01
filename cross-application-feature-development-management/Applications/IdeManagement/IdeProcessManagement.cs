@@ -21,7 +21,7 @@ namespace cross_application_feature_development_management.Applications.IdeManag
         {
                 IdeProcessInformationGroup ideProcessInformationGroup = new();
 
-                var pro = this.StartProcess();
+                var pro = StartProcess();
 
                 var processesMetaDataDirectory_path = processesMetaDataDirectory.GetPath();
 

@@ -9,7 +9,7 @@ namespace cross_application_feature_development_management.Applications.IdeManag
         IIdeProcessManagement ideProcessManagement
     ): IIdeManagement
     {
-        public string GetCommand()
+        private string GetCommand()
         {
             var command = commandLineArgs.GetByKey("--command");
             return command;

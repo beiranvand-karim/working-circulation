@@ -3,8 +3,8 @@ namespace cross_application_feature_development_management.Applications.IdeManag
     public class IdeProcessInformation
     {
         public string? GroupName { get; set; }
-        public int? Id { get; set; }
-        public string? IdeName { get; set; }
-        public string? ApplicationName { get; set; }
+        public int? Id { get; init; }
+        public string? IdeName { get; init; }
+        public string? ApplicationName { get; init; }
     }
 }
