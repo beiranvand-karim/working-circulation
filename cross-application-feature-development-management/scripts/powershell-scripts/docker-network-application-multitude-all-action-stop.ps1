@@ -7,5 +7,5 @@ get-content "docker-network-application-multitude-all-action-stop.env" | ForEach
 
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
 push-location $env:APPLICATION_COMPOSE_FILE_LOCATION
-docker compose stop -a
+docker compose stop
 pop-location
