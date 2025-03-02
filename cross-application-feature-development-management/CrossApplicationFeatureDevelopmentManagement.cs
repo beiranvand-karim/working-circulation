@@ -18,7 +18,7 @@ namespace cross_application_feature_development_management
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
             IBatchScriptsDirectory batchScriptsDirectory,
             ISomething something,
-            IEnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
+            EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
             IAutomationsDirectory automationsDirectory,
             ICommandLineArgs commandLineArgs,
             IOperationsDirectory operationsDirectory
@@ -34,7 +34,7 @@ namespace cross_application_feature_development_management
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IBatchScriptsDirectory batchScriptsDirectory = batchScriptsDirectory;
         private readonly ISomething something = something;
-        private readonly IEnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory = environmentVariablesSourceFilesDirectory;
+        private readonly EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory = environmentVariablesSourceFilesDirectory;
         private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public string GetFormat()
