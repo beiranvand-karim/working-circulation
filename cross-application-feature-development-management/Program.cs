@@ -64,7 +64,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<IDirectories, Directories.Classes.Directories>();
                     services.AddTransient<IFeatureName, FeatureName>();
                     services.AddTransient<INotePadPlusPlusOpenAll, NotePadPlusPlusOpenAll>();
-                    services.AddTransient<IEnvironmentVariablesSourceFilesDirectory, EnvironmentVariablesSourceFilesDirectory>();
+                    services.AddTransient<EnvironmentVariablesSourceFilesDirectory>();
                     services.AddTransient<IAutomationsDirectory, AutomationsDirectory>();
                     services.AddTransient<INotePadPlusPlusAllClose, NotePadPlusPlusAllClose>();
                     services.AddTransient<INotepadPlusPlusMultitudeAllOrderReverseActionOpen, NotepadPlusPlusMultitudeAllOrderReverseActionOpen>();

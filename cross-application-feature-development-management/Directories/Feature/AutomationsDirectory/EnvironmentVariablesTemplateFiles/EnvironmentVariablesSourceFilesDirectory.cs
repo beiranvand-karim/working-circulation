@@ -5,12 +5,6 @@ using cross_application_feature_development_management.Names.Interfaces;
 
 namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
-    public interface IEnvironmentVariablesSourceFilesDirectory
-    {
-        public string GetPath();
-        public void Populate(string destinationDirectory, string templateSourceDirectory, Dictionary<string, string> environmentVariablesSourceDictionary);
-    }
-
     public class EnvironmentVariablesSourceFilesDirectory(
             ISomethingFeatureNameDirectory somethingFeatureNameDirectory,
             IAddToStartupScript addToStartupScript,
@@ -27,13 +21,8 @@ namespace cross_application_feature_development_management.Directories.Feature.A
             IdeJetbrainsWebstormMultitudeSecondaryActionShut ideJetbrainsWebstormMultitudeSecondaryActionShut,
             IdeJetbrainsRiderMultitudePrimaryActionShut ideJetbrainsRiderMultitudePrimaryActionShut,
             IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut
-        ) : IEnvironmentVariablesSourceFilesDirectory
+        )
     {
-        public string GetPath()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Populate(string destinationDirectory, string templateSourceDirectory, Dictionary<string, string> environmentVariablesSourceDictionary)
         {
             foreach (var templateFile in Directory.EnumerateFiles(templateSourceDirectory))
