@@ -1,3 +1,4 @@
+using cross_application_feature_development_management.Directories.Classes;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
@@ -11,7 +12,7 @@ namespace cross_application_feature_development_management
     public class CrossApplicationFeatureDevelopmentManagement(
             ILogger<CrossApplicationFeatureDevelopmentManagement> logger,
             IScriptsDirectory scriptsDirectory,
-            ITemplatesDirectory templatesDirectory,
+            TemplatesDirectory templatesDirectory,
             IFeatureNameDirectory featureNameDirectory,
             IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
             IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
@@ -21,22 +22,11 @@ namespace cross_application_feature_development_management
             EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
             IAutomationsDirectory automationsDirectory,
             ICommandLineArgs commandLineArgs,
-            IOperationsDirectory operationsDirectory
+            IOperationsDirectory operationsDirectory,
+            AloneDirectory aloneDirectory
             )
         : ICrossApplicationFeatureDevelopmentManagement
     {
-        private readonly ILogger<CrossApplicationFeatureDevelopmentManagement> logger = logger;
-        private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
-        private readonly ITemplatesDirectory templatesDirectory = templatesDirectory;
-        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
-        private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
-        private readonly IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory = environmentVariablesSourceDirectory;
-        private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
-        private readonly IBatchScriptsDirectory batchScriptsDirectory = batchScriptsDirectory;
-        private readonly ISomething something = something;
-        private readonly EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory = environmentVariablesSourceFilesDirectory;
-        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
-
         public string GetFormat()
         {
             var format = commandLineArgs.GetByKey("--format");
@@ -52,12 +42,6 @@ namespace cross_application_feature_development_management
         {
             try
             {
-                var templateSourceDirectory =
-                    Path.Combine(
-                        scriptsDirectory.GetName(),
-                        templatesDirectory.GetName()
-                    );
-
                 featureNameDirectory.CreateSelf();
 
                 automationsDirectory.Create();
@@ -66,8 +50,8 @@ namespace cross_application_feature_development_management
                 var destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
 
                 Dictionary<string, string> environmentVariablesSourceDictionary;
-                
-                if(IsFormatJson())
+
+                if (IsFormatJson())
                 {
                     environmentVariablesSourceDictionary =
                         something.GetAllEnvironmentVariablesAndValuesFromSourceJsonFile(
@@ -81,13 +65,13 @@ namespace cross_application_feature_development_management
                             environmentVariablesSourceDirectory.GetName()
                         );
                 }
-                
 
-                environmentVariablesSourceFilesDirectory.Populate(destinationDirectory, templateSourceDirectory, environmentVariablesSourceDictionary);
+
+                environmentVariablesSourceFilesDirectory.Populate(destinationDirectory, environmentVariablesSourceDictionary);
 
                 powerShellScriptsDirectory.CopyContentToFeatureNameDirectory();
                 powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
-                
+
                 operationsDirectory.Create();
                 batchScriptsDirectory.CopyContentToFeatureNameDirectory();
                 batchScriptsDirectory.ReplaceFileNamesWithPaths();
