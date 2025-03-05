@@ -3,9 +3,28 @@ using cross_application_feature_development_management.Interfaces;
 
 namespace cross_application_feature_development_management.Directories.Classes
 {
-    public class TemplatesDirectory(ICommandLineArgs commandLineArgs) : ITemplatesDirectory
+    public class TemplatesDirectory(
+        ICommandLineArgs commandLineArgs,
+        AloneDirectory aloneDirectory,
+        ScriptsDirectory scriptsDirectory
+    ) : ITemplatesDirectory
     {
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
+
+        public string GetPath()
+        {
+            var templateSourceDirectory_construction =
+                Path.Combine(
+                    scriptsDirectory.GetName(),
+                    GetName()
+                );
+
+            var templateSourceDirectory = aloneDirectory.IsAlone()
+                ? aloneDirectory.GetName()
+                : templateSourceDirectory_construction;
+
+
+            return templateSourceDirectory;
+        }
 
         public string GetName()
         {

@@ -1,4 +1,5 @@
 using cross_application_feature_development_management.Combiners.Interfaces;
+using cross_application_feature_development_management.Directories.Classes;
 using cross_application_feature_development_management.Directories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Interfaces;
@@ -13,18 +14,21 @@ namespace cross_application_feature_development_management.Directories.Feature.A
             IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
             INotePadPlusPlusAllClose notePadPlusPlusAllClose,
             INotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen,
-            IdeJetbrainsRiderMultitudePrimaryActionOpen  ideJetbrainsRiderMultitudePrimaryActionOpen,
+            IdeJetbrainsRiderMultitudePrimaryActionOpen ideJetbrainsRiderMultitudePrimaryActionOpen,
             IdeJetbrainsRiderMultitudeSecondaryActionOpen ideJetbrainsRiderMultitudeSecondaryActionOpen,
             IdeJetbrainsWebstormMultitudePrimaryActionOpen ideJetbrainsWebstormMultitudePrimaryActionOpen,
             IdeJetbrainsWebstormMultitudeSecondaryActionOpen ideJetbrainsWebstormMultitudeSecondaryActionOpen,
             IdeJetbrainsWebstormMultitudePrimaryActionShut ideJetbrainsWebstormMultitudePrimaryActionShut,
             IdeJetbrainsWebstormMultitudeSecondaryActionShut ideJetbrainsWebstormMultitudeSecondaryActionShut,
             IdeJetbrainsRiderMultitudePrimaryActionShut ideJetbrainsRiderMultitudePrimaryActionShut,
-            IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut
+            IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut,
+            TemplatesDirectory templatesDirectory
         )
     {
-        public void Populate(string destinationDirectory, string templateSourceDirectory, Dictionary<string, string> environmentVariablesSourceDictionary)
+        public void Populate(string destinationDirectory, Dictionary<string, string> environmentVariablesSourceDictionary)
         {
+            var templateSourceDirectory = templatesDirectory.GetPath();
+
             foreach (var templateFile in Directory.EnumerateFiles(templateSourceDirectory))
             {
                 var destFileName = Path.GetFileNameWithoutExtension(templateFile);
@@ -80,7 +84,6 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                 {
                     writer.WriteLine(valueToWrite);
                 }
-
             }
         }
     }
