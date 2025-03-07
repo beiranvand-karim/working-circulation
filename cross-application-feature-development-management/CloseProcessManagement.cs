@@ -27,7 +27,6 @@ namespace cross_application_feature_development_management
                 logger.LogInformation("Id: {Id}", pInfo?.id);
                 var p = Process.GetProcessById((int)pInfo?.id);
                 p.Kill();
-                Thread.Sleep(2000);
             }
 
         }
