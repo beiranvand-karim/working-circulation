@@ -70,7 +70,7 @@ namespace cross_application_feature_development_management
                 environmentVariablesSourceFilesDirectory.Populate(destinationDirectory, environmentVariablesSourceDictionary);
 
                 powerShellScriptsDirectory.CopyContentToFeatureNameDirectory();
-                powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
+                powerShellScriptsDirectory.ReplaceFileNamesWithPaths(environmentVariablesSourceDictionary);
 
                 operationsDirectory.Create();
                 batchScriptsDirectory.CopyContentToFeatureNameDirectory();

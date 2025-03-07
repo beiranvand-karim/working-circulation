@@ -97,6 +97,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<AloneDirectory>();
                     services.AddTransient<ScriptsDirectory>();
                     services.AddTransient<GuestApplicationName>();
+                    services.AddTransient<PowerShellScriptsDirectory>();
                 })
                 .UseSerilog()
                 .Build();

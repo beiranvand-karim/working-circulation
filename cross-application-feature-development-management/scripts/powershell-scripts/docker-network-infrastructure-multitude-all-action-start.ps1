@@ -7,6 +7,8 @@ get-content "docker-network-infrastructure-multitude-all-action-start.env" | For
 
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
 push-location $env:INFRASTRUCTURE_COMPOSE_FILE_LOCATION
+az acr login --name $env:DOCKER_LOGIN_NAME
+docker compose down
 docker compose pull
 docker compose up -d
 pop-location

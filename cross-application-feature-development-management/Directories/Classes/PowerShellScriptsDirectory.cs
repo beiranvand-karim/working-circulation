@@ -23,7 +23,7 @@ namespace cross_application_feature_development_management.Directories.Classes
         IHostApplicationName hostApplicationName
         ) : IPowerShellScriptsDirectory
     {
-        public void ReplaceFileNamesWithPaths()
+        public void ReplaceFileNamesWithPaths(Dictionary<string, string> environmentVariablesSourceDictionary)
         {
             const string direcName = "powershell-scripts";
             var pathInTarget = ConstructPathToSelfInFeatureNameDirectory(direcName);
@@ -77,6 +77,13 @@ namespace cross_application_feature_development_management.Directories.Classes
                         break;
                     case "docker-network-application-multitude-secondary-action-stop":
                         directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
+                        break;
+                    case "docker-network-application-multitude-all-action-start":
+                        environmentVariablesSourceDictionary.TryGetValue(
+                            "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES",
+                            out var azureClientSecretFromEnvironmentVariables
+                        );
+                        directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables ?? "");
                         break;
                 }
             }
