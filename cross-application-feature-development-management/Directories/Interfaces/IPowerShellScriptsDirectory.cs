@@ -2,7 +2,7 @@ namespace cross_application_feature_development_management.Directories.Interface
 {
     public interface IPowerShellScriptsDirectory
     {
-        public void ReplaceFileNamesWithPaths();
+        public void ReplaceFileNamesWithPaths(Dictionary<string, string> environmentVariablesSourceDictionary);
         public void CopyContentToFeatureNameDirectory();
         public string ConstructPathToSelfInScriptsDirectory(string direcName);
         public string ConstructPathToSelfInFeatureNameDirectory(string direcName);
