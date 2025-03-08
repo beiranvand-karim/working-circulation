@@ -7,7 +7,7 @@ namespace cross_application_feature_development_management.Directories
         public string GetName()
         {
             var hostingDirectoryNameKey = commandLineArgs.GetKey("HostingDirectoryNameKey");
-            var hostingDirectoryName = commandLineArgs.GetByKey(hostingDirectoryNameKey);
+            var hostingDirectoryName = CommandLineArgs.GetByKey(hostingDirectoryNameKey);
             return hostingDirectoryName;
         }
     }

@@ -18,7 +18,7 @@ namespace cross_application_feature_development_management.Directories
         {
             const string repositoryDirectoryNameKey = "--repository-directory";
             var workingCirculationDirectoryName =
-                Path.Combine(commandLineArgs.GetByKey(repositoryDirectoryNameKey), "WorkingCirculation");
+                Path.Combine(CommandLineArgs.GetByKey(repositoryDirectoryNameKey), "WorkingCirculation");
             return workingCirculationDirectoryName;
         }
     }

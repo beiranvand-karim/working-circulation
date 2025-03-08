@@ -26,7 +26,7 @@ namespace cross_application_feature_development_management
     {
         private string GetFormat()
         {
-            var format = commandLineArgs.GetByKey("--format");
+            var format = CommandLineArgs.GetByKey("--format");
             return format;
         }
 
