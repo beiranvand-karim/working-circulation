@@ -73,7 +73,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         environmentVariablesSourceDictionary),
                     "ide-jetbrains-rider-multitude-secondary-action-shut.env" => ideJetbrainsRiderMultitudeSecondaryActionShut.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    _ => something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    _ => Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                 };
 
                 using StreamWriter writer = new(fs);

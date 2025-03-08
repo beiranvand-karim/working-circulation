@@ -19,10 +19,10 @@ namespace cross_application_feature_development_management
 
             logger.LogInformation("items, {items}", readProcessInformationGroup);
 
-            foreach (var pInfo in readProcessInformationGroup?.group)
+            foreach (var pInfo in readProcessInformationGroup?.Group)
             {
-                logger.LogInformation("Id: {Id}", pInfo?.id);
-                var p = Process.GetProcessById((int)pInfo?.id);
+                logger.LogInformation("Id: {Id}", pInfo?.Id);
+                var p = Process.GetProcessById((int)pInfo?.Id);
                 p.Kill();
             }
         }
