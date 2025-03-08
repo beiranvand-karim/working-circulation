@@ -95,6 +95,13 @@ namespace cross_application_feature_development_management.Directories.Classes
                         );
                         directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables ?? "");
                         break;
+                    case "docker-network-secondary-multitude-all-action-start":
+                        environmentVariablesSourceDictionary.TryGetValue(
+                            "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES",
+                            out var azureClientSecretFromEnvironmentVariables_1
+                        );
+                        directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables_1 ?? "");
+                        break;
                 }
             }
         }
