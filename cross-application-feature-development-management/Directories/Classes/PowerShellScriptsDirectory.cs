@@ -68,18 +68,8 @@ namespace cross_application_feature_development_management.Directories.Classes
                     case "run-secondary-application":
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
-                    case "docker-network-application-multitude-two-action-stop":
-                        directories.ReplaceFileNameWithPath(filePath, "host-application-name", hostApplicationName.GetName());
-                        directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
-                        break;
-                    case "docker-network-application-multitude-primary-action-stop":
-                        directories.ReplaceFileNameWithPath(filePath, "host-application-name", hostApplicationName.GetName());
-                        break;
                     case "docker-network-secondary-multitude-primary-action-stop":
                         directories.ReplaceFileNameWithPath(filePath, "host-application-name", hostApplicationName.GetName());
-                        break;
-                    case "docker-network-application-multitude-secondary-action-stop":
-                        directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
                         break;
                     case "docker-network-secondary-multitude-secondary-action-stop":
                         directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
@@ -88,19 +78,12 @@ namespace cross_application_feature_development_management.Directories.Classes
                         directories.ReplaceFileNameWithPath(filePath, "host-application-name", hostApplicationName.GetName());
                         directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
                         break;
-                    case "docker-network-application-multitude-all-action-start":
+                    case "docker-network-secondary-multitude-all-action-start":
                         environmentVariablesSourceDictionary.TryGetValue(
                             "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES",
                             out var azureClientSecretFromEnvironmentVariables
                         );
                         directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables ?? "");
-                        break;
-                    case "docker-network-secondary-multitude-all-action-start":
-                        environmentVariablesSourceDictionary.TryGetValue(
-                            "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES",
-                            out var azureClientSecretFromEnvironmentVariables_1
-                        );
-                        directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables_1 ?? "");
                         break;
                 }
             }
