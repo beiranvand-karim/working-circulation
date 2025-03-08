@@ -1,17 +1,11 @@
-using cross_application_feature_development_management.Interfaces;
-
 namespace cross_application_feature_development_management
 {
     public class NotepadPlusPlusFileManagementCommandSwitcher(
-        ICommandLineArgs commandLineArgs,
-        IProcessManager processManager,
-        ICloseProcessManagement closeProcessManagement
-        ) : INotepadPlusPlusFileManagementCommandSwitcher
+        CommandLineArgs commandLineArgs,
+        ProcessManager processManager,
+        CloseProcessManagement closeProcessManagement
+        )
     {
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
-        private readonly IProcessManager processManager = processManager;
-        private readonly ICloseProcessManagement closeProcessManagement = closeProcessManagement;
-
         public string GetCommand()
         {
             var command = commandLineArgs.GetByKey("--command");
@@ -39,11 +33,5 @@ namespace cross_application_feature_development_management
                 closeProcessManagement.Run();
             }
         }
-    }
-
-    public interface INotepadPlusPlusFileManagementCommandSwitcher
-    {
-        public string GetCommand();
-        public void Run();
     }
 }

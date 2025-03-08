@@ -1,13 +1,11 @@
-using cross_application_feature_development_management.Interfaces;
-
 namespace cross_application_feature_development_management.Applications.IdeManagement
 {
     public class IdeManagement(
-        ICommandLineArgs commandLineArgs,
-        IProcessManager processManager,
-        ICloseProcessManagement closeProcessManagement,
-        IIdeProcessManagement ideProcessManagement
-    ): IIdeManagement
+        CommandLineArgs commandLineArgs,
+        ProcessManager processManager,
+        CloseProcessManagement closeProcessManagement,
+        IdeProcessManagement ideProcessManagement
+    )
     {
         private string GetCommand()
         {
@@ -36,10 +34,5 @@ namespace cross_application_feature_development_management.Applications.IdeManag
                 ideProcessManagement.Close();
             }
         }
-    }
-
-    public interface IIdeManagement
-    {
-        public void Run();
     }
 }

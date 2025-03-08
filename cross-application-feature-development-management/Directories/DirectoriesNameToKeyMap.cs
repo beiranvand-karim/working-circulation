@@ -1,11 +1,9 @@
-using cross_application_feature_development_management.Interfaces;
-
 namespace cross_application_feature_development_management.Directories
 {
-    public class DirectoriesNameToKeyMap(ICommandLineArgs commandLineArgs) : IDirectoriesNameToKeyMap
+    public class DirectoriesNameToKeyMap(
+            CommandLineArgs commandLineArgs
+        )
     {
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
-
         public string GetValue(string key)
         {
             const string groupKey = "DirectoriesNameToKeyMap";

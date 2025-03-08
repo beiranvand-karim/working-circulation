@@ -1,4 +1,3 @@
-using cross_application_feature_development_management.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
@@ -6,23 +5,15 @@ namespace cross_application_feature_development_management.Directories.Applicati
 {
     public class ApplicationLocation(
         IConfiguration configuration,
-        ICommandLineArgs commandLineArgs,
+        CommandLineArgs commandLineArgs,
         ILogger<ApplicationLocation> logger
-    ):  IApplicationLocation
+    )
     {
-        private readonly IConfiguration configuration = configuration;
-
         public string GetPath()
         {
             var applicationLocation = commandLineArgs.GetByKey("--application-location");
             logger.LogInformation("application location: {applicationLocation}", applicationLocation);
             return applicationLocation;
         }
-
-    }
-
-    public interface  IApplicationLocation
-    {
-        public string GetPath();
     }
 }

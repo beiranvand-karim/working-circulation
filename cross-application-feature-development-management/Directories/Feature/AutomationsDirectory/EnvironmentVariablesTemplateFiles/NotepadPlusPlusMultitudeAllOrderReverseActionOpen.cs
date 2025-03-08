@@ -1,36 +1,19 @@
 using System.Text;
-using cross_application_feature_development_management.Directories.Interfaces;
-using cross_application_feature_development_management.Helpers.Interfaces;
-using cross_application_feature_development_management.Names.Classses;
-using cross_application_feature_development_management.Names.Interfaces;
+using cross_application_feature_development_management.Helpers;
+using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
-    public interface INotepadPlusPlusMultitudeAllOrderReverseActionOpen
-    {
-        public Dictionary<string, string> PairUpVariablesWithTheirValue(
-            string fileNamePath,
-            Dictionary<string, string> environmentVariablesSourceDictionary
-        );
-    }
-
     public class NotepadPlusPlusMultitudeAllOrderReverseActionOpen(
-        IFeatureName featureName,
-        IGuestApplicationName guestApplicationName,
-        IHostApplicationName hostApplicationName,
-        IHostingDirectory hostingDirectory,
+        FeatureName featureName,
+        GuestApplicationName guestApplicationName,
+        HostApplicationName hostApplicationName,
+        HostingDirectory hostingDirectory,
         ILogger<NotePadPlusPlusOpenAll> logger,
-        IStringHelpers stringHelpers
-    ) : INotepadPlusPlusMultitudeAllOrderReverseActionOpen
+        StringHelpers stringHelpers
+    )
     {
-        private readonly IFeatureName featureName = featureName;
-        private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
-        private readonly IHostApplicationName hostApplicationName = hostApplicationName;
-        private readonly IHostingDirectory hostingDirectory = hostingDirectory;
-        private readonly ILogger<NotePadPlusPlusOpenAll> logger = logger;
-        private readonly IStringHelpers stringHelpers = stringHelpers;
-
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
             Dictionary<string, string> environmentVariablesSourceDictionary

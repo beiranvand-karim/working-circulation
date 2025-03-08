@@ -6,12 +6,9 @@ namespace cross_application_feature_development_management
 {
     public class CloseProcessManagement(
         ILogger<CloseProcessManagement> logger,
-        IProcessesMetaDataDirectory processesMetaDataDirectory
-        ) : ICloseProcessManagement
+        ProcessesMetaDataDirectory processesMetaDataDirectory
+        )
     {
-        private readonly ILogger<CloseProcessManagement> logger = logger;
-        private readonly IProcessesMetaDataDirectory processesMetaDataDirectory = processesMetaDataDirectory;
-
         public void Run()
         {
             var notepadPlusPlusFileProcessesMetaDataDirectory = Path.Combine(processesMetaDataDirectory.GetPath(), "notepad-plus-plus-file-processes-meta-data.json");
@@ -28,13 +25,6 @@ namespace cross_application_feature_development_management
                 var p = Process.GetProcessById((int)pInfo?.id);
                 p.Kill();
             }
-
         }
-
-    }
-
-    public interface ICloseProcessManagement
-    {
-        public void Run();
     }
 }

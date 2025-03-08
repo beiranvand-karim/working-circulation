@@ -3,19 +3,19 @@ using System.Text.Json;
 using cross_application_feature_development_management.Directories.Applications;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Files.Executables;
-using cross_application_feature_development_management.Names.Classses;
+using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Applications.IdeManagement
 {
     public class IdeProcessManagement(
-        IIdeExecutiveFileLocation ideExecutiveFileLocation,
+        IdeExecutiveFileLocation ideExecutiveFileLocation,
         ILogger<IdeProcessManagement> logger,
-        IProcessesMetaDataDirectory processesMetaDataDirectory,
-        IApplicationLocation  applicationLocation,
-        IIdeName ideName,
-        IApplicationName applicationName
-    ): IIdeProcessManagement
+        ProcessesMetaDataDirectory processesMetaDataDirectory,
+        ApplicationLocation  applicationLocation,
+        IdeName ideName,
+        ApplicationName applicationName
+    )
     {
         public void Open()
         {
@@ -116,12 +116,5 @@ namespace cross_application_feature_development_management.Applications.IdeManag
             };
             return ideProcessInformation;
         }
-    }
-
-    public interface IIdeProcessManagement
-    {
-        public void Open();
-        public void Close();
-
     }
 }
