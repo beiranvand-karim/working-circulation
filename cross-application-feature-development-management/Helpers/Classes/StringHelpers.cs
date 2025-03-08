@@ -4,14 +4,14 @@ namespace cross_application_feature_development_management.Helpers.Classes
 {
     public class StringHelpers : IStringHelpers
     {
-        public string WrappInQoutationMarks(string value)
+        public string WrapInQuotationMarks(string value)
         {
-            string valueToWrite = string.Format("\"{0}\"", value);
+            var valueToWrite = $"\"{value}\"";
             return valueToWrite;
         }
-        public string StripQoutationMarks(string value)
+        public string StripQuotationMarks(string value)
         {
-            string valueToWrite = value.Replace("\"", "");
+            var valueToWrite = value.Replace("\"", "");
             return valueToWrite;
         }
     }
