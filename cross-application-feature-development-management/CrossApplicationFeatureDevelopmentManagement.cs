@@ -1,31 +1,28 @@
-using cross_application_feature_development_management.Directories.Classes;
+using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
-using cross_application_feature_development_management.Directories.Interfaces;
-using cross_application_feature_development_management.Interfaces;
-using cross_application_feature_development_management.Names.Interfaces;
+using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management
 {
     public class CrossApplicationFeatureDevelopmentManagement(
             ILogger<CrossApplicationFeatureDevelopmentManagement> logger,
-            IScriptsDirectory scriptsDirectory,
+            ScriptsDirectory scriptsDirectory,
             TemplatesDirectory templatesDirectory,
-            IFeatureNameDirectory featureNameDirectory,
-            IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-            IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
-            IPowerShellScriptsDirectory powerShellScriptsDirectory,
-            IBatchScriptsDirectory batchScriptsDirectory,
-            ISomething something,
+            FeatureNameDirectory featureNameDirectory,
+            EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
+            EnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
+            PowerShellScriptsDirectory powerShellScriptsDirectory,
+            BatchScriptsDirectory batchScriptsDirectory,
+            Something something,
             EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
-            IAutomationsDirectory automationsDirectory,
-            ICommandLineArgs commandLineArgs,
-            IOperationsDirectory operationsDirectory,
+            AutomationsDirectory automationsDirectory,
+            CommandLineArgs commandLineArgs,
+            OperationsDirectory operationsDirectory,
             AloneDirectory aloneDirectory
             )
-        : ICrossApplicationFeatureDevelopmentManagement
     {
         public string GetFormat()
         {
