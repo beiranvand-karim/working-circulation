@@ -7,7 +7,7 @@ namespace cross_application_feature_development_management.Directories
         public string GetName()
         {
             var scriptsDirectoryNameKey = commandLineArgs.GetKey("ScriptsDirectoryNameKey");
-            var scriptsDirectoryName = commandLineArgs.GetByKey(scriptsDirectoryNameKey);
+            var scriptsDirectoryName = CommandLineArgs.GetByKey(scriptsDirectoryNameKey);
             return scriptsDirectoryName;
         }
     }

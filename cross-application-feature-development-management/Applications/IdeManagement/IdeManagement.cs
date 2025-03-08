@@ -9,7 +9,7 @@ namespace cross_application_feature_development_management.Applications.IdeManag
     {
         private string GetCommand()
         {
-            var command = commandLineArgs.GetByKey("--command");
+            var command = CommandLineArgs.GetByKey("--command");
             return command;
         }
 

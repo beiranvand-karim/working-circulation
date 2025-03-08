@@ -13,5 +13,4 @@ $env:AZURE_CLIENT_SECRET = $AZURE_CLIENT_SECRET
 docker compose down
 docker compose pull
 docker compose up -d
-
 pop-location

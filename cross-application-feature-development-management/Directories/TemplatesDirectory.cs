@@ -18,7 +18,6 @@ namespace cross_application_feature_development_management.Directories
                 ? aloneDirectory.GetName()
                 : templateSourceDirectory_construction;
 
-
             return templateSourceDirectory;
         }
 
@@ -27,7 +26,7 @@ namespace cross_application_feature_development_management.Directories
             var templatesDirectoryNameKey =
                 commandLineArgs.GetKey("TemplatesDirectoryNameKey");
 
-            var templatesDirectoryName = commandLineArgs.GetByKey(templatesDirectoryNameKey);
+            var templatesDirectoryName = CommandLineArgs.GetByKey(templatesDirectoryNameKey);
             return templatesDirectoryName;
         }
     }

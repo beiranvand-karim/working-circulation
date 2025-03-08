@@ -31,7 +31,7 @@ namespace cross_application_feature_development_management
                 ProcessInformationGroup processInformationGroup = new();
 
 
-                var orderValue = commandLineArgs.GetByKey("--order");
+                var orderValue = CommandLineArgs.GetByKey("--order");
 
                 if (orderValue == "reverse")
                 {

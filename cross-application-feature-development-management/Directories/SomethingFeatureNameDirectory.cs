@@ -54,7 +54,7 @@ namespace cross_application_feature_development_management.Directories
                         var featureNameDirectoryPath = featureNameDirectory.GetPath();
                         var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
 
-                        var hostApplicationName = commandLineArgs.GetByKey("--host-application-name");
+                        var hostApplicationName = CommandLineArgs.GetByKey("--host-application-name");
 
                         var x = $"{directoryName}.{hostApplicationName}";
 
@@ -70,7 +70,7 @@ namespace cross_application_feature_development_management.Directories
                         var featureNameDirectoryPath = featureNameDirectory.GetPath();
                         var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
 
-                        var guestApplicationName = commandLineArgs.GetByKey("--guest-application-name");
+                        var guestApplicationName = CommandLineArgs.GetByKey("--guest-application-name");
 
                         var x = $"{directoryName}.{guestApplicationName}";
 

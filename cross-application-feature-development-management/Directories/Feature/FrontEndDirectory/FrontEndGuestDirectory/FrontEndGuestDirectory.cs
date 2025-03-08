@@ -17,7 +17,7 @@ namespace cross_application_feature_development_management.Directories.Feature.F
             var featureNameDirectoryPath = featureNameDirectory.GetPath();
             var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
 
-            var guestApplicationName = commandLineArgs.GetByKey("--guest-application-name");
+            var guestApplicationName = CommandLineArgs.GetByKey("--guest-application-name");
 
             var x = $"{directoryName}.{guestApplicationName}";
 

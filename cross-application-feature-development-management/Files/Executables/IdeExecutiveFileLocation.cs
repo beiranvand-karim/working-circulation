@@ -11,7 +11,7 @@ namespace cross_application_feature_development_management.Files.Executables
     {
         public string GetPath()
         {
-            var ideExecuteFileLocation = commandLineArgs.GetByKey("--ide-execute-file-location");
+            var ideExecuteFileLocation = CommandLineArgs.GetByKey("--ide-execute-file-location");
             logger.LogInformation("ide execute file location: {ideExecuteFileLocation}", ideExecuteFileLocation);
             return ideExecuteFileLocation;
         }

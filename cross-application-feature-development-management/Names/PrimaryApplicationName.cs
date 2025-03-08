@@ -7,7 +7,7 @@ namespace cross_application_feature_development_management.Names
         public string GetName()
         {
             const string primaryApplicationNameKey = "--primary-application-name";
-            var name = commandLineArgs.GetByKey(primaryApplicationNameKey);
+            var name = CommandLineArgs.GetByKey(primaryApplicationNameKey);
             return name;
         }
     }
