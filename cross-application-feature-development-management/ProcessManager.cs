@@ -1,37 +1,26 @@
 using System.Diagnostics;
 using System.Text.Json;
+using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndHostDirectory;
-using cross_application_feature_development_management.Directories.Interfaces;
-using cross_application_feature_development_management.Files.Interfaces;
-using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Files.Executables;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management
 {
     public class ProcessManager(
-        INotePadPlusPlus notePadPlusPlus,
+        NotePadPlusPlus notePadPlusPlus,
         ILogger<ProcessManager> logger,
-        IDirectoryOperations directoryOperations,
-        IFeatureNameDirectory featureNameDirectory,
-        IFrontEndHostDirectory frontEndHostDirectory,
-        IFrontEndGuestDirectory frontEndGuestDirectory,
-        INotesAndMessagesDirectory notesAndMessagesDirectory,
-        IProcessesMetaDataDirectory processesMetaDataDirectory,
-        ICommandLineArgs commandLineArgs
-        ) : IProcessManager
+        DirectoryOperations directoryOperations,
+        FeatureNameDirectory featureNameDirectory,
+        FrontEndHostDirectory frontEndHostDirectory,
+        FrontEndGuestDirectory frontEndGuestDirectory,
+        NotesAndMessagesDirectory notesAndMessagesDirectory,
+        ProcessesMetaDataDirectory processesMetaDataDirectory,
+        CommandLineArgs commandLineArgs
+        )
     {
-        private readonly INotePadPlusPlus notePadPlusPlus = notePadPlusPlus;
-        private readonly ILogger<ProcessManager> logger = logger;
-        private readonly IDirectoryOperations directoryOperations = directoryOperations;
-        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
-        private readonly IFrontEndHostDirectory frontEndHostDirectory = frontEndHostDirectory;
-        private readonly IFrontEndGuestDirectory frontEndGuestDirectory = frontEndGuestDirectory;
-        private readonly INotesAndMessagesDirectory notesAndMessagesDirectory = notesAndMessagesDirectory;
-        private readonly IProcessesMetaDataDirectory processesMetaDataDirectory = processesMetaDataDirectory;
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
-
         public void Run()
         {
             try

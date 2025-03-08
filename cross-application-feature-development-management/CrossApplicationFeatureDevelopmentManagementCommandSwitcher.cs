@@ -1,20 +1,14 @@
 using cross_application_feature_development_management.Applications.IdeManagement;
-using cross_application_feature_development_management.Interfaces;
 
 namespace cross_application_feature_development_management
 {
     public class CrossApplicationFeatureDevelopmentManagementCommandSwitcher(
-        ICommandLineArgs commandLineArgs,
-        ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement,
-        INotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher,
-        IIdeManagement  ideManagement 
-        ) : ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
+        CommandLineArgs commandLineArgs,
+        CrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement,
+        NotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher,
+        IdeManagement ideManagement 
+        )
     {
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
-        private readonly ICrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement = crossApplicationFeatureDevelopmentManagement;
-        private readonly INotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher = notepadPlusPlusFileManagementCommandSwitcher;
-        private readonly IIdeManagement ideManagement = ideManagement;
-
         public string GetApplication()
         {
             var application = commandLineArgs.GetByKey("--application");
@@ -53,12 +47,5 @@ namespace cross_application_feature_development_management
                 ideManagement.Run();
             }
         }
-
-    }
-
-    public interface ICrossApplicationFeatureDevelopmentManagementCommandSwitcher
-    {
-        public string GetApplication();
-        public void Run();
     }
 }

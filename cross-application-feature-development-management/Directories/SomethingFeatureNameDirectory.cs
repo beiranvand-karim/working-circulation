@@ -1,19 +1,17 @@
 using System.Text;
-using cross_application_feature_development_management.Directories.Interfaces;
-using cross_application_feature_development_management.Helpers.Interfaces;
-using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Helpers;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories
 {
     public class SomethingFeatureNameDirectory(
-        ICommandLineArgs commandLineArgs,
-        IDirectoriesNameToKeyMap directoriesNameToKeyMap,
-        IFeatureNameDirectory featureNameDirectory,
-        IHostingDirectory hostingDirectory,
+        CommandLineArgs commandLineArgs,
+        DirectoriesNameToKeyMap directoriesNameToKeyMap,
+        FeatureNameDirectory featureNameDirectory,
+        HostingDirectory hostingDirectory,
         ILogger<SomethingFeatureNameDirectory> logger,
-        IStringHelpers stringHelpers
-        ) : ISomethingFeatureNameDirectory
+        StringHelpers stringHelpers
+        )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,

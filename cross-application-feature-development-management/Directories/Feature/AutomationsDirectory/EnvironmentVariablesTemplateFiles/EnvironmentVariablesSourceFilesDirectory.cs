@@ -1,19 +1,16 @@
-using cross_application_feature_development_management.Combiners.Interfaces;
-using cross_application_feature_development_management.Directories.Classes;
-using cross_application_feature_development_management.Directories.Interfaces;
-using cross_application_feature_development_management.Interfaces;
-using cross_application_feature_development_management.Names.Interfaces;
+using cross_application_feature_development_management.Combiners;
+using cross_application_feature_development_management.Names;
 
 namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public class EnvironmentVariablesSourceFilesDirectory(
-            ISomethingFeatureNameDirectory somethingFeatureNameDirectory,
-            IAddToStartupScript addToStartupScript,
-            INotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
-            ISomething something,
-            IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-            INotePadPlusPlusAllClose notePadPlusPlusAllClose,
-            INotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen,
+            SomethingFeatureNameDirectory somethingFeatureNameDirectory,
+            AddToStartupScript addToStartupScript,
+            NotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
+            Something something,
+            EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
+            NotePadPlusPlusAllClose notePadPlusPlusAllClose,
+            NotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen,
             IdeJetbrainsRiderMultitudePrimaryActionOpen ideJetbrainsRiderMultitudePrimaryActionOpen,
             IdeJetbrainsRiderMultitudeSecondaryActionOpen ideJetbrainsRiderMultitudeSecondaryActionOpen,
             IdeJetbrainsWebstormMultitudePrimaryActionOpen ideJetbrainsWebstormMultitudePrimaryActionOpen,

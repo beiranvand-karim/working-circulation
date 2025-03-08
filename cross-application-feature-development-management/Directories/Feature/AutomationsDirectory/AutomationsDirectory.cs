@@ -1,20 +1,9 @@
-using cross_application_feature_development_management.Directories.Interfaces;
-
 namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory
 {
-    public interface IAutomationsDirectory
-    {
-        public string GetPath();
-        public void Create();
-    }
-
-
     public class AutomationsDirectory(
-            IFeatureNameDirectory featureNameDirectory
-        ) : IAutomationsDirectory
+            FeatureNameDirectory featureNameDirectory
+        )
     {
-        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
-
         public void Create()
         {
             var path = GetPath();
