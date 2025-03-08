@@ -6,7 +6,7 @@ namespace cross_application_feature_development_management
         CloseProcessManagement closeProcessManagement
         )
     {
-        public string GetCommand()
+        private string GetCommand()
         {
             var command = commandLineArgs.GetByKey("--command");
             return command;

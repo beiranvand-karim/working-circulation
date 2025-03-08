@@ -31,7 +31,6 @@ namespace cross_application_feature_development_management.Combiners
             {
                 var brokenLine = line.Split("=");
                 var key = brokenLine[0];
-                var value = brokenLine[1];
 
                 switch (key)
                 {
@@ -59,7 +58,6 @@ namespace cross_application_feature_development_management.Combiners
                         break;
                 }
             }
-
             return fileContentDictionaryToWriteToFile;
         }
     }

@@ -24,7 +24,7 @@ namespace cross_application_feature_development_management
             AloneDirectory aloneDirectory
             )
     {
-        public string GetFormat()
+        private string GetFormat()
         {
             var format = commandLineArgs.GetByKey("--format");
             return format;

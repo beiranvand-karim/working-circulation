@@ -9,7 +9,7 @@ namespace cross_application_feature_development_management
         IdeManagement ideManagement 
         )
     {
-        public string GetApplication()
+        private string GetApplication()
         {
             var application = commandLineArgs.GetByKey("--application");
             return application;

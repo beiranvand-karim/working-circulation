@@ -99,7 +99,7 @@ namespace cross_application_feature_development_management
                 logger.LogInformation("Process id: {Id}", myProcess.Id);
                 DirectoryInfo directoryInfo = new(openeeFilesContainingDirectoryLocation);
                 var dirName = directoryInfo.Name;
-                ProcessInformation processInformation = new() { groupName = dirName, id = myProcess.Id };
+                ProcessInformation processInformation = new() { GroupName = dirName, Id = myProcess.Id };
                 processInformationGroup.AddInFront(processInformation);
 
             }
