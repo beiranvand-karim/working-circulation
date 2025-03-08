@@ -98,7 +98,7 @@ namespace cross_application_feature_development_management.Directories
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
-        public string ConstructPathToSelfInScriptsDirectory(string direcName)
+        private string ConstructPathToSelfInScriptsDirectory(string direcName)
         {
             var scriptsDirectoryName = scriptsDirectory.GetName();
             var environmentVariablesFilesDirectory = Path.Combine(scriptsDirectoryName, direcName);

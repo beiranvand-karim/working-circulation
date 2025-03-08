@@ -14,7 +14,7 @@ namespace cross_application_feature_development_management.Directories
             return environmentVariablesManagementDirectoryName;
         }
 
-        public string CreatePath()
+        private string CreatePath()
         {
             const string repositoryDirectoryNameKey = "--repository-directory";
             var workingCirculationDirectoryName =

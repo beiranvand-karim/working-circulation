@@ -10,7 +10,7 @@ namespace cross_application_feature_development_management.Names
         GuestApplicationName guestApplicationName
         )
     {
-        public Dictionary<string, string> PairUpVariablesWithTheirValue(
+        public static Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
             Dictionary<string, string> environmentVariablesSourceDictionary
         )
@@ -55,10 +55,8 @@ namespace cross_application_feature_development_management.Names
             return string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower();
         }
 
-        private Dictionary<string, string> ReadKeyValueFromJsonFile(string fileNamePath)
+        private static Dictionary<string, string> ReadKeyValueFromJsonFile(string fileNamePath)
         {
-
-
             Dictionary<string, string> fileContentDictionary = [];
 
             using StreamReader r = new(fileNamePath);
@@ -69,11 +67,11 @@ namespace cross_application_feature_development_management.Names
 
             var dddd = JsonSerializer.Serialize(environmentVariables);
             var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(dddd);
-
-            foreach(var kv in dict)
+            foreach (var (key, value1) in from kv in dict
+                                          let key = ToUnderscoreCase(kv.Key).ToUpper()
+                                          let value1 = kv.Value
+                                          select (key, value1))
             {
-                var key = ToUnderscoreCase(kv.Key).ToUpper();
-                var value1 = kv.Value;               
                 fileContentDictionary.Add(key, value1);
             }
 
