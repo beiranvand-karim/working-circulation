@@ -11,7 +11,7 @@ namespace cross_application_feature_development_management
     {
         private string GetApplication()
         {
-            var application = commandLineArgs.GetByKey("--application");
+            var application = CommandLineArgs.GetByKey("--application");
             return application;
         }
 

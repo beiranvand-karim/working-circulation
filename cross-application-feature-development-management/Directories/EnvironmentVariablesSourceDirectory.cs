@@ -10,7 +10,7 @@ namespace cross_application_feature_development_management.Directories
             var environmentVariablesSourceDirectoryNameKey =
                commandLineArgs.GetKey("EnvironmentVariablesSourceDirectoryNameKey");
 
-            var environmentVariablesSourceDirectoryName = commandLineArgs.GetByKey(environmentVariablesSourceDirectoryNameKey);
+            var environmentVariablesSourceDirectoryName = CommandLineArgs.GetByKey(environmentVariablesSourceDirectoryNameKey);
 
             var environmentVariablesSourceDirectory =
                 Path.Combine(scriptsDirectory.GetName(), environmentVariablesSourceDirectoryName);
