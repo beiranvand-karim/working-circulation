@@ -5,7 +5,7 @@ namespace cross_application_feature_development_management.Names
         public string GetName()
         {
             const string guestApplicationNameKey = "--guest-application-name";
-            var name = commandLineArgs.GetByKey(guestApplicationNameKey);
+            var name = CommandLineArgs.GetByKey(guestApplicationNameKey);
             return name;
         }
     }

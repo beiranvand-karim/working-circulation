@@ -7,7 +7,7 @@ namespace cross_application_feature_development_management.Names
         public string GetName()
         {
             const string ideNameKey = "--ide-name";
-            var name = commandLineArgs.GetByKey(ideNameKey);
+            var name = CommandLineArgs.GetByKey(ideNameKey);
             return name;
         }
     }
