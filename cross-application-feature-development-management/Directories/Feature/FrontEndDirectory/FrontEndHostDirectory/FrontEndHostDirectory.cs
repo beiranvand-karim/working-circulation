@@ -1,24 +1,16 @@
-using cross_application_feature_development_management.Directories.Interfaces;
-using cross_application_feature_development_management.Helpers.Interfaces;
-using cross_application_feature_development_management.Interfaces;
+using cross_application_feature_development_management.Helpers;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndHostDirectory
 {
     public class FrontEndHostDirectory(
-            IDirectoriesNameToKeyMap directoriesNameToKeyMap,
-            IFeatureNameDirectory featureNameDirectory,
-            ICommandLineArgs commandLineArgs,
+            DirectoriesNameToKeyMap directoriesNameToKeyMap,
+            FeatureNameDirectory featureNameDirectory,
+            CommandLineArgs commandLineArgs,
             ILogger<FrontEndHostDirectory> logger,
-            IStringHelpers stringHelpers
-        ) : IFrontEndHostDirectory
+            StringHelpers stringHelpers
+        )
     {
-        private readonly IDirectoriesNameToKeyMap directoriesNameToKeyMap = directoriesNameToKeyMap;
-        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
-        private readonly ILogger<FrontEndHostDirectory> logger = logger;
-        private readonly IStringHelpers stringHelpers = stringHelpers;
-
         public string GetPath(string key)
         {
             var directoryName = directoriesNameToKeyMap.GetValue(key);

@@ -1,6 +1,6 @@
 namespace cross_application_feature_development_management.Applications.IdeManagement
 {
-    public class IdeProcessInformationGroup : IIdeProcessInformationGroup
+    public class IdeProcessInformationGroup
     {
         public List<IdeProcessInformation>? Group { get; set; } = [];
 
@@ -12,12 +12,5 @@ namespace cross_application_feature_development_management.Applications.IdeManag
         {
             Group?.Insert(0, ideProcessInformation);
         }
-
-    }
-
-    public interface IIdeProcessInformationGroup
-    {
-        public void Add(IdeProcessInformation ideProcessInformation);
-        public void AddInFront(IdeProcessInformation ideProcessInformation);
     }
 }

@@ -1,6 +1,6 @@
 namespace cross_application_feature_development_management
 {
-    public class ProcessInformationGroup : IProcessInformationGroup
+    public class ProcessInformationGroup
     {
         public List<ProcessInformation>? group { get; set; } = [];
 
@@ -12,12 +12,5 @@ namespace cross_application_feature_development_management
         {
             group?.Insert(0, processInformation);
         }
-
-    }
-
-    public interface IProcessInformationGroup
-    {
-        public void Add(ProcessInformation processInformation);
-        public void AddInFront(ProcessInformation processInformation);
     }
 }
