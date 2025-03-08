@@ -22,7 +22,7 @@ namespace cross_application_feature_development_management.Directories
             return templateSourceDirectory;
         }
 
-        public string GetName()
+        private string GetName()
         {
             var templatesDirectoryNameKey =
                 commandLineArgs.GetKey("TemplatesDirectoryNameKey");
