@@ -81,6 +81,9 @@ namespace cross_application_feature_development_management.Directories.Classes
                     case "docker-network-application-multitude-secondary-action-stop":
                         directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
                         break;
+                    case "docker-network-secondary-multitude-secondary-action-stop":
+                        directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
+                        break;
                     case "docker-network-application-multitude-all-action-start":
                         environmentVariablesSourceDictionary.TryGetValue(
                             "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES",
