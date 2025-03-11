@@ -5,6 +5,8 @@ ApplicationComposeFileLocation
 DockerComposeStopAlongWithArguments
 DirectoryManagementExecutiveFileAddress
 DirectoryManagementExecutiveFileAddressContainingDirectory
+FeatureSelfAddress
+OperationsDirectoryPath
 FendHostAddress
 FendGuestAddress
 BendAddress
@@ -12,8 +14,9 @@ CallsAddress
 ToolsAddress
 NotesMessagesAddress
 WebLinksAddress
-FeatureSelfAddress
 FendAddress
+IsOpeningFeatureSelfAddress
+IsOpeningOperationsDirectory
 IsOpeningFendHostAddress
 IsOpeningFendGuestAddress
 IsOpeningBendAddress
@@ -21,7 +24,6 @@ IsOpeningCallsAddress
 IsOpeningToolsAddress
 IsOpeningNotesMessagesAddress
 IsOpeningWebLinksAddress
-IsOpeningFeatureSelfAddress
 IsOpeningFendAddress
 StartupDirectoryLocation
 InfrastructureComposeFileLocation
