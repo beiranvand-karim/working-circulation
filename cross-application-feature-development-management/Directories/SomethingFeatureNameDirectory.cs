@@ -1,4 +1,5 @@
 using System.Text;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Helpers;
 using Microsoft.Extensions.Logging;
 
@@ -10,7 +11,8 @@ namespace cross_application_feature_development_management.Directories
         FeatureNameDirectory featureNameDirectory,
         HostingDirectory hostingDirectory,
         ILogger<SomethingFeatureNameDirectory> logger,
-        StringHelpers stringHelpers
+        StringHelpers stringHelpers,
+        OperationsDirectory operationsDirectory
         )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -87,7 +89,15 @@ namespace cross_application_feature_development_management.Directories
                         fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                         break;
                     }
+                    case "OPERATIONS_DIRECTORY_PATH":
+                    {
+                        var featureNameDirectoryPath = operationsDirectory.GetPath();
+                        var valueToWrite = $"\"{featureNameDirectoryPath}\"";
+                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                        break;
+                    }
                     case "STARTUP_DIRECTORY_LOCATION":
+                    case "IS_OPENING_OPERATIONS_DIRECTORY":
                     case "IS_OPENING_FEND_HOST_ADDRESS":
                     case "IS_OPENING_FEND_GUEST_ADDRESS":
                     case "IS_OPENING_BEND_ADDRESS":

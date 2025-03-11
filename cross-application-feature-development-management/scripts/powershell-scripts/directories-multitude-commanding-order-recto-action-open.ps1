@@ -13,6 +13,11 @@ if ($env:IS_OPENING_FEATURE_SELF_ADDRESS -eq $true ) {
     Start-Sleep -Seconds 2
 }
 
+if ($env:IS_OPENING_OPERATIONS_DIRECTORY -eq $true ) {
+    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:OPERATIONS_DIRECTORY_PATH"
+    Start-Sleep -Seconds 2
+}
+
 if ($env:IS_OPENING_FEND_ADDRESS -eq $true ) {
     start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:FEND_ADDRESS"
     Start-Sleep -Seconds 2
