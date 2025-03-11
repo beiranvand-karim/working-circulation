@@ -1,4 +1,5 @@
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndHostDirectory;
@@ -19,7 +20,8 @@ namespace cross_application_feature_development_management.Directories
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
         GuestApplicationName guestApplicationName,
-        HostApplicationName hostApplicationName
+        HostApplicationName hostApplicationName,
+        OperationsDirectory operationsDirectory
         )
     {
         public void ReplaceFileNamesWithPaths(Dictionary<string, string> environmentVariablesSourceDictionary)
@@ -48,6 +50,10 @@ namespace cross_application_feature_development_management.Directories
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
                     case "directories-multitude-all-action-close":
+                    case "directories-multitude-commanding-order-recto-action-shut":
+                    case "directories-multitude-serving-order-recto-action-shut":
+                        directories.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", featureNameDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "OPERATIONS_DIRECTORY_PATH", operationsDirectory.GetPath());
                         directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath("FEND_ADDRESS"));
                         directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS"));
                         directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS"));
