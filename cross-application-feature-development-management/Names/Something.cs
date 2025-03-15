@@ -2,6 +2,7 @@ using System.Text;
 using System.Text.Json;
 using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualBasic;
 
 namespace cross_application_feature_development_management.Names
 {
@@ -86,8 +87,9 @@ namespace cross_application_feature_development_management.Names
 
             foreach (var file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {
+                var extension = Path.GetExtension(file);
 
-                if(file.Contains(guestApplicationName.GetName()))
+                if(file.Contains(guestApplicationName.GetName()) && extension ==".env")
                 {
                     logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
                     logger.LogInformation("{file}", file);
