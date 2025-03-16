@@ -55,7 +55,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                     "notepadplusplus-multitude-all-order-reverse-action-open.env" =>
                         notepadPlusPlusMultitudeAllOrderReverseActionOpen.PairUpVariablesWithTheirValue(templateFile,
                             environmentVariablesSourceDictionary),
-                    "notepadpp-all-close.env" => notePadPlusPlusAllClose.PairUpVariablesWithTheirValue(templateFile,
+                    "notepadplusplus-multitude-all-order-recto-action-shut.env" => notePadPlusPlusAllClose.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "ide-jetbrains-rider-multitude-primary-action-open.env" => ideJetbrainsRiderMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
