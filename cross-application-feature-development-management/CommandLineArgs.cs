@@ -1,37 +1,34 @@
-using cross_application_feature_development_management.Interfaces;
 using Microsoft.Extensions.Configuration;
 
 namespace cross_application_feature_development_management
 {
-    public class CommandLineArgs(IConfiguration configuration): ICommandLineArgs
+    public class CommandLineArgs(IConfiguration configuration)
     {
-        private readonly IConfiguration configuration = configuration;
-
         public string GetKey(string key)
         {
-            string groupKey = "EnvironmentVariablesCommandLineArgumentsNameKeys";
-            string commandLineArgumentKey = $""""{groupKey}:{key}"""";
-            return configuration.GetValue<string>(commandLineArgumentKey) ?? $"""could'nt find key "{key}" ...""";
+            const string groupKey = "EnvironmentVariablesCommandLineArgumentsNameKeys";
+            var commandLineArgumentKey = $"{groupKey}:{key}";
+            return configuration.GetValue<string>(commandLineArgumentKey) ?? $"""couldn't find key "{key}" ...""";
         }
 
         public string GetKey2(string groupKey, string key)
         {
-            string commandLineArgumentKey = $""""{groupKey}:{key}"""";
-            return configuration.GetValue<string>(commandLineArgumentKey) ?? $"""could'nt find key "{key}" ...""";
+            var commandLineArgumentKey = $"{groupKey}:{key}";
+            return configuration.GetValue<string>(commandLineArgumentKey) ?? $"""couldn't find key "{key}" ...""";
         }
 
-        public string GetByKey(string CommandLineArgKey)
+        public string GetByKey(string commandLineArgKey)
         {
             var commandLineArgs = Environment.GetCommandLineArgs();
 
-            int index = Array.FindIndex(commandLineArgs, x => x.StartsWith(CommandLineArgKey));
+            var index = Array.FindIndex(commandLineArgs, x => x.StartsWith(commandLineArgKey));
             if (index > -1)
             {
-                string CommandLineArgValue = commandLineArgs[index + 1];
-                return CommandLineArgValue;
+                var commandLineArgValue = commandLineArgs[index + 1];
+                return commandLineArgValue;
             }
 
-            return $"""could'nt find environment variable "{CommandLineArgKey}" ...""";
+            return $"""couldn't find environment variable "{commandLineArgKey}" ...""";
         }
     }
 }
