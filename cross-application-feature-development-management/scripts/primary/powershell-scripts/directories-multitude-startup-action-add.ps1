@@ -1,6 +1,6 @@
-<#> fina = file name = startup-add-to.ps1 #>
+<#> fina = file name = directories-multitude-startup-action-add.ps1 #>
 
-get-content "startup-add-to.env" | ForEach-Object {
+get-content "directories-multitude-startup-action-add.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
