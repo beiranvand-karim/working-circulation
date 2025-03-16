@@ -38,4 +38,4 @@ Start-Sleep -Seconds 10
 & "$(Split-Path $MyInvocation.MyCommand.Path)/notepadplusplus-multitude-all-order-reverse-action-open.ps1"
 
 Start-Sleep -Seconds 10
-& "$(Split-Path $MyInvocation.MyCommand.Path)/run-multitude-all-order-reverse.ps1"
+& "$(Split-Path $MyInvocation.MyCommand.Path)/dotnet-multitude-all-order-reverse-action-run.ps1"
