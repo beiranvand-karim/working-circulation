@@ -1,6 +1,6 @@
-<#> fina = file name = notepadpp-all-close.ps1 #>
+<#> fina = file name = notepadplusplus-multitude-all-order-recto-action-shut.ps1 #>
 
-get-content "notepadpp-all-close.env" | ForEach-Object {
+get-content "notepadplusplus-multitude-all-order-recto-action-shut.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
