@@ -1,6 +1,6 @@
-<#> fina = file name = directories-inclusive-order-reverse-open.ps1 #>
+<#> fina = file name = directories-multitude-commanding-order-reverse-action-open.ps1 #>
 
-get-content "directories-inclusive-order-reverse-open.env" | ForEach-Object {
+get-content "directories-multitude-commanding-order-reverse-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }

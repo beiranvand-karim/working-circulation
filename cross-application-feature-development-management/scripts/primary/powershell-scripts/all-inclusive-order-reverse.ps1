@@ -7,7 +7,7 @@ get-content "all-inclusive-order-reverse.env" | ForEach-Object {
 
 & "$(Split-Path $MyInvocation.MyCommand.Path)/required-applications-run.ps1"
 Start-Sleep -Seconds 10
-& "$(Split-Path $MyInvocation.MyCommand.Path)/directories-inclusive-order-reverse-open.ps1"
+& "$(Split-Path $MyInvocation.MyCommand.Path)/directories-multitude-commanding-order-reverse-action-open.ps1"
 Start-Sleep -Seconds 10
 & "$(Split-Path $MyInvocation.MyCommand.Path)/infrastructure.ps1"
 Start-Sleep -Seconds 10
