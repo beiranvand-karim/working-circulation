@@ -48,7 +48,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         environmentVariablesSourceDictionary),
                     "directories-multitude-startup-action-add.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "startup-open-directory.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-startup-action-open.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "notepadplusplus-multitude-all-order-recto-action-open.env" => notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
