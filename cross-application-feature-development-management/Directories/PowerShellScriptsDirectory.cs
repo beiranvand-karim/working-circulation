@@ -49,7 +49,6 @@ namespace cross_application_feature_development_management.Directories
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
-                    case "directories-multitude-all-action-close":
                     case "directories-multitude-commanding-order-recto-action-shut":
                     case "directories-multitude-serving-order-recto-action-shut":
                         directories.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", featureNameDirectory.GetPath());
