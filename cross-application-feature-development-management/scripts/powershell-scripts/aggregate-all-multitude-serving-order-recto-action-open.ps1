@@ -5,7 +5,7 @@ get-content "aggregate-all-multitude-serving-order-recto-action-open.env" | ForE
     set-content env:\$name $value
 }
 
-& "$(Split-Path $MyInvocation.MyCommand.Path)/required-applications-run.ps1"
+& "$(Split-Path $MyInvocation.MyCommand.Path)/aggregate-required-action-open.ps1"
 Start-Sleep -Seconds 10
 & "$(Split-Path $MyInvocation.MyCommand.Path)/directories-open.ps1"
 Start-Sleep -Seconds 10
