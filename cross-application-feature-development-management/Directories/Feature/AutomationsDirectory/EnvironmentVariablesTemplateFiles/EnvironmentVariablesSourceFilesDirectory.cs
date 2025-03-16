@@ -34,7 +34,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
 
                 var contentToWrite = destFileName switch
                 {
-                    "directories-include-nothing-order-reverse-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-serving-order-reverse-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "directories-inclusive-order-reverse-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
