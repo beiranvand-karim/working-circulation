@@ -36,7 +36,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                 {
                     "directories-multitude-serving-order-reverse-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-inclusive-order-reverse-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-commanding-order-reverse-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "directories-multitude-commanding-order-recto-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
