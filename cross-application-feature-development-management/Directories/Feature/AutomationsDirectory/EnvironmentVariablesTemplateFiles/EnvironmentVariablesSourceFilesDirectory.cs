@@ -46,8 +46,6 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         environmentVariablesSourceDictionary),
                     "directories-multitude-serving-order-recto-action-shut.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-open-inclusive.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
-                        environmentVariablesSourceDictionary),
                     "directories-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "directories-startup-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
