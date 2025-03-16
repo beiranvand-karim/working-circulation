@@ -15,7 +15,7 @@ Start-Sleep -Seconds 10
 Start-Sleep -Seconds 10
 & "$(Split-Path $MyInvocation.MyCommand.Path)/application-stops.ps1"
 Start-Sleep -Seconds 10
-& "$(Split-Path $MyInvocation.MyCommand.Path)/rider-guest-application.ps1"
+& "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-rider-multitude-secondary-action-open.ps1"
 
 if ($env:IS_RIDER_GUEST_APPLICATION_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
     Start-Sleep -Seconds 10
