@@ -1,6 +1,6 @@
-<#> fina = file name = all.ps1 #>
+<#> fina = file name = aggregate-all-multitude-serving-order-recto-action-open.ps1 #>
 
-get-content "all.env" | ForEach-Object {
+get-content "aggregate-all-multitude-serving-order-recto-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
