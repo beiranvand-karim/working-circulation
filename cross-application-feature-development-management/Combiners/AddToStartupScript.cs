@@ -37,7 +37,7 @@ namespace cross_application_feature_development_management.Combiners
                     case "ALL_INCLUSIVE_DIRECTORY_ADDRESS":
                     {
                         var featureDirectoryPath = automationsDirectory.GetPath();
-                        var addToStartupPath = Path.Combine(featureDirectoryPath, "all-inclusive.bat");
+                        var addToStartupPath = Path.Combine(featureDirectoryPath, "aggregate-all-multitude-commanding-order-recto-action-open.bat");
                         fileContentDictionaryToWriteToFile.Add(key, addToStartupPath);
                         break;
                     }

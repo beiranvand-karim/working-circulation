@@ -44,7 +44,7 @@ namespace cross_application_feature_development_management.Directories
 
                 switch (fileName)
                 {
-                    case "all-inclusive":
+                    case "aggregate-all-multitude-commanding-order-recto-action-open":
                     case "aggregate-all-multitude-commanding-order-reverse-action-open":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
