@@ -31,7 +31,7 @@ if ($env:IS_WEBSTORM_GUEST_CLIENTAPP_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
 }
 
 Start-Sleep -Seconds 10
-& "$(Split-Path $MyInvocation.MyCommand.Path)/notepadpp-open-all.ps1"
+& "$(Split-Path $MyInvocation.MyCommand.Path)/notepadplusplus-multitude-all-order-recto-action-open.ps1"
 
 
 Start-Sleep -Seconds 10
