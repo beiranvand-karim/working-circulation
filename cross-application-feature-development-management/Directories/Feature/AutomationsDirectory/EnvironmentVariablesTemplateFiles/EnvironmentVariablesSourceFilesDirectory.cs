@@ -38,8 +38,6 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         environmentVariablesSourceDictionary),
                     "directories-inclusive-order-reverse-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-all-action-close.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
-                        environmentVariablesSourceDictionary),
                     "directories-multitude-commanding-order-recto-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "directories-multitude-commanding-order-recto-action-shut.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
