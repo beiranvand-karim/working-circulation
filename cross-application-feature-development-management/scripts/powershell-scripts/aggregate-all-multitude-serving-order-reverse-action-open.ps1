@@ -1,6 +1,6 @@
-<#> fina = file name = all-include-nothing-order-reverse.ps1 #>
+<#> fina = file name = aggregate-all-multitude-serving-order-reverse-action-open.ps1 #>
 
-get-content "all-include-nothing-order-reverse.env" | ForEach-Object {
+get-content "aggregate-all-multitude-serving-order-reverse-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
