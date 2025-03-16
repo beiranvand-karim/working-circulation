@@ -1,6 +1,6 @@
-<#> fina = file name = all-inclusive-order-reverse.ps1 #>
+<#> fina = file name = aggregate-all-multitude-commanding-order-reverse-action-open.ps1 #>
 
-get-content "all-inclusive-order-reverse.env" | ForEach-Object {
+get-content "aggregate-all-multitude-commanding-order-reverse-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
@@ -27,7 +27,7 @@ Start-Sleep -Seconds 10
 
 if ($env:IS_WEBSTORM_GUEST_CLIENTAPP_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
     Start-Sleep -Seconds 10
-    & "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-webstorm-multitude-primary-action-open.ps1"
+    & "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-webstorm-multitude-primary-action-openmultitude-primary-action-open.ps1"
 }
 
 Start-Sleep -Seconds 10
