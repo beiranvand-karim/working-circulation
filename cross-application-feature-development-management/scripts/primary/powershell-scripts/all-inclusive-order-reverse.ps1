@@ -27,7 +27,7 @@ Start-Sleep -Seconds 10
 
 if ($env:IS_WEBSTORM_GUEST_CLIENTAPP_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
     Start-Sleep -Seconds 10
-    & "$(Split-Path $MyInvocation.MyCommand.Path)/webstorm-host-clientapp.ps1"
+    & "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-webstorm-multitude-primary-action-open.ps1"
 }
 
 Start-Sleep -Seconds 10
