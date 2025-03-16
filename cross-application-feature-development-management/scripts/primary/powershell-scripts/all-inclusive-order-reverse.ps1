@@ -19,7 +19,7 @@ Start-Sleep -Seconds 10
 
 if ($env:IS_RIDER_GUEST_APPLICATION_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
     Start-Sleep -Seconds 10
-    & "$(Split-Path $MyInvocation.MyCommand.Path)/rider-host-application.ps1"
+    & "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-rider-multitude-primary-action-open.ps1"
 }
 
 Start-Sleep -Seconds 10
