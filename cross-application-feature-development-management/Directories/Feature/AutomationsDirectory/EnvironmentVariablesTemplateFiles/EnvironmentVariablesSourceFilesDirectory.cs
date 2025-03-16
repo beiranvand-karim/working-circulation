@@ -46,7 +46,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         environmentVariablesSourceDictionary),
                     "directories-multitude-serving-order-recto-action-shut.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "startup-add-to.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-startup-action-add.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "startup-open-directory.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
