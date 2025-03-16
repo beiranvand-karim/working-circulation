@@ -1,6 +1,6 @@
-<#> fina = file name = notepadpp-open-new-instance.ps1 #>
+<#> fina = file name = notepadplusplus-multitude-new-action-open.ps1 #>
 
-get-content "notepadpp-open-new-instance.env" | ForEach-Object {
+get-content "notepadplusplus-multitude-new-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
