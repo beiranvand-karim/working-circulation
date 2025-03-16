@@ -23,7 +23,7 @@ if ($env:IS_RIDER_GUEST_APPLICATION_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
 }
 
 Start-Sleep -Seconds 10
-& "$(Split-Path $MyInvocation.MyCommand.Path)/webstorm-guest-clientapp.ps1"
+& "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-webstorm-multitude-secondary-action-open.ps1"
 
 if ($env:IS_WEBSTORM_GUEST_CLIENTAPP_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
     Start-Sleep -Seconds 10
