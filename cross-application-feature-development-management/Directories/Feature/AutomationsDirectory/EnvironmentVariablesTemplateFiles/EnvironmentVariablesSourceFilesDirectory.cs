@@ -50,7 +50,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         environmentVariablesSourceDictionary),
                     "startup-open-directory.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "notepadpp-open-all.env" => notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile,
+                    "notepadplusplus-multitude-all-order-recto-action-open.env" => notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "notepadplusplus-multitude-all-order-reverse-action-open.env" =>
                         notepadPlusPlusMultitudeAllOrderReverseActionOpen.PairUpVariablesWithTheirValue(templateFile,
