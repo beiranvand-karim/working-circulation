@@ -1,6 +1,6 @@
-<#> fina = file name = required-applications-run.ps1 #>
+<#> fina = file name = aggregate-required-action-open.ps1 #>
 
-get-content "required-applications-run.env" | ForEach-Object {
+get-content "aggregate-required-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
