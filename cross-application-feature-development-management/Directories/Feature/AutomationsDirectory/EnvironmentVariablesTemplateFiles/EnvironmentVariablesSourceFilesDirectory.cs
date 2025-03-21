@@ -1,5 +1,6 @@
 using cross_application_feature_development_management.Combiners;
 using cross_application_feature_development_management.Names;
+using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
@@ -19,7 +20,8 @@ namespace cross_application_feature_development_management.Directories.Feature.A
             IdeJetbrainsWebstormMultitudeSecondaryActionShut ideJetbrainsWebstormMultitudeSecondaryActionShut,
             IdeJetbrainsRiderMultitudePrimaryActionShut ideJetbrainsRiderMultitudePrimaryActionShut,
             IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut,
-            TemplatesDirectory templatesDirectory
+            TemplatesDirectory templatesDirectory,
+            ILogger<EnvironmentVariablesSourceFilesDirectory> logger
         )
     {
         public void Populate(string destinationDirectory, Dictionary<string, string> environmentVariablesSourceDictionary)
@@ -28,9 +30,8 @@ namespace cross_application_feature_development_management.Directories.Feature.A
 
             foreach (var templateFile in Directory.EnumerateFiles(templateSourceDirectory))
             {
-                var destFileName = Path.GetFileNameWithoutExtension(templateFile);
+                var destFileName = Path.GetFileName(templateFile);
                 var destFile = Path.Combine(destinationDirectory, destFileName);
-                using var fs = File.Create(destFile);
 
                 var contentToWrite = destFileName switch
                 {
@@ -76,6 +77,7 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                     _ => Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                 };
 
+                using var fs = File.Create(destFile);
                 using StreamWriter writer = new(fs);
                 foreach (var valueToWrite in contentToWrite.Select(entry => $"{entry.Key}={entry.Value}"))
                 {
