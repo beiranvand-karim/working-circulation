@@ -7,7 +7,7 @@ get-content "aggregate-all-multitude-commanding-order-recto-action-open.env" | F
 
 & "$(Split-Path $MyInvocation.MyCommand.Path)/aggregate-required-action-open.ps1"
 Start-Sleep -Seconds 10
-& "$(Split-Path $MyInvocation.MyCommand.Path)/directories-open-inclusive.ps1"
+& "$(Split-Path $MyInvocation.MyCommand.Path)/directories-multitude-commanding-order-recto-action-open.ps1"
 Start-Sleep -Seconds 10
 & "$(Split-Path $MyInvocation.MyCommand.Path)/infrastructure.ps1"
 Start-Sleep -Seconds 10
