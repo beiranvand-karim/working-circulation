@@ -56,5 +56,10 @@ namespace cross_application_feature_development_management.Directories.Scripts.E
         public bool? IsOpeningNotesMessagesAddress { get; set; }
         public bool? IsOpeningWebLinksAddress { get; set; }
         public bool? IsOpeningFendAddress { get; set; }
+        public string? CafdemExecutiveFileAddress { get; set; }
+        public string? PrimaryApplicationLocation { get; set; }
+        public string? SecondaryApplicationLocation { get; set; }
+        public string? PrimaryClientappLocation { get; set; }
+        public string? SecondaryClientappLocation { get; set; }
     }
 }
