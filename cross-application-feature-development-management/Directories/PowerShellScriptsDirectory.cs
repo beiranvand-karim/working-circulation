@@ -66,7 +66,7 @@ namespace cross_application_feature_development_management.Directories
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
-                    case "dotnet-multitude-primary-order-recto-action-run":
+                    case "dotnet-multitude-primary-action-run":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         break;
                     case "dotnet-multitude-secondary-order-recto-action-run":
