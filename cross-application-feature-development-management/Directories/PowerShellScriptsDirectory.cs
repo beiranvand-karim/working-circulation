@@ -69,7 +69,7 @@ namespace cross_application_feature_development_management.Directories
                     case "dotnet-multitude-primary-action-run":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         break;
-                    case "dotnet-multitude-secondary-order-recto-action-run":
+                    case "dotnet-multitude-secondary-action-run":
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
                     case "docker-network-secondary-multitude-primary-action-stop":
