@@ -73,6 +73,14 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
+                    case "NOTEPADDPP_EXECUTE_FILE_LOCATION":
+                    {
+                        if(environmentVariablesSourceDictionary.TryGetValue(key, out var keyValue)) {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(keyValue);
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal);
+                        }
+                        break;
+                    }
                     case "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY":
                     {
                         environmentVariablesSourceDictionary.TryGetValue(

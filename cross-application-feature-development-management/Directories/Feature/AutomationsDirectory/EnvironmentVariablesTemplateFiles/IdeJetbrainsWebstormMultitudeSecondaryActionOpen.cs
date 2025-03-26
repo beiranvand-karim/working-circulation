@@ -79,6 +79,14 @@ namespace cross_application_feature_development_management.Directories.Feature.A
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
+                    case "WEBSTORM_LOCATION":
+                    {
+                        if(environmentVariablesSourceDictionary.TryGetValue(key, out var keyValue)) {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(keyValue);
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal);
+                        }
+                        break;
+                    }
                     case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
                     {
                         environmentVariablesSourceDictionary.TryGetValue(
