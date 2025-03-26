@@ -46,5 +46,15 @@ namespace cross_application_feature_development_management.Directories.Scripts.E
         public string? WebstormLocation { get; set; }
         public string? GuestClientappLocation { get; set; }
         public string? HostClientappLocation { get; set; }
+        public bool? IsOpeningFeatureSelfAddress { get; set; }
+        public bool? IsOpeningOperationsDirectory { get; set; }
+        public bool? IsOpeningFendHostAddress { get; set; }
+        public bool? IsOpeningFendGuestAddress { get; set; }
+        public bool? IsOpeningBendAddress { get; set; }
+        public bool? IsOpeningCallsAddress { get; set; }
+        public bool? IsOpeningToolsAddress { get; set; }
+        public bool? IsOpeningNotesMessagesAddress { get; set; }
+        public bool? IsOpeningWebLinksAddress { get; set; }
+        public bool? IsOpeningFendAddress { get; set; }
     }
 }
