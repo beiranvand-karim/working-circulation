@@ -43,7 +43,6 @@ namespace cross_application_feature_development_management
                     services.AddTransient<HostingDirectory>();
                     services.AddTransient<FeatureNameDirectory>();
                     services.AddTransient<EnvironmentVariablesFilesDirectory>();
-                    services.AddTransient<TargetDirectory>();
                     services.AddTransient<WorkingCirculationDirectory>();
                     services.AddTransient<EnvironmentVariablesSourceDirectory>();
                     services.AddTransient<SomethingFeatureNameDirectory>();
