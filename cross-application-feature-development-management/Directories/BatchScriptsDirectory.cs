@@ -6,7 +6,6 @@ namespace cross_application_feature_development_management.Directories
     public class BatchScriptsDirectory(
         PowerShellScriptsDirectory powerShellScriptsDirectory,
         FeatureNameDirectory featureNameDirectory,
-        TargetDirectory targetDirectory,
         ScriptsDirectory scriptsDirectory,
         Directories directories,
         AutomationsDirectory automationsDirectory,
