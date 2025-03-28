@@ -16,7 +16,7 @@ namespace cross_application_feature_development_management.Directories
         public void ReplaceFileNamesWithPaths()
         {
             var pathToTarget = operationsDirectory.GetPath();
-            var giversPath = powerShellScriptsDirectory.ConstructPathToSelfInFeatureNameDirectory("powershell-scripts");
+            var giversPath = powerShellScriptsDirectory.GetPath();
             foreach (var filePath in Directory.EnumerateFiles(pathToTarget))
             {
                 var fileName = Path.GetFileNameWithoutExtension(filePath);
