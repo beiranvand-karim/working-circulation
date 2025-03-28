@@ -6,7 +6,6 @@ namespace cross_application_feature_development_management.Directories
             ScriptsDirectory scriptsDirectory,
             FeatureNameDirectory featureNameDirectory,
             CommandLineArgs commandLineArgs,
-            TargetDirectory targetDirectory,
             Directories directories,
             AutomationsDirectory automationsDirectory
         )

@@ -10,7 +10,6 @@ namespace cross_application_feature_development_management.Directories
 {
     public class PowerShellScriptsDirectory(
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-        TargetDirectory targetDirectory,
         ScriptsDirectory scriptsDirectory,
         FeatureNameDirectory featureNameDirectory,
         Directories directories,
