@@ -8,7 +8,6 @@ namespace cross_application_feature_development_management.Directories.Feature.A
     public class CommandsDirectory(
         AutomationsDirectory automationsDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-        TargetDirectory targetDirectory,
         ScriptsDirectory scriptsDirectory,
         FeatureNameDirectory featureNameDirectory,
         Directories directories,
