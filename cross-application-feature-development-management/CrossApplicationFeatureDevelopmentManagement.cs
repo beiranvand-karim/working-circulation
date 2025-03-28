@@ -73,8 +73,9 @@ namespace cross_application_feature_development_management
                 commandsDirectory.ReplaceFileNamesWithPaths(environmentVariablesSourceDictionary);
 
                 operationsDirectory.Create();
-                batchScriptsDirectory.CopyContentToFeatureNameDirectory();
-                batchScriptsDirectory.ReplaceFileNamesWithPaths();
+                var operationsDirectoryPath = operationsDirectory.GetPath();
+                batchScriptsDirectory.CopyContentToDirectory(operationsDirectoryPath);
+                operationsDirectory.ReplaceFileNamesWithPaths(commandsDirectoryPath);
             }
             catch (Exception exception)
             {
