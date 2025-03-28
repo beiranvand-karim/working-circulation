@@ -1,5 +1,6 @@
 using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.CommandsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Names;
@@ -21,7 +22,8 @@ namespace cross_application_feature_development_management
             AutomationsDirectory automationsDirectory,
             CommandLineArgs commandLineArgs,
             OperationsDirectory operationsDirectory,
-            AloneDirectory aloneDirectory
+            AloneDirectory aloneDirectory,
+            CommandsDirectory commandsDirectory
             )
     {
         private string GetFormat()
@@ -63,11 +65,12 @@ namespace cross_application_feature_development_management
                         );
                 }
 
-
                 environmentVariablesSourceFilesDirectory.Populate(destinationDirectory, environmentVariablesSourceDictionary);
 
-                powerShellScriptsDirectory.CopyContentToFeatureNameDirectory();
-                powerShellScriptsDirectory.ReplaceFileNamesWithPaths(environmentVariablesSourceDictionary);
+                commandsDirectory.Create();
+                var commandsDirectoryPath = commandsDirectory.GetPath();
+                powerShellScriptsDirectory.CopyContentToDirectory(commandsDirectoryPath);
+                commandsDirectory.ReplaceFileNamesWithPaths(environmentVariablesSourceDictionary);
 
                 operationsDirectory.Create();
                 batchScriptsDirectory.CopyContentToFeatureNameDirectory();
