@@ -3,6 +3,7 @@ using cross_application_feature_development_management.Combiners;
 using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Applications;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.CommandsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
@@ -87,6 +88,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<IdeJetbrainsRiderMultitudePrimaryActionShut>();
                     services.AddTransient<IdeJetbrainsRiderMultitudeSecondaryActionShut>();
                     services.AddTransient<AloneDirectory>();
+                    services.AddTransient<CommandsDirectory>();
                 })
                 .UseSerilog()
                 .Build();
