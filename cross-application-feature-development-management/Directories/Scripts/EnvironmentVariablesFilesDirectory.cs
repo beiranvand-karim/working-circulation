@@ -1,12 +1,8 @@
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
 
-namespace cross_application_feature_development_management.Directories
+namespace cross_application_feature_development_management.Directories.Scripts
 {
     public class EnvironmentVariablesFilesDirectory(
-            ScriptsDirectory scriptsDirectory,
-            FeatureNameDirectory featureNameDirectory,
-            CommandLineArgs commandLineArgs,
-            Directories directories,
             AutomationsDirectory automationsDirectory
         )
     {

@@ -1,15 +1,9 @@
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 
-namespace cross_application_feature_development_management.Directories
+namespace cross_application_feature_development_management.Directories.Scripts
 {
     public class BatchScriptsDirectory(
-        PowerShellScriptsDirectory powerShellScriptsDirectory,
-        FeatureNameDirectory featureNameDirectory,
         ScriptsDirectory scriptsDirectory,
-        Directories directories,
-        AutomationsDirectory automationsDirectory,
-        OperationsDirectory operationsDirectory
+        Directories directories
         )
     {
         public void CopyContentToDirectory(string destinationDirectory)
