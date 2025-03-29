@@ -1,43 +1,31 @@
+using cross_application_feature_development_management.Applications.Cafdem;
 using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.CommandsDirectory;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.Scripts;
+using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource;
 using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management
 {
     public class CrossApplicationFeatureDevelopmentManagement(
-            ILogger<CrossApplicationFeatureDevelopmentManagement> logger,
-            ScriptsDirectory scriptsDirectory,
-            TemplatesDirectory templatesDirectory,
-            FeatureNameDirectory featureNameDirectory,
-            EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-            EnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
-            PowerShellScriptsDirectory powerShellScriptsDirectory,
-            BatchScriptsDirectory batchScriptsDirectory,
-            Something something,
-            EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
-            AutomationsDirectory automationsDirectory,
-            CommandLineArgs commandLineArgs,
-            OperationsDirectory operationsDirectory,
-            AloneDirectory aloneDirectory,
-            CommandsDirectory commandsDirectory
-            )
+        ILogger<CrossApplicationFeatureDevelopmentManagement> logger,
+        FeatureNameDirectory featureNameDirectory,
+        EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
+        EnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
+        PowerShellScriptsDirectory powerShellScriptsDirectory,
+        BatchScriptsDirectory batchScriptsDirectory,
+        Something something,
+        EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
+        AutomationsDirectory automationsDirectory,
+        OperationsDirectory operationsDirectory,
+        CommandsDirectory commandsDirectory,
+        CafdemTerminalCapturement cafdemTerminalCapturement
+    )
     {
-        private string GetFormat()
-        {
-            var format = CommandLineArgs.GetByKey("--format");
-            return format;
-        }
-
-        private bool IsFormatJson()
-        {
-            return GetFormat() == "json";
-        }
-
         public void Run()
         {
             try
@@ -51,12 +39,20 @@ namespace cross_application_feature_development_management
 
                 Dictionary<string, string> environmentVariablesSourceDictionary;
 
-                if (IsFormatJson())
+                if (cafdemTerminalCapturement.IsFormatJson())
                 {
-                    environmentVariablesSourceDictionary =
-                        something.GetAllEnvironmentVariablesAndValuesFromSourceJsonFile(
-                            environmentVariablesSourceDirectory.GetName()
-                        );
+
+                    if (cafdemTerminalCapturement.IsFilementSplit())
+                    {
+                        environmentVariablesSourceDictionary = something.PairUpEnvironmentVariablesSeparationFilement();
+                    }
+                    else
+                    {
+                        environmentVariablesSourceDictionary =
+                            something.GetAllEnvironmentVariablesAndValuesFromSourceJsonFile<EnvironmentVariables>(
+                                environmentVariablesSourceDirectory.GetName()
+                            );
+                    }
                 }
                 else
                 {
@@ -80,7 +76,7 @@ namespace cross_application_feature_development_management
             }
             catch (Exception exception)
             {
-                logger.LogError("{exception}", exception.Message);
+                logger.LogError("CrossApplicationFeatureDevelopmentManagement:{exception}", exception.Message);
             }
         }
     }
