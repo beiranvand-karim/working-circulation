@@ -1,4 +1,5 @@
-﻿using cross_application_feature_development_management.Applications.IdeManagement;
+﻿using cross_application_feature_development_management.Applications.Cafdem;
+using cross_application_feature_development_management.Applications.IdeManagement;
 using cross_application_feature_development_management.Combiners;
 using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Applications;
@@ -11,6 +12,8 @@ using cross_application_feature_development_management.Directories.Feature.Front
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndHostDirectory;
 using cross_application_feature_development_management.Directories.Scripts;
+using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement;
+using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
 using cross_application_feature_development_management.Files.Executables;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
@@ -89,6 +92,9 @@ namespace cross_application_feature_development_management
                     services.AddTransient<IdeJetbrainsRiderMultitudeSecondaryActionShut>();
                     services.AddTransient<AloneDirectory>();
                     services.AddTransient<CommandsDirectory>();
+                    services.AddTransient<PersistentVariablesFile>();
+                    services.AddTransient<SeparationFilementDirectory>();
+                    services.AddTransient<CafdemTerminalCapturement>();
                 })
                 .UseSerilog()
                 .Build();

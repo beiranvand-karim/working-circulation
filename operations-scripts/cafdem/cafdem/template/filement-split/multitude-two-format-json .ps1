@@ -10,6 +10,7 @@ dotnet run `
 --application "cross-application-feature-development-management" `
 --command "create-scripts" `
 --format "json" `
+--filement "split" `
 --templates-directory "environment-variables-template-files" `
 --destination-directory  "environment-variables-files" `
 --environment-variables-source-directory  "environment-variables-source" `
