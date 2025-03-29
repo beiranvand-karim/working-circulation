@@ -1,14 +1,16 @@
 using System.Text;
 using System.Text.Json;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource;
+using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement;
+using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
 using Microsoft.Extensions.Logging;
-using Microsoft.VisualBasic;
 
 namespace cross_application_feature_development_management.Names
 {
     public class Something(
-        ILogger<Something> logger,
-        GuestApplicationName guestApplicationName
+            ILogger<Something> logger,
+            GuestApplicationName guestApplicationName,
+            PersistentVariablesFile persistentVariablesFile,
+            SeparationFilementDirectory separationFilementDirectory
         )
     {
         public static Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -52,11 +54,12 @@ namespace cross_application_feature_development_management.Names
             return fileContentDictionary;
         }
 
-        public static string ToUnderscoreCase(string str) {
+        public static string ToUnderscoreCase(string str)
+        {
             return string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower();
         }
 
-        private static Dictionary<string, string> ReadKeyValueFromJsonFile(string fileNamePath)
+        private static Dictionary<string, string> ReadKeyValueFromJsonFile<T>(string fileNamePath)
         {
             Dictionary<string, string> fileContentDictionary = [];
 
@@ -64,7 +67,7 @@ namespace cross_application_feature_development_management.Names
             var json = r.ReadToEnd();
 
             var environmentVariables = Newtonsoft.Json.JsonConvert
-                .DeserializeObject<EnvironmentVariables>(json);
+                .DeserializeObject<T>(json);
 
             var dddd = JsonSerializer.Serialize(environmentVariables);
             var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(dddd);
@@ -79,6 +82,47 @@ namespace cross_application_feature_development_management.Names
             return fileContentDictionary;
         }
 
+        private static Dictionary<string, string> ReadKeyValueFromVariablesFilementJsonFile<T>(string fileNamePath)
+        {
+            Dictionary<string, string> fileContentDictionary = [];
+
+            using StreamReader r = new(fileNamePath);
+            var json = r.ReadToEnd();
+
+            var environmentVariables = Newtonsoft.Json.JsonConvert
+                .DeserializeObject<T>(json);
+
+            var environmentVariablesSerialized = JsonSerializer.Serialize(environmentVariables);
+            var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(environmentVariablesSerialized);
+            foreach (var (key, value1) in from kv in dict
+                                          let key = ToUnderscoreCase(kv.Key).ToUpper()
+                                          let value1 = kv.Value
+                                          select (key, value1))
+            {
+                fileContentDictionary.Add(key, value1);
+            }
+
+            return fileContentDictionary;
+        }
+
+        public Dictionary<string, string> PairUpEnvironmentVariablesSeparationFilement()
+        {
+            var separationFilementDirectoryPath = separationFilementDirectory.GetPath();
+            var environmentVariablesSourceDictionaryMutantVariablesFile =
+                GetAllEnvironmentVariablesAndValuesFromSourceJsonFile<MutantVariables>(
+                    separationFilementDirectoryPath
+                );
+
+            var persistentVariablesFilePath = persistentVariablesFile.GetPath();
+            var environmentVariablesSourceDictionaryPersistentVariablesFile = ReadKeyValueFromVariablesFilementJsonFile<PersistentVariables>(persistentVariablesFilePath);
+
+            var environmentVariablesConcatenated = environmentVariablesSourceDictionaryMutantVariablesFile
+                .Concat(environmentVariablesSourceDictionaryPersistentVariablesFile)
+                .ToDictionary(x => x.Key, x => x.Value);
+
+            return environmentVariablesConcatenated;
+        }
+
         public Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceFile(
             string environmentVariablesSourceDirectory
         )
@@ -89,7 +133,7 @@ namespace cross_application_feature_development_management.Names
             {
                 var extension = Path.GetExtension(file);
 
-                if(file.Contains(guestApplicationName.GetName()) && extension ==".env")
+                if (file.Contains(guestApplicationName.GetName()) && extension == ".env")
                 {
                     logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
                     logger.LogInformation("{file}", file);
@@ -100,7 +144,7 @@ namespace cross_application_feature_development_management.Names
             return keyValuePairs;
         }
 
-        public Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceJsonFile(
+        public Dictionary<string, string> GetAllEnvironmentVariablesAndValuesFromSourceJsonFile<T>(
             string environmentVariablesSourceDirectory
         )
         {
@@ -109,11 +153,11 @@ namespace cross_application_feature_development_management.Names
             foreach (var file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {
 
-                if(file.Contains(guestApplicationName.GetName()) && Path.GetExtension(file) == ".json" )
+                if (file.Contains(guestApplicationName.GetName()) && Path.GetExtension(file) == ".json")
                 {
                     logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
-                    logger.LogInformation("{file}", file);
-                    keyValuePairs = ReadKeyValueFromJsonFile(file);
+                    logger.LogInformation("file: {file}", file);
+                    keyValuePairs = ReadKeyValueFromJsonFile<T>(file);
                 }
             }
 

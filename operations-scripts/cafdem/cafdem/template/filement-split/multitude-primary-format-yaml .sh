@@ -13,6 +13,7 @@ rm -rf "${current_directory}/workers/features/${feature_name}"
 dotnet run \
 --application "cross-application-feature-development-management" \
 --command "create-scripts" \
+--filement "split" \
 --templates-directory "environment-variables-template-files" \
 --destination-directory  "environment-variables-files" \
 --environment-variables-source-directory  "environment-variables-source"  \
@@ -21,5 +22,4 @@ dotnet run \
 --scripts-directory "${current_directory}/scripts" \
 --repository-directory "${current_directory}/.." \
 --hosting-directory "${hosting_directory}" \
---host-application-name "${host_application_name}" \
---guest-application-name "${guest_application_name}"
+--host-application-name "${host_application_name}"
