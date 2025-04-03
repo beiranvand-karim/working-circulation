@@ -25,7 +25,6 @@ namespace cross_application_feature_development_management.Directories.Scripts.E
         public string? HostingDirectory { get; set; }
         public string? Command { get; set; }
         public string? Order { get; set; }
-        public string? ReceiverLocation { get; set; }
         public string? DockerDesktopLocation { get; set; }
         public string? OutlookEmailClientLocation { get; set; }
         public string? GithubDesktopLocation { get; set; }
