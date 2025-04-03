@@ -25,7 +25,6 @@
     "GuestApplicationName": "guest/application/name",
     "Command": "command",
     "Order": "order",
-    "ReceiverLocation": "receiver/location",
     "DockerDesktopLocation": "docker/desktop/location",
     "OutlookEmailClientLocation": "outlook/email/client/location",
     "GithubDesktopLocation": "github/desktop/location",

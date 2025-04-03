@@ -20,7 +20,6 @@
     "HostApplicationProjectLocation": "host/application/project/location",
     "HostApplicationProjectName": "host/application/project/name",
     "AllInclusiveDirectoryAddress": "all/inclusive/directory/address",
-    "Location": "location",
     "GuestClientappLocation": "guest/clientapp/location",
     "HostClientappLocation": "host/clientapp/location",
     "PrimaryClientappLocation":"primary/clientapp/location",
