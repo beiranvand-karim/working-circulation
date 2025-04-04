@@ -1,9 +1,10 @@
 using System.Diagnostics;
 using System.Text.Json;
-using cross_application_feature_development_management.Directories;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.ProcessesMetaDataDirectory;
-using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndGuestDirectory;
-using cross_application_feature_development_management.Directories.Feature.FrontEndDirectory.FrontEndHostDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages;
 using cross_application_feature_development_management.Files.Executables;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +14,7 @@ namespace cross_application_feature_development_management
         NotePadPlusPlus notePadPlusPlus,
         ILogger<ProcessManager> logger,
         DirectoryOperations directoryOperations,
-        FeatureNameDirectory featureNameDirectory,
+        FeatureDirectory featureDirectory,
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
