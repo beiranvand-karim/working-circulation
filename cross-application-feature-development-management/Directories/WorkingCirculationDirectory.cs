@@ -6,7 +6,7 @@ namespace cross_application_feature_development_management.Directories
     {
         public string GetName()
         {
-            var workingCirculationDirectoryName = CreatePath();
+            var workingCirculationDirectoryName = GetPath();
 
             var environmentVariablesManagementDirectoryName =
                 Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
@@ -14,7 +14,7 @@ namespace cross_application_feature_development_management.Directories
             return environmentVariablesManagementDirectoryName;
         }
 
-        private string CreatePath()
+        private string GetPath()
         {
             const string repositoryDirectoryNameKey = "--repository-directory";
             var workingCirculationDirectoryName =
