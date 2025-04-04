@@ -6,7 +6,7 @@ namespace cross_application_feature_development_management.Directories.Scripts.E
     {
         public string GetPath()
         {
-            return Path.Combine(environmentVariablesSourceDirectory.GetName(), "separation-filement");
+            return Path.Combine(environmentVariablesSourceDirectory.GetPath(), "separation-filement");
         }
     }
 }
