@@ -1,5 +1,6 @@
 using System.Text;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Helpers;
 using Microsoft.Extensions.Logging;
 
@@ -8,8 +9,7 @@ namespace cross_application_feature_development_management.Directories
     public class SomethingFeatureNameDirectory(
         CommandLineArgs commandLineArgs,
         DirectoriesNameToKeyMap directoriesNameToKeyMap,
-        FeatureNameDirectory featureNameDirectory,
-        HostingDirectory hostingDirectory,
+        FeatureDirectory featureDirectory,
         ILogger<SomethingFeatureNameDirectory> logger,
         StringHelpers stringHelpers,
         OperationsDirectory operationsDirectory
@@ -40,62 +40,62 @@ namespace cross_application_feature_development_management.Directories
                         fileContentDictionaryToWriteToFile.Add(key, val ?? "");
                         break;
                     case "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
-                    {
-                        environmentVariablesSourceDictionary.TryGetValue(
-                            "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
-                            out var directoryManagementExecutiveFileAddress
-                        );
-                        var striped = stringHelpers.StripQuotationMarks(directoryManagementExecutiveFileAddress ?? "");
-                        var dirName = Path.GetDirectoryName(striped);
-                        fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
-                        break;
-                    }
+                        {
+                            environmentVariablesSourceDictionary.TryGetValue(
+                                "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS",
+                                out var directoryManagementExecutiveFileAddress
+                            );
+                            var striped = stringHelpers.StripQuotationMarks(directoryManagementExecutiveFileAddress ?? "");
+                            var dirName = Path.GetDirectoryName(striped);
+                            fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                            break;
+                        }
                     case "FEND_HOST_ADDRESS":
-                    {
-                        var directoryName = directoriesNameToKeyMap.GetValue(key);
-                        var featureNameDirectoryPath = featureNameDirectory.GetPath();
-                        var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
+                        {
+                            var directoryName = directoriesNameToKeyMap.GetValue(key);
+                            var featureDirectoryPath = featureDirectory.GetPath();
+                            var directoryThatIsGoingToBeOpen = Path.Combine(featureDirectoryPath, directoryName);
 
-                        var hostApplicationName = CommandLineArgs.GetByKey("--host-application-name");
+                            var hostApplicationName = CommandLineArgs.GetByKey("--host-application-name");
 
-                        var x = $"{directoryName}.{hostApplicationName}";
+                            var x = $"{directoryName}.{hostApplicationName}";
 
-                        var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
+                            var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
 
-                        var valueToWrite = $"\"{directoryThatIsGoingToBeOpen2}\"";
-                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
-                        break;
-                    }
+                            var valueToWrite = $"\"{directoryThatIsGoingToBeOpen2}\"";
+                            fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                            break;
+                        }
                     case "FEND_GUEST_ADDRESS":
-                    {
-                        var directoryName = directoriesNameToKeyMap.GetValue(key);
-                        var featureNameDirectoryPath = featureNameDirectory.GetPath();
-                        var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
+                        {
+                            var directoryName = directoriesNameToKeyMap.GetValue(key);
+                            var featureDirectoryPath = featureDirectory.GetPath();
+                            var directoryThatIsGoingToBeOpen = Path.Combine(featureDirectoryPath, directoryName);
 
-                        var guestApplicationName = CommandLineArgs.GetByKey("--guest-application-name");
+                            var guestApplicationName = CommandLineArgs.GetByKey("--guest-application-name");
 
-                        var x = $"{directoryName}.{guestApplicationName}";
+                            var x = $"{directoryName}.{guestApplicationName}";
 
-                        var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
+                            var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
 
-                        var valueToWrite = $"\"{directoryThatIsGoingToBeOpen2}\"";
-                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
-                        break;
-                    }
+                            var valueToWrite = $"\"{directoryThatIsGoingToBeOpen2}\"";
+                            fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                            break;
+                        }
                     case "FEATURE_SELF_ADDRESS":
-                    {
-                        var featureNameDirectoryPath = featureNameDirectory.GetPath();
-                        var valueToWrite = $"\"{featureNameDirectoryPath}\"";
-                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
-                        break;
-                    }
+                        {
+                            var featureDirectoryPath = featureDirectory.GetPath();
+                            var valueToWrite = $"\"{featureDirectoryPath}\"";
+                            fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                            break;
+                        }
                     case "OPERATIONS_DIRECTORY_PATH":
-                    {
-                        var featureNameDirectoryPath = operationsDirectory.GetPath();
-                        var valueToWrite = $"\"{featureNameDirectoryPath}\"";
-                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
-                        break;
-                    }
+                        {
+                            var featureNameDirectoryPath = operationsDirectory.GetPath();
+                            var valueToWrite = $"\"{featureNameDirectoryPath}\"";
+                            fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                            break;
+                        }
                     case "STARTUP_DIRECTORY_LOCATION":
                     case "IS_OPENING_OPERATIONS_DIRECTORY":
                     case "IS_OPENING_FEND_HOST_ADDRESS":
@@ -111,14 +111,14 @@ namespace cross_application_feature_development_management.Directories
                         fileContentDictionaryToWriteToFile.Add(key, val1 ?? "");
                         break;
                     default:
-                    {
-                        var directoryName = directoriesNameToKeyMap.GetValue(key);
-                        var featureNameDirectoryPath = featureNameDirectory.GetPath();
-                        var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
-                        var valueToWrite = $"\"{directoryThatIsGoingToBeOpen}\"";
-                        fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
-                        break;
-                    }
+                        {
+                            var directoryName = directoriesNameToKeyMap.GetValue(key);
+                            var featureDirectoryPath = featureDirectory.GetPath();
+                            var directoryThatIsGoingToBeOpen = Path.Combine(featureDirectoryPath, directoryName);
+                            var valueToWrite = $"\"{directoryThatIsGoingToBeOpen}\"";
+                            fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                            break;
+                        }
                 }
             }
             return fileContentDictionaryToWriteToFile;
