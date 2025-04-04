@@ -1,68 +1,40 @@
-using cross_application_feature_development_management.Applications.Cafdem;
-using cross_application_feature_development_management.Directories;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.CommandsDirectory;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
-using cross_application_feature_development_management.Directories.Scripts;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource;
-using cross_application_feature_development_management.Names;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.CommandsDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.OperationsDirectory;
+using cross_application_feature_development_management.Directories.Scripts.BatchScriptsDirectory;
+using cross_application_feature_development_management.Directories.Scripts.PowerShellScriptsDirectory;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management
 {
     public class CrossApplicationFeatureDevelopmentManagement(
         ILogger<CrossApplicationFeatureDevelopmentManagement> logger,
-        FeatureNameDirectory featureNameDirectory,
+        FeatureDirectory featureDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-        EnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
         PowerShellScriptsDirectory powerShellScriptsDirectory,
         BatchScriptsDirectory batchScriptsDirectory,
-        Something something,
         EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
         AutomationsDirectory automationsDirectory,
         OperationsDirectory operationsDirectory,
-        CommandsDirectory commandsDirectory,
-        CafdemTerminalCapturement cafdemTerminalCapturement
+        CommandsDirectory commandsDirectory
     )
     {
         public void Run()
         {
             try
             {
-                featureNameDirectory.CreateSelf();
+                featureDirectory.Create();
 
                 automationsDirectory.Create();
 
-                Directory.CreateDirectory(environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory());
-                var destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
+                environmentVariablesFilesDirectory.Create();
+                var environmentVariablesFilesDirectoryPath = environmentVariablesFilesDirectory.GetPath();
+                var environmentVariablesSourceDictionary = environmentVariablesFilesDirectory.PairUp();
 
-                Dictionary<string, string> environmentVariablesSourceDictionary;
-
-                if (cafdemTerminalCapturement.IsFormatJson())
-                {
-
-                    if (cafdemTerminalCapturement.IsFilementSplit())
-                    {
-                        environmentVariablesSourceDictionary = something.PairUpEnvironmentVariablesSeparationFilement();
-                    }
-                    else
-                    {
-                        environmentVariablesSourceDictionary =
-                            something.GetAllEnvironmentVariablesAndValuesFromSourceJsonFile<EnvironmentVariables>(
-                                environmentVariablesSourceDirectory.GetName()
-                            );
-                    }
-                }
-                else
-                {
-                    environmentVariablesSourceDictionary =
-                        something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
-                            environmentVariablesSourceDirectory.GetName()
-                        );
-                }
-
-                environmentVariablesSourceFilesDirectory.Populate(destinationDirectory, environmentVariablesSourceDictionary);
+                environmentVariablesSourceFilesDirectory.Populate(environmentVariablesFilesDirectoryPath, environmentVariablesSourceDictionary);
 
                 commandsDirectory.Create();
                 var commandsDirectoryPath = commandsDirectory.GetPath();
