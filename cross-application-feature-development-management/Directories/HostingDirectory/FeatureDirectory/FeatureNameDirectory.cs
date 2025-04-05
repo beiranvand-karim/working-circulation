@@ -1,7 +1,6 @@
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory
 {
     public class FeatureDirectory(
-            CommandLineArgs commandLineArgs,
             HostingDirectory hostingDirectory
         )
     {
@@ -13,11 +12,10 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 
         public string GetPath()
         {
-            var featureDirectoryNameKey = commandLineArgs.GetKey("FeatureNameKey");
-            var featureDirectoryName = CommandLineArgs.GetByKey(featureDirectoryNameKey);
+            var featureName = CommandLineArgs.GetByKey("--feature-name");
             var hostingDirectoryName = hostingDirectory.GetPath();
-            var featureNameDirectoryPath = Path.Combine(hostingDirectoryName, featureDirectoryName);
-            return featureNameDirectoryPath;
+            var featureDirectoryPath = Path.Combine(hostingDirectoryName, featureName);
+            return featureDirectoryPath;
         }
     }
 }

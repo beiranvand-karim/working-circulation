@@ -1,7 +1,6 @@
 namespace cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesTemplatesDirectory
 {
     public class EnvironmentVariablesTemplatesDirectory(
-        CommandLineArgs commandLineArgs,
         AloneDirectory.AloneDirectory aloneDirectory,
         ScriptsDirectory scriptsDirectory
     )
@@ -11,7 +10,7 @@ namespace cross_application_feature_development_management.Directories.Scripts.E
             var templateSourceDirectory_construction =
                 Path.Combine(
                     scriptsDirectory.GetPath(),
-                    GetName()
+                    "environment-variables-template-files"
                 );
 
             var templateSourceDirectory = aloneDirectory.IsAlone()
@@ -19,15 +18,6 @@ namespace cross_application_feature_development_management.Directories.Scripts.E
                 : templateSourceDirectory_construction;
 
             return templateSourceDirectory;
-        }
-
-        private string GetName()
-        {
-            var templatesDirectoryNameKey =
-                commandLineArgs.GetKey("TemplatesDirectoryNameKey");
-
-            var templatesDirectoryName = CommandLineArgs.GetByKey(templatesDirectoryNameKey);
-            return templatesDirectoryName;
         }
     }
 }
