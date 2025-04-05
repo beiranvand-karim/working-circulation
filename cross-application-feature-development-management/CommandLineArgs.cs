@@ -4,13 +4,6 @@ namespace cross_application_feature_development_management
 {
     public class CommandLineArgs(IConfiguration configuration)
     {
-        public string GetKey(string key)
-        {
-            const string groupKey = "EnvironmentVariablesCommandLineArgumentsNameKeys";
-            var commandLineArgumentKey = $"{groupKey}:{key}";
-            return configuration.GetValue<string>(commandLineArgumentKey) ?? $"""couldn't find key "{key}" ...""";
-        }
-
         public string GetKey2(string groupKey, string key)
         {
             var commandLineArgumentKey = $"{groupKey}:{key}";
