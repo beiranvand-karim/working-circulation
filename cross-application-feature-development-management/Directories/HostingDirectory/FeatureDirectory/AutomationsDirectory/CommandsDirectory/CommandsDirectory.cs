@@ -1,7 +1,11 @@
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Calls;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
-using cross_application_feature_development_management.Directories.Scripts;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Tools;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.WebLinks;
 using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
@@ -10,7 +14,6 @@ namespace cross_application_feature_development_management.Directories.HostingDi
     public class CommandsDirectory(
         AutomationsDirectory automationsDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-        ScriptsDirectory scriptsDirectory,
         FeatureDirectory featureDirectory,
         Directories directories,
         ILogger<CommandsDirectory> logger,
@@ -19,7 +22,12 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         FrontEndGuestDirectory frontEndGuestDirectory,
         GuestApplicationName guestApplicationName,
         HostApplicationName hostApplicationName,
-        OperationsDirectory.OperationsDirectory operationsDirectory
+        OperationsDirectory.OperationsDirectory operationsDirectory,
+        NotesAndMessagesDirectory notesAndMessagesDirectory,
+        ToolsDirectory toolsDirectory,
+        CallsDirectory callsDirectory,
+        WebLinksDirectory webLinksDirectory,
+        BackEndDirectory backEndDirectory
     )
     {
         const string directoryNameInFeature = "commands";
@@ -38,12 +46,12 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 
         public void ReplaceFileNamesWithPaths(Dictionary<string, string> environmentVariablesSourceDictionary)
         {
-            var pathInTarget = GetPath();
+            var commandsDirectoryPath = GetPath();
             var giversPath = environmentVariablesFilesDirectory.GetPath();
-            var runHostApplicationPath = Path.Combine(pathInTarget, "run-host-application.ps1");
-            var runGuestApplicationPath = Path.Combine(pathInTarget, "run-guest-application.ps1");
+            var runHostApplicationPath = Path.Combine(commandsDirectoryPath, "run-host-application.ps1");
+            var runGuestApplicationPath = Path.Combine(commandsDirectoryPath, "run-guest-application.ps1");
 
-            foreach (var filePath in Directory.EnumerateFiles(pathInTarget))
+            foreach (var filePath in Directory.EnumerateFiles(commandsDirectoryPath))
             {
                 var fileName = Path.GetFileNameWithoutExtension(filePath);
                 var giverFileName = $"{fileName}.env";
@@ -62,14 +70,14 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                     case "directories-multitude-serving-order-recto-action-shut":
                         directories.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", featureDirectory.GetPath());
                         directories.ReplaceFileNameWithPath(filePath, "OPERATIONS_DIRECTORY_PATH", operationsDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath("FEND_ADDRESS"));
-                        directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS"));
-                        directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS"));
-                        directories.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", frontEndDirectory.GetPath("BEND_ADDRESS"));
-                        directories.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", frontEndDirectory.GetPath("CALLS_ADDRESS"));
-                        directories.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", frontEndDirectory.GetPath("TOOLS_ADDRESS"));
-                        directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", frontEndDirectory.GetPath("NOTES_MESSAGES_ADDRESS"));
-                        directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", frontEndDirectory.GetPath("WEB_LINKS_ADDRESS"));
+                        directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", backEndDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", callsDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", toolsDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", notesAndMessagesDirectory.GetPath());
+                        directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", webLinksDirectory.GetPath());
                         break;
                     case "all":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
@@ -92,11 +100,10 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                         directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
                         break;
                     case "docker-network-secondary-multitude-all-action-start":
-                        environmentVariablesSourceDictionary.TryGetValue(
-                            "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES",
-                            out var azureClientSecretFromEnvironmentVariables
-                        );
-                        directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables ?? "");
+                        if(environmentVariablesSourceDictionary.TryGetValue("AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", out var azureClientSecretFromEnvironmentVariables))
+                        {
+                            directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables);
+                        }
                         break;
                 }
             }

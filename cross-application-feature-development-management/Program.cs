@@ -11,10 +11,14 @@ using cross_application_feature_development_management.Directories.HostingDirect
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Calls;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Tools;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.WebLinks;
 using cross_application_feature_development_management.Directories.Scripts;
 using cross_application_feature_development_management.Directories.Scripts.AloneDirectory;
 using cross_application_feature_development_management.Directories.Scripts.BatchScriptsDirectory;
@@ -58,8 +62,6 @@ namespace cross_application_feature_development_management
                     services.AddTransient<EnvironmentVariablesFilesDirectory>();
                     services.AddTransient<WorkingCirculationDirectory>();
                     services.AddTransient<EnvironmentVariablesSourceDirectory>();
-                    services.AddTransient<SomethingFeatureNameDirectory>();
-                    services.AddTransient<DirectoriesNameToKeyMap>();
                     services.AddTransient<PowerShellScriptsDirectory>();
                     services.AddTransient<BatchScriptsDirectory>();
                     services.AddTransient<HostApplicationName>();
@@ -104,6 +106,16 @@ namespace cross_application_feature_development_management
                     services.AddTransient<PersistentVariablesFile>();
                     services.AddTransient<SeparationFilementDirectory>();
                     services.AddTransient<CafdemTerminalCapturement>();
+                    services.AddSingleton<ToolsDirectory>();
+                    services.AddSingleton<CallsDirectory>();
+                    services.AddSingleton<WebLinksDirectory>();
+                    services.AddSingleton<BackEndDirectory>();
+                    services.AddSingleton<DirectoriesMultitudeServingOrderReverseActionOpen>();
+                    services.AddSingleton<DirectoriesMultitudeCommandingOrderReverseActionOpen>();
+                    services.AddSingleton<DirectoriesMultitudeCommandingOrderRectoActionOpen>();
+                    services.AddSingleton<DirectoriesMultitudeCommandingOrderRectoActionShut>();
+                    services.AddSingleton<DirectoriesMultitudeServingOrderRectoActionOpen>();
+                    services.AddSingleton<DirectoriesMultitudeServingOrderRectoActionShut>();
                 })
                 .UseSerilog()
                 .Build();
