@@ -1,29 +1,29 @@
-using cross_application_feature_development_management.Helpers;
+using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory
 {
     public class FrontEndGuestDirectory(
-        DirectoriesNameToKeyMap directoriesNameToKeyMap,
-        FeatureDirectory featureDirectory,
-        CommandLineArgs commandLineArgs,
-        ILogger<FrontEndGuestDirectory> logger,
-        StringHelpers stringHelpers
+            ILogger<FrontEndGuestDirectory> logger,
+            GuestApplicationName guestApplicationName,
+            FrontEndDirectory frontEndDirectory
         )
     {
-        public string GetPath(string key)
+        public string GetName()
         {
-            var directoryName = directoriesNameToKeyMap.GetValue(key);
-            var featureDirectoryPath = featureDirectory.GetPath();
-            var directoryThatIsGoingToBeOpen = Path.Combine(featureDirectoryPath, directoryName);
+            var frontEndDirectoryName = frontEndDirectory.GetName();
+            var guestApplication = guestApplicationName.GetName();
+            var name = $"{frontEndDirectoryName}.{guestApplication}";
+            return name;
+        }
 
-            var guestApplicationName = CommandLineArgs.GetByKey("--guest-application-name");
+        public string GetPath()
+        {
+            var frontEndDirectoryPath = frontEndDirectory.GetPath();
+            var name = GetName();
 
-            var x = $"{directoryName}.{guestApplicationName}";
-
-            var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
-            logger.LogInformation("front end guest directory: {FrontEndGuestDirectory}", directoryThatIsGoingToBeOpen2);
-            return directoryThatIsGoingToBeOpen2;
+            var frontEndGuestDirectoryPath = Path.Combine(frontEndDirectoryPath, name);
+            return frontEndGuestDirectoryPath;
         }
     }
 }
