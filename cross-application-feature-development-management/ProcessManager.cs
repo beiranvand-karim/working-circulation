@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
-using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory;
+using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
@@ -13,22 +13,19 @@ namespace cross_application_feature_development_management
     public class ProcessManager(
         NotePadPlusPlus notePadPlusPlus,
         ILogger<ProcessManager> logger,
-        DirectoryOperations directoryOperations,
-        FeatureDirectory featureDirectory,
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
-        ProcessesMetaDataDirectory processesMetaDataDirectory,
-        CommandLineArgs commandLineArgs
+        ProcessesMetaDataDirectory processesMetaDataDirectory
         )
     {
         public void Run()
         {
             try
             {
-                var a = frontEndHostDirectory.GetPath("FEND_HOST_ADDRESS");
-                var b = frontEndGuestDirectory.GetPath("FEND_GUEST_ADDRESS");
-                var c = notesAndMessagesDirectory.GetPath("NOTES_MESSAGES_ADDRESS");
+                var a = frontEndHostDirectory.GetPath();
+                var b = frontEndGuestDirectory.GetPath();
+                var c = notesAndMessagesDirectory.GetPath();
                 ProcessInformationGroup processInformationGroup = new();
 
 
@@ -68,7 +65,7 @@ namespace cross_application_feature_development_management
             }
             catch (Exception e)
             {
-                logger.LogInformation("{Message}", e.Message);
+                logger.LogInformation("ProcessManager: {Message}", e.Message);
             }
         }
 

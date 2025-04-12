@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public class EnvironmentVariablesSourceFilesDirectory(
-            SomethingFeatureNameDirectory somethingFeatureNameDirectory,
             AddToStartupScript addToStartupScript,
             NotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
             Something something,
@@ -21,7 +20,13 @@ namespace cross_application_feature_development_management.Directories.HostingDi
             IdeJetbrainsRiderMultitudePrimaryActionShut ideJetbrainsRiderMultitudePrimaryActionShut,
             IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut,
             EnvironmentVariablesTemplatesDirectory environmentVariablesTemplatesDirectory,
-            ILogger<EnvironmentVariablesSourceFilesDirectory> logger
+            ILogger<EnvironmentVariablesSourceFilesDirectory> logger,
+            DirectoriesMultitudeServingOrderReverseActionOpen directoriesMultitudeServingOrderReverseActionOpen,
+            DirectoriesMultitudeCommandingOrderReverseActionOpen directoriesMultitudeCommandingOrderReverseActionOpen,
+            DirectoriesMultitudeCommandingOrderRectoActionOpen directoriesMultitudeCommandingOrderRectoActionOpen,
+            DirectoriesMultitudeCommandingOrderRectoActionShut directoriesMultitudeCommandingOrderRectoActionShut,
+            DirectoriesMultitudeServingOrderRectoActionOpen directoriesMultitudeServingOrderRectoActionOpen,
+            DirectoriesMultitudeServingOrderRectoActionShut directoriesMultitudeServingOrderRectoActionShut
         )
     {
         public void Populate(string destinationDirectory, Dictionary<string, string> environmentVariablesSourceDictionary)
@@ -35,17 +40,17 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 
                 var contentToWrite = destFileName switch
                 {
-                    "directories-multitude-serving-order-reverse-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-serving-order-reverse-action-open.env" => directoriesMultitudeServingOrderReverseActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-commanding-order-reverse-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-commanding-order-reverse-action-open.env" => directoriesMultitudeCommandingOrderReverseActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-commanding-order-recto-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-commanding-order-recto-action-open.env" => directoriesMultitudeCommandingOrderRectoActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-commanding-order-recto-action-shut.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-commanding-order-recto-action-shut.env" => directoriesMultitudeCommandingOrderRectoActionShut.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-serving-order-recto-action-open.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-serving-order-recto-action-open.env" => directoriesMultitudeServingOrderRectoActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-serving-order-recto-action-shut.env" => somethingFeatureNameDirectory.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-serving-order-recto-action-shut.env" => directoriesMultitudeServingOrderRectoActionShut.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "directories-multitude-startup-action-add.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
