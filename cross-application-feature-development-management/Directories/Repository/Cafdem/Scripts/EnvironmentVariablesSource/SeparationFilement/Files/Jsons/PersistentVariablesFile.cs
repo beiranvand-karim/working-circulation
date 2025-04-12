@@ -1,4 +1,4 @@
-namespace cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons
+namespace cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons
 {
     public class PersistentVariablesFile(
         SeparationFilementDirectory separationFilementDirectory

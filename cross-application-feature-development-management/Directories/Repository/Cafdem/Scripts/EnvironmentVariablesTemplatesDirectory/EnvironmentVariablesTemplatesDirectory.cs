@@ -1,4 +1,4 @@
-namespace cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesTemplatesDirectory
+namespace cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesTemplatesDirectory
 {
     public class EnvironmentVariablesTemplatesDirectory(
         AloneDirectory.AloneDirectory aloneDirectory,

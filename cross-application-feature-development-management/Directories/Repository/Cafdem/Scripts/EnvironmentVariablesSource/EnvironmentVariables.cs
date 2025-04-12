@@ -1,4 +1,4 @@
-namespace cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource
+namespace cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource
 {
     public class EnvironmentVariables
     {
