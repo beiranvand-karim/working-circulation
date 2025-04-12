@@ -1,12 +1,13 @@
 using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management.Directories.Scripts.PowerShellScriptsDirectory
+namespace cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.PowerShellScriptsDirectory
 {
-    public class PowerShellScriptsDirectory(
+    public class PowerShellScriptsDirectory
+    (
         ScriptsDirectory scriptsDirectory,
         Directories directories,
         ILogger<PowerShellScriptsDirectory> logger
-        )
+    )
     {
         const string directoryNameInSourceCode = "powershell-scripts";
 

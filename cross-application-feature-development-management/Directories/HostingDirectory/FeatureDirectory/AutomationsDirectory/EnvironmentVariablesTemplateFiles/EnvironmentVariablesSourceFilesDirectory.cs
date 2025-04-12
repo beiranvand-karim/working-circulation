@@ -1,5 +1,5 @@
 using cross_application_feature_development_management.Combiners;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesTemplatesDirectory;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesTemplatesDirectory;
 using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
