@@ -1,6 +1,6 @@
 namespace cross_application_feature_development_management.Names
 {
-    public class GuestApplicationName(CommandLineArgs commandLineArgs)
+    public class GuestApplicationName
     {
         public string GetName()
         {

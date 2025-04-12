@@ -1,15 +1,7 @@
-using Microsoft.Extensions.Configuration;
-
 namespace cross_application_feature_development_management
 {
-    public class CommandLineArgs(IConfiguration configuration)
+    public class CommandLineArgs
     {
-        public string GetKey2(string groupKey, string key)
-        {
-            var commandLineArgumentKey = $"{groupKey}:{key}";
-            return configuration.GetValue<string>(commandLineArgumentKey) ?? $"""couldn't find key "{key}" ...""";
-        }
-
         public static string GetByKey(string commandLineArgKey)
         {
             var commandLineArgs = Environment.GetCommandLineArgs();

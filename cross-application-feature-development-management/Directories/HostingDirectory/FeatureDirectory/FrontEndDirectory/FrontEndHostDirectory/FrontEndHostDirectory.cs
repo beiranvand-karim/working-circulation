@@ -1,29 +1,30 @@
-using cross_application_feature_development_management.Helpers;
+using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory
 {
     public class FrontEndHostDirectory(
-            DirectoriesNameToKeyMap directoriesNameToKeyMap,
             FeatureDirectory featureDirectory,
-            CommandLineArgs commandLineArgs,
             ILogger<FrontEndHostDirectory> logger,
-            StringHelpers stringHelpers
+            FrontEndDirectory frontEndDirectory,
+            HostApplicationName hostApplicationName
         )
     {
-        public string GetPath(string key)
+        public string GetName()
         {
-            var directoryName = directoriesNameToKeyMap.GetValue(key);
-            var featureDirectoryPath = featureDirectory.GetPath();
-            var directoryThatIsGoingToBeOpen = Path.Combine(featureDirectoryPath, directoryName);
+            var frontEndDirectoryName = frontEndDirectory.GetName();
+            var hostApplication = hostApplicationName.GetName();
+            var name = $"{frontEndDirectoryName}.{hostApplication}";
+            return name;
+        }
 
-            var hostApplicationName = CommandLineArgs.GetByKey("--host-application-name");
+        public string GetPath()
+        {
+            var frontEndDirectoryPath = frontEndDirectory.GetPath();
+            var name = GetName();
 
-            var x = $"{directoryName}.{hostApplicationName}";
-
-            var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
-            logger.LogInformation("front end host directory: {FrontEndHostDirectory}", directoryThatIsGoingToBeOpen2);
-            return directoryThatIsGoingToBeOpen2;
+            var frontEndHostDirectoryPath = Path.Combine(frontEndDirectoryPath, name);
+            return frontEndHostDirectoryPath;
         }
     }
 }
