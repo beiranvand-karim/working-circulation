@@ -1,6 +1,6 @@
 using cross_application_feature_development_management.Names;
 
-namespace cross_application_feature_development_management.Directories.Scripts.AloneDirectory
+namespace cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.AloneDirectory
 {
     public class AloneDirectory
     (

@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Names
