@@ -19,14 +19,16 @@ using cross_application_feature_development_management.Directories.HostingDirect
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Tools;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.WebLinks;
-using cross_application_feature_development_management.Directories.Scripts;
-using cross_application_feature_development_management.Directories.Scripts.AloneDirectory;
-using cross_application_feature_development_management.Directories.Scripts.BatchScriptsDirectory;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
-using cross_application_feature_development_management.Directories.Scripts.EnvironmentVariablesTemplatesDirectory;
-using cross_application_feature_development_management.Directories.Scripts.PowerShellScriptsDirectory;
+using cross_application_feature_development_management.Directories.Repository;
+using cross_application_feature_development_management.Directories.Repository.Cafdem;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.AloneDirectory;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.BatchScriptsDirectory;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesTemplatesDirectory;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.PowerShellScriptsDirectory;
 using cross_application_feature_development_management.Files.Executables;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
@@ -116,6 +118,8 @@ namespace cross_application_feature_development_management
                     services.AddSingleton<DirectoriesMultitudeCommandingOrderRectoActionShut>();
                     services.AddSingleton<DirectoriesMultitudeServingOrderRectoActionOpen>();
                     services.AddSingleton<DirectoriesMultitudeServingOrderRectoActionShut>();
+                    services.AddSingleton<CafdemDirectory>();
+                    services.AddSingleton<RepositoryDirectory>();
                 })
                 .UseSerilog()
                 .Build();

@@ -1,4 +1,4 @@
-namespace cross_application_feature_development_management.Directories.Scripts.BatchScriptsDirectory
+namespace cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.BatchScriptsDirectory
 {
     public class BatchScriptsDirectory(
         ScriptsDirectory scriptsDirectory,
