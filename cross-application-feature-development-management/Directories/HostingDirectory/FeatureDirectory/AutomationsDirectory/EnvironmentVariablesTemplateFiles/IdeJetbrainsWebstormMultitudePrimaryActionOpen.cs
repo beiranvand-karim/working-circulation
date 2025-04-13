@@ -7,9 +7,8 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 {
     public class IdeJetbrainsWebstormMultitudePrimaryActionOpen(
         FeatureName featureName,
-        GuestApplicationName guestApplicationName,
-        HostApplicationName hostApplicationName,
         HostingDirectory hostingDirectory,
+        PrimaryApplication primaryApplication,
         ILogger<NotePadPlusPlusOpenAll> logger,
         StringHelpers stringHelpers
     )
@@ -40,9 +39,9 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
-                    case "HOST_APPLICATION_NAME":
+                    case "PRIMARY_APPLICATION_NAME":
                         {
-                            var val = hostApplicationName.GetName();
+                            var val = primaryApplication.GetName();
                             var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;

@@ -26,7 +26,7 @@ namespace notepad_plus_plus_file_management.Dirctories.Classes
             var featureNameDirectoryPath = featureNameDirectory.GetPath();
             var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
 
-            var hostApplicationName = commandLineArgs.GetByKey("--host-application-name");
+            var hostApplicationName = commandLineArgs.GetByKey("--primary-application-name");
 
             var x = string.Format("{0}.{1}", directoryName, hostApplicationName);
 

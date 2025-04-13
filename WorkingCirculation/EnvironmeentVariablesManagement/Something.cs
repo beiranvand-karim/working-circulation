@@ -37,7 +37,7 @@ namespace EnvironmentVariablesManagement
                         var featureNameDirectoryPath = EnvironmentVariablesManagement.FeatureNameDirectory.GetPath(configuration);
                         var directoryThatIsGoingToBeOpen = Path.Combine(featureNameDirectoryPath, directoryName);
 
-                        var hostApplicationName = CommandLineArgs.GetByKey("--host-application-name");
+                        var hostApplicationName = CommandLineArgs.GetByKey("--primary-application-name");
 
                         var x = string.Format("{0}.{1}",directoryName, hostApplicationName);
 

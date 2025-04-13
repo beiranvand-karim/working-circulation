@@ -7,5 +7,5 @@ get-content "docker-network-secondary-multitude-two-action-stop.env" | ForEach-O
 
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
 push-location $env:APPLICATION_COMPOSE_FILE_LOCATION
-docker compose stop host-application-name guest-application-name
+docker compose stop primary-application-name guest-application-name
 pop-location
