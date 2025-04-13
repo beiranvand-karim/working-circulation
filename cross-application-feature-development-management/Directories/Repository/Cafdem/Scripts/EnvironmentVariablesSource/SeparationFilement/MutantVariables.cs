@@ -4,7 +4,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
     {
         public bool? IsRiderGuestApplicationRunningPermissionGrantable { get; set; }
         public bool? IsWebstormGuestClientappRunningPermissionGrantable { get; set; }
-        public string? HostApplicationName { get; set; }
+        public string? PrimaryApplicationName { get; set; }
         public string? GuestApplicationName { get; set; }
         public string? GuestApplicationLocation { get; set; }
         public string? HostApplicationLocation { get; set; }

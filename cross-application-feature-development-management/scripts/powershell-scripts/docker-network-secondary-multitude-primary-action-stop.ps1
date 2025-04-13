@@ -7,5 +7,5 @@ get-content "docker-network-secondary-multitude-primary-action-stop.env" | ForEa
 
 start-process -FilePath $env:DOCKER_CLI_LOCATION -ArgumentList "-SwitchWindowsEngine"
 push-location $env:APPLICATION_COMPOSE_FILE_LOCATION
-docker compose stop host-application-name
+docker compose stop primary-application-name
 pop-location

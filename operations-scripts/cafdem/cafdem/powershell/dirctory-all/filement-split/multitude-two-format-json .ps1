@@ -1,6 +1,6 @@
 
 $feature_name="wonderful feature"
-$host_application_name="augustus"
+$primary_application_name="augustus"
 $guest_application_name="decimus"
 
 $repository_directory="/Users/karimbeiranvand/Documents/GitHub/working-circulation"
@@ -23,7 +23,7 @@ dotnet run `
 --executive-file-directory "$working_directory/bin/Debug/net8.0/cross-application-feature-development-management" `
 --repository-directory "$repository_directory" `
 --hosting-directory "$hosting_directory" `
---host-application-name "$host_application_name" `
+--primary-application-name "$primary_application_name" `
 --guest-application-name "$guest_application_name"
 
 Pop-Location

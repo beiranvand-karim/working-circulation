@@ -11,7 +11,7 @@ cross-application-feature-development-management.exe ^
 --scripts-directory "[ ... fill in here ...]/working-circulation/cross-application-feature-development-management/scripts" ^
 --repository-directory "[ ... fill in here ...]/working-circulation" ^
 --hosting-directory "[ ... fill in here ...]" ^
---host-application-name "augustus" ^
+--primary-application-name "augustus" ^
 --guest-application-name "julius"
 
 pause

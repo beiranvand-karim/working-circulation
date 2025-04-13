@@ -1,8 +1,6 @@
 namespace cross_application_feature_development_management.Names
 {
-    public class PrimaryApplicationName(
-        CommandLineArgs commandLineArgs
-    )
+    public class PrimaryApplication
     {
         public string GetName()
         {
