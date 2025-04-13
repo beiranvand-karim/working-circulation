@@ -4,17 +4,16 @@ using Microsoft.Extensions.Logging;
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory
 {
     public class FrontEndHostDirectory(
-            FeatureDirectory featureDirectory,
             ILogger<FrontEndHostDirectory> logger,
             FrontEndDirectory frontEndDirectory,
-            HostApplicationName hostApplicationName
+            PrimaryApplication primaryApplication
         )
     {
         public string GetName()
         {
             var frontEndDirectoryName = frontEndDirectory.GetName();
-            var hostApplication = hostApplicationName.GetName();
-            var name = $"{frontEndDirectoryName}.{hostApplication}";
+            var primaryApplicationName = primaryApplication.GetName();
+            var name = $"{frontEndDirectoryName}.{primaryApplicationName}";
             return name;
         }
 

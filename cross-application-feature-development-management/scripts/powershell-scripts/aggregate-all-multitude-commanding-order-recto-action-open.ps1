@@ -35,7 +35,7 @@ Start-Sleep -Seconds 10
 
 
 Start-Sleep -Seconds 10
-Invoke-Expression 'cmd /c start powershell -Command {pwsh "run-host-application.ps1";}'
+Invoke-Expression 'cmd /c start powershell -Command {pwsh "run-primary-application.ps1";}'
 
 Start-Sleep -Seconds 4
 Invoke-Expression 'cmd /c start powershell -Command {pwsh "run-guest-application.ps1";}'
