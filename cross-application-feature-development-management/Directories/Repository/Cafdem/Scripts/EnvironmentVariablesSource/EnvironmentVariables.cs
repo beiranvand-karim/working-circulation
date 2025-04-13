@@ -25,7 +25,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? NotepaddppExecuteFileLocation { get; set; }
         public string? FeatureName { get; set; }
         public string? HostingDirectory { get; set; }
-        public string? HostApplicationName { get; set; }
+        public string? PrimaryApplicationName { get; set; }
         public string? GuestApplicationName { get; set; }
         public string? Command { get; set; }
         public string? Order { get; set; }

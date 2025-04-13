@@ -8,7 +8,6 @@ namespace cross_application_feature_development_management.Directories.HostingDi
     public class IdeJetbrainsWebstormMultitudeSecondaryActionShut(
         FeatureName featureName,
         GuestApplicationName guestApplicationName,
-        HostApplicationName hostApplicationName,
         HostingDirectory hostingDirectory,
         ILogger<NotePadPlusPlusOpenAll> logger,
         StringHelpers stringHelpers
