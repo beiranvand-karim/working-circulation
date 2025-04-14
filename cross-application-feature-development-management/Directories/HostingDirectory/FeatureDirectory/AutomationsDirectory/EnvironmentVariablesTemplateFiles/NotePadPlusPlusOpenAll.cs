@@ -61,6 +61,12 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
+                    case "APPLICATION":
+                        {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks("notepad-plus-plus-file-management");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
                     case "COMMAND":
                         {
                             var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
