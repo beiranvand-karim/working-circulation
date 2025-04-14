@@ -67,6 +67,12 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
+                    case "APPLICATION":
+                        {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks("notepad-plus-plus-file-management");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
                     case "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY":
                         {
                             environmentVariablesSourceDictionary.TryGetValue(
