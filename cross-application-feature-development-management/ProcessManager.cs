@@ -1,6 +1,5 @@
 using System.Diagnostics;
 using System.Text.Json;
-using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
@@ -34,17 +33,17 @@ namespace cross_application_feature_development_management
                 if (orderValue == "reverse")
                 {
                     this.StartProcess(b, processInformationGroup);
-                    Thread.Sleep(3000);
+                    Thread.Sleep(100);
                     this.StartProcess(a, processInformationGroup);
-                    Thread.Sleep(3000);
+                    Thread.Sleep(100);
                     this.StartProcess(c, processInformationGroup);
                 }
                 else
                 {
                     this.StartProcess(a, processInformationGroup);
-                    Thread.Sleep(3000);
+                    Thread.Sleep(100);
                     this.StartProcess(b, processInformationGroup);
-                    Thread.Sleep(3000);
+                    Thread.Sleep(100);
                     this.StartProcess(c, processInformationGroup);
                 }
 
