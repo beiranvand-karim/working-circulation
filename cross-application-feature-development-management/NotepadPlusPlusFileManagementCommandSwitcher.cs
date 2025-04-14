@@ -1,7 +1,6 @@
 namespace cross_application_feature_development_management
 {
     public class NotepadPlusPlusFileManagementCommandSwitcher(
-        CommandLineArgs commandLineArgs,
         ProcessManager processManager,
         CloseProcessManagement closeProcessManagement
         )
