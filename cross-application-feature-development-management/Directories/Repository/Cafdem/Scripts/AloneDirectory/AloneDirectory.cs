@@ -4,7 +4,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
 {
     public class AloneDirectory
     (
-        GuestApplicationName guestApplicationName,
+        SecondaryApplication secondaryApplication,
         ScriptsDirectory scriptsDirectory
     )
     {
@@ -27,7 +27,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
 
         public string AloneOrDouble()
         {
-            var x = guestApplicationName.GetName();
+            var x = secondaryApplication.GetName();
             return x.Contains("couldn") ? "alone" : "double";
         }
 
