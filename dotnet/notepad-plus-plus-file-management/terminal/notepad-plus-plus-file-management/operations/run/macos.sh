@@ -12,4 +12,4 @@ dotnet run \
 --repository-directory "[ ... fill in here ...]/working-circulation" \
 --hosting-directory "${hosting_directory}" \
 --primary-application-name "[ ... fill in here ...]" \
---guest-application-name "[ ... fill in here ...]"
+--secondary-application-name "[ ... fill in here ...]"

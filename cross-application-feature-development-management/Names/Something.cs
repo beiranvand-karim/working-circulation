@@ -8,7 +8,7 @@ namespace cross_application_feature_development_management.Names
 {
     public class Something(
             ILogger<Something> logger,
-            GuestApplicationName guestApplicationName,
+            SecondaryApplication secondaryApplication,
             PersistentVariablesFile persistentVariablesFile,
             SeparationFilementDirectory separationFilementDirectory
         )
@@ -133,10 +133,8 @@ namespace cross_application_feature_development_management.Names
             {
                 var extension = Path.GetExtension(file);
 
-                if (file.Contains(guestApplicationName.GetName()) && extension == ".env")
+                if (file.Contains(secondaryApplication.GetName()) && extension == ".env")
                 {
-                    logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
-                    logger.LogInformation("{file}", file);
                     keyValuePairs = ReadKeyValueFromFile(file);
                 }
             }
@@ -153,10 +151,8 @@ namespace cross_application_feature_development_management.Names
             foreach (var file in Directory.EnumerateFiles(environmentVariablesSourceDirectory))
             {
 
-                if (file.Contains(guestApplicationName.GetName()) && Path.GetExtension(file) == ".json")
+                if (file.Contains(secondaryApplication.GetName()) && Path.GetExtension(file) == ".json")
                 {
-                    logger.LogInformation("{guestApplicationName}", guestApplicationName.GetName());
-                    logger.LogInformation("file: {file}", file);
                     keyValuePairs = ReadKeyValueFromJsonFile<T>(file);
                 }
             }

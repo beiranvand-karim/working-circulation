@@ -2,7 +2,7 @@
 
 feature_name="wonderful feature"
 primary_application_name="augustus"
-guest_application_name="decimus"
+secondary_application_name="decimus"
 
 current_directory=${PWD}
 

@@ -20,7 +20,7 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         FrontEndDirectory.FrontEndDirectory frontEndDirectory,
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
-        GuestApplicationName guestApplicationName,
+        SecondaryApplication secondaryApplication,
         PrimaryApplication primaryApplication,
         OperationsDirectory.OperationsDirectory operationsDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
@@ -49,7 +49,7 @@ namespace cross_application_feature_development_management.Directories.HostingDi
             var commandsDirectoryPath = GetPath();
             var giversPath = environmentVariablesFilesDirectory.GetPath();
             var runHostApplicationPath = Path.Combine(commandsDirectoryPath, "run-primary-application.ps1");
-            var runGuestApplicationPath = Path.Combine(commandsDirectoryPath, "run-guest-application.ps1");
+            var runGuestApplicationPath = Path.Combine(commandsDirectoryPath, "run-secondary-application.ps1");
 
             foreach (var filePath in Directory.EnumerateFiles(commandsDirectoryPath))
             {
@@ -64,7 +64,7 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                     case "aggregate-all-multitude-commanding-order-recto-action-open":
                     case "aggregate-all-multitude-commanding-order-reverse-action-open":
                         directories.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
-                        directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                        directories.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
                         break;
                     case "directories-multitude-commanding-order-recto-action-shut":
                     case "directories-multitude-serving-order-recto-action-shut":
@@ -81,23 +81,23 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                         break;
                     case "all":
                         directories.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
-                        directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                        directories.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
                         break;
                     case "dotnet-multitude-primary-action-run":
                         directories.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
                         break;
                     case "dotnet-multitude-secondary-action-run":
-                        directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
+                        directories.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
                         break;
                     case "docker-network-secondary-multitude-primary-action-stop":
                         directories.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName());
                         break;
                     case "docker-network-secondary-multitude-secondary-action-stop":
-                        directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
+                        directories.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName());
                         break;
                     case "docker-network-secondary-multitude-two-action-stop":
                         directories.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName());
-                        directories.ReplaceFileNameWithPath(filePath, "guest-application-name", guestApplicationName.GetName());
+                        directories.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName());
                         break;
                     case "docker-network-secondary-multitude-all-action-start":
                         if(environmentVariablesSourceDictionary.TryGetValue("AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", out var azureClientSecretFromEnvironmentVariables))

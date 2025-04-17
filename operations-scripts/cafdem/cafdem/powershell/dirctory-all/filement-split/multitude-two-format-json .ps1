@@ -1,7 +1,7 @@
 
 $feature_name="wonderful feature"
 $primary_application_name="augustus"
-$guest_application_name="decimus"
+$secondary_application_name="decimus"
 
 $repository_directory="/Users/karimbeiranvand/Documents/GitHub/working-circulation"
 $working_directory="$repository_directory/cross-application-feature-development-management"
@@ -24,6 +24,6 @@ dotnet run `
 --repository-directory "$repository_directory" `
 --hosting-directory "$hosting_directory" `
 --primary-application-name "$primary_application_name" `
---guest-application-name "$guest_application_name"
+--secondary-application-name "$secondary_application_name"
 
 Pop-Location
