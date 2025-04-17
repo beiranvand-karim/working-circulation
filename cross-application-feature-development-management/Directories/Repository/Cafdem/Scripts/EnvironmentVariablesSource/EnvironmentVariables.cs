@@ -26,7 +26,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? FeatureName { get; set; }
         public string? HostingDirectory { get; set; }
         public string? PrimaryApplicationName { get; set; }
-        public string? GuestApplicationName { get; set; }
+        public string? SecondaryApplicationName { get; set; }
         public string? Command { get; set; }
         public string? Order { get; set; }
         public string? DockerDesktopLocation { get; set; }

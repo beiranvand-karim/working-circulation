@@ -7,7 +7,7 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 {
     public class NotePadPlusPlusAllClose(
         FeatureName featureName,
-        GuestApplicationName guestApplicationName,
+        SecondaryApplication secondaryApplication,
         PrimaryApplication primaryApplication,
         HostingDirectory hostingDirectory,
         ILogger<NotePadPlusPlusOpenAll> logger,
@@ -47,9 +47,9 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
-                    case "GUEST_APPLICATION_NAME":
+                    case "SECONDARY_APPLICATION_NAME":
                         {
-                            var val = guestApplicationName.GetName();
+                            var val = secondaryApplication.GetName();
                             var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;

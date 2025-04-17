@@ -14,4 +14,4 @@ cd /Users/karimbeiranvand/Documents/GitHub/working-circulation/cross-application
 --repository-directory "/Users/karimbeiranvand/Documents/GitHub/working-circulation" \
 --hosting-directory "${hosting_directory}" \
 --primary-application-name "augustus" \
---guest-application-name "julius"
+--secondary-application-name "julius"

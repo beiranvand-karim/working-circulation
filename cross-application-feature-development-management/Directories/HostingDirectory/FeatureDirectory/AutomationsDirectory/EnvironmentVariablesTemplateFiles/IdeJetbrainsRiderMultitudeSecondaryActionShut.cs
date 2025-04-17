@@ -7,7 +7,7 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 {
     public class IdeJetbrainsRiderMultitudeSecondaryActionShut(
         FeatureName featureName,
-        GuestApplicationName guestApplicationName,
+        SecondaryApplication secondaryApplication,
         HostingDirectory hostingDirectory,
         ILogger<NotePadPlusPlusOpenAll> logger,
         StringHelpers stringHelpers
@@ -41,7 +41,7 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                         }
                     case "SECONDARY_APPLICATION_NAME":
                         {
-                            var val = guestApplicationName.GetName();
+                            var val = secondaryApplication.GetName();
                             var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
