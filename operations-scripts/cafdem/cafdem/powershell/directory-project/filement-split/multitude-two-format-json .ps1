@@ -1,6 +1,6 @@
 $feature_name="wonderful feature"
 $primary_application_name="augustus"
-$guest_application_name="decimus"
+$secondary_application_name="decimus"
 $current_directory=$PWD.Path
 $hosting_directory="$current_directory/workers/features"
 $repository_directory=(get-item $current_directory).parent.FullName 
@@ -17,4 +17,4 @@ dotnet run `
 --repository-directory "$repository_directory" `
 --hosting-directory "$hosting_directory" `
 --primary-application-name "$primary_application_name" `
---guest-application-name "$guest_application_name"
+--secondary-application-name "$secondary_application_name"

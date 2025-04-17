@@ -34,7 +34,7 @@
     "FeatureName": "feature/name",
     "HostingDirectory": "hosting/directory",
     "PrimaryApplicationName": "primary/application/name",
-    "GuestApplicationName": "guest/application/name",
+    "SecondaryApplicationName": "secondary/application/name",
     "Command": "command",
     "Order": "order",
     "DockerDesktopLocation": "docker/desktop/location",

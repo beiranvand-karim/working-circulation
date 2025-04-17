@@ -4,8 +4,8 @@ namespace cross_application_feature_development_management.Names
     {
         public string GetName()
         {
-            const string guestApplicationNameKey = "--feature-name";
-            var name = CommandLineArgs.GetByKey(guestApplicationNameKey);
+            const string featureNameKey = "--feature-name";
+            var name = CommandLineArgs.GetByKey(featureNameKey);
             return name;
         }
     }

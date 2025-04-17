@@ -12,6 +12,6 @@ cross-application-feature-development-management.exe ^
 --repository-directory "[ ... fill in here ...]/working-circulation" ^
 --hosting-directory "[ ... fill in here ...]" ^
 --primary-application-name "augustus" ^
---guest-application-name "julius"
+--secondary-application-name "julius"
 
 pause

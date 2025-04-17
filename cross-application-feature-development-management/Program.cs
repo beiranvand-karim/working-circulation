@@ -67,7 +67,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<PowerShellScriptsDirectory>();
                     services.AddTransient<BatchScriptsDirectory>();
                     services.AddTransient<PrimaryApplication>();
-                    services.AddTransient<GuestApplicationName>();
+                    services.AddTransient<SecondaryApplication>();
                     services.AddTransient<Something>();
                     services.AddTransient<AddToStartupScript>();
                     services.AddTransient<StringHelpers>();

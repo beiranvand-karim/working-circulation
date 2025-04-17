@@ -5,14 +5,14 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 {
     public class FrontEndGuestDirectory(
             ILogger<FrontEndGuestDirectory> logger,
-            GuestApplicationName guestApplicationName,
+            SecondaryApplication secondaryApplication,
             FrontEndDirectory frontEndDirectory
         )
     {
         public string GetName()
         {
             var frontEndDirectoryName = frontEndDirectory.GetName();
-            var guestApplication = guestApplicationName.GetName();
+            var guestApplication = secondaryApplication.GetName();
             var name = $"{frontEndDirectoryName}.{guestApplication}";
             return name;
         }
