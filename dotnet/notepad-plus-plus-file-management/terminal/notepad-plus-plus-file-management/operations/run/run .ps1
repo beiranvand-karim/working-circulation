@@ -1,1 +1,0 @@
-dotnet run --feature-name "wonderful feature" --hosting-directory "test/test/test" --primary-application-name "host" --secondary-application-name "guest"
