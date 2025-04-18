@@ -1,12 +1,8 @@
 using System.Text;
-using cross_application_feature_development_management.Directories;
-using cross_application_feature_development_management.Directories.HostingDirectory;
-using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory;
-using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory;
 using cross_application_feature_development_management.Helpers;
 using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management.Combiners
+namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public class AddToStartupScript(
         CommandLineArgs commandLineArgs,
