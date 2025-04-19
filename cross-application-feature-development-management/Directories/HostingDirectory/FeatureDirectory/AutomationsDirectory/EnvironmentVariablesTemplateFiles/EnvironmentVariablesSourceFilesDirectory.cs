@@ -1,13 +1,11 @@
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesTemplatesDirectory;
 using cross_application_feature_development_management.Names;
-using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public class EnvironmentVariablesSourceFilesDirectory(
             AddToStartupScript addToStartupScript,
             NotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
-            Something something,
             NotePadPlusPlusAllClose notePadPlusPlusAllClose,
             NotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen,
             IdeJetbrainsRiderMultitudePrimaryActionOpen ideJetbrainsRiderMultitudePrimaryActionOpen,
@@ -19,7 +17,6 @@ namespace cross_application_feature_development_management.Directories.HostingDi
             IdeJetbrainsRiderMultitudePrimaryActionShut ideJetbrainsRiderMultitudePrimaryActionShut,
             IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut,
             EnvironmentVariablesTemplatesDirectory environmentVariablesTemplatesDirectory,
-            ILogger<EnvironmentVariablesSourceFilesDirectory> logger,
             DirectoriesMultitudeServingOrderReverseActionOpen directoriesMultitudeServingOrderReverseActionOpen,
             DirectoriesMultitudeCommandingOrderReverseActionOpen directoriesMultitudeCommandingOrderReverseActionOpen,
             DirectoriesMultitudeCommandingOrderRectoActionOpen directoriesMultitudeCommandingOrderRectoActionOpen,

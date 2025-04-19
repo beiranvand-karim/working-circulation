@@ -7,14 +7,12 @@ using cross_application_feature_development_management.Directories.HostingDirect
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Tools;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.WebLinks;
 using cross_application_feature_development_management.Helpers;
-using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public class DirectoriesMultitudeServingOrderRectoActionShut
     (
         FeatureDirectory featureDirectory,
-        ILogger<DirectoriesMultitudeServingOrderRectoActionShut> logger,
         StringHelpers stringHelpers,
         OperationsDirectory.OperationsDirectory operationsDirectory,
         FrontEndHostDirectory frontEndHostDirectory,

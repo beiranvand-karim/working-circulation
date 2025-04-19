@@ -14,7 +14,6 @@ namespace cross_application_feature_development_management.Directories.HostingDi
     public class DirectoriesMultitudeCommandingOrderRectoActionOpen
     (
         FeatureDirectory featureDirectory,
-        ILogger<DirectoriesMultitudeCommandingOrderRectoActionOpen> logger,
         StringHelpers stringHelpers,
         OperationsDirectory.OperationsDirectory operationsDirectory,
         FrontEndHostDirectory frontEndHostDirectory,

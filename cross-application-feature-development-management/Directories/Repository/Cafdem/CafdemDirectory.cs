@@ -5,7 +5,6 @@ namespace cross_application_feature_development_management.Directories.Repositor
         RepositoryDirectory repositoryDirectory
     )
     {
-
         public string GetPath()
         {
             var repositoryDirectoryPath = repositoryDirectory.GetPath();

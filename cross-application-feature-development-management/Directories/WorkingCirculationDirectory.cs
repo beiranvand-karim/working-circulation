@@ -1,8 +1,6 @@
 namespace cross_application_feature_development_management.Directories
 {
-    public class WorkingCirculationDirectory(
-            CommandLineArgs commandLineArgs
-        )
+    public class WorkingCirculationDirectory
     {
         public string GetName()
         {

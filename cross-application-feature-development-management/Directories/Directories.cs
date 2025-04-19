@@ -1,8 +1,6 @@
-using Microsoft.Extensions.Logging;
-
 namespace cross_application_feature_development_management.Directories
 {
-    public class Directories(ILogger<Directories> logger)
+    public class Directories
     {
         public void ReplaceFileNameWithPath(string receiverPath, string giverPath)
         {

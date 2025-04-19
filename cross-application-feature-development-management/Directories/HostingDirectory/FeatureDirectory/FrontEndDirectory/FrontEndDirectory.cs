@@ -1,10 +1,7 @@
-using Microsoft.Extensions.Logging;
-
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory
 {
     public class FrontEndDirectory(
-            FeatureDirectory featureDirectory,
-            ILogger<FrontEndDirectory> logger
+            FeatureDirectory featureDirectory
         )
     {
         public string GetName()
