@@ -119,6 +119,7 @@ namespace cross_application_feature_development_management
                     services.AddSingleton<DirectoriesMultitudeServingOrderRectoActionShut>();
                     services.AddSingleton<CafdemDirectory>();
                     services.AddSingleton<RepositoryDirectory>();
+                    services.AddSingleton<MutantVariablesFile>();
                 })
                 .UseSerilog()
                 .Build();

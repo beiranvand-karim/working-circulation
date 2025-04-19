@@ -7,7 +7,7 @@ namespace cross_application_feature_development_management.Applications.Cafdem
         ILogger<CafdemTerminalCapturement> logger
     )
     {
-        private string GetFormat()
+        public string GetFormat()
         {
             var format = CommandLineArgs.GetByKey("--format");
             return format;
