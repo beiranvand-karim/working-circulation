@@ -1,9 +1,6 @@
 namespace cross_application_feature_development_management.Applications.IdeManagement
 {
     public class IdeManagement(
-        CommandLineArgs commandLineArgs,
-        ProcessManager processManager,
-        CloseProcessManagement closeProcessManagement,
         IdeProcessManagement ideProcessManagement
     )
     {
