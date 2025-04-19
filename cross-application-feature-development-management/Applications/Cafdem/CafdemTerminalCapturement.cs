@@ -1,11 +1,6 @@
-using Microsoft.Extensions.Logging;
-
 namespace cross_application_feature_development_management.Applications.Cafdem
 {
     public class CafdemTerminalCapturement
-    (
-        ILogger<CafdemTerminalCapturement> logger
-    )
     {
         public string GetFormat()
         {
