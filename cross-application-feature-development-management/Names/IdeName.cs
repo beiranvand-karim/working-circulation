@@ -1,8 +1,6 @@
 namespace cross_application_feature_development_management.Names
 {
-    public class IdeName(
-        CommandLineArgs commandLineArgs
-    )
+    public class IdeName
     {
         public string GetName()
         {

@@ -1,7 +1,6 @@
 using System.Text;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
-using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
@@ -9,7 +8,6 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         FeatureName featureName,
         PrimaryApplication primaryApplication,
         HostingDirectory hostingDirectory,
-        ILogger<NotePadPlusPlusOpenAll> logger,
         StringHelpers stringHelpers
     )
     {

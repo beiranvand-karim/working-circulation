@@ -1,12 +1,9 @@
 using System.Text;
 using cross_application_feature_development_management.Helpers;
-using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public class AddToStartupScript(
-        CommandLineArgs commandLineArgs,
-        ILogger<AddToStartupScript> logger,
         StringHelpers stringHelpers,
         AutomationsDirectory automationsDirectory
         )

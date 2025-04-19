@@ -1,10 +1,8 @@
 using cross_application_feature_development_management.Names;
-using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory
 {
     public class FrontEndGuestDirectory(
-            ILogger<FrontEndGuestDirectory> logger,
             SecondaryApplication secondaryApplication,
             FrontEndDirectory frontEndDirectory
         )

@@ -1,6 +1,6 @@
 namespace cross_application_feature_development_management.Names
 {
-    public class FeatureName(CommandLineArgs commandLineArgs)
+    public class FeatureName
     {
         public string GetName()
         {

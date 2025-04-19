@@ -3,7 +3,6 @@ using cross_application_feature_development_management.Applications.IdeManagemen
 namespace cross_application_feature_development_management
 {
     public class CrossApplicationFeatureDevelopmentManagementCommandSwitcher(
-        CommandLineArgs commandLineArgs,
         CrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement,
         NotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher,
         IdeManagement ideManagement 
