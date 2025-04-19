@@ -11,7 +11,8 @@ namespace cross_application_feature_development_management.Directories.Repositor
 
         public string GetPath()
         {
-            return Path.Combine(separationFilementDirectory.GetPath(), "persistent-variables.json");
+            var name = GetName();
+            return Path.Combine(separationFilementDirectory.GetPath(), name);
         }
     }
 }

@@ -2,15 +2,13 @@ using System.Text;
 using System.Text.Json;
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement;
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
-using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Names
 {
     public class Something(
-            ILogger<Something> logger,
             SecondaryApplication secondaryApplication,
             PersistentVariablesFile persistentVariablesFile,
-            SeparationFilementDirectory separationFilementDirectory
+            MutantVariablesFile mutantVariablesFile
         )
     {
         public static Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -59,47 +57,24 @@ namespace cross_application_feature_development_management.Names
             return string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "_" + x.ToString() : x.ToString())).ToLower();
         }
 
-        private static Dictionary<string, string> ReadKeyValueFromJsonFile<T>(string fileNamePath)
+        private static Dictionary<string, string> ReadKeyValueFromJsonFile<T>(string path)
         {
             Dictionary<string, string> fileContentDictionary = [];
 
-            using StreamReader r = new(fileNamePath);
-            var json = r.ReadToEnd();
+            using StreamReader r = new(path);
+            var rawJsonData = r.ReadToEnd();
 
-            var environmentVariables = Newtonsoft.Json.JsonConvert
-                .DeserializeObject<T>(json);
+            var variables = Newtonsoft.Json.JsonConvert
+                .DeserializeObject<T>(rawJsonData);
 
-            var dddd = JsonSerializer.Serialize(environmentVariables);
-            var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(dddd);
-            foreach (var (key, value1) in from kv in dict
+            var variablesSerialized = JsonSerializer.Serialize(variables);
+            var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(variablesSerialized);
+            foreach (var (key, value) in from kv in dict
                                           let key = ToUnderscoreCase(kv.Key).ToUpper()
-                                          let value1 = kv.Value
-                                          select (key, value1))
+                                          let value = kv.Value
+                                          select (key, value))
             {
-                fileContentDictionary.Add(key, value1);
-            }
-
-            return fileContentDictionary;
-        }
-
-        private static Dictionary<string, string> ReadKeyValueFromVariablesFilementJsonFile<T>(string fileNamePath)
-        {
-            Dictionary<string, string> fileContentDictionary = [];
-
-            using StreamReader r = new(fileNamePath);
-            var json = r.ReadToEnd();
-
-            var environmentVariables = Newtonsoft.Json.JsonConvert
-                .DeserializeObject<T>(json);
-
-            var environmentVariablesSerialized = JsonSerializer.Serialize(environmentVariables);
-            var dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(environmentVariablesSerialized);
-            foreach (var (key, value1) in from kv in dict
-                                          let key = ToUnderscoreCase(kv.Key).ToUpper()
-                                          let value1 = kv.Value
-                                          select (key, value1))
-            {
-                fileContentDictionary.Add(key, value1);
+                fileContentDictionary.Add(key, value);
             }
 
             return fileContentDictionary;
@@ -107,18 +82,17 @@ namespace cross_application_feature_development_management.Names
 
         public Dictionary<string, string> PairUpEnvironmentVariablesSeparationFilement()
         {
-            var separationFilementDirectoryPath = separationFilementDirectory.GetPath();
-            var environmentVariablesSourceDictionaryMutantVariablesFile =
-                GetAllEnvironmentVariablesAndValuesFromSourceJsonFile<MutantVariables>(
-                    separationFilementDirectoryPath
-                );
+            var mutantVariablesFilePath = mutantVariablesFile.GetPath();
+            var mutantVariablesDictionary = 
+                ReadKeyValueFromJsonFile<MutantVariables>(mutantVariablesFilePath);
 
             var persistentVariablesFilePath = persistentVariablesFile.GetPath();
-            var environmentVariablesSourceDictionaryPersistentVariablesFile = ReadKeyValueFromVariablesFilementJsonFile<PersistentVariables>(persistentVariablesFilePath);
+            var persistentVariablesDictionary =
+                ReadKeyValueFromJsonFile<PersistentVariables>(persistentVariablesFilePath);
 
-            var environmentVariablesConcatenated = environmentVariablesSourceDictionaryMutantVariablesFile
-                .Concat(environmentVariablesSourceDictionaryPersistentVariablesFile)
-                .ToDictionary(x => x.Key, x => x.Value);
+            var environmentVariablesConcatenated = mutantVariablesDictionary
+                .Concat(persistentVariablesDictionary)
+                .ToDictionary(entry => entry.Key, entry => entry.Value);
 
             return environmentVariablesConcatenated;
         }
