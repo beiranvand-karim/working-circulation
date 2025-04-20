@@ -23,5 +23,14 @@ namespace cross_application_feature_development_management.Directories.HostingDi
             var frontEndHostDirectoryPath = Path.Combine(frontEndDirectoryPath, name);
             return frontEndHostDirectoryPath;
         }
+
+        public void Create()
+        {
+            var path = GetPath();
+            if(!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+        }
     }
 }
