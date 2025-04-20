@@ -80,13 +80,14 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                         }
                     case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
                         {
-                            environmentVariablesSourceDictionary.TryGetValue(
+                            if(environmentVariablesSourceDictionary.TryGetValue(
                                 "CAFDEM_EXECUTIVE_FILE_ADDRESS",
-                                out var notepadPlusPlusFileManagementExecutiveFileLocation
-                            );
-                            var striped = stringHelpers.StripQuotationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
-                            var dirName = Path.GetDirectoryName(striped);
-                            fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                out var cafdemExecutiveFileAddress))
+                                {
+                                    var striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress);
+                                    var dirName = Path.GetDirectoryName(striped);
+                                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                }
                             break;
                         }
                     default:

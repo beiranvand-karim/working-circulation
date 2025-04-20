@@ -1,11 +1,10 @@
-using cross_application_feature_development_management.Applications.IdeManagement;
-
-namespace cross_application_feature_development_management
+namespace cross_application_feature_development_management.Applications
 {
-    public class CrossApplicationFeatureDevelopmentManagementCommandSwitcher(
+    public class ApplicationSwitcher(
         CrossApplicationFeatureDevelopmentManagement crossApplicationFeatureDevelopmentManagement,
         NotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher,
-        IdeManagement ideManagement 
+        IdeManagement.IdeManagement ideManagement,
+        DirectoryManagement.DirectoryManagement directoryManagement
         )
     {
         private string GetApplication()
@@ -45,6 +44,7 @@ namespace cross_application_feature_development_management
             {
                 ideManagement.Run();
             }
+            directoryManagement.Run();
         }
     }
 }
