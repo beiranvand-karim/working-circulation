@@ -1,4 +1,6 @@
-﻿using cross_application_feature_development_management.Applications.Cafdem;
+﻿using cross_application_feature_development_management.Applications;
+using cross_application_feature_development_management.Applications.Cafdem;
+using cross_application_feature_development_management.Applications.DirectoryManagement;
 using cross_application_feature_development_management.Applications.IdeManagement;
 using cross_application_feature_development_management.Directories;
 using cross_application_feature_development_management.Directories.Applications;
@@ -120,11 +122,12 @@ namespace cross_application_feature_development_management
                     services.AddSingleton<CafdemDirectory>();
                     services.AddSingleton<RepositoryDirectory>();
                     services.AddSingleton<MutantVariablesFile>();
+                    services.AddSingleton<DirectoryManagement>();
                 })
                 .UseSerilog()
                 .Build();
 
-            var svc = ActivatorUtilities.CreateInstance<CrossApplicationFeatureDevelopmentManagementCommandSwitcher>(host.Services);
+            var svc = ActivatorUtilities.CreateInstance<ApplicationSwitcher>(host.Services);
             svc.Run();
         }
 

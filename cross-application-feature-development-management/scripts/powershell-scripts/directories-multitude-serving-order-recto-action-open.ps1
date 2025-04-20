@@ -5,46 +5,18 @@ get-content "directories-multitude-serving-order-recto-action-open.env" | ForEac
     set-content env:\$name $value
 }
 
-Push-Location $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
+$ArgumentList =(
+    "--application $env:APPLICATION" +
+    " --command $env:COMMAND" +
+    " --order $env:ORDER" +
+    " --feature-name $env:FEATURE_NAME" +
+    " --hosting-directory $env:HOSTING_DIRECTORY" +
+    " --primary-application-name $env:PRIMARY_APPLICATION_NAME" +
+    " --secondary-application-name $env:SECONDARY_APPLICATION_NAME"
+    )
 
+Push-Location $env:CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
 
-if ($env:IS_OPENING_FEND_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:FEND_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
+start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList $ArgumentList
 
-if ($env:IS_OPENING_FEND_HOST_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:FEND_HOST_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
-
-if ($env:IS_OPENING_FEND_GUEST_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:FEND_GUEST_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
-
-if ($env:IS_OPENING_BEND_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:BEND_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
-
-if ($env:IS_OPENING_CALLS_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:CALLS_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
-
-if ($env:IS_OPENING_TOOLS_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:TOOLS_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
-
-if ($env:IS_OPENING_NOTES_MESSAGES_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:NOTES_MESSAGES_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
-
-if ($env:IS_OPENING_WEB_LINKS_ADDRESS -eq $true ) {
-    start-process -FilePath $env:DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS -ArgumentList "--directory-to-be-open $env:WEB_LINKS_ADDRESS"
-    Start-Sleep -Millisecond 700
-}
 Pop-Location
