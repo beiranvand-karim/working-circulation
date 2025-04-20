@@ -23,6 +23,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? NotepaddppExecuteFileLocation { get; set; }
         public string? FeatureName { get; set; }
         public string? HostingDirectory { get; set; }
+        public string? Application { get; set; }
         public string? Command { get; set; }
         public string? Order { get; set; }
         public string? DockerDesktopLocation { get; set; }
@@ -33,6 +34,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? AllInclusiveDirectoryAddress { get; set; }
         public string? WebstormLocation { get; set; }
         public string? CafdemExecutiveFileAddress { get; set; }
+        public string? CafdemExecutiveFileAddressContainingDirectory { get; set; }
         public string? DockerLoginName { get; set; }
         public string? AzureClientSecretFromEnvironmentVariables { get; set; }
     }

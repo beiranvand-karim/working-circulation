@@ -7,6 +7,7 @@ using cross_application_feature_development_management.Directories.HostingDirect
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Tools;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.WebLinks;
 using cross_application_feature_development_management.Helpers;
+using cross_application_feature_development_management.Names;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
@@ -22,7 +23,10 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         CallsDirectory callsDirectory,
         ToolsDirectory toolsDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
-        WebLinksDirectory webLinksDirectory
+        WebLinksDirectory webLinksDirectory,
+        PrimaryApplication primaryApplication,
+        SecondaryApplication secondaryApplication,
+        FeatureName featureName
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -74,6 +78,13 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             var frontEndGuestDirectoryPath = frontEndGuestDirectory.GetPath();
                             var valueToWrite = stringHelpers.WrapInQuotationMarks(frontEndGuestDirectoryPath);
                             fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
+                            break;
+                        }
+                    case "FEATURE_NAME":
+                        {
+                            var val2 = featureName.GetName();
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val2);
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
                         case "FEATURE_SELF_ADDRESS":
@@ -132,6 +143,24 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                             break;
                         }
+                        case "COMMAND":
+                        {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
+                        case "APPLICATION":
+                        {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks("directory-management");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
+                        case "ORDER":
+                        {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
                         case "STARTUP_DIRECTORY_LOCATION":
                         case "IS_OPENING_OPERATIONS_DIRECTORY":
                         case "IS_OPENING_FEND_HOST_ADDRESS":
@@ -143,11 +172,41 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                         case "IS_OPENING_WEB_LINKS_ADDRESS":
                         case "IS_OPENING_FEATURE_SELF_ADDRESS":
                         case "IS_OPENING_FEND_ADDRESS":
+                        {
                             environmentVariablesSourceDictionary.TryGetValue(key, out var val1);
                             fileContentDictionaryToWriteToFile.Add(key, val1 ?? "");
                             break;
+                        }
+                    case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
+                        {
+                            if(environmentVariablesSourceDictionary.TryGetValue(
+                                "CAFDEM_EXECUTIVE_FILE_ADDRESS",
+                                out var cafdemExecutiveFileAddress))
+                                {
+                                    var striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress);
+                                    var dirName = Path.GetDirectoryName(striped);
+                                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                }
+                            break;
+                        }
+                    case "PRIMARY_APPLICATION_NAME":
+                        {
+                            var val3 = primaryApplication.GetName();
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
+                    case "SECONDARY_APPLICATION_NAME":
+                        {
+                            var val3 = secondaryApplication.GetName();
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
                         default:
                         {
+                            environmentVariablesSourceDictionary.TryGetValue(key, out var val2);
+                            fileContentDictionaryToWriteToFile.Add(key, val2 ?? "");
                             break;
                         }
                     }
