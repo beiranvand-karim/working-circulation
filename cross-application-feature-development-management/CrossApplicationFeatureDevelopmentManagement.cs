@@ -1,72 +1,54 @@
-using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
-using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
-using cross_application_feature_development_management.Dirctories.Interfaces;
-using cross_application_feature_development_management.Interfaces;
-using cross_application_feature_development_management.Names.Interfaces;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.CommandsDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.OperationsDirectory;
+using cross_application_feature_development_management.Directories.Scripts.BatchScriptsDirectory;
+using cross_application_feature_development_management.Directories.Scripts.PowerShellScriptsDirectory;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management
 {
     public class CrossApplicationFeatureDevelopmentManagement(
-            ILogger<CrossApplicationFeatureDevelopmentManagement> logger,
-            IScriptsDirectory scriptsDirectory,
-            ITemplatesDirectory templatesDirectory,
-            IFeatureNameDirectory featureNameDirectory,
-            IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-            IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory,
-            IPowerShellScriptsDirectory powerShellScriptsDirectory,
-            IBatchScriptsDicrectory batchScriptsDicrectory,
-            ISomething something,
-            IBatchScriptFilesDirectory batchScriptFilesDirectory,
-            IAutomationsDirectory automationsDirectory
-            )
-        : ICrossApplicationFeatureDevelopmentManagement
+        ILogger<CrossApplicationFeatureDevelopmentManagement> logger,
+        FeatureDirectory featureDirectory,
+        EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
+        PowerShellScriptsDirectory powerShellScriptsDirectory,
+        BatchScriptsDirectory batchScriptsDirectory,
+        EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
+        AutomationsDirectory automationsDirectory,
+        OperationsDirectory operationsDirectory,
+        CommandsDirectory commandsDirectory
+    )
     {
-        private readonly ILogger<CrossApplicationFeatureDevelopmentManagement> logger = logger;
-        private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
-        private readonly ITemplatesDirectory templatesDirectory = templatesDirectory;
-        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
-        private readonly IEnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory = environmentVariablesFilesDirectory;
-        private readonly IEnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory = environmentVariablesSourceDirectory;
-        private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
-        private readonly IBatchScriptsDicrectory batchScriptsDicrectory = batchScriptsDicrectory;
-        private readonly ISomething something = something;
-        private readonly IBatchScriptFilesDirectory batchScriptFilesDirectory = batchScriptFilesDirectory;
-        private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
-
         public void Run()
         {
             try
             {
-                string templateSourceDirectory =
-                    Path.Combine(
-                        scriptsDirectory.GetName(),
-                        templatesDirectory.GetName()
-                    );
-
-                featureNameDirectory.CreateSelf();
+                featureDirectory.Create();
 
                 automationsDirectory.Create();
 
-                Directory.CreateDirectory(environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory());
-                string destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
+                environmentVariablesFilesDirectory.Create();
+                var environmentVariablesFilesDirectoryPath = environmentVariablesFilesDirectory.GetPath();
+                var environmentVariablesSourceDictionary = environmentVariablesFilesDirectory.PairUp();
 
-                Dictionary<string, string> environmentVariablesSourceDictionary =
-                        something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
-                            environmentVariablesSourceDirectory.GetName()
-                        );
+                environmentVariablesSourceFilesDirectory.Populate(environmentVariablesFilesDirectoryPath, environmentVariablesSourceDictionary);
 
-                batchScriptFilesDirectory.Populate(destinationDirectory, templateSourceDirectory, environmentVariablesSourceDictionary);
+                commandsDirectory.Create();
+                var commandsDirectoryPath = commandsDirectory.GetPath();
+                powerShellScriptsDirectory.CopyContentToDirectory(commandsDirectoryPath);
+                commandsDirectory.ReplaceFileNamesWithPaths(environmentVariablesSourceDictionary);
 
-                powerShellScriptsDirectory.CopyContentToFeatureNameDicrectory();
-                powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
-
-                batchScriptsDicrectory.CopyContentToFeaureNameDicrectory();
-                batchScriptsDicrectory.ReplaceFileNamesWithPaths();
+                operationsDirectory.Create();
+                var operationsDirectoryPath = operationsDirectory.GetPath();
+                batchScriptsDirectory.CopyContentToDirectory(operationsDirectoryPath);
+                operationsDirectory.ReplaceFileNamesWithPaths(commandsDirectoryPath);
             }
             catch (Exception exception)
             {
-                logger.LogError("{exception}", exception.Message);
+                logger.LogError("CrossApplicationFeatureDevelopmentManagement:{exception}", exception.Message);
             }
         }
     }
