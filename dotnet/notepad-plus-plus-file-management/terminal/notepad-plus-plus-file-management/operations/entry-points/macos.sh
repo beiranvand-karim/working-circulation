@@ -13,5 +13,5 @@ cd /Users/karimbeiranvand/Documents/GitHub/working-circulation/cross-application
 --scripts-directory "/Users/karimbeiranvand/Documents/GitHub/working-circulation/cross-application-feature-development-management/scripts" \
 --repository-directory "/Users/karimbeiranvand/Documents/GitHub/working-circulation" \
 --hosting-directory "${hosting_directory}" \
---host-application-name "augustus" \
+--primary-application-name "augustus" \
 --guest-application-name "julius"
