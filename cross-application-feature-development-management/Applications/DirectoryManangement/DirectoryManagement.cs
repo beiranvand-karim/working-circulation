@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Calls;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory;
@@ -137,16 +138,36 @@ namespace cross_application_feature_development_management.Applications.Director
 
         public void OpenDirectories(string path)
         {
-            logger.LogInformation("path: {path}", path);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                logger.LogInformation("path: {path}", path);
 
-            using Process myProcess = new();
-            myProcess.StartInfo.UseShellExecute = false;
-            myProcess.StartInfo.FileName = "open";
-            myProcess.StartInfo.CreateNoWindow = true;
-            myProcess.StartInfo.ArgumentList.Add(path);
+                using Process myProcess = new();
+                myProcess.StartInfo.UseShellExecute = false;
+                myProcess.StartInfo.FileName = "open";
+                myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.StartInfo.ArgumentList.Add(path);
 
-            myProcess.Start();
-            logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
+                myProcess.Start();
+                logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+
+                using Process myProcess = new();
+                myProcess.StartInfo.UseShellExecute = false;
+                myProcess.StartInfo.FileName = "explorer.exe";
+                myProcess.StartInfo.CreateNoWindow = true;
+                var normalizedPath = PathUtility.NormalizeSlashes(path, PathUtility.SlashStyle.ForceBackslash);
+
+                logger.LogInformation("path: {path}", path);
+                logger.LogInformation("normalizedPath: {normalizedPath}", normalizedPath);
+
+                myProcess.StartInfo.ArgumentList.Add(normalizedPath);
+
+                myProcess.Start();
+                logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
+            }
         }
     }
 }
