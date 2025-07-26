@@ -9,7 +9,8 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         StringHelpers stringHelpers,
         PrimaryApplication primaryApplication,
         SecondaryApplication secondaryApplication,
-        FeatureName featureName
+        FeatureName featureName,
+        HostingDirectory hostingDirectory
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -89,7 +90,14 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
-                        default:
+                    case "HOSTING_DIRECTORY":
+                        {
+                            var val3 = hostingDirectory.GetPath();
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
+                    default:
                         {
                             environmentVariablesSourceDictionary.TryGetValue(key, out var val2);
                             fileContentDictionaryToWriteToFile.Add(key, val2 ?? "");
