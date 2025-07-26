@@ -2,7 +2,7 @@ using System.Diagnostics;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
 using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management
+namespace cross_application_feature_development_management.Applications.NotepadPlusPlusFileManagement
 {
     public class CloseProcessManagement(
         ILogger<CloseProcessManagement> logger,

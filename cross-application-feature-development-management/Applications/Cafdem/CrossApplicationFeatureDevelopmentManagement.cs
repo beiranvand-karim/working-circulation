@@ -8,7 +8,7 @@ using cross_application_feature_development_management.Directories.Repository.Ca
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.PowerShellScriptsDirectory;
 using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management
+namespace cross_application_feature_development_management.Applications.Cafdem
 {
     public class CrossApplicationFeatureDevelopmentManagement(
         ILogger<CrossApplicationFeatureDevelopmentManagement> logger,

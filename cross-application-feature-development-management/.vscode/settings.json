@@ -9,8 +9,11 @@
         "fina",
         "Jsons",
         "Newtonsoft",
+        "nosession",
         "notepaddpp",
         "notepadplusplus",
+        "openee",
+        "Serilog",
         "Webstorm"
     ]
 }
