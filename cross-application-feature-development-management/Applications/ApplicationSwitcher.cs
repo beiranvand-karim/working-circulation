@@ -1,3 +1,6 @@
+using cross_application_feature_development_management.Applications.Cafdem;
+using cross_application_feature_development_management.Applications.NotepadPlusPlusFileManagement;
+
 namespace cross_application_feature_development_management.Applications
 {
     public class ApplicationSwitcher(

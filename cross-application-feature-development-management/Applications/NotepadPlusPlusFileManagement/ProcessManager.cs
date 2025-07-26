@@ -7,7 +7,7 @@ using cross_application_feature_development_management.Directories.HostingDirect
 using cross_application_feature_development_management.Files.Executables;
 using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management
+namespace cross_application_feature_development_management.Applications.NotepadPlusPlusFileManagement
 {
     public class ProcessManager(
         NotePadPlusPlus notePadPlusPlus,
