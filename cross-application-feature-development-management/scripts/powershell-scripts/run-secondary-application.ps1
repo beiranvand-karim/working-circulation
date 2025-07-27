@@ -5,6 +5,12 @@ get-content "run-secondary-application.env" | ForEach-Object {
     set-content env:\$name $value
 }
 
-Push-Location $env:GUEST_APPLICATION_PROJECT_LOCATION
-dotnet run --project $env:GUEST_APPLICATION_PROJECT_NAME
-Pop-Location
+if ($env:HOST_APPLICATION_PROJECT_LOCATION -eq "") {
+    Push-Location $env:GUEST_APPLICATION_PROJECT_LOCATION
+    dotnet run --project $env:GUEST_APPLICATION_PROJECT_NAME
+    Pop-Location
+} else {
+    Push-Location $env:HOST_APPLICATION_PROJECT_LOCATION
+    dotnet run
+    Pop-Location
+}
