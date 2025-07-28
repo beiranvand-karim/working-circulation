@@ -25,6 +25,8 @@
     "SecondaryApplicationName": "secondary/application/name",
     "Command": "command",
     "Order": "order",
+    "Format":"json",
+    "Filement": "split",
     "DockerDesktopLocation": "docker/desktop/location",
     "OutlookEmailClientLocation": "outlook/email/client/location",
     "GithubDesktopLocation": "github/desktop/location",

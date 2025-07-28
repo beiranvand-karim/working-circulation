@@ -26,6 +26,9 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? Application { get; set; }
         public string? Command { get; set; }
         public string? Order { get; set; }
+        public string? Format { get; set; }
+        public string? Filement { get; set; }
+        public string? RepositoryDirectory { get; set; }
         public string? DockerDesktopLocation { get; set; }
         public string? OutlookEmailClientLocation { get; set; }
         public string? GithubDesktopLocation { get; set; }
