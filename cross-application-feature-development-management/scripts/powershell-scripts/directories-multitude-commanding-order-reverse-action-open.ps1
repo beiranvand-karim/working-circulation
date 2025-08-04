@@ -9,8 +9,11 @@ $ArgumentList =(
     "--application $env:APPLICATION" +
     " --command $env:COMMAND" +
     " --order $env:ORDER" +
+    " --format $env:FORMAT" +
+    " --filement $env:FILEMENT" +
     " --feature-name $env:FEATURE_NAME" +
     " --hosting-directory $env:HOSTING_DIRECTORY" +
+    " --repository-directory $env:REPOSITORY_DIRECTORY" +
     " --primary-application-name $env:PRIMARY_APPLICATION_NAME" +
     " --secondary-application-name $env:SECONDARY_APPLICATION_NAME"
     )
