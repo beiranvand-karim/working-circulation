@@ -1,4 +1,5 @@
 using System.Text;
+using cross_application_feature_development_management.Directories.Repository;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
 
@@ -10,7 +11,8 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         PrimaryApplication primaryApplication,
         SecondaryApplication secondaryApplication,
         FeatureName featureName,
-        HostingDirectory hostingDirectory
+        HostingDirectory hostingDirectory,
+        RepositoryDirectory repositoryDirectory
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -55,6 +57,25 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                         case "ORDER":
                         {
                             var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
+                        case "FORMAT":
+                        {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks("json");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
+                        case "FILEMENT":
+                        {
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks("split");
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
+                        case "REPOSITORY_DIRECTORY":
+                        {
+                            var val3 = repositoryDirectory.GetPath();
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
