@@ -28,6 +28,7 @@ using cross_application_feature_development_management.Directories.Repository.Ca
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.BatchScriptsDirectory;
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource;
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement;
+using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement.CodeBases;
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource.SeparationFilement.Files.Jsons;
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesTemplatesDirectory;
 using cross_application_feature_development_management.Directories.Repository.Cafdem.Scripts.PowerShellScriptsDirectory;
@@ -124,6 +125,8 @@ namespace cross_application_feature_development_management
                     services.AddSingleton<RepositoryDirectory>();
                     services.AddSingleton<MutantVariablesFile>();
                     services.AddSingleton<DirectoryManagement>();
+                    services.AddSingleton<CodeBaseDirectory>();
+                    services.AddSingleton<CodeBase>();
                 })
                 .UseSerilog()
                 .Build();
