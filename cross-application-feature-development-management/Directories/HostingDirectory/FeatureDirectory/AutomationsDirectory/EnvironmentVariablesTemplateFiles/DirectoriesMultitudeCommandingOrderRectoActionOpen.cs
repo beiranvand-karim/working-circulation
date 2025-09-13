@@ -1,4 +1,5 @@
 using System.Text;
+using cross_application_feature_development_management.Applications.Cafdem;
 using cross_application_feature_development_management.Directories.Repository;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
@@ -12,7 +13,8 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         SecondaryApplication secondaryApplication,
         FeatureName featureName,
         HostingDirectory hostingDirectory,
-        RepositoryDirectory repositoryDirectory
+        RepositoryDirectory repositoryDirectory,
+        CodeBase codeBase
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -80,6 +82,13 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
                             }
+                        case "CODE_BASE":
+                        {
+                            var val2 = codeBase.GetCodeBaseValue();
+                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val2);
+                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                            break;
+                        }
                         case "STARTUP_DIRECTORY_LOCATION":
                             {
                                 environmentVariablesSourceDictionary.TryGetValue(key, out var val1);
