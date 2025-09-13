@@ -24,6 +24,7 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? FeatureName { get; set; }
         public string? HostingDirectory { get; set; }
         public string? Application { get; set; }
+        public string? CodeBase { get; set; }
         public string? Command { get; set; }
         public string? Order { get; set; }
         public string? Format { get; set; }
