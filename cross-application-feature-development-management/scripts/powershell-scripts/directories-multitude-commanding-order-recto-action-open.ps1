@@ -12,6 +12,7 @@ $ArgumentList =(
     " --format $env:FORMAT" +
     " --filement $env:FILEMENT" +
     " --feature-name $env:FEATURE_NAME" +
+    " --code-base $env:CODE_BASE" +
     " --hosting-directory $env:HOSTING_DIRECTORY" +
     " --repository-directory $env:REPOSITORY_DIRECTORY" +
     " --primary-application-name $env:PRIMARY_APPLICATION_NAME" +
