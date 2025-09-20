@@ -72,7 +72,7 @@ namespace cross_application_feature_development_management
                     services.AddTransient<PrimaryApplication>();
                     services.AddTransient<SecondaryApplication>();
                     services.AddTransient<Something>();
-                    services.AddTransient<AddToStartupScript>();
+                    services.AddTransient<DirectoriesMultitudeStartupActionOpen>();
                     services.AddTransient<StringHelpers>();
                     services.AddTransient<Directories.Directories>();
                     services.AddTransient<FeatureName>();
@@ -127,6 +127,7 @@ namespace cross_application_feature_development_management
                     services.AddSingleton<DirectoryManagement>();
                     services.AddSingleton<CodeBaseDirectory>();
                     services.AddSingleton<CodeBase>();
+                    services.AddSingleton<DirectoryToBeOpen>();
                 })
                 .UseSerilog()
                 .Build();
