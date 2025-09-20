@@ -4,7 +4,7 @@ using cross_application_feature_development_management.Names;
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
     public class EnvironmentVariablesSourceFilesDirectory(
-            AddToStartupScript addToStartupScript,
+            DirectoriesMultitudeStartupActionOpen directoriesMultitudeStartupActionOpen,
             NotePadPlusPlusOpenAll notePadPlusPlusOpenAll,
             NotePadPlusPlusAllClose notePadPlusPlusAllClose,
             NotepadPlusPlusMultitudeAllOrderReverseActionOpen notepadPlusPlusMultitudeAllOrderReverseActionOpen,
@@ -48,9 +48,9 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                         environmentVariablesSourceDictionary),
                     "directories-multitude-serving-order-recto-action-shut.env" => directoriesMultitudeServingOrderRectoActionShut.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-startup-action-add.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-startup-action-add.env" => directoriesMultitudeStartupActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
-                    "directories-multitude-startup-action-open.env" => addToStartupScript.PairUpVariablesWithTheirValue(templateFile,
+                    "directories-multitude-startup-action-open.env" => directoriesMultitudeStartupActionOpen.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),
                     "notepadplusplus-multitude-all-order-recto-action-open.env" => notePadPlusPlusOpenAll.PairUpVariablesWithTheirValue(templateFile,
                         environmentVariablesSourceDictionary),

@@ -9,6 +9,7 @@ using cross_application_feature_development_management.Directories.HostingDirect
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Tools;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.WebLinks;
+using cross_application_feature_development_management.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Applications.DirectoryManagement
@@ -24,7 +25,8 @@ namespace cross_application_feature_development_management.Applications.Director
         FrontEndGuestDirectory frontEndGuestDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
         WebLinksDirectory webLinksDirectory,
-        EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory
+        EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
+        DirectoryToBeOpen directoryToBeOpen
     )
     {
         private string GetCommand()
@@ -62,21 +64,38 @@ namespace cross_application_feature_development_management.Applications.Director
             var application = GetApplication();
             return application == "directory-management";
         }
+        
+        private bool IsDirectoryToBeOpen()
+        {
+            var command = GetCommand();     
+            return command == "directory-to-be-open";
+        }
 
         public void Run()
         {
-            if(!IsDirectoryManagementApplication())
+            if (!IsDirectoryManagementApplication())
             {
                 return;
             }
+            OpenDirectoryToBeOpen();
             Create();
             Open();
             Shut();
         }
 
+        public void OpenDirectoryToBeOpen()
+        {
+            if (!IsDirectoryManagementApplication())
+            {
+                return;
+            }
+            var directoryToBeOpen1 = directoryToBeOpen.GetPath();
+            OpenDirectories(directoryToBeOpen1);
+        }
+
         public void Create()
         {
-            if(!IsCreate())
+            if (!IsCreate())
             {
                 return;
             }
