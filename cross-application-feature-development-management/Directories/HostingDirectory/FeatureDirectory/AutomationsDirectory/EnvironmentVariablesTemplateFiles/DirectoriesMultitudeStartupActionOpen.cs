@@ -75,9 +75,9 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             }
                         case "STARTUP_DIRECTORY_LOCATION":
                         {
-                            if (environmentVariablesSourceDictionary.TryGetValue(key, out var val1))
+                            if (environmentVariablesSourceDictionary.TryGetValue(key, out var startupDirectoryPathPossibleValue))
                             {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val1);
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(startupDirectoryPathPossibleValue);
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             }
                             break;

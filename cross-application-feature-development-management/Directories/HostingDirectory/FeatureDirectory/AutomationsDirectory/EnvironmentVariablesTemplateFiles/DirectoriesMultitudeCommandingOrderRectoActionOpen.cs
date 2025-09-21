@@ -89,12 +89,6 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                             fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                             break;
                         }
-                        case "STARTUP_DIRECTORY_LOCATION":
-                            {
-                                environmentVariablesSourceDictionary.TryGetValue(key, out var val1);
-                                fileContentDictionaryToWriteToFile.Add(key, val1 ?? "");
-                                break;
-                            }
                         case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
                             {
                                 if (environmentVariablesSourceDictionary.TryGetValue(
