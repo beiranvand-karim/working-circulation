@@ -85,7 +85,7 @@ namespace cross_application_feature_development_management.Applications.Director
 
         public void OpenDirectoryToBeOpen()
         {
-            if (!IsDirectoryManagementApplication())
+            if (!IsDirectoryToBeOpen())
             {
                 return;
             }
@@ -188,7 +188,7 @@ namespace cross_application_feature_development_management.Applications.Director
             }
 
             if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_WEB_LINKS_ADDRESS", out string? isOpeningWebLinksAddress))
-            {
+            { 
                 if (Boolean.TryParse(isOpeningWebLinksAddress, out bool isOpeningWebLinksAddress1))
                 {
                     if (isOpeningWebLinksAddress1)
