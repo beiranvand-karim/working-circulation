@@ -1,0 +1,17 @@
+{
+    "Group":  
+    [
+        {
+            "Id": 23131,
+            "GroupName":"ide",
+            "IdeName":"webstorm",
+            "ApplicationName":"ui"
+        },
+        {
+            "Id": 2313545,
+            "GroupName":"ide",
+            "IdeName":"rider",
+            "ApplicationName":"ui"
+        }
+    ]
+}
