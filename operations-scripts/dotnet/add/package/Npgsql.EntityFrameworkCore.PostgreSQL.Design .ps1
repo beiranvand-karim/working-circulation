@@ -1,0 +1,1 @@
+dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL.Design --version 1.1.0
