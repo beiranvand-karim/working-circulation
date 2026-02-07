@@ -1,7 +1,7 @@
 sudo runuser -l  postgres -c 'psql -c "
-CREATE TABLE cars (
-  brand VARCHAR(255),
-  model VARCHAR(255),
-  year INT
+CREATE TABLE Pokemon (
+  Id INT PRIMARY KEY,
+  Name VARCHAR(255),
+  Type VARCHAR(255)
 );
 "'
