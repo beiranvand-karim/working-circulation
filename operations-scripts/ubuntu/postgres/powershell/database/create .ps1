@@ -1,1 +1,1 @@
-sudo runuser -l  postgres -c 'psql -c "CREATE DATABASE test_temp10;"'
+sudo runuser -l  postgres -c 'psql -c "CREATE DATABASE AppDb;"'

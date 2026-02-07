@@ -1,1 +1,1 @@
-sudo runuser -l  postgres -c 'psql -c "\c test1;"'
+sudo runuser -l  postgres -c 'psql -c "\c appdb;"'
