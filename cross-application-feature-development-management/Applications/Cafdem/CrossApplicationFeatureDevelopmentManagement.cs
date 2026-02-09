@@ -46,9 +46,9 @@ namespace cross_application_feature_development_management.Applications.Cafdem
                 batchScriptsDirectory.CopyContentToDirectory(operationsDirectoryPath);
                 operationsDirectory.ReplaceFileNamesWithPaths(commandsDirectoryPath);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                logger.LogError("CrossApplicationFeatureDevelopmentManagement:{exception}", exception.Message);
+                logger.LogError("CrossApplicationFeatureDevelopmentManagement: An error occurred while running the application.");
             }
         }
     }

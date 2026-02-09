@@ -1,6 +1,7 @@
 using System.Text;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
+using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
@@ -9,7 +10,8 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         SecondaryApplication secondaryApplication,
         PrimaryApplication primaryApplication,
         HostingDirectory hostingDirectory,
-        StringHelpers stringHelpers
+        StringHelpers stringHelpers,
+        ILogger<NotepadPlusPlusMultitudeAllOrderReverseActionOpen> logger
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -29,80 +31,87 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                 var key = brokenLine[0];
                 var value = brokenLine[1];
 
-                switch (key)
+                try
                 {
-                    case "FEATURE_NAME":
-                        {
-                            var val = featureName.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "PRIMARY_APPLICATION_NAME":
-                        {
-                            var val = primaryApplication.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "SECONDARY_APPLICATION_NAME":
-                        {
-                            var val = secondaryApplication.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "HOSTING_DIRECTORY":
-                        {
-                            var val = hostingDirectory.GetPath();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "APPLICATION":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("notepad-plus-plus-file-management");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "COMMAND":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "ORDER":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "NOTEPADDPP_EXECUTE_FILE_LOCATION":
-                        {
-                            if (environmentVariablesSourceDictionary.TryGetValue(key, out var keyValue))
+                    switch (key)
+                    {
+                        case "FEATURE_NAME":
                             {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks(keyValue);
-                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal);
+                                var val = featureName.GetName();
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
                             }
-                            break;
-                        }
-                    case "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY":
-                        {
-                            environmentVariablesSourceDictionary.TryGetValue(
-                                "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_LOCATION",
-                                out var notepadPlusPlusFileManagementExecutiveFileLocation
-                            );
-                            var striped = stringHelpers.StripQuotationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
-                            var dirName = Path.GetDirectoryName(striped);
-                            fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
-                            break;
-                        }
-                    default:
-                        {
-                            environmentVariablesSourceDictionary.TryGetValue(key, out var val);
-                            fileContentDictionaryToWriteToFile.Add(key, val ?? "");
-                            break;
-                        }
+                        case "PRIMARY_APPLICATION_NAME":
+                            {
+                                var val = primaryApplication.GetName();
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "SECONDARY_APPLICATION_NAME":
+                            {
+                                var val = secondaryApplication.GetName();
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "HOSTING_DIRECTORY":
+                            {
+                                var val = hostingDirectory.GetPath();
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "APPLICATION":
+                            {
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("notepad-plus-plus-file-management");
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "COMMAND":
+                            {
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "ORDER":
+                            {
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "NOTEPADDPP_EXECUTE_FILE_LOCATION":
+                            {
+                                if (environmentVariablesSourceDictionary.TryGetValue(key, out var keyValue))
+                                {
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(keyValue);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal);
+                                }
+                                break;
+                            }
+                        case "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY":
+                            {
+                                environmentVariablesSourceDictionary.TryGetValue(
+                                    "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_LOCATION",
+                                    out var notepadPlusPlusFileManagementExecutiveFileLocation
+                                );
+                                var striped = stringHelpers.StripQuotationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
+                                var dirName = Path.GetDirectoryName(striped);
+                                fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                break;
+                            }
+                        default:
+                            {
+                                environmentVariablesSourceDictionary.TryGetValue(key, out var val);
+                                fileContentDictionaryToWriteToFile.Add(key, val ?? "");
+                                break;
+                            }
+                    }
+                }
+                catch (Exception)
+                {
+                    logger.LogError("NotepadPlusPlusMultitudeAllOrderReverseActionOpen: the key could not be processed: {Key}", key);
                 }
             }
             return fileContentDictionaryToWriteToFile;

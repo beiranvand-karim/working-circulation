@@ -3,6 +3,7 @@ using cross_application_feature_development_management.Applications.Cafdem;
 using cross_application_feature_development_management.Directories.Repository;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
+using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
@@ -14,7 +15,8 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         FeatureName featureName,
         HostingDirectory hostingDirectory,
         RepositoryDirectory repositoryDirectory,
-        CodeBase codeBase
+        CodeBase codeBase,
+        ILogger<DirectoriesMultitudeServingOrderRectoActionOpen> logger
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -30,103 +32,113 @@ namespace cross_application_feature_development_management.Directories.HostingDi
 
             while (streamReader.ReadLine() is { } line)
             {
+
                 var brokenLine = line.Split("=");
                 var key = brokenLine[0];
                 var value = brokenLine[1];
-                
-                if(environmentVariablesSourceDictionary.TryGetValue(key, out var val)){
-                    switch (key)
+
+                if (environmentVariablesSourceDictionary.TryGetValue(key, out var val))
+                {
+                    try
                     {
-                        case "COMMAND":
+                        switch (key)
                         {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                        case "APPLICATION":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("directory-management");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                        case "ORDER":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                        case "FORMAT":
-                            {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks("json");
-                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                                break;
-                            }
-                        case "FILEMENT":
-                            {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks("split");
-                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                                break;
-                            }
-                        case "REPOSITORY_DIRECTORY":
-                            {
-                                var val3 = repositoryDirectory.GetPath();
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
-                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                                break;
-                            }
-                    case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
-                        {
-                            if(environmentVariablesSourceDictionary.TryGetValue(
-                                "CAFDEM_EXECUTIVE_FILE_ADDRESS",
-                                out var cafdemExecutiveFileAddress))
+                            case "COMMAND":
                                 {
-                                    var striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress);
-                                    var dirName = Path.GetDirectoryName(striped);
-                                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
                                 }
-                            break;
+                            case "APPLICATION":
+                                {
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks("directory-management");
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "ORDER":
+                                {
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "FORMAT":
+                                {
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks("json");
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "FILEMENT":
+                                {
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks("split");
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "REPOSITORY_DIRECTORY":
+                                {
+                                    var val3 = repositoryDirectory.GetPath();
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
+                                {
+                                    if (environmentVariablesSourceDictionary.TryGetValue(
+                                        "CAFDEM_EXECUTIVE_FILE_ADDRESS",
+                                        out var cafdemExecutiveFileAddress))
+                                    {
+                                        var striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress);
+                                        var dirName = Path.GetDirectoryName(striped);
+                                        fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                    }
+                                    break;
+                                }
+                            case "PRIMARY_APPLICATION_NAME":
+                                {
+                                    var val3 = primaryApplication.GetName();
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "FEATURE_NAME":
+                                {
+                                    var val2 = featureName.GetName();
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(val2);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "CODE_BASE":
+                                {
+                                    var val2 = codeBase.GetCodeBaseValue();
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(val2);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "SECONDARY_APPLICATION_NAME":
+                                {
+                                    var val3 = secondaryApplication.GetName();
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            case "HOSTING_DIRECTORY":
+                                {
+                                    var val3 = hostingDirectory.GetPath();
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                    break;
+                                }
+                            default:
+                                {
+                                    environmentVariablesSourceDictionary.TryGetValue(key, out var val2);
+                                    fileContentDictionaryToWriteToFile.Add(key, val2 ?? "");
+                                    break;
+                                }
                         }
-                    case "PRIMARY_APPLICATION_NAME":
-                        {
-                            var val3 = primaryApplication.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "FEATURE_NAME":
-                        {
-                            var val2 = featureName.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val2);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "CODE_BASE":
-                        {
-                            var val2 = codeBase.GetCodeBaseValue();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val2);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "SECONDARY_APPLICATION_NAME":
-                        {
-                            var val3 = secondaryApplication.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "HOSTING_DIRECTORY":
-                        {
-                            var val3 = hostingDirectory.GetPath();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    default:
-                        {
-                            environmentVariablesSourceDictionary.TryGetValue(key, out var val2);
-                            fileContentDictionaryToWriteToFile.Add(key, val2 ?? "");
-                            break;
-                        }
+                    }
+
+                    catch (Exception)
+                    {
+                        logger.LogError("DirectoriesMultitudeServingOrderRectoActionOpen: the key could not be processed: {Key}", key);
                     }
                 }
             }
