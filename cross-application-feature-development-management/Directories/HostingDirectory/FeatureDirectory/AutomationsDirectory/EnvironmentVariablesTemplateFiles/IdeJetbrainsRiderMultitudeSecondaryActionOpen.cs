@@ -1,6 +1,7 @@
 using System.Text;
 using cross_application_feature_development_management.Helpers;
 using cross_application_feature_development_management.Names;
+using Microsoft.Extensions.Logging;
 
 namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
@@ -8,7 +9,8 @@ namespace cross_application_feature_development_management.Directories.HostingDi
         FeatureName featureName,
         SecondaryApplication secondaryApplication,
         HostingDirectory hostingDirectory,
-        StringHelpers stringHelpers
+        StringHelpers stringHelpers,
+        ILogger<IdeJetbrainsRiderMultitudeSecondaryActionOpen> logger
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -28,74 +30,81 @@ namespace cross_application_feature_development_management.Directories.HostingDi
                 var key = brokenLine[0];
                 var value = brokenLine[1];
 
-                switch (key)
+                try
                 {
-                    case "FEATURE_NAME":
-                        {
-                            var val = featureName.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "SECONDARY_APPLICATION_NAME":
-                        {
-                            var val = secondaryApplication.GetName();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "HOSTING_DIRECTORY":
-                        {
-                            var val = hostingDirectory.GetPath();
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "COMMAND":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "APPLICATION":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("ide-management");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "IDE_NAME":
-                        {
-                            var wrappedVal = stringHelpers.WrapInQuotationMarks("rider");
-                            fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                            break;
-                        }
-                    case "RIDER_LOCATION":
-                        {
-                            if (environmentVariablesSourceDictionary.TryGetValue(key, out var keyValue))
+                    switch (key)
+                    {
+                        case "FEATURE_NAME":
                             {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks(keyValue);
-                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal);
+                                var val = featureName.GetName();
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
                             }
-                            break;
-                        }
-                    case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
-                        {
-                            if(environmentVariablesSourceDictionary.TryGetValue(
-                                "CAFDEM_EXECUTIVE_FILE_ADDRESS",
-                                out var cafdemExecutiveFileAddress))
+                        case "SECONDARY_APPLICATION_NAME":
+                            {
+                                var val = secondaryApplication.GetName();
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "HOSTING_DIRECTORY":
+                            {
+                                var val = hostingDirectory.GetPath();
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "COMMAND":
+                            {
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "APPLICATION":
+                            {
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("ide-management");
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "IDE_NAME":
+                            {
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("rider");
+                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                                break;
+                            }
+                        case "RIDER_LOCATION":
+                            {
+                                if (environmentVariablesSourceDictionary.TryGetValue(key, out var keyValue))
+                                {
+                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(keyValue);
+                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal);
+                                }
+                                break;
+                            }
+                        case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
+                            {
+                                if (environmentVariablesSourceDictionary.TryGetValue(
+                                    "CAFDEM_EXECUTIVE_FILE_ADDRESS",
+                                    out var cafdemExecutiveFileAddress))
                                 {
                                     var striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress);
                                     var dirName = Path.GetDirectoryName(striped);
                                     fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
                                 }
-                            break;
-                        }
-                    default:
-                        {
-                            environmentVariablesSourceDictionary.TryGetValue(key, out var val);
-                            fileContentDictionaryToWriteToFile.Add(key, val ?? "");
-                            break;
-                        }
+                                break;
+                            }
+                        default:
+                            {
+                                environmentVariablesSourceDictionary.TryGetValue(key, out var val);
+                                fileContentDictionaryToWriteToFile.Add(key, val ?? "");
+                                break;
+                            }
+                    }
+                }
+                catch (Exception)
+                {
+                    logger.LogError("IdeJetbrainsRiderMultitudeSecondaryActionOpen: the key could not be processed: {Key}", key);
                 }
             }
             return fileContentDictionaryToWriteToFile;
