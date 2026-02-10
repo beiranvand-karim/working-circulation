@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Mime;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Components.Web;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace OrganumatorMssql.Models
+namespace OrganumatorMssql.Dtos.Comment
 {
-    public class Comment
+    public class CommentDto
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
@@ -16,8 +15,6 @@ namespace OrganumatorMssql.Models
         public DateTime CreatedOn { get; set; } = DateTime.Now;
 
         public int? StockId { get; set; }
-
-        public Stock? Stock { get; set; }
 
     }
 }
