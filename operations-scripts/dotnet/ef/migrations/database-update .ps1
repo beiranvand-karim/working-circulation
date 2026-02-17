@@ -1,0 +1,2 @@
+
+dotnet ef migrations database update
