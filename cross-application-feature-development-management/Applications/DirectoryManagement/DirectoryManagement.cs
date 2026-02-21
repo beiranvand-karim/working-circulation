@@ -43,13 +43,13 @@ namespace cross_application_feature_development_management.Applications.Director
 
         private bool IsOpen()
         {
-            var command = GetCommand();     
+            var command = GetCommand();
             return command == "open";
         }
 
         private bool IsShut()
         {
-            var command = GetCommand();     
+            var command = GetCommand();
             return command == "shut";
         }
 
@@ -64,10 +64,10 @@ namespace cross_application_feature_development_management.Applications.Director
             var application = GetApplication();
             return application == "directory-management";
         }
-        
+
         private bool IsDirectoryToBeOpen()
         {
-            var command = GetCommand();     
+            var command = GetCommand();
             return command == "directory-to-be-open";
         }
 
@@ -111,7 +111,7 @@ namespace cross_application_feature_development_management.Applications.Director
 
         public void Open()
         {
-            if(!IsOpen())
+            if (!IsOpen())
             {
                 return;
             }
@@ -188,7 +188,7 @@ namespace cross_application_feature_development_management.Applications.Director
             }
 
             if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_WEB_LINKS_ADDRESS", out string? isOpeningWebLinksAddress))
-            { 
+            {
                 if (Boolean.TryParse(isOpeningWebLinksAddress, out bool isOpeningWebLinksAddress1))
                 {
                     if (isOpeningWebLinksAddress1)
@@ -202,7 +202,7 @@ namespace cross_application_feature_development_management.Applications.Director
 
         public void Shut()
         {
-            if(!IsShut())
+            if (!IsShut())
             {
                 return;
             }
@@ -240,6 +240,19 @@ namespace cross_application_feature_development_management.Applications.Director
                 myProcess.Start();
                 logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
             }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                using Process myProcess = new();
+                myProcess.StartInfo.UseShellExecute = false;
+                myProcess.StartInfo.FileName = "xdg-open";
+                myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.StartInfo.ArgumentList.Add(path);
+
+                myProcess.Start();
+                logger.LogInformation("path: {path}", path);
+                logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
+            }
+
         }
     }
 }
