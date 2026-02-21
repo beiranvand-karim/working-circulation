@@ -1,0 +1,1 @@
+dotnet add package Npgsql --version 10.0.1
