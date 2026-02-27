@@ -1,3 +1,10 @@
+$ThisScript = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent;
+$JsonFileContent = Join-Path -Path $ThisScript -ChildPath "input.worker.json";
+$json = Get-Content -Path $JsonFileContent -Raw | ConvertFrom-Json;
+
+$CafdemDirectory = $json.CafdemDirectory;
+Push-Location $CafdemDirectory;
+
 $feature_name = "feature-name-one"
 $primary_application_name = "augustus"
 $secondary_application_name = "decimus"
@@ -18,3 +25,5 @@ dotnet run `
     --primary-application-name "$primary_application_name" `
     --secondary-application-name "$secondary_application_name" `
     --repository-directory "$repository_directory"
+
+Pop-Location;

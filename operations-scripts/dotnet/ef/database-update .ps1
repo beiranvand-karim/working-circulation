@@ -7,6 +7,6 @@ $WorkingDirectory = $json.WorkingDirectory;
 
 Push-Location $WorkingDirectory
 
-dotnet add package Microsoft.EntityFrameworkCore.Tools --version 8.0.23
+dotnet ef database update
 
-Pop-Location    
+Pop-Location
