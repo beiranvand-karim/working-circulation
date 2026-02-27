@@ -5,7 +5,11 @@ $json = Get-Content -Path $JsonFileContent -Raw | ConvertFrom-Json;
 
 $MigrationMessage = $json.MigrationMessage;
 $RefinedMigrationMessage = $MigrationMessage.TrimStart().TrimEnd().Replace(" ", "-");
+$WorkingDirectory = $json.WorkingDirectory;
 
-$RefinedMigrationMessage | ForEach-Object { $_ } {
-    dotnet ef migrations add $_
-}
+Push-Location $WorkingDirectory
+
+$RefinedMigrationMessage
+dotnet ef migrations add $RefinedMigrationMessage
+
+Pop-Location
