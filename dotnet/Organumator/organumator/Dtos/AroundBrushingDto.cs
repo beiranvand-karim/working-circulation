@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace organumator.Models
-{    public class AroundBrushing
+namespace organumator.Dtos
+{
+    public class AroundBrushingDto
     {
         public int Id { get; set; }
 
-        public DateTime PerformedOnDate { get; set; } = DateTime.Now;   
+        public DateTime PerformedOnDate { get; set; } = DateTime.Now;
     }
 }
