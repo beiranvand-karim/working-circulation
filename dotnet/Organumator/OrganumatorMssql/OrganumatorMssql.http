@@ -1,0 +1,6 @@
+@OrganumatorMssql_HostAddress = http://localhost:5260
+
+GET {{OrganumatorMssql_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
