@@ -60,3 +60,5 @@ project.worker.ps1
 appsettings.Development.json
 dotnet/notepad-plus-plus-file-management/settings/notepad-plus-plus-file-management/appsettings.json
 dotnet/notepad-plus-plus-file-management/terminal/notepad-plus-plus-file-management/appsettings.json
+
+.fake
