@@ -1,12 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using organumator.Data;
+using organumator.Interfaces;
+using organumator.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder
+.Services.AddScoped<IAroundBrushingRepository, AroundBrushingRepository>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
