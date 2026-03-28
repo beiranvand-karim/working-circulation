@@ -1,0 +1,1 @@
+dotnet watch -lp https
