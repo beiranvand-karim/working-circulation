@@ -6,8 +6,12 @@ $JsonFileContent = Join-Path -Path $ThisScript -ChildPath "input.worker.json";
 $json = Get-Content -Path $JsonFileContent -Raw | ConvertFrom-Json;
 
 $name = $json.name;
+$WorkingDirectory = $json.WorkingDirectory;
+Push-Location $WorkingDirectory;
 
 $name | ForEach-Object { $_ } {
     $RefinedName = $_.TrimStart().TrimEnd().Replace(" ", "-")
     ng generate c $RefinedName --skip-tests --standalone=false;
 }
+
+Pop-Location
