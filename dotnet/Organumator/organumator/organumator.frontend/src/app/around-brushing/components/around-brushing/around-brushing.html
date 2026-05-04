@@ -1,0 +1,13 @@
+<div class="data">
+  @if (apiData.isLoading()) {
+    <div>Loading data...</div>
+  } @else {
+    @for (item of apiData.value(); track item.id) {
+      <div>{{ item.id }}</div>
+      <div>{{ item.performedOnDate }}</div>
+    } @empty {
+      <div>No data found.</div>
+    }
+  }
+</div>
+ 
