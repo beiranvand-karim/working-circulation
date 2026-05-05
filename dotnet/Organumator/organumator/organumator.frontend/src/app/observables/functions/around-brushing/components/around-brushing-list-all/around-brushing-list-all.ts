@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { Observable } from 'rxjs'
 import { AroundBrushingService } from '../../services/around-brushing.service'
 import { AroundBrushingItemModel } from '../../../../../around-brushing/models/around-brushing.model'

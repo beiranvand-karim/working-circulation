@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder
 .Services.AddScoped<IAroundBrushingRepository, AroundBrushingRepository>();
+builder.Services.AddScoped<IFaceHydrationRepository, FaceHydrationRepository>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
