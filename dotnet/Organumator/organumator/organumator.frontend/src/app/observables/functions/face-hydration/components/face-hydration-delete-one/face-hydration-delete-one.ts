@@ -6,24 +6,23 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core'
-import { AroundBrushingService } from '../../services/around-brushing.service'
+import { FaceHydrationService } from '../../services/face-hydration.service'
 import { Subject, takeUntil } from 'rxjs'
 
 @Component({
-  selector: 'around-brushing-delete-one',
+  selector: 'face-hydration-delete-one',
   imports: [],
-  templateUrl: './around-brushing-delete-one.html',
-  styleUrl: './around-brushing-delete-one.scss',
+  templateUrl: './face-hydration-delete-one.html',
+  styleUrl: './face-hydration-delete-one.scss',
 })
-export class AroundBrushingDeleteOne implements OnDestroy {
-  private readonly aroundBrushingService = inject(AroundBrushingService)
-
+export class FaceHydrationDeleteOne implements OnDestroy {
+  private readonly faceHydrationService = inject(FaceHydrationService)
   @Input() itemId!: number
   @Output() deleted = new EventEmitter<void>()
   private readonly destroy$ = new Subject<void>()
 
-  deleteItem() {
-    this.aroundBrushingService
+  delete() {
+    this.faceHydrationService
     .delete(this.itemId)
     .pipe(takeUntil(this.destroy$))
     .subscribe({
