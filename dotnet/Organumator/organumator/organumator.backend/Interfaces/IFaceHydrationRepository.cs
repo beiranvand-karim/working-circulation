@@ -1,0 +1,15 @@
+using organumator.Models;
+
+namespace organumator.Interfaces
+{
+    public interface IFaceHydrationRepository
+    {
+
+        Task<FaceHydration> AddFaceHydrationAsync(FaceHydration faceHydration);
+        Task<List<FaceHydration>> GetAllFaceHydrationsAsync();
+        Task<FaceHydration> GetFaceHydrationByIdAsync(int id);
+        Task<FaceHydration> UpdateFaceHydrationAsync(FaceHydration faceHydration);
+        Task DeleteFaceHydrationAsync(int id);
+    }
+}
+

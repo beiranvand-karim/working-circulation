@@ -1,9 +1,9 @@
 namespace organumator.Dtos
 {
-    public class AroundBrushingDto
+    public class FaceHydrationDto
     {
-        public int Id { get; set; }
 
+        public int Id { get; set; }
         public DateTime PerformedOnDate { get; set; } = DateTime.Now;
     }
 }
