@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, Output, inject } from '@angular/core'
 import { AroundBrushingService } from '../../services/around-brushing.service'
+import { Subject } from 'rxjs'
 
 @Component({
   selector: 'around-brushing-create-one',
@@ -8,15 +9,23 @@ import { AroundBrushingService } from '../../services/around-brushing.service'
   styleUrl: './around-brushing-create-one.scss',
   providers: [AroundBrushingService],
 })
-export class AroundBrushingCreateOne {
+export class AroundBrushingCreateOne implements OnDestroy {
   protected readonly aroundBrushingService = inject(AroundBrushingService)
 
   @Output() created = new EventEmitter<void>()
+  private readonly destroy$ = new Subject<void>()
+
 
   create() {
-    this.aroundBrushingService.create().subscribe(
-      () => this.created.emit(),
-      error => console.error('Failed to create item:', error)
-    )
+    this.aroundBrushingService.create().subscribe({
+      next: () => this.created.emit(),
+      error: error => console.error('Failed to create item:', error)
+    })
+  }
+
+  ngOnDestroy(): void {
+    // Clean up any subscriptions if necessary
+    this.destroy$.next()
+    this.destroy$.complete()
   }
 }
