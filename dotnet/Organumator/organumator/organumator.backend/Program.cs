@@ -10,9 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder
-.Services.AddScoped<IAroundBrushingRepository, AroundBrushingRepository>();
+builder.Services.AddScoped<IAroundBrushingRepository, AroundBrushingRepository>();
 builder.Services.AddScoped<IFaceHydrationRepository, FaceHydrationRepository>();
+builder.Services.AddScoped<ISilvermanPillTakingRepository, SilvermanPillTakingRepository>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
