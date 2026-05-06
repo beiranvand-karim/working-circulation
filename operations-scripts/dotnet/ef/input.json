@@ -1,0 +1,5 @@
+{
+    "WorkingDirectory": "/home/karim/Documents/GitHub/working-circulation/dotnet/Organumator/organumator",
+    "DefaultConnectionDevelopment":"Data Source=;User ID=;Password=;Pooling=False;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Authentication=SqlPassword;Application Name=vscode-mssql;Application Intent=ReadWrite;Command Timeout=30;Database=",
+    "DefaultConnectionProduction":"Data Source=;User ID=;Password=;Pooling=False;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Authentication=SqlPassword;Application Name=vscode-mssql;Application Intent=ReadWrite;Command Timeout=30;Database="
+}

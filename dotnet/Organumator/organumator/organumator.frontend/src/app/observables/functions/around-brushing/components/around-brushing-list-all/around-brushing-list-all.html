@@ -1,0 +1,7 @@
+
+<button (click)="refresh()">Refresh</button>    
+
+<li *ngFor="let item of aroundBrushingItems$ | async">
+    <around-brushing-list-one [item]="item" (deleted)="refresh()" />
+</li>
+

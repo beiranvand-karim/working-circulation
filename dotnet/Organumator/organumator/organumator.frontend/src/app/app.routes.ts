@@ -1,0 +1,8 @@
+import { Routes } from '@angular/router'
+import { AroundBrushingView } from './observables/functions/around-brushing/compositions/around-brushing-view/around-brushing-view'
+import { FaceHydrationView } from './observables/functions/face-hydration/compositions/face-hydration-view/face-hydration-view'
+
+export const routes: Routes = [
+    { path: 'around-brushing', component: AroundBrushingView },
+    { path: 'face-hydration', component: FaceHydrationView },
+]
