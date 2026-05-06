@@ -14,9 +14,9 @@ export class AroundBrushingCreateOne {
   @Output() created = new EventEmitter<void>()
 
   create() {
-    this.aroundBrushingService.create().subscribe(
-      () => this.created.emit(),
-      error => console.error('Failed to create item:', error)
-    )
+    this.aroundBrushingService.create().subscribe({
+      next: () => this.created.emit(),
+      error: error => console.error('Failed to create item:', error)
+    })
   }
 }

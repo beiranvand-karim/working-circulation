@@ -12,14 +12,13 @@ export class FaceHydrationCreateOne {
   private readonly faceHydrationService = inject(FaceHydrationService)
   @Output() created = new EventEmitter<void>()
 
-
   create() {
-    this.faceHydrationService.create().subscribe(
-      () => {
+    this.faceHydrationService.create().subscribe({
+      next: () => {
         console.log('Item created successfully')
         this.created.emit()
       },
-      error => console.error('Failed to create item:', error)
-    )
+      error: error => console.error('Failed to create item:', error),
+    })
   }
 }

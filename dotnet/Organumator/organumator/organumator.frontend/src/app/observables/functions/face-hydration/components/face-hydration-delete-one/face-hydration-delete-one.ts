@@ -1,5 +1,13 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { FaceHydrationService } from '../../services/face-hydration.service';
+import {
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  OnDestroy,
+  Output,
+} from '@angular/core'
+import { FaceHydrationService } from '../../services/face-hydration.service'
+import { Subject, takeUntil } from 'rxjs'
 
 @Component({
   selector: 'face-hydration-delete-one',
@@ -7,19 +15,29 @@ import { FaceHydrationService } from '../../services/face-hydration.service';
   templateUrl: './face-hydration-delete-one.html',
   styleUrl: './face-hydration-delete-one.scss',
 })
-export class FaceHydrationDeleteOne {
+export class FaceHydrationDeleteOne implements OnDestroy {
   private readonly faceHydrationService = inject(FaceHydrationService)
   @Input() itemId!: number
   @Output() deleted = new EventEmitter<void>()
-  
+  private readonly destroy$ = new Subject<void>()
+
   delete() {
-    this.faceHydrationService.delete(this.itemId).subscribe(
-      () => {
+    this.faceHydrationService
+    .delete(this.itemId)
+    .pipe(takeUntil(this.destroy$))
+    .subscribe({
+      next: () => {
         console.log(`Item with id ${this.itemId} deleted successfully`)
         this.deleted.emit()
       },
-      error =>
-        console.error(`Failed to delete item with id ${this.itemId}:`, error)
-    )
+      error: error =>
+        console.error(`Failed to delete item with id ${this.itemId}:`, error),
+    })
+  }
+
+  ngOnDestroy(): void {
+    // Clean up any subscriptions if necessary
+    this.destroy$.next()
+    this.destroy$.complete()
   }
 }

@@ -26,11 +26,14 @@ export class AroundBrushingDeleteOne implements OnDestroy {
     this.aroundBrushingService
     .delete(this.itemId)
     .pipe(takeUntil(this.destroy$))
-    .subscribe(
-      () => this.deleted.emit(),
-      error =>
-        console.error(`Failed to delete item with id ${this.itemId}:`, error)
-    )
+    .subscribe({
+      next: () => {
+        console.log(`Item with id ${this.itemId} deleted successfully`)
+        this.deleted.emit()
+      },
+      error: error =>
+        console.error(`Failed to delete item with id ${this.itemId}:`, error),
+    })
   }
 
   ngOnDestroy(): void {
