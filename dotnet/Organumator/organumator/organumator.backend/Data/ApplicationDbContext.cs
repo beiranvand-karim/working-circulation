@@ -9,5 +9,6 @@ namespace organumator.Data
         public DbSet<FaceHydration> FaceHydrations { get; set; }
 
         public DbSet<SilvermanPillTaking> SilvermanPillTakings { get; set; }
+        public DbSet<LivergolPillTakingModel> LivergolPillTakings { get; set; }
     }
 }

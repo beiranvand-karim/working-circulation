@@ -1,5 +1,9 @@
 
 <button (click)="refresh()">Refresh</button>
-<li *ngFor="let item of faceHydrationItems$ | async">
+<ul>    
+@for (item of faceHydrationItems$ | async; track item.id) {
+  <li>
     <face-hydration-list-one [item]="item" (deleted)="refresh()" />
-</li>
+  </li>
+}
+</ul>
