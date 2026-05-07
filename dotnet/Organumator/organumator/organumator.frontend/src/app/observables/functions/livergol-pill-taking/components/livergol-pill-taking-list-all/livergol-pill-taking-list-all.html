@@ -1,0 +1,9 @@
+<button (click)="refresh()">Refresh</button>
+<ul>    
+    @for (item of livergolPillTakings$ | async; track item.id) {
+    <li>
+        {{ item.performedOnDate }}
+        <livergol-pill-taking-delete-one [itemId]="item.id" (deleted)="refreshAfterDelete()" />
+    </li>
+    }
+</ul>

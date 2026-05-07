@@ -1,0 +1,12 @@
+.app-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.app-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
