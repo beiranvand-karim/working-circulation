@@ -1,0 +1,6 @@
+<button (click)="refresh()">Refresh</button>
+<ul>
+    <li *ngFor="let item of silvermanPillTakingItems$ | async">
+        <silverman-pill-taking-list-one [item]="item" (deleted)="refresh()" />
+    </li>
+</ul>
