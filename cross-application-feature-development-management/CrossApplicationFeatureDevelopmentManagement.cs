@@ -1,6 +1,6 @@
-using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory;
-using cross_application_feature_development_management.Dirctories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
-using cross_application_feature_development_management.Dirctories.Interfaces;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
+using cross_application_feature_development_management.Directories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -58,7 +58,7 @@ namespace cross_application_feature_development_management
 
                 batchScriptFilesDirectory.Populate(destinationDirectory, templateSourceDirectory, environmentVariablesSourceDictionary);
 
-                powerShellScriptsDirectory.CopyContentToFeatureNameDicrectory();
+                powerShellScriptsDirectory.CopyContentToFeatureNameDirectory();
                 powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
 
                 batchScriptsDirectory.CopyContentToFeatureNameDirectory();
