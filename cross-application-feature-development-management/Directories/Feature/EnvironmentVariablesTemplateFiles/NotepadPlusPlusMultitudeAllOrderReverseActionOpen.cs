@@ -53,40 +53,40 @@ namespace cross_application_feature_development_management.Directories.Feature.E
                     case "FEATURE_NAME":
                     {
                         var val = featureName.GetName();
-                        var wrappedVal = stringHelpers.WrappInQoutationMarks(val);
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
                     case "HOST_APPLICATION_NAME":
                     {
                         var val = hostApplicationName.GetName();
-                        var wrappedVal = stringHelpers.WrappInQoutationMarks(val);
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
                     case "GUEST_APPLICATION_NAME":
                     {
                         var val = guestApplicationName.GetName();
-                        var wrappedVal = stringHelpers.WrappInQoutationMarks(val);
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
                     case "HOSTING_DIRECTORY":
                     {
                         var val = hostingDirectory.GetName();
-                        var wrappedVal = stringHelpers.WrappInQoutationMarks(val);
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
                     case "COMMAND":
                     {
-                        var wrappedVal = stringHelpers.WrappInQoutationMarks("open");
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
                     case "ORDER":
                     {
-                        var wrappedVal = stringHelpers.WrappInQoutationMarks("reverse");
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
@@ -96,7 +96,7 @@ namespace cross_application_feature_development_management.Directories.Feature.E
                             "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_LOCATION",
                             out var notepadPlusPlusFileManagementExecutiveFileLocation
                         );
-                        var striped = stringHelpers.StripQoutationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
+                        var striped = stringHelpers.StripQuotationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
                         var dirName = Path.GetDirectoryName(striped);
                         fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
                         break;
