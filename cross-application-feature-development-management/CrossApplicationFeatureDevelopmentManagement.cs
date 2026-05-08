@@ -38,7 +38,7 @@ namespace cross_application_feature_development_management
         {
             try
             {
-                string templateSourceDirectory =
+                var templateSourceDirectory =
                     Path.Combine(
                         scriptsDirectory.GetName(),
                         templatesDirectory.GetName()
@@ -49,9 +49,9 @@ namespace cross_application_feature_development_management
                 automationsDirectory.Create();
 
                 Directory.CreateDirectory(environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory());
-                string destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
+                var destinationDirectory = environmentVariablesFilesDirectory.CreatePathToSelfInFeatureNameDirectory();
 
-                Dictionary<string, string> environmentVariablesSourceDictionary =
+                var environmentVariablesSourceDictionary =
                         something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
                             environmentVariablesSourceDirectory.GetName()
                         );

@@ -22,8 +22,8 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
         }
         public string GetPath()
         {
-            string directory = featureNameDirectory.GetPath();
-            string automationsDirectory = Path.Combine(directory, "automations");
+            var directory = featureNameDirectory.GetPath();
+            var automationsDirectory = Path.Combine(directory, "automations");
             return automationsDirectory;
         }
     }

@@ -14,16 +14,16 @@ namespace cross_application_feature_development_management
 
         public string GetApplication()
         {
-            string application = commandLineArgs.GetByKey("--application");
+            var application = commandLineArgs.GetByKey("--application");
             return application;
         }
 
-        private Boolean IsCrossApplicationFeatureDevelopmentManagementApplication()
+        private bool IsCrossApplicationFeatureDevelopmentManagementApplication()
         {
             return GetApplication() == "cross-application-feature-development-management";
         }
 
-        private Boolean IsNotepadPlusPlusFileManagementApplication()
+        private bool IsNotepadPlusPlusFileManagementApplication()
         {
             return GetApplication() == "notepad-plus-plus-file-management";
         }

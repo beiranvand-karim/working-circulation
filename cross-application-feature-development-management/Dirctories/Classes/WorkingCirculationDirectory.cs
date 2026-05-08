@@ -9,18 +9,18 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string GetName()
         {
-            string workingCirculationDirectoryName = CreatePath();
+            var workingCirculationDirectoryName = CreatePath();
 
-            string environmeentVariablesManagementDirectoryName =
+            var environmentVariablesManagementDirectoryName =
                 Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
 
-            return environmeentVariablesManagementDirectoryName;
+            return environmentVariablesManagementDirectoryName;
         }
 
         public string CreatePath()
         {
-            string repositoryDirectoryNameKey = "--repository-directory";
-            string workingCirculationDirectoryName =
+            const string repositoryDirectoryNameKey = "--repository-directory";
+            var workingCirculationDirectoryName =
                 Path.Combine(commandLineArgs.GetByKey(repositoryDirectoryNameKey), "WorkingCirculation");
             return workingCirculationDirectoryName;
         }
