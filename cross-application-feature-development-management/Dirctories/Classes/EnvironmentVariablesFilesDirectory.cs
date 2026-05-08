@@ -20,7 +20,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
         private readonly IDirectories directories = directories;
         private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
-        public void CopyContentToFeatureNameDicrectory()
+        public void CopyContentToFeatureNameDirectory()
         {
             var sourceDirectory = CreatePathToSelfInScriptsDirectory();
             var destinationDirectory = CreatePathToSelfInFeatureNameDirectory();
@@ -28,7 +28,7 @@ namespace cross_application_feature_development_management.Dirctories.Classes
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
-        public void CopyContentToTargetDicrectory()
+        public void CopyContentToTargetDirectory()
         {
             var sourceDirectory = CreatePathToSelfInScriptsDirectory();
             var destinationDirectory = CreatePathToSelfInTargetDirectory();
