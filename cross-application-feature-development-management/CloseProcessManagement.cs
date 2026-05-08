@@ -18,14 +18,14 @@ namespace cross_application_feature_development_management
 
             using StreamReader r = new(notepadPlusPlusFileProcessesMetaDataDirectory);
             var json = r.ReadToEnd();
-            ProccessInformationGroup? readProcessInformationGroup = Newtonsoft.Json.JsonConvert.DeserializeObject<ProccessInformationGroup>(json);
+            var readProcessInformationGroup = Newtonsoft.Json.JsonConvert.DeserializeObject<ProcessInformationGroup>(json);
 
             logger.LogInformation("items, {items}", readProcessInformationGroup);
 
-            foreach (var pInfo in readProcessInformationGroup?.Group)
+            foreach (var pInfo in readProcessInformationGroup?.group)
             {
-                logger.LogInformation("Id: {Id}", pInfo?.Id);
-                var p = Process.GetProcessById((int)pInfo?.Id);
+                logger.LogInformation("Id: {Id}", pInfo?.id);
+                var p = Process.GetProcessById((int)pInfo?.id);
                 p.Kill();
                 Thread.Sleep(2000);
             }
