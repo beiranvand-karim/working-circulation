@@ -9,10 +9,10 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string GetName()
         {
-            string templatesDirectoryNameKey =
+            var templatesDirectoryNameKey =
                 commandLineArgs.GetKey("TemplatesDirectoryNameKey");
 
-            string templatesDirectoryName = commandLineArgs.GetByKey(templatesDirectoryNameKey);
+            var templatesDirectoryName = commandLineArgs.GetByKey(templatesDirectoryNameKey);
             return templatesDirectoryName;
         }
     }

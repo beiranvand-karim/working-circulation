@@ -8,7 +8,7 @@ namespace cross_application_feature_development_management.Dirctories
 
         public string GetValue(string key)
         {
-            string groupKey = "DirectoriesNameToKeyMap";
+            const string groupKey = "DirectoriesNameToKeyMap";
             return commandLineArgs.GetKey2(groupKey, key);
         }
     }

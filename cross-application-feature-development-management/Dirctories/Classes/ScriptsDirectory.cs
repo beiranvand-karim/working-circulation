@@ -9,8 +9,8 @@ namespace cross_application_feature_development_management.Dirctories.Classes
 
         public string GetName()
         {
-            string scriptsDirectoryNameKey = commandLineArgs.GetKey("ScriptsDirectoryNameKey");
-            string scriptsDirectoryName = commandLineArgs.GetByKey(scriptsDirectoryNameKey);
+            var scriptsDirectoryNameKey = commandLineArgs.GetKey("ScriptsDirectoryNameKey");
+            var scriptsDirectoryName = commandLineArgs.GetByKey(scriptsDirectoryNameKey);
             return scriptsDirectoryName;
         }
     }

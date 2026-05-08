@@ -17,12 +17,12 @@ namespace cross_application_feature_development_management
             var notepadPlusPlusFileProcessesMetaDataDirectory = Path.Combine(processesMetaDataDirectory.GetPath(), "notepad-plus-plus-file-processes-meta-data.json");
 
             using StreamReader r = new(notepadPlusPlusFileProcessesMetaDataDirectory);
-            string json = r.ReadToEnd();
-            ProccessInformationGroup? readProccessInformationGroup = Newtonsoft.Json.JsonConvert.DeserializeObject<ProccessInformationGroup>(json);
+            var json = r.ReadToEnd();
+            ProccessInformationGroup? readProcessInformationGroup = Newtonsoft.Json.JsonConvert.DeserializeObject<ProccessInformationGroup>(json);
 
-            logger.LogInformation("items, {items}", readProccessInformationGroup);
+            logger.LogInformation("items, {items}", readProcessInformationGroup);
 
-            foreach (var pInfo in readProccessInformationGroup?.Group)
+            foreach (var pInfo in readProcessInformationGroup?.Group)
             {
                 logger.LogInformation("Id: {Id}", pInfo?.Id);
                 var p = Process.GetProcessById((int)pInfo?.Id);

@@ -6,12 +6,12 @@ namespace cross_application_feature_development_management.Helpers.Classes
     {
         public string WrappInQoutationMarks(string value)
         {
-            string valueToWrite = string.Format("\"{0}\"", value);
+            var valueToWrite = $"\"{value}\"";
             return valueToWrite;
         }
         public string StripQoutationMarks(string value)
         {
-            string valueToWrite = value.Replace("\"", "");
+            var valueToWrite = value.Replace("\"", "");
             return valueToWrite;
         }
     }

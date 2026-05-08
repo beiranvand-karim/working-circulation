@@ -11,8 +11,8 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Au
         }
         public string GetPath()
         {
-            string directory = automationsDirectory.GetPath();
-            string processesMetaDataDirectory = Path.Combine(directory, "processes-meta-data");
+            var directory = automationsDirectory.GetPath();
+            var processesMetaDataDirectory = Path.Combine(directory, "processes-meta-data");
             return processesMetaDataDirectory;
         }
     }

@@ -27,7 +27,7 @@ namespace cross_application_feature_development_management.Dirctories.Feature.Fr
 
             var guestApplicationName = commandLineArgs.GetByKey("--guest-application-name");
 
-            var x = string.Format("{0}.{1}", directoryName, guestApplicationName);
+            var x = $"{directoryName}.{guestApplicationName}";
 
             var directoryThatIsGoingToBeOpen2 = Path.Combine(directoryThatIsGoingToBeOpen, x);
             logger.LogInformation("front end guest directory: {FrontEndGuestDirectory}", directoryThatIsGoingToBeOpen2);
