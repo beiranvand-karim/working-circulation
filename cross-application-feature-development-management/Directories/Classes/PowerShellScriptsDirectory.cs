@@ -49,7 +49,7 @@ namespace cross_application_feature_development_management.Directories.Classes
 
                 directories.ReplaceFileNameWithPath(filePath, giverPath);
 
-                switch (filePath)
+                switch (fileName)
                 {
                     case "all-inclusive.ps1":
                     case "all-inclusive-order-reverse.ps1":
@@ -73,7 +73,7 @@ namespace cross_application_feature_development_management.Directories.Classes
                     case "run-primary-application.ps1":
                         directories.ReplaceFileNameWithPath(filePath, "run-host-application.ps1", runHostApplicationPath);
                         break;
-                    case "run-seconday-application.ps1":
+                    case "run-secondary-application.ps1":
                         directories.ReplaceFileNameWithPath(filePath, "run-guest-application.ps1", runGuestApplicationPath);
                         break;
                 }
