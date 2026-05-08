@@ -10,14 +10,14 @@ namespace cross_application_feature_development_management.Directories.Classes
         public void ReplaceFileNameWithPath(string receiverPath, string giverPath)
         {
             var fileName = Path.GetFileName(giverPath);
-            var text = File.ReadAllText(receiverPath);
+            var text = File.ReadAllText(receiverPath) ?? throw new ArgumentNullException(nameof(receiverPath));
             text = text.Replace(fileName, giverPath);
             File.WriteAllText(receiverPath, text);
         }
 
         public void ReplaceFileNameWithPath(string receiverPath, string repalcee, string replacer)
         {
-            var text = File.ReadAllText(receiverPath);
+            var text = File.ReadAllText(receiverPath) ?? throw new ArgumentNullException(nameof(receiverPath));
             text = text.Replace(repalcee, replacer);
             File.WriteAllText(receiverPath, text);
         }
