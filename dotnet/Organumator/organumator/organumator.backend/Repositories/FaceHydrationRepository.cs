@@ -33,11 +33,11 @@ namespace organumator.Repositories
         public async Task<FaceHydration> GetFaceHydrationByIdAsync(int id)
         {
             var faceHydration = await applicationDbContext.FaceHydrations.FirstOrDefaultAsync(x => x.Id == id);
-            if (faceHydration == null)
+            return faceHydration switch
             {
-                throw new Exception($"FaceHydration with id {id} not found.");
-            }
-            return faceHydration;
+                null => throw new Exception($"FaceHydration with id {id} not found."),
+                _ => faceHydration
+            };
         }
         
         public async Task<FaceHydration> UpdateFaceHydrationAsync(FaceHydration faceHydration)

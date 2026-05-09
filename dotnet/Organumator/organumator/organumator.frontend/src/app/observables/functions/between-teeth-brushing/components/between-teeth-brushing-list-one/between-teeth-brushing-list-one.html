@@ -1,0 +1,6 @@
+<div>
+  {{ item.performedOnDate }}
+  <between-teeth-brushing-delete-one
+    [itemId]="item.id"
+    (deleted)="deleted.emit()"></between-teeth-brushing-delete-one>
+</div>

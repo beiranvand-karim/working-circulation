@@ -33,11 +33,11 @@ namespace organumator.Repositories
         public async Task<LivergolPillTakingModel> GetLivergolPillTakingByIdAsync(int id)
         {
             var livergolPillTaking = await applicationDbContext.LivergolPillTakings.FirstOrDefaultAsync(x => x.Id == id);
-            if (livergolPillTaking == null)
+            return livergolPillTaking switch
             {
-                throw new Exception($"LivergolPillTaking with id {id} not found.");
-            }
-            return livergolPillTaking;
+                null => throw new Exception($"LivergolPillTaking with id {id} not found."),
+                _ => livergolPillTaking
+            };
         }
 
         public async Task<LivergolPillTakingModel> UpdateLivergolPillTakingAsync(LivergolPillTakingModel livergolPillTaking)
