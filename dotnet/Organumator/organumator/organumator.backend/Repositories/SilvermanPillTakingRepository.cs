@@ -24,11 +24,11 @@ namespace organumator.Repositories
         {
 
             var silvermanPillTaking = await applicationDbContext.SilvermanPillTakings.FindAsync(id);
-            if (silvermanPillTaking == null)
+            return silvermanPillTaking switch
             {
-                throw new Exception($"SilvermanPillTaking with id {id} not found.");
-            }
-            return silvermanPillTaking;
+                null => throw new Exception($"SilvermanPillTaking with id {id} not found."),
+                _ => silvermanPillTaking
+            };
         }
 
         public async Task<SilvermanPillTaking> UpdateSilvermanPillTakingAsync(SilvermanPillTaking silvermanPillTaking)

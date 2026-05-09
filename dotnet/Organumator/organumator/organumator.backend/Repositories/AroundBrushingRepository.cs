@@ -22,11 +22,11 @@ namespace organumator.Repositories
         public async Task<Models.AroundBrushing> GetAroundBrushingByIdAsync(int id)
         {
             var aroundBrushing = await _context.AroundBrushings.FirstOrDefaultAsync(x => x.Id == id);
-            if (aroundBrushing == null)
+            return aroundBrushing switch
             {
-                throw new Exception($"AroundBrushing with id {id} not found.");
-            }
-            return aroundBrushing;
+                null => throw new Exception($"AroundBrushing with id {id} not found."),
+                _ => aroundBrushing
+            };
         }
 
         public async Task<Models.AroundBrushing> UpdateAroundBrushingAsync(Models.AroundBrushing aroundBrushing)
