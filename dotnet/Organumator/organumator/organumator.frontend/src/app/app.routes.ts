@@ -4,6 +4,7 @@ import { FaceHydrationView } from './observables/functions/face-hydration/compos
 import { SilvermanPillTakingView } from './observables/functions/silverman-pill-taking/compositions/silverman-pill-taking-view/silverman-pill-taking-view'
 import { LivergolPillTakingView } from './observables/functions/livergol-pill-taking/compositions/livergol-pill-taking-view/livergol-pill-taking-view'
 import { BetweenTeethBrushingView } from './observables/functions/between-teeth-brushing/compositions/between-teeth-brushing-view/between-teeth-brushing-view'
+import { CalciferolTakingsView } from './observables/functions/calciferol-takings/compositions/calciferol-takings-view/calciferol-takings-view'
 
 export const routes: Routes = [
   { path: 'around-brushing', component: AroundBrushingView },
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'silverman-pill-taking', component: SilvermanPillTakingView },
   { path: 'livergol-pill-taking', component: LivergolPillTakingView },
   { path: 'between-teeth-brushing', component: BetweenTeethBrushingView },
+  { path: 'calciferol-pill-takings', component: CalciferolTakingsView },
 ]

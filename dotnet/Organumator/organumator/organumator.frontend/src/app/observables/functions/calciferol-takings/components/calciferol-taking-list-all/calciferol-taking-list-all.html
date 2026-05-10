@@ -1,0 +1,10 @@
+<button (click)="refresh()">refresh</button>
+<ul>
+  @for (item of calciferolPillTakings$ | async; track $index) {
+  <li>
+    <calciferol-taking-list-one
+      [item]="item"
+      (deleted)="refresh()"></calciferol-taking-list-one>
+  </li>
+  }
+</ul>
