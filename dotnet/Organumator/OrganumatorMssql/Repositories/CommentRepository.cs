@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OrganumatorMssql.Data;
+using OrganumatorMssql.Dtos.Comment;
 using OrganumatorMssql.Interfaces;
 using OrganumatorMssql.Models;
 
@@ -54,10 +55,14 @@ namespace OrganumatorMssql.Repositories
             {
                 return null;
             }
-            _applicationDbContext.Entry(existingComment).CurrentValues.SetValues(comment);
-            await _applicationDbContext.SaveChangesAsync();
-            return existingComment;
-        }
 
+            existingComment.Title = comment.Title;
+            existingComment.Content = comment.Content;
+
+            await _applicationDbContext.SaveChangesAsync();
+
+            return existingComment;
+
+        }
     }
 }

@@ -48,18 +48,18 @@ namespace OrganumatorMssql.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Comment comment)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto updateCommentRequestDto)
         {
-            var updatedComment = await _commentsRepository.UpdateAsync(id, comment);
+            var updatedComment = await _commentsRepository.UpdateAsync(id, updateCommentRequestDto.ToCommentFromUpdateDto());
             if (updatedComment == null)
             {
                 return NotFound();
             }
-            return Ok(updatedComment);
+            return Ok(updatedComment.ToCommentDto());
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var deletedComment = await _commentsRepository.DeleteAsync(id);
             if (deletedComment == null)

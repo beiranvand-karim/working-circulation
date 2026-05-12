@@ -31,5 +31,15 @@ namespace OrganumatorMssql.Mappers
                 StockId = stockId
             };
         }
+
+
+        public static Comment ToCommentFromUpdateDto(this UpdateCommentRequestDto updateCommentRequestDto)
+        {
+            return new Comment
+            {
+                Title = updateCommentRequestDto.Title,
+                Content = updateCommentRequestDto.Content,
+            };
+        }
     }
 }
