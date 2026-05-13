@@ -24,13 +24,21 @@ namespace OrganumatorMssql.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStocks()
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var stocks = await _stockRepository.GetAllAsync();
             return Ok(stocks.Select(s => s.ToStockDto()));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetStock([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var stock = await _stockRepository.GetByIdAsync(id);
             if (stock == null)
             {
@@ -42,15 +50,23 @@ namespace OrganumatorMssql.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateStock([FromBody] CreateStockRequestDto stockDto)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var stock = stockDto.ToStock();
             await _stockRepository.CreateAsync(stock);
             return CreatedAtAction(nameof(GetStock), new { id = stock.Id }, stock.ToStockDto());
         }
 
         [HttpPut]
-        [Route("update/{id}")]
+        [Route("update/{id:int}")]
         public async Task<IActionResult> UpdateStock([FromRoute] int id, [FromBody] UpdateStockRequestDto updateStockDto)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var stock = await _stockRepository.UpdateAsync(id, updateStockDto);
             if (stock == null)
             {
@@ -61,9 +77,13 @@ namespace OrganumatorMssql.Controllers
             return Ok(stock.ToStockDto());
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteStock([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var stock = await _stockRepository.DeleteAsync(id);
             if (stock == null)
             {
