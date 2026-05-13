@@ -23,13 +23,21 @@ namespace OrganumatorMssql.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var comments = await _commentsRepository.GetAllAsync();
             return Ok(comments.Select(c => c.ToCommentDto()));
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var comment = await _commentsRepository.GetByIdAsync(id);
             if (comment == null)
             {
@@ -43,13 +51,22 @@ namespace OrganumatorMssql.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Comment comment)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var createdComment = await _commentsRepository.CreateAsync(comment);
             return CreatedAtAction(nameof(GetById), new { id = createdComment.Id }, createdComment);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCommentRequestDto updateCommentRequestDto)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
+
             var updatedComment = await _commentsRepository.UpdateAsync(id, updateCommentRequestDto.ToCommentFromUpdateDto());
             if (updatedComment == null)
             {
@@ -58,9 +75,13 @@ namespace OrganumatorMssql.Controllers
             return Ok(updatedComment.ToCommentDto());
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             var deletedComment = await _commentsRepository.DeleteAsync(id);
             if (deletedComment == null)
             {
@@ -69,9 +90,13 @@ namespace OrganumatorMssql.Controllers
             return NoContent();
         }
 
-        [HttpPost("create/{stockId}")]
+        [HttpPost("create/{stockId:int}")]
         public async Task<IActionResult> Create([FromRoute] int stockId, [FromBody] CreateCommentDto commentDto)
         {
+            if (!ModelState.IsValid)
+            {
+                BadRequest(ModelState);
+            }
             if (!await _stockRepository.StockExists(stockId))
             {
                 return BadRequest($"Stock with id {stockId} not found.");
