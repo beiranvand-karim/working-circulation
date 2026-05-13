@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using OrganumatorMssql.Dtos.Comment;
 
 namespace OrganumatorMssql.Dtos.Stock
@@ -11,6 +6,7 @@ namespace OrganumatorMssql.Dtos.Stock
     {
         public int Id { get; set; }
         public string CompanyName { get; set; } = string.Empty;
+        public string Symbol { get; set; } = string.Empty;
 
         public decimal Purchase { get; set; }
 

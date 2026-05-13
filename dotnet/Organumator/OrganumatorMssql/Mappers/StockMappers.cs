@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace OrganumatorMssql.Mappers
 {
     public static class StockMappers
@@ -17,6 +12,7 @@ namespace OrganumatorMssql.Mappers
                 LastDividend = stock.LastDividend,
                 Industry = stock.Industry,
                 MarketCap = stock.MarketCap,
+                Symbol = stock.Symbol,
                 Comments = stock.Comments.Select(c => c.ToCommentDto()).ToList()
             };
         }
