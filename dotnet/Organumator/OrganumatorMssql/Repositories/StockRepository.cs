@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrganumatorMssql.Data;
 using OrganumatorMssql.Dtos.Stock;
+using OrganumatorMssql.Helpers;
 using OrganumatorMssql.Interfaces;
 using OrganumatorMssql.Models;
 
@@ -34,9 +35,22 @@ namespace OrganumatorMssql.Repositories
             return stock;
         }
 
-        public async Task<List<Stock>> GetAllAsync()
+        public async Task<List<Stock>> GetAllAsync(QueryObject queryObject)
         {
-            return await _applicationDbContext.Stocks.Include(s => s.Comments).ToListAsync();
+            var stocks = _applicationDbContext.Stocks.Include(s => s.Comments).AsQueryable();
+            if (!string.IsNullOrWhiteSpace(queryObject.CompanyName))
+            {
+                stocks = stocks.Where(s => s.CompanyName.Contains(queryObject.CompanyName));
+
+            }
+
+            if (!string.IsNullOrWhiteSpace(queryObject.Symbol))
+            {
+                stocks = stocks.Where(s => s.Symbol.Contains(queryObject.Symbol));
+            }
+
+            return await stocks.ToListAsync();
+
         }
 
         public async Task<Stock?> GetByIdAsync(int id)

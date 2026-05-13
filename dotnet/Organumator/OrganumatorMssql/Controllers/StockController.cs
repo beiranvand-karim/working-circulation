@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OrganumatorMssql.Data;
 using OrganumatorMssql.Dtos.Stock;
+using OrganumatorMssql.Helpers;
 using OrganumatorMssql.Interfaces;
 using OrganumatorMssql.Mappers;
 
@@ -22,13 +23,13 @@ namespace OrganumatorMssql.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetStocks()
+        public async Task<IActionResult> GetStocks([FromQuery] QueryObject queryObject)
         {
             if (!ModelState.IsValid)
             {
                 BadRequest(ModelState);
             }
-            var stocks = await _stockRepository.GetAllAsync();
+            var stocks = await _stockRepository.GetAllAsync(queryObject);
             return Ok(stocks.Select(s => s.ToStockDto()));
         }
 
