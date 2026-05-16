@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrganumatorMssql.Dtos.Comment;
 using OrganumatorMssql.Interfaces;
@@ -21,6 +22,7 @@ namespace OrganumatorMssql.Controllers
 
 
         [HttpGet]
+        [Authorize]        
         public async Task<IActionResult> GetAll()
         {
             if (!ModelState.IsValid)

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrganumatorMssql.Data;
 using OrganumatorMssql.Dtos.Stock;
@@ -23,6 +24,7 @@ namespace OrganumatorMssql.Controllers
 
 
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetStocks([FromQuery] QueryObject queryObject)
         {
             if (!ModelState.IsValid)
