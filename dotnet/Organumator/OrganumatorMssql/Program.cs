@@ -7,6 +7,7 @@ using OrganumatorMssql.Data;
 using OrganumatorMssql.Interfaces;
 using OrganumatorMssql.Models;
 using OrganumatorMssql.Repositories;
+using OrganumatorMssql.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddSwaggerGen();
 builder
 .Services.AddScoped<IStockRepository, StockRepository>();
 builder.Services.AddScoped<ICommentsRepository, CommentRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
