@@ -51,13 +51,13 @@ namespace OrganumatorMssql.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "15bd4ae1-e9b9-4ddb-844a-339529d553e1",
+                            Id = "078e80e3-4e69-4463-8d0c-799ed6863b3f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "ef82acf5-4dca-4e24-8177-087a1e432a1d",
+                            Id = "22271c96-dad8-40dd-8cda-4d7b73f110ad",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -263,6 +263,21 @@ namespace OrganumatorMssql.Migrations
                     b.ToTable("Comments");
                 });
 
+            modelBuilder.Entity("OrganumatorMssql.Models.Portfolio", b =>
+                {
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("StockId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AppUserId", "StockId");
+
+                    b.HasIndex("StockId");
+
+                    b.ToTable("Portfolios");
+                });
+
             modelBuilder.Entity("OrganumatorMssql.Models.Stock", b =>
                 {
                     b.Property<int>("Id")
@@ -357,9 +372,35 @@ namespace OrganumatorMssql.Migrations
                     b.Navigation("Stock");
                 });
 
+            modelBuilder.Entity("OrganumatorMssql.Models.Portfolio", b =>
+                {
+                    b.HasOne("OrganumatorMssql.Models.AppUser", "AppUser")
+                        .WithMany("Portfolios")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OrganumatorMssql.Models.Stock", "Stock")
+                        .WithMany("Portfolios")
+                        .HasForeignKey("StockId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Stock");
+                });
+
+            modelBuilder.Entity("OrganumatorMssql.Models.AppUser", b =>
+                {
+                    b.Navigation("Portfolios");
+                });
+
             modelBuilder.Entity("OrganumatorMssql.Models.Stock", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Portfolios");
                 });
 #pragma warning restore 612, 618
         }
