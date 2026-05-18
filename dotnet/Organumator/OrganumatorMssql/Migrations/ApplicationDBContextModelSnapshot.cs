@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OrganumatorMssql.Data;
 
@@ -11,12 +10,10 @@ using OrganumatorMssql.Data;
 
 namespace OrganumatorMssql.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260517155754_add-portfolio-many-to-many")]
-    partial class addportfoliomanytomany
+    [DbContext(typeof(ApplicationDBContext))]
+    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -54,13 +51,13 @@ namespace OrganumatorMssql.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "078e80e3-4e69-4463-8d0c-799ed6863b3f",
+                            Id = "e1e1472f-96c3-4507-b23d-090b2637315f",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "22271c96-dad8-40dd-8cda-4d7b73f110ad",
+                            Id = "ad98332e-77e6-4c26-b542-e578716c2273",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -245,6 +242,10 @@ namespace OrganumatorMssql.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -260,6 +261,8 @@ namespace OrganumatorMssql.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("StockId");
 
@@ -297,7 +300,7 @@ namespace OrganumatorMssql.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("LastDividend")
+                    b.Property<decimal>("LastDiv")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<long>("MarketCap")
@@ -368,9 +371,17 @@ namespace OrganumatorMssql.Migrations
 
             modelBuilder.Entity("OrganumatorMssql.Models.Comment", b =>
                 {
+                    b.HasOne("OrganumatorMssql.Models.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("OrganumatorMssql.Models.Stock", "Stock")
                         .WithMany("Comments")
                         .HasForeignKey("StockId");
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Stock");
                 });

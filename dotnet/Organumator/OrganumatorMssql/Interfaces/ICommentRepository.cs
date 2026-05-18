@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OrganumatorMssql.Dtos.Comment;
+using OrganumatorMssql.Helpers;
 using OrganumatorMssql.Models;
 
 namespace OrganumatorMssql.Interfaces
 {
-    public interface ICommentsRepository
+    public interface ICommentRepository
     {
-        Task<List<Comment>> GetAllAsync();
+        Task<List<Comment>> GetAllAsync(CommentQueryObject queryObject);
         Task<Comment?> GetByIdAsync(int id);
-        Task<Comment> CreateAsync(Comment comment);
-        Task<Comment?> UpdateAsync(int id,  Comment comment);
+        Task<Comment> CreateAsync(Comment commentModel);
+        Task<Comment?> UpdateAsync(int id, Comment commentModel);
         Task<Comment?> DeleteAsync(int id);
     }
 }

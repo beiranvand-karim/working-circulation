@@ -6,8 +6,8 @@ using OrganumatorMssql.Models;
 
 namespace OrganumatorMssql.Interfaces
 {
-    public interface ITokenService
+    public interface IFMPService
     {
-        string CreateToken(AppUser user);
+        Task<Stock> FindStockBySymbolAsync(string symbol);
     }
 }

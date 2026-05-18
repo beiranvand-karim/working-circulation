@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OrganumatorMssql.Models
 {
@@ -9,6 +13,5 @@ namespace OrganumatorMssql.Models
         public int StockId { get; set; }
         public AppUser AppUser { get; set; }
         public Stock Stock { get; set; }
-
     }
 }

@@ -1,32 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using OrganumatorMssql.Dtos.Stock;
+using OrganumatorMssql.Models;
+
 namespace OrganumatorMssql.Mappers
 {
     public static class StockMappers
     {
-        public static Dtos.Stock.StockDto ToStockDto(this Models.Stock stock)
+        public static StockDto ToStockDto(this Stock stockModel)
         {
-            return new Dtos.Stock.StockDto
+            return new StockDto
             {
-                Id = stock.Id,
-                CompanyName = stock.CompanyName,
-                Purchase = stock.Purchase,
-                LastDividend = stock.LastDividend,
-                Industry = stock.Industry,
-                MarketCap = stock.MarketCap,
-                Symbol = stock.Symbol,
-                Comments = stock.Comments.Select(c => c.ToCommentDto()).ToList()
+                Id = stockModel.Id,
+                Symbol = stockModel.Symbol,
+                CompanyName = stockModel.CompanyName,
+                Purchase = stockModel.Purchase,
+                LastDiv = stockModel.LastDiv,
+                Industry = stockModel.Industry,
+                MarketCap = stockModel.MarketCap,
+                Comments = stockModel.Comments.Select(c => c.ToCommentDto()).ToList()
             };
         }
 
-        public static Models.Stock ToStock(this Dtos.Stock.CreateStockRequestDto stockDto)
+        public static Stock ToStockFromCreateDTO(this CreateStockRequestDto stockDto)
         {
-            return new Models.Stock
+            return new Stock
             {
                 Symbol = stockDto.Symbol,
                 CompanyName = stockDto.CompanyName,
                 Purchase = stockDto.Purchase,
-                LastDividend = stockDto.LastDividend,
+                LastDiv = stockDto.LastDiv,
                 Industry = stockDto.Industry,
                 MarketCap = stockDto.MarketCap
+            };
+        }
+
+        public static Stock ToStockFromFMP(this FMPStock fmpStock)
+        {
+            return new Stock
+            {
+                Symbol = fmpStock.symbol,
+                CompanyName = fmpStock.companyName,
+                Purchase = (decimal)fmpStock.price,
+                LastDiv = (decimal)fmpStock.lastDiv,
+                Industry = fmpStock.industry,
+                MarketCap = fmpStock.mktCap
             };
         }
     }
