@@ -26,5 +26,12 @@ namespace OrganumatorMssql.Repositories
                 MarketCap = stock.Stock.MarketCap
             }).ToListAsync();
         }
+
+        public async Task<Portfolio> CreateAsync(Portfolio portfolio)
+        {
+            await applicationDbContext.Portfolios.AddAsync(portfolio);
+            await applicationDbContext.SaveChangesAsync();
+            return portfolio;
+        }
     }
 }
