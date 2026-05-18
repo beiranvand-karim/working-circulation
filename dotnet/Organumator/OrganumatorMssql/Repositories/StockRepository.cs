@@ -72,6 +72,11 @@ namespace OrganumatorMssql.Repositories
             return await _applicationDbContext.Stocks.Include(s => s.Comments).FirstOrDefaultAsync(s => s.Id == id);
         }
 
+        public async Task<Stock?> GetBySymbolAsync(string symbol)
+        {
+            return await _applicationDbContext.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
+        }
+
         public Task<bool> StockExists(int id)
         {
             return _applicationDbContext.Stocks.AnyAsync(s => s.Id == id);
