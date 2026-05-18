@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -7,22 +11,31 @@ using OrganumatorMssql.Models;
 
 namespace OrganumatorMssql.Controllers
 {
+    [Route("api/portfolio")]
     [ApiController]
-    [Route("api/[controller]")]
-    public class PortfolioController(
-        UserManager<AppUser> userManager,
-        IStockRepository stockRepository,
-        IPortfolioRepository portfolioRepository
-        ) : ControllerBase
+    public class PortfolioController : ControllerBase
     {
+        private readonly UserManager<AppUser> _userManager;
+        private readonly IStockRepository _stockRepo;
+        private readonly IPortfolioRepository _portfolioRepo;
+        private readonly IFMPService _fmpService;
+        public PortfolioController(UserManager<AppUser> userManager,
+        IStockRepository stockRepo, IPortfolioRepository portfolioRepo,
+        IFMPService fmpService)
+        {
+            _userManager = userManager;
+            _stockRepo = stockRepo;
+            _portfolioRepo = portfolioRepo;
+            _fmpService = fmpService;
+        }
 
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> GetUserPortfolio()
         {
             var username = User.GetUsername();
-            var appUser = await userManager.FindByNameAsync(username);
-            var userPortfolio = await portfolioRepository.GetUserPortfolio(appUser);
+            var appUser = await _userManager.FindByNameAsync(username);
+            var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
             return Ok(userPortfolio);
         }
 
@@ -31,20 +44,27 @@ namespace OrganumatorMssql.Controllers
         public async Task<IActionResult> AddPortfolio(string symbol)
         {
             var username = User.GetUsername();
-            var appUser = await userManager.FindByNameAsync(username);
-            var stock = await stockRepository.GetBySymbolAsync(symbol);
+            var appUser = await _userManager.FindByNameAsync(username);
+            var stock = await _stockRepo.GetBySymbolAsync(symbol);
 
             if (stock == null)
             {
-                return BadRequest("stock not found");
+                stock = await _fmpService.FindStockBySymbolAsync(symbol);
+                if (stock == null)
+                {
+                    return BadRequest("Stock does not exists");
+                }
+                else
+                {
+                    await _stockRepo.CreateAsync(stock);
+                }
             }
 
-            var userPortfolio = await portfolioRepository.GetUserPortfolio(appUser);
+            if (stock == null) return BadRequest("Stock not found");
 
-            if (userPortfolio.Any(s => s.Symbol.ToLower() == symbol.ToLower()))
-            {
-                return BadRequest("cannot add same stock to portfolio");
-            }
+            var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
+
+            if (userPortfolio.Any(e => e.Symbol.ToLower() == symbol.ToLower())) return BadRequest("Cannot add same stock to portfolio");
 
             var portfolioModel = new Portfolio
             {
@@ -52,7 +72,7 @@ namespace OrganumatorMssql.Controllers
                 AppUserId = appUser.Id
             };
 
-            await portfolioRepository.CreateAsync(portfolioModel);
+            await _portfolioRepo.CreateAsync(portfolioModel);
 
             if (portfolioModel == null)
             {
@@ -63,5 +83,29 @@ namespace OrganumatorMssql.Controllers
                 return Created();
             }
         }
+
+        [HttpDelete]
+        [Authorize]
+        public async Task<IActionResult> DeletePortfolio(string symbol)
+        {
+            var username = User.GetUsername();
+            var appUser = await _userManager.FindByNameAsync(username);
+
+            var userPortfolio = await _portfolioRepo.GetUserPortfolio(appUser);
+
+            var filteredStock = userPortfolio.Where(s => s.Symbol.ToLower() == symbol.ToLower()).ToList();
+
+            if (filteredStock.Count() == 1)
+            {
+                await _portfolioRepo.DeletePortfolio(appUser, symbol);
+            }
+            else
+            {
+                return BadRequest("Stock not in your portfolio");
+            }
+
+            return Ok();
+        }
+
     }
 }
