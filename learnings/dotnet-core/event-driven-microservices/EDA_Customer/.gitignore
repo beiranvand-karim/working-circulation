@@ -1,0 +1,17 @@
+## Build output
+bin/
+obj/
+
+## SQLite databases
+*.db
+*.db-shm
+*.db-wal
+
+## User-specific files
+*.user
+*.suo
+.vs/
+
+## dotnet
+*.user
+project.lock.json
