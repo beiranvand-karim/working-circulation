@@ -7,6 +7,11 @@ get-content "ide-jetbrains-webstorm-multitude-secondary-action-open.env" | ForEa
 
 Push-Location $env:CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
 
-start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList "--application $env:APPLICATION --command $env:COMMAND --ide-execute-file-location $env:WEBSTORM_LOCATION  --application-location $env:SECONDARY_CLIENTAPP_LOCATION --ide-name $env:IDE_NAME --application-name $env:SECONDARY_APPLICATION_NAME --feature-name $env:FEATURE_NAME --hosting-directory $env:HOSTING_DIRECTORY"
-
+if ($IsLinux) {
+    start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList "--application $env:APPLICATION --command $env:COMMAND --ide-execute-file-location $env:WEBSTORM_LOCATION  --application-location $env:SECONDARY_CLIENTAPP_LOCATION --ide-name $env:IDE_NAME --application-name $env:SECONDARY_APPLICATION_NAME --feature-name $env:FEATURE_NAME --hosting-directory $env:HOSTING_DIRECTORY"
+    [Console]::ReadKey($true)
+}
+else {
+    start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList "--application $env:APPLICATION --command $env:COMMAND --ide-execute-file-location $env:WEBSTORM_LOCATION  --application-location $env:SECONDARY_CLIENTAPP_LOCATION --ide-name $env:IDE_NAME --application-name $env:SECONDARY_APPLICATION_NAME --feature-name $env:FEATURE_NAME --hosting-directory $env:HOSTING_DIRECTORY"
+}
 Pop-Location
