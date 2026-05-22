@@ -5,6 +5,7 @@ import { SilvermanPillTakingView } from './observables/functions/silverman-pill-
 import { LivergolPillTakingView } from './observables/functions/livergol-pill-taking/compositions/livergol-pill-taking-view/livergol-pill-taking-view'
 import { BetweenTeethBrushingView } from './observables/functions/between-teeth-brushing/compositions/between-teeth-brushing-view/between-teeth-brushing-view'
 import { CalciferolTakingsView } from './observables/functions/calciferol-takings/compositions/calciferol-takings-view/calciferol-takings-view'
+import { VacuumCleaningsView } from './observables/functions/vacuum-cleanings/compositions/vacuum-cleanings-view/vacuum-cleanings-view'
 
 export const routes: Routes = [
   { path: 'around-brushing', component: AroundBrushingView },
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'livergol-pill-taking', component: LivergolPillTakingView },
   { path: 'between-teeth-brushing', component: BetweenTeethBrushingView },
   { path: 'calciferol-pill-takings', component: CalciferolTakingsView },
+  { path: 'vacuum-cleanings', component: VacuumCleaningsView },
 ]
