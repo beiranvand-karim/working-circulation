@@ -13,7 +13,10 @@ using cross_application_feature_development_management.Directories.HostingDirect
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.DataDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd.BackEndPrimaryDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd.BackEndSecondaryDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Calls;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
@@ -114,7 +117,10 @@ namespace cross_application_feature_development_management
                     services.AddSingleton<ToolsDirectory>();
                     services.AddSingleton<CallsDirectory>();
                     services.AddSingleton<WebLinksDirectory>();
+                    services.AddSingleton<DataDirectory>();
                     services.AddSingleton<BackEndDirectory>();
+                    services.AddSingleton<BackEndPrimaryDirectory>();
+                    services.AddSingleton<BackEndSecondaryDirectory>();
                     services.AddSingleton<DirectoriesMultitudeServingOrderReverseActionOpen>();
                     services.AddSingleton<DirectoriesMultitudeCommandingOrderReverseActionOpen>();
                     services.AddSingleton<DirectoriesMultitudeCommandingOrderRectoActionOpen>();
