@@ -17,10 +17,7 @@ namespace organumator.Repositories
         public async Task DeleteVacuumCleaningsAsync(int id)
         {
             var vacuumCleanings = await applicationDbContext.VacuumCleanings.FirstOrDefaultAsync(x => x.Id == id);
-            if (vacuumCleanings == null)
-            {
-                throw new Exception($"VacuumCleanings with id {id} not found.");
-            }
+            if (vacuumCleanings == null) return;
             applicationDbContext.VacuumCleanings.Remove(vacuumCleanings);
             await applicationDbContext.SaveChangesAsync();
         }
