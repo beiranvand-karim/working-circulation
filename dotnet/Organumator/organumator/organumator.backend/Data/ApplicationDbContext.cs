@@ -11,5 +11,6 @@ namespace organumator.Data
         public DbSet<LivergolPillTakingModel> LivergolPillTakings { get; set; }
         public DbSet<BetweenTeethBrushing> BetweenTeethBrushings { get; set; }
         public DbSet<CalciferolTakingModel> CalciferolTakings { get; set; }
+        public DbSet<VacuumCleanings> VacuumCleanings { get; set; }
     }
 }

@@ -16,6 +16,7 @@ builder.Services.AddScoped<ISilvermanPillTakingRepository, SilvermanPillTakingRe
 builder.Services.AddScoped<ILivergolPillTakingRepository, LivergolPillTakingRepository>();
 builder.Services.AddScoped<IBetweenTeethBrushingRepository, BetweenTeethBrushingRepository>();
 builder.Services.AddScoped<ICalciferolTakingRepository, CalciferolTakingRepository>();
+builder.Services.AddScoped<IVacuumCleaningsRepository, VacuumCleaningsRepository>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
