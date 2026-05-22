@@ -5,10 +5,11 @@ import { SilvermanPillTakingService } from '../../services/silverman-pill-taking
 import { SilvermanPillTakingDeleteOne } from '../silverman-pill-taking-delete-one/silverman-pill-taking-delete-one'
 import { DatePipe } from '@angular/common'
 import { MatTableModule } from '@angular/material/table'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'silverman-pill-taking-list-all',
-  imports: [SilvermanPillTakingDeleteOne, DatePipe, MatTableModule],
+  imports: [SilvermanPillTakingDeleteOne, DatePipe, MatTableModule, MatButtonModule],
   templateUrl: './silverman-pill-taking-list-all.html',
   styleUrl: './silverman-pill-taking-list-all.scss',
   providers: [SilvermanPillTakingService],

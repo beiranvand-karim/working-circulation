@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core'
 import { BetweenTeethBrushingService } from '../../services/between-teeth-brushing.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'between-teeth-brushing-delete-one',
-  imports: [],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './between-teeth-brushing-delete-one.html',
   styleUrl: './between-teeth-brushing-delete-one.scss',
   providers: [BetweenTeethBrushingService],

@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from '@angular/core'
 import { VacuumCleaningsService } from '../../services/vacuum-cleanings.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'vacuum-cleaning-delete-one',
-  imports: [],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './vacuum-cleaning-delete-one.html',
   styleUrl: './vacuum-cleaning-delete-one.scss',
   providers: [VacuumCleaningsService],

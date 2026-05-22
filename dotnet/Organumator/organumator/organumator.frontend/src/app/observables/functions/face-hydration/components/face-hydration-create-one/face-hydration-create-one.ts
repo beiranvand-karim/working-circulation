@@ -1,9 +1,10 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core'
 import { FaceHydrationService } from '../../services/face-hydration.service'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'face-hydration-create-one',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './face-hydration-create-one.html',
   styleUrl: './face-hydration-create-one.scss',
   providers: [FaceHydrationService],

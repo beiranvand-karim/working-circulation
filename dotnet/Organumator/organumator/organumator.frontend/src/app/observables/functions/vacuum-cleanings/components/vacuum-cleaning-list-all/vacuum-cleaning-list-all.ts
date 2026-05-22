@@ -3,11 +3,12 @@ import { VacuumCleaningsService } from '../../services/vacuum-cleanings.service'
 import { Subject } from 'rxjs'
 import { DatePipe } from '@angular/common'
 import { MatTableModule } from '@angular/material/table'
+import { MatButtonModule } from '@angular/material/button'
 import { VacuumCleaningDeleteOne } from '../vacuum-cleaning-delete-one/vacuum-cleaning-delete-one'
 
 @Component({
   selector: 'vacuum-cleaning-list-all',
-  imports: [DatePipe, MatTableModule, VacuumCleaningDeleteOne],
+  imports: [DatePipe, MatTableModule, MatButtonModule, VacuumCleaningDeleteOne],
   templateUrl: './vacuum-cleaning-list-all.html',
   styleUrl: './vacuum-cleaning-list-all.scss',
   providers: [VacuumCleaningsService],

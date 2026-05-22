@@ -7,10 +7,11 @@ import {
 } from '@angular/core'
 import { SilvermanPillTakingService } from '../../services/silverman-pill-taking.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'silverman-pill-taking-create-one',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './silverman-pill-taking-create-one.html',
   styleUrl: './silverman-pill-taking-create-one.scss',
   providers: [SilvermanPillTakingService],

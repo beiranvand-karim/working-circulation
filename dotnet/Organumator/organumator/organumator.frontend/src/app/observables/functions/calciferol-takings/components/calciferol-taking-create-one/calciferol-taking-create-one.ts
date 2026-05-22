@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnDestroy, Output } from '@angular/core'
 import { CalciferolPillTakingsService } from '../../services/calciferol-pill-takings.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'calciferol-taking-create-one',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './calciferol-taking-create-one.html',
   styleUrl: './calciferol-taking-create-one.scss',
   providers: [CalciferolPillTakingsService],

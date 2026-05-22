@@ -8,10 +8,12 @@ import {
 } from '@angular/core'
 import { FaceHydrationService } from '../../services/face-hydration.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'face-hydration-delete-one',
-  imports: [],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './face-hydration-delete-one.html',
   styleUrl: './face-hydration-delete-one.scss',
 })
