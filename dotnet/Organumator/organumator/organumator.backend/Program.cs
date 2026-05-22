@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using organumator.Data;
 using organumator.Interfaces;
+using organumator.Messaging;
 using organumator.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +18,11 @@ builder.Services.AddScoped<ILivergolPillTakingRepository, LivergolPillTakingRepo
 builder.Services.AddScoped<IBetweenTeethBrushingRepository, BetweenTeethBrushingRepository>();
 builder.Services.AddScoped<ICalciferolTakingRepository, CalciferolTakingRepository>();
 builder.Services.AddScoped<IVacuumCleaningsRepository, VacuumCleaningsRepository>();
+
+builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMQ"));
+builder.Services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
+builder.Services.AddHostedService<RabbitMqConsumer>();
+builder.Services.AddHostedService<VacuumCleaningsCommandConsumer>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {

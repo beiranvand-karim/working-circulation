@@ -1,63 +1,51 @@
 using Microsoft.AspNetCore.Mvc;
-using organumator.Interfaces;
+using organumator.Messaging;
 using organumator.Models;
 
 namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VacuumCleaningsController(IVacuumCleaningsRepository vacuumCleaningsRepository) : ControllerBase
+    public class VacuumCleaningsController(IRabbitMqPublisher publisher) : ControllerBase
     {
         [HttpGet]
         public async Task<IEnumerable<VacuumCleanings>> Get()
         {
-            return await vacuumCleaningsRepository.GetAllVacuumCleaningsAsync();
+            var result = await publisher.QueryAsync<List<VacuumCleanings>>(
+                new VacuumCleaningsCommand { Action = "GetAll" });
+            return result ?? [];
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<VacuumCleanings>> GetById(int id)
         {
-            try
-            {
-                var vacuumCleanings = await vacuumCleaningsRepository.GetVacuumCleaningsByIdAsync(id);
-                return vacuumCleanings;
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var result = await publisher.QueryAsync<VacuumCleanings>(
+                new VacuumCleaningsCommand { Action = "GetById", Id = id });
+            return result is null ? NotFound() : result;
         }
 
         [HttpPost]
         public async Task<ActionResult<VacuumCleanings>> Create(VacuumCleanings vacuumCleanings)
         {
-            var createdVacuumCleanings = await vacuumCleaningsRepository.AddVacuumCleaningsAsync(vacuumCleanings);
-            return CreatedAtAction(nameof(GetById), new { id = createdVacuumCleanings.Id }, createdVacuumCleanings);
+            var created = await publisher.QueryAsync<VacuumCleanings>(
+                new VacuumCleaningsCommand { Action = "Create", Payload = vacuumCleanings });
+            return CreatedAtAction(nameof(GetById), new { id = created!.Id }, created);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<VacuumCleanings>> Update(int id, VacuumCleanings vacuumCleanings)
+        public IActionResult Update(int id, VacuumCleanings vacuumCleanings)
         {
             if (id != vacuumCleanings.Id)
-            {
                 return BadRequest("Id in URL does not match Id in body.");
-            }
-            await vacuumCleaningsRepository.UpdateVacuumCleaningsAsync(vacuumCleanings);
-            return Ok(vacuumCleanings);
+            publisher.PublishCommand(new VacuumCleaningsCommand { Action = "Update", Payload = vacuumCleanings });
+            return Accepted();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult Delete(int id)
         {
-            try
-            {
-                await vacuumCleaningsRepository.DeleteVacuumCleaningsAsync(id);
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
+            publisher.PublishCommand(new VacuumCleaningsCommand { Action = "Delete", Id = id });
+            return Accepted();
         }
     }
 }
