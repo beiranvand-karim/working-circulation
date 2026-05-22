@@ -1,12 +1,7 @@
-.app-container {
-  padding: 20px;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+.sidenav-container {
+  height: 100vh;
 }
 
-.app-navigation {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.content {
+  padding: 24px;
 }

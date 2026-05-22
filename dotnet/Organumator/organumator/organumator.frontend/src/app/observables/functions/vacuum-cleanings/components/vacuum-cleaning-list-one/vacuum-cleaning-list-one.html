@@ -1,0 +1,4 @@
+<div>
+  {{formatLocalDate(item.performedOnDate)}}
+  <vacuum-cleaning-delete-one [itemId]="item.id" (deleted)="deleted.emit()"></vacuum-cleaning-delete-one>
+</div>

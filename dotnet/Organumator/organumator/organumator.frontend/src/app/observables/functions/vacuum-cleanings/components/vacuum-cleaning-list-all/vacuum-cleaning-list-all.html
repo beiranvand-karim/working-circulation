@@ -1,0 +1,10 @@
+<button (click)="refresh()">refresh</button>
+<ul>
+  @for (item of vacuumCleanings$ | async; track $index) {
+  <li>
+    <vacuum-cleaning-list-one
+      [item]="item"
+      (deleted)="refresh()"></vacuum-cleaning-list-one>
+  </li>
+  }
+</ul>
