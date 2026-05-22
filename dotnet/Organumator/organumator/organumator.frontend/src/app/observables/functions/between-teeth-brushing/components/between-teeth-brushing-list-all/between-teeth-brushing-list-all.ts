@@ -1,23 +1,23 @@
 import { Component, inject, OnDestroy } from '@angular/core'
 import { Subject } from 'rxjs'
 import { BetweenTeethBrushingService } from '../../services/between-teeth-brushing.service'
-import { BetweenTeethBrushingListOne } from '../between-teeth-brushing-list-one/between-teeth-brushing-list-one'
-import { CommonModule } from '@angular/common'
+import { BetweenTeethBrushingDeleteOne } from '../between-teeth-brushing-delete-one/between-teeth-brushing-delete-one'
+import { DatePipe } from '@angular/common'
+import { MatTableModule } from '@angular/material/table'
 
 @Component({
   selector: 'between-teeth-brushing-list-all',
-  imports: [BetweenTeethBrushingListOne, CommonModule],
+  imports: [BetweenTeethBrushingDeleteOne, DatePipe, MatTableModule],
   templateUrl: './between-teeth-brushing-list-all.html',
   styleUrl: './between-teeth-brushing-list-all.scss',
   providers: [BetweenTeethBrushingService],
 })
 export class BetweenTeethBrushingListAll implements OnDestroy {
   private readonly destroy$ = new Subject<void>()
+  private readonly betweenTeethBrushingService = inject(BetweenTeethBrushingService)
 
-  private readonly betweenTeethBrushingService = inject(
-    BetweenTeethBrushingService
-  )
   betweenTeethBrushings$ = this.betweenTeethBrushingService.getAll()
+  displayedColumns = ['performedOnDate', 'actions']
 
   refresh() {
     this.getAll()
@@ -28,7 +28,6 @@ export class BetweenTeethBrushingListAll implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Cleanup logic if needed
     this.destroy$.next()
     this.destroy$.complete()
   }

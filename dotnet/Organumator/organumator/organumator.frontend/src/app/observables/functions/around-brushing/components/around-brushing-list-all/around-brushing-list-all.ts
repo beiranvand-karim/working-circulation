@@ -2,12 +2,13 @@ import { Component, inject } from '@angular/core'
 import { Observable } from 'rxjs'
 import { AroundBrushingService } from '../../services/around-brushing.service'
 import { AroundBrushingItemModel } from '../../../../../around-brushing/models/around-brushing.model'
-import { AsyncPipe } from '@angular/common'
-import { AroundBrushingListOne } from '../around-brushing-list-one/around-brushing-list-one'
+import { DatePipe } from '@angular/common'
+import { MatTableModule } from '@angular/material/table'
+import { AroundBrushingDeleteOne } from '../around-brushing-delete-one/around-brushing-delete-one'
 
 @Component({
   selector: 'around-brushing-list-all',
-  imports: [AsyncPipe, AroundBrushingListOne],
+  imports: [DatePipe, MatTableModule, AroundBrushingDeleteOne],
   templateUrl: './around-brushing-list-all.html',
   styleUrl: './around-brushing-list-all.scss',
   providers: [AroundBrushingService],
@@ -17,6 +18,8 @@ export class AroundBrushingListAll {
 
   protected aroundBrushingItems$: Observable<AroundBrushingItemModel[]> =
     this.aroundBrushingService.getAll()
+
+  displayedColumns = ['performedOnDate', 'actions']
 
   getAll() {
     this.aroundBrushingItems$ = this.aroundBrushingService.getAll()

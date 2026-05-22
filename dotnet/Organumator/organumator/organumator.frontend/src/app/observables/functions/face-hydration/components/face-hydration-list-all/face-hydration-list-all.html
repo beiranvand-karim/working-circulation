@@ -1,9 +1,18 @@
-
 <button (click)="refresh()">Refresh</button>
-<ul>    
-@for (item of faceHydrationItems$ | async; track item.id) {
-  <li>
-    <face-hydration-list-one [item]="item" (deleted)="refresh()" />
-  </li>
-}
-</ul>
+
+<mat-table [dataSource]="faceHydrationItems$">
+  <ng-container matColumnDef="performedOnDate">
+    <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ item.performedOnDate | date:'medium' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      <face-hydration-delete-one [itemId]="item.id" (deleted)="refresh()" />
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
