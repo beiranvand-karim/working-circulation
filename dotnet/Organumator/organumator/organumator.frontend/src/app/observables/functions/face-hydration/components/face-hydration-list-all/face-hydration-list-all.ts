@@ -5,10 +5,11 @@ import { Observable } from 'rxjs'
 import { FaceHydrationDeleteOne } from '../face-hydration-delete-one/face-hydration-delete-one'
 import { DatePipe } from '@angular/common'
 import { MatTableModule } from '@angular/material/table'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'face-hydration-list-all',
-  imports: [FaceHydrationDeleteOne, DatePipe, MatTableModule],
+  imports: [FaceHydrationDeleteOne, DatePipe, MatTableModule, MatButtonModule],
   templateUrl: './face-hydration-list-all.html',
   styleUrl: './face-hydration-list-all.scss',
   providers: [FaceHydrationService],

@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnDestroy, Output, inject } from '@angular/core'
 import { AroundBrushingService } from '../../services/around-brushing.service'
 import { Subject } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'around-brushing-create-one',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './around-brushing-create-one.html',
   styleUrl: './around-brushing-create-one.scss',
   providers: [AroundBrushingService],

@@ -1,10 +1,12 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { SilvermanPillTakingService } from '../../services/silverman-pill-taking.service';
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'silverman-pill-taking-delete-one',
-  imports: [],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './silverman-pill-taking-delete-one.html',
   styleUrl: './silverman-pill-taking-delete-one.scss',
   providers: [SilvermanPillTakingService],

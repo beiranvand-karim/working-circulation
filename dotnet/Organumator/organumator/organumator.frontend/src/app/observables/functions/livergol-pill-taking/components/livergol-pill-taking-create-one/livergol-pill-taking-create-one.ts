@@ -7,10 +7,11 @@ import {
 } from '@angular/core'
 import { LivergolPillTakingService } from '../../services/livergol-pill-taking.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'livergol-pill-taking-create-one',
-  imports: [],
+  imports: [MatButtonModule],
   templateUrl: './livergol-pill-taking-create-one.html',
   styleUrl: './livergol-pill-taking-create-one.scss',
   providers: [LivergolPillTakingService],

@@ -1,10 +1,12 @@
 import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
 import { LivergolPillTakingService } from '../../services/livergol-pill-taking.service';
 import { Subject } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'livergol-pill-taking-delete-one',
-  imports: [],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './livergol-pill-taking-delete-one.html',
   styleUrl: './livergol-pill-taking-delete-one.scss',
   providers: [LivergolPillTakingService],

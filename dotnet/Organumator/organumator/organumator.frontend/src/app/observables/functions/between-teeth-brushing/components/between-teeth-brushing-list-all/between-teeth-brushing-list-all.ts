@@ -4,10 +4,11 @@ import { BetweenTeethBrushingService } from '../../services/between-teeth-brushi
 import { BetweenTeethBrushingDeleteOne } from '../between-teeth-brushing-delete-one/between-teeth-brushing-delete-one'
 import { DatePipe } from '@angular/common'
 import { MatTableModule } from '@angular/material/table'
+import { MatButtonModule } from '@angular/material/button'
 
 @Component({
   selector: 'between-teeth-brushing-list-all',
-  imports: [BetweenTeethBrushingDeleteOne, DatePipe, MatTableModule],
+  imports: [BetweenTeethBrushingDeleteOne, DatePipe, MatTableModule, MatButtonModule],
   templateUrl: './between-teeth-brushing-list-all.html',
   styleUrl: './between-teeth-brushing-list-all.scss',
   providers: [BetweenTeethBrushingService],

@@ -8,10 +8,12 @@ import {
 } from '@angular/core'
 import { AroundBrushingService } from '../../services/around-brushing.service'
 import { Subject, takeUntil } from 'rxjs'
+import { MatButtonModule } from '@angular/material/button'
+import { MatIconModule } from '@angular/material/icon'
 
 @Component({
   selector: 'around-brushing-delete-one',
-  imports: [],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './around-brushing-delete-one.html',
   styleUrl: './around-brushing-delete-one.scss',
 })
