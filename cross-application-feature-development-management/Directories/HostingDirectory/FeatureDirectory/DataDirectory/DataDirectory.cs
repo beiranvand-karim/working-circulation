@@ -1,20 +1,20 @@
-namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd
+namespace cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.DataDirectory
 {
-    public class BackEndDirectory
+    public class DataDirectory
     (
         FeatureDirectory featureDirectory
     )
     {
         public string GetName()
         {
-            return "bend";
+            return "data";
         }
         public string GetPath()
         {
             var directoryName = GetName();
             var featureDirectoryPath = featureDirectory.GetPath();
-            var notesAndMessages = Path.Combine(featureDirectoryPath, directoryName);
-            return notesAndMessages;
+            var dataDirectory = Path.Combine(featureDirectoryPath, directoryName);
+            return dataDirectory;
         }
         public void Create()
         {

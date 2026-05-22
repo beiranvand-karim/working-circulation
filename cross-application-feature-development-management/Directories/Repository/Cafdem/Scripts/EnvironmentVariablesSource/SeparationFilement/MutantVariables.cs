@@ -15,10 +15,16 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? GuestClientappLocation { get; set; }
         public string? HostClientappLocation { get; set; }
         public bool? IsOpeningFeatureSelfAddress { get; set; }
+        public bool? IsOpeningAutomationsDirectory { get; set; }
+        public bool? IsOpeningCommandsDirectory { get; set; }
+        public bool? IsOpeningEnvironmentVariablesFilesDirectory { get; set; }
         public bool? IsOpeningOperationsDirectory { get; set; }
+        public bool? IsOpeningDataDirectory { get; set; }
         public bool? IsOpeningFendHostAddress { get; set; }
         public bool? IsOpeningFendGuestAddress { get; set; }
         public bool? IsOpeningBendAddress { get; set; }
+        public bool? IsOpeningBendPrimaryAddress { get; set; }
+        public bool? IsOpeningBendSecondaryAddress { get; set; }
         public bool? IsOpeningCallsAddress { get; set; }
         public bool? IsOpeningToolsAddress { get; set; }
         public bool? IsOpeningNotesMessagesAddress { get; set; }

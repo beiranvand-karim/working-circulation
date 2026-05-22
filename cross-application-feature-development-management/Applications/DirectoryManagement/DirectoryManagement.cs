@@ -1,8 +1,15 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.CommandsDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd.BackEndPrimaryDirectory;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.BackEnd.BackEndSecondaryDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.Calls;
+using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.DataDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
 using cross_application_feature_development_management.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
@@ -17,8 +24,15 @@ namespace cross_application_feature_development_management.Applications.Director
     public class DirectoryManagement
     (
         ILogger<DirectoryManagement> logger,
+        FeatureDirectory featureDirectory,
+        AutomationsDirectory automationsDirectory,
+        CommandsDirectory commandsDirectory,
+        OperationsDirectory operationsDirectory,
+        DataDirectory dataDirectory,
         ToolsDirectory toolsDirectory,
         BackEndDirectory backEndDirectory,
+        BackEndPrimaryDirectory backEndPrimaryDirectory,
+        BackEndSecondaryDirectory backEndSecondaryDirectory,
         CallsDirectory callsDirectory,
         FrontEndDirectory frontEndDirectory,
         FrontEndHostDirectory frontEndHostDirectory,
@@ -99,14 +113,25 @@ namespace cross_application_feature_development_management.Applications.Director
             {
                 return;
             }
-            toolsDirectory.Create();
-            backEndDirectory.Create();
-            callsDirectory.Create();
-            frontEndDirectory.Create();
-            frontEndHostDirectory.Create();
-            frontEndGuestDirectory.Create();
-            notesAndMessagesDirectory.Create();
-            webLinksDirectory.Create();
+            var directoriesToCreate = new List<Action>
+            {
+                toolsDirectory.Create,
+                backEndDirectory.Create,
+                backEndPrimaryDirectory.Create,
+                backEndSecondaryDirectory.Create,
+                callsDirectory.Create,
+                dataDirectory.Create,
+                frontEndDirectory.Create,
+                frontEndHostDirectory.Create,
+                frontEndGuestDirectory.Create,
+                notesAndMessagesDirectory.Create,
+                webLinksDirectory.Create,
+            };
+
+            foreach (var create in directoriesToCreate)
+            {
+                create();
+            }
         }
 
         public void Open()
@@ -118,82 +143,35 @@ namespace cross_application_feature_development_management.Applications.Director
 
             var environmentVariablesSourceDictionary = environmentVariablesFilesDirectory.PairUp();
 
-            var frontEndHostDirectoryPath = frontEndHostDirectory.GetPath();
-            var frontEndGuestDirectoryPath = frontEndGuestDirectory.GetPath();
-            var callsDirectoryPath = callsDirectory.GetPath();
-            var toolsDirectoryPath = toolsDirectory.GetPath();
-            var notesAndMessagesDirectoryPath = notesAndMessagesDirectory.GetPath();
-            var webLinksDirectoryPath = webLinksDirectory.GetPath();
-
-
-            if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_FEND_HOST_ADDRESS", out string? isOpeningFendHostAddress))
+            var directoriesToOpen = new Dictionary<string, string>
             {
-                if (Boolean.TryParse(isOpeningFendHostAddress, out bool isOpeningFendHostAddress1))
-                {
-                    if (isOpeningFendHostAddress1)
-                    {
-                        OpenDirectories(frontEndHostDirectoryPath);
-                        Thread.Sleep(700);
-                    }
-                }
-            }
+                { "IS_OPENING_FEATURE_SELF_ADDRESS", featureDirectory.GetPath() },
+                { "IS_OPENING_AUTOMATIONS_DIRECTORY", automationsDirectory.GetPath() },
+                { "IS_OPENING_COMMANDS_DIRECTORY", commandsDirectory.GetPath() },
+                { "IS_OPENING_ENVIRONMENT_VARIABLES_FILES_DIRECTORY", environmentVariablesFilesDirectory.GetPath() },
+                { "IS_OPENING_OPERATIONS_DIRECTORY", operationsDirectory.GetPath() },
+                { "IS_OPENING_BEND_ADDRESS", backEndDirectory.GetPath() },
+                { "IS_OPENING_BEND_PRIMARY_ADDRESS", backEndPrimaryDirectory.GetPath() },
+                { "IS_OPENING_BEND_SECONDARY_ADDRESS", backEndSecondaryDirectory.GetPath() },
+                { "IS_OPENING_DATA_DIRECTORY", dataDirectory.GetPath() },
+                { "IS_OPENING_FEND_ADDRESS", frontEndDirectory.GetPath() },
+                { "IS_OPENING_FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath() },
+                { "IS_OPENING_FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath() },
+                { "IS_OPENING_FEND_PRIMARY_ADDRESS", frontEndHostDirectory.GetPath() },
+                { "IS_OPENING_FEND_SECONDARY_ADDRESS", frontEndGuestDirectory.GetPath() },
+                { "IS_OPENING_CALLS_ADDRESS", callsDirectory.GetPath() },
+                { "IS_OPENING_TOOLS_ADDRESS", toolsDirectory.GetPath() },
+                { "IS_OPENING_NOTES_MESSAGES_ADDRESS", notesAndMessagesDirectory.GetPath() },
+                { "IS_OPENING_WEB_LINKS_ADDRESS", webLinksDirectory.GetPath() },
+            };
 
-            if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_FEND_GUEST_ADDRESS", out string? isOpeningFendGuestAddress))
+            foreach (var (key, path) in directoriesToOpen)
             {
-                if (Boolean.TryParse(isOpeningFendGuestAddress, out bool isOpeningFendGuestAddress1))
+                if (environmentVariablesSourceDictionary.TryGetValue(key, out string? value))
                 {
-                    if (isOpeningFendGuestAddress1)
+                    if (bool.TryParse(value, out bool shouldOpen) && shouldOpen)
                     {
-                        OpenDirectories(frontEndGuestDirectoryPath);
-                        Thread.Sleep(700);
-                    }
-                }
-            }
-
-            if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_CALLS_ADDRESS", out string? isOpeningCallsAddress))
-            {
-                if (Boolean.TryParse(isOpeningCallsAddress, out bool isOpeningCallsAddress1))
-                {
-                    if (isOpeningCallsAddress1)
-                    {
-                        OpenDirectories(callsDirectoryPath);
-                        Thread.Sleep(700);
-                    }
-                }
-            }
-
-            if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_TOOLS_ADDRESS", out string? isOpeningToolsAddress))
-            {
-                if (Boolean.TryParse(isOpeningToolsAddress, out bool isOpeningToolsAddress1))
-                {
-                    if (isOpeningToolsAddress1)
-                    {
-                        OpenDirectories(toolsDirectoryPath);
-                        Thread.Sleep(700);
-                    }
-                }
-            }
-
-
-            if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_NOTES_MESSAGES_ADDRESS", out string? isOpeningNotesMessagesAddress))
-            {
-                if (Boolean.TryParse(isOpeningNotesMessagesAddress, out bool isOpeningNotesMessagesAddress1))
-                {
-                    if (isOpeningNotesMessagesAddress1)
-                    {
-                        OpenDirectories(notesAndMessagesDirectoryPath);
-                        Thread.Sleep(700);
-                    }
-                }
-            }
-
-            if (environmentVariablesSourceDictionary.TryGetValue("IS_OPENING_WEB_LINKS_ADDRESS", out string? isOpeningWebLinksAddress))
-            {
-                if (Boolean.TryParse(isOpeningWebLinksAddress, out bool isOpeningWebLinksAddress1))
-                {
-                    if (isOpeningWebLinksAddress1)
-                    {
-                        OpenDirectories(webLinksDirectoryPath);
+                        OpenDirectories(path);
                         Thread.Sleep(700);
                     }
                 }
