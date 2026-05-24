@@ -14,9 +14,7 @@ $repository_directory = "/home/karim/Documents/GitHub/working-circulation"
 
 dotnet run `
     --application "directory-management" `
-    --format "json" `
     --command "open" `
-    --filement "split" `
     --code-base "codebase" `
     --feature-name "$feature_name" `
     --executive-file-directory "$current_directory/Debug/net8.0/cafdemalihapa" `

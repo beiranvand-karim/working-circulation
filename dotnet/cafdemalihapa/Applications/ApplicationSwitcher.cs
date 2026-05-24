@@ -1,10 +1,10 @@
-using cafdemalihapa.Applications.Cafdem;
+using CafdemalihapaApp = cafdemalihapa.Applications.Cafdemalihapa.Cafdemalihapa;
 using cafdemalihapa.Applications.NotepadPlusPlusFileManagement;
 
 namespace cafdemalihapa.Applications
 {
     public class ApplicationSwitcher(
-        Cafdemalihapa cafdemalihapa,
+        CafdemalihapaApp cafdemalihapa,
         NotepadPlusPlusFileManagementCommandSwitcher notepadPlusPlusFileManagementCommandSwitcher,
         IdeManagement.IdeManagement ideManagement,
         DirectoryManagement.DirectoryManagement directoryManagement
