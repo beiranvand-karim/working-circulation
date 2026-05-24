@@ -1,0 +1,35 @@
+namespace cafdemalihapa.Applications.IdeManagement
+{
+    public class IdeManagement(
+        IdeProcessManagement ideProcessManagement
+    )
+    {
+        private string GetCommand()
+        {
+            var command = CommandLineArgs.GetByKey("--command");
+            return command;
+        }
+
+        private bool IsOpen()
+        {
+            return GetCommand() == "open";
+        }
+
+        private bool IsClose()
+        {
+            return GetCommand() == "close";
+        }
+
+        public void Run()
+        {
+            if (IsOpen())
+            {
+                ideProcessManagement.Open();
+            }
+            else if (IsClose())
+            {
+                ideProcessManagement.Close();
+            }
+        }
+    }
+}

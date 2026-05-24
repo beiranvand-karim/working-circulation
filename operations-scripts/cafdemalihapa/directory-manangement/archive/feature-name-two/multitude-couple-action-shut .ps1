@@ -16,7 +16,7 @@ dotnet run `
     --command "shut" `
     --filement "split" `
     --feature-name "$feature_name" `
-    --executive-file-directory "$current_directory/bin/Debug/net8.0/cross-application-feature-development-management" `
+    --executive-file-directory "$current_directory/Debug/net8.0/cafdemalihapa" `
     --scripts-directory "$current_directory/scripts" `
     --hosting-directory "$hosting_directory" `
     --primary-application-name "$primary_application_name" `
