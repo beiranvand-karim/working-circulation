@@ -15,13 +15,13 @@ Remove-Item -Recurse -Force -Path $feature_directory
 Push-Location $working_directory
 
 dotnet run `
-    --application "cross-application-feature-development-management" `
+    --application "cafdemalihapa" `
     --command "create-scripts" `
     --format "json" `
     --filement "split" `
     --code-base "codebase" `
     --feature-name "$feature_name" `
-    --executive-file-directory "$working_directory/bin/Debug/net8.0/cross-application-feature-development-management" `
+    --executive-file-directory "$working_directory/Debug/net8.0/cafdemalihapa" `
     --repository-directory "$repository_directory" `
     --hosting-directory "$hosting_directory" `
     --primary-application-name "$primary_application_name" `
