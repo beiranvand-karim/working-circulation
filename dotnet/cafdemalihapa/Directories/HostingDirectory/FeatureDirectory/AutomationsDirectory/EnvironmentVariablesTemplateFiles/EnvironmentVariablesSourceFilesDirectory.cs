@@ -1,4 +1,4 @@
-using cafdemalihapa.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesTemplatesDirectory;
+using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesTemplatesDirectory;
 using cafdemalihapa.Names;
 using Microsoft.Extensions.Logging;
 

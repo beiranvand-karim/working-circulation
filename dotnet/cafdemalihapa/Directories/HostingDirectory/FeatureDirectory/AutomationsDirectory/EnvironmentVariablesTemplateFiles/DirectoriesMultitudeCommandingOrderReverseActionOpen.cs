@@ -1,5 +1,5 @@
 using System.Text;
-using cafdemalihapa.Applications.Cafdem;
+using cafdemalihapa.Applications.Cafdemalihapa;
 using cafdemalihapa.Directories.Repository;
 using cafdemalihapa.Helpers;
 using cafdemalihapa.Names;

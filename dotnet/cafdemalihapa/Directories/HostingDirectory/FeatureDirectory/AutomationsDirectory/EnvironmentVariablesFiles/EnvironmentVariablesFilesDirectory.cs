@@ -1,14 +1,12 @@
-using cafdemalihapa.Applications.Cafdem;
-using cafdemalihapa.Directories.Repository.Cafdem.Scripts.EnvironmentVariablesSource;
+using cafdemalihapa.Applications.Cafdemalihapa;
+using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesSource;
 using cafdemalihapa.Names;
 
 namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles
 {
     public class EnvironmentVariablesFilesDirectory(
             AutomationsDirectory automationsDirectory,
-            CafdemalihapaCapturement cafdemTerminalCapturement,
-            Something something,
-            EnvironmentVariablesSourceDirectory environmentVariablesSourceDirectory
+            Something something
         )
     {
         public void Create()
@@ -28,28 +26,7 @@ namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.Automation
         {
             Dictionary<string, string> environmentVariablesSourceDictionary;
 
-            if (cafdemTerminalCapturement.IsFormatJson())
-            {
-
-                if (cafdemTerminalCapturement.IsFilementSplit())
-                {
-                    environmentVariablesSourceDictionary = something.PairUpEnvironmentVariablesSeparationFilement();
-                }
-                else
-                {
-                    environmentVariablesSourceDictionary =
-                        something.GetAllEnvironmentVariablesAndValuesFromSourceJsonFile<EnvironmentVariables>(
-                            environmentVariablesSourceDirectory.GetPath()
-                        );
-                }
-            }
-            else
-            {
-                environmentVariablesSourceDictionary =
-                    something.GetAllEnvironmentVariablesAndValuesFromSourceFile(
-                        environmentVariablesSourceDirectory.GetPath()
-                    );
-            }
+            environmentVariablesSourceDictionary = something.PairUpEnvironmentVariablesSeparationFilement();
 
             return environmentVariablesSourceDictionary;
         }

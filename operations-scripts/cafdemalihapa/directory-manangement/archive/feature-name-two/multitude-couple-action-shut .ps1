@@ -14,7 +14,6 @@ $hosting_directory = "/home/karim/Documents/feature-development"
 dotnet run `
     --application "directory-management" `
     --command "shut" `
-    --filement "split" `
     --feature-name "$feature_name" `
     --executive-file-directory "$current_directory/Debug/net8.0/cafdemalihapa" `
     --scripts-directory "$current_directory/scripts" `
