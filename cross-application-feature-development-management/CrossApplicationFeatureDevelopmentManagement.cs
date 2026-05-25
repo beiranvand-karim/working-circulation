@@ -1,5 +1,5 @@
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
-using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.BatchScriptFilesDirectory;
+using cross_application_feature_development_management.Directories.Feature.EnvironmentVariablesTemplateFiles;
 using cross_application_feature_development_management.Directories.Interfaces;
 using cross_application_feature_development_management.Interfaces;
 using cross_application_feature_development_management.Names.Interfaces;
@@ -17,7 +17,7 @@ namespace cross_application_feature_development_management
             IPowerShellScriptsDirectory powerShellScriptsDirectory,
             IBatchScriptsDirectory batchScriptsDirectory,
             ISomething something,
-            IBatchScriptFilesDirectory batchScriptFilesDirectory,
+            IEnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
             IAutomationsDirectory automationsDirectory,
             ICommandLineArgs commandLineArgs
             )
@@ -32,7 +32,7 @@ namespace cross_application_feature_development_management
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
         private readonly IBatchScriptsDirectory batchScriptsDirectory = batchScriptsDirectory;
         private readonly ISomething something = something;
-        private readonly IBatchScriptFilesDirectory batchScriptFilesDirectory = batchScriptFilesDirectory;
+        private readonly IEnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory = environmentVariablesSourceFilesDirectory;
         private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
 
         public string GetFormat()
@@ -81,7 +81,7 @@ namespace cross_application_feature_development_management
                 }
                 
 
-                batchScriptFilesDirectory.Populate(destinationDirectory, templateSourceDirectory, environmentVariablesSourceDictionary);
+                environmentVariablesSourceFilesDirectory.Populate(destinationDirectory, templateSourceDirectory, environmentVariablesSourceDictionary);
 
                 powerShellScriptsDirectory.CopyContentToFeatureNameDirectory();
                 powerShellScriptsDirectory.ReplaceFileNamesWithPaths();
