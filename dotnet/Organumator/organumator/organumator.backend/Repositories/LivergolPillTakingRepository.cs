@@ -27,7 +27,9 @@ namespace organumator.Repositories
 
         public async Task<List<LivergolPillTakingModel>> GetAllLivergolPillTakingsAsync()
         {
-            return await applicationDbContext.LivergolPillTakings.ToListAsync();
+            return await applicationDbContext.LivergolPillTakings
+                .OrderByDescending(x => x.PerformedOnDate)
+                .ToListAsync();
         }
 
         public async Task<LivergolPillTakingModel> GetLivergolPillTakingByIdAsync(int id)

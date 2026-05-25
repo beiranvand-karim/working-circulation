@@ -27,7 +27,9 @@ namespace organumator.Repositories
 
         public async Task<List<FaceHydration>> GetAllFaceHydrationsAsync()
         {
-            return await applicationDbContext.FaceHydrations.ToListAsync();
+            return await applicationDbContext.FaceHydrations
+                .OrderByDescending(x => x.PerformedOnDate)
+                .ToListAsync();
         }
 
         public async Task<FaceHydration> GetFaceHydrationByIdAsync(int id)

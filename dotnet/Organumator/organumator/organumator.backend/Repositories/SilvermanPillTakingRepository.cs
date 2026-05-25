@@ -17,7 +17,9 @@ namespace organumator.Repositories
 
         public async Task<List<SilvermanPillTaking>> GetAllSilvermanPillTakingsAsync()
         {
-            return await applicationDbContext.SilvermanPillTakings.ToListAsync();
+            return await applicationDbContext.SilvermanPillTakings
+                .OrderByDescending(x => x.PerformedOnDate)
+                .ToListAsync();
         }
 
         public async Task<SilvermanPillTaking> GetSilvermanPillTakingByIdAsync(int id)

@@ -27,7 +27,9 @@ namespace organumator.Repositories
 
         public async Task<IEnumerable<BetweenTeethBrushing>> GetAllBetweenTeethBrushingAsync()
         {
-            return await applicationDbContext.BetweenTeethBrushings.ToListAsync();
+            return await applicationDbContext.BetweenTeethBrushings
+                .OrderByDescending(x => x.PerformedOnDate)
+                .ToListAsync();
         }
 
         public async Task<BetweenTeethBrushing> GetBetweenTeethBrushingByIdAsync(int id)

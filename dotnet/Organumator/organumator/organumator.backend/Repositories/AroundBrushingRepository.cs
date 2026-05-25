@@ -16,7 +16,9 @@ namespace organumator.Repositories
 
         public async Task<List<Models.AroundBrushing>> GetAllAroundBrushingsAsync()
         {
-            return await _context.AroundBrushings.ToListAsync();
+            return await _context.AroundBrushings
+                .OrderByDescending(x => x.PerformedOnDate)
+                .ToListAsync();
         }
 
         public async Task<Models.AroundBrushing> GetAroundBrushingByIdAsync(int id)

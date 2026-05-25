@@ -9,7 +9,9 @@ namespace organumator.Repositories
 
         public async Task<IEnumerable<Models.CalciferolTakingModel>> GetAllAsync()
         {
-            return await applicationDbContext.CalciferolTakings.ToListAsync();
+            return await applicationDbContext.CalciferolTakings
+                .OrderByDescending(x => x.PerformedOnDate)
+                .ToListAsync();
         }
 
         public async Task<Models.CalciferolTakingModel> GetByIdAsync(int id)

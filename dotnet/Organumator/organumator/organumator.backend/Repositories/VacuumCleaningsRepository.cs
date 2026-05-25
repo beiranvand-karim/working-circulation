@@ -24,7 +24,9 @@ namespace organumator.Repositories
 
         public async Task<List<VacuumCleanings>> GetAllVacuumCleaningsAsync()
         {
-            return await applicationDbContext.VacuumCleanings.ToListAsync();
+            return await applicationDbContext.VacuumCleanings
+                .OrderByDescending(x => x.PerformedOnDate)
+                .ToListAsync();
         }
 
         public async Task<VacuumCleanings> GetVacuumCleaningsByIdAsync(int id)
