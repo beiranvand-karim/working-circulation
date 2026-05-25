@@ -5,9 +5,9 @@ using cross_application_feature_development_management.Names.Classses;
 using cross_application_feature_development_management.Names.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace cross_application_feature_development_management.Directories.Feature.EnvironmentVariablesTemplateFiles
+namespace cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.EnvironmentVariablesTemplateFiles
 {
-    public interface INotePadPlusPlusOpenAll
+    public interface INotepadPlusPlusMultitudeAllOrderReverseActionOpen
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
@@ -15,14 +15,14 @@ namespace cross_application_feature_development_management.Directories.Feature.E
         );
     }
 
-    public class NotePadPlusPlusOpenAll(
+    public class NotepadPlusPlusMultitudeAllOrderReverseActionOpen(
         IFeatureName featureName,
         IGuestApplicationName guestApplicationName,
         IHostApplicationName hostApplicationName,
         IHostingDirectory hostingDirectory,
         ILogger<NotePadPlusPlusOpenAll> logger,
         IStringHelpers stringHelpers
-    ) : INotePadPlusPlusOpenAll
+    ) : INotepadPlusPlusMultitudeAllOrderReverseActionOpen
     {
         private readonly IFeatureName featureName = featureName;
         private readonly IGuestApplicationName guestApplicationName = guestApplicationName;
@@ -81,6 +81,12 @@ namespace cross_application_feature_development_management.Directories.Feature.E
                     case "COMMAND":
                     {
                         var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
+                        fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
+                        break;
+                    }
+                    case "ORDER":
+                    {
+                        var wrappedVal = stringHelpers.WrapInQuotationMarks("reverse");
                         fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                         break;
                     }
