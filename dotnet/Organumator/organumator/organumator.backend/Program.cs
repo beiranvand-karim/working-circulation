@@ -1,9 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using organumator.Data;
-using organumator.Interfaces;
+using organumator.Extensions;
 using organumator.Messaging;
-using organumator.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,13 +10,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<IAroundBrushingRepository, AroundBrushingRepository>();
-builder.Services.AddScoped<IFaceHydrationRepository, FaceHydrationRepository>();
-builder.Services.AddScoped<ISilvermanPillTakingRepository, SilvermanPillTakingRepository>();
-builder.Services.AddScoped<ILivergolPillTakingRepository, LivergolPillTakingRepository>();
-builder.Services.AddScoped<IBetweenTeethBrushingRepository, BetweenTeethBrushingRepository>();
-builder.Services.AddScoped<ICalciferolTakingRepository, CalciferolTakingRepository>();
-builder.Services.AddScoped<IVacuumCleaningsRepository, VacuumCleaningsRepository>();
+builder.Services.AddRepositories();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration["Redis:ConnectionString"];
+    options.InstanceName = builder.Configuration["Redis:InstanceName"];
+});
 
 builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMQ"));
 builder.Services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
