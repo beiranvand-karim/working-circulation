@@ -6,6 +6,7 @@ import { LivergolPillTakingView } from './observables/functions/livergol-pill-ta
 import { BetweenTeethBrushingView } from './observables/functions/between-teeth-brushing/compositions/between-teeth-brushing-view/between-teeth-brushing-view'
 import { CalciferolTakingsView } from './observables/functions/calciferol-takings/compositions/calciferol-takings-view/calciferol-takings-view'
 import { VacuumCleaningsView } from './observables/functions/vacuum-cleanings/compositions/vacuum-cleanings-view/vacuum-cleanings-view'
+import { CleanupsView } from './observables/functions/cleanups/compositions/cleanups-view/cleanups-view'
 
 export const routes: Routes = [
   { path: 'around-brushing', component: AroundBrushingView },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'between-teeth-brushing', component: BetweenTeethBrushingView },
   { path: 'calciferol-pill-takings', component: CalciferolTakingsView },
   { path: 'vacuum-cleanings', component: VacuumCleaningsView },
+  { path: 'cleanups', component: CleanupsView },
 ]

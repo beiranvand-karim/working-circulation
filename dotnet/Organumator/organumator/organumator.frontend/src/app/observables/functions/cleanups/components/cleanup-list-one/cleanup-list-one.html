@@ -1,0 +1,9 @@
+<div>
+  Started: {{formatLocalDate(item.startedAt)}}
+  @if (item.finishedAt) {
+    Finished: {{formatLocalDate(item.finishedAt)}}
+  } @else {
+    In progress
+  }
+  <cleanup-delete-one [itemId]="item.id" (deleted)="deleted.emit()"></cleanup-delete-one>
+</div>

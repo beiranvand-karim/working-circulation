@@ -1,0 +1,31 @@
+<button mat-button (click)="refresh()">Refresh</button>
+
+<mat-table [dataSource]="cleanups$">
+  <ng-container matColumnDef="startedAt">
+    <mat-header-cell *matHeaderCellDef>Started</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ item.startedAt | date:'medium' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="finishedAt">
+    <mat-header-cell *matHeaderCellDef>Finished</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ item.finishedAt ? (item.finishedAt | date:'medium') : 'In progress' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="duration">
+    <mat-header-cell *matHeaderCellDef>Duration</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ formatDuration(item.startedAt, item.finishedAt) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      @if (!item.finishedAt) {
+        <button mat-button color="accent" (click)="finish(item)">Finish</button>
+      }
+      <cleanup-delete-one [itemId]="item.id" (deleted)="refresh()" />
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>

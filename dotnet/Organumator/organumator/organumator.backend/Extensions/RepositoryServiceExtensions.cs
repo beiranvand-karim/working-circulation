@@ -29,6 +29,8 @@ namespace organumator.Extensions
             services.AddScoped<VacuumCleaningsRepository>();
             services.AddScoped<IVacuumCleaningsRepository, CachedVacuumCleaningsRepository>();
 
+            services.AddScoped<ICleanupTimeManagementRepository, CleanupTimeManagementRepository>();
+
             return services;
         }
     }

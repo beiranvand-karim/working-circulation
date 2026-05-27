@@ -2,3 +2,5 @@
 appsettings.Production.json
 
 .env
+
+Data/json/
