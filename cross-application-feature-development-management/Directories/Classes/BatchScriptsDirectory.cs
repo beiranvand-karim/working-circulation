@@ -1,4 +1,5 @@
 using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory;
+using cross_application_feature_development_management.Directories.Feature.AutomationsDirectory.OperationsDirectory;
 using cross_application_feature_development_management.Directories.Interfaces;
 
 namespace cross_application_feature_development_management.Directories.Classes
@@ -9,7 +10,8 @@ namespace cross_application_feature_development_management.Directories.Classes
         ITargetDirectory targetDirectory,
         IScriptsDirectory scriptsDirectory,
         IDirectories directories,
-        IAutomationsDirectory automationsDirectory
+        IAutomationsDirectory automationsDirectory,
+        IOperationsDirectory operationsDirectory
         ) : IBatchScriptsDirectory
     {
         private readonly IPowerShellScriptsDirectory powerShellScriptsDirectory = powerShellScriptsDirectory;
@@ -18,10 +20,11 @@ namespace cross_application_feature_development_management.Directories.Classes
         private readonly IScriptsDirectory scriptsDirectory = scriptsDirectory;
         private readonly IDirectories directories = directories;
         private readonly IAutomationsDirectory automationsDirectory = automationsDirectory;
+        private readonly IOperationsDirectory operationsDirectory = operationsDirectory;
 
         public void ReplaceFileNamesWithPaths()
         {
-            var pathToTarget = automationsDirectory.GetPath();
+            var pathToTarget = operationsDirectory.GetPath();
             var giversPath = powerShellScriptsDirectory.ConstructPathToSelfInFeatureNameDirectory("powershell-scripts");
             foreach (var filePath in Directory.EnumerateFiles(pathToTarget))
             {
@@ -49,7 +52,7 @@ namespace cross_application_feature_development_management.Directories.Classes
         public void CopyContentToFeatureNameDirectory()
         {
             var sourceDirectory = CreatePathToSelfInScriptsDirectory();
-            var destinationDirectory = automationsDirectory.GetPath();
+            var destinationDirectory = operationsDirectory.GetPath();
 
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
