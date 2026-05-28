@@ -1,0 +1,6 @@
+@lediring_elastic_search_HostAddress = http://localhost:5221
+
+GET {{lediring_elastic_search_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
