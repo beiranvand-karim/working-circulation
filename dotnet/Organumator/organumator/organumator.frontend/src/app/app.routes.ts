@@ -8,6 +8,7 @@ import { CalciferolTakingsView } from './observables/functions/calciferol-taking
 import { VacuumCleaningsView } from './observables/functions/vacuum-cleanings/compositions/vacuum-cleanings-view/vacuum-cleanings-view'
 import { CleanupsView } from './observables/functions/cleanups/compositions/cleanups-view/cleanups-view'
 import { cleanupsRoutes } from './observables/functions/cleanups/cleanups.routes'
+import { SimcardChargingsView } from './observables/functions/simcard-chargings/compositions/simcard-chargings-view/simcard-chargings-view'
 
 export const routes: Routes = [
   { path: 'around-brushing', component: AroundBrushingView },
@@ -18,4 +19,5 @@ export const routes: Routes = [
   { path: 'calciferol-pill-takings', component: CalciferolTakingsView },
   { path: 'vacuum-cleanings', component: VacuumCleaningsView },
   { path: 'cleanups', component: CleanupsView, children: cleanupsRoutes },
+  { path: 'simcard-chargings', component: SimcardChargingsView },
 ]

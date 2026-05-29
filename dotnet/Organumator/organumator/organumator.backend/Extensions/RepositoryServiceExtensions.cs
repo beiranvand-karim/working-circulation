@@ -30,6 +30,7 @@ namespace organumator.Extensions
             services.AddScoped<IVacuumCleaningsRepository, CachedVacuumCleaningsRepository>();
 
             services.AddScoped<ICleanupTimeManagementRepository, CleanupTimeManagementRepository>();
+            services.AddScoped<ISimcardChargingRepository, SimcardChargingRepository>();
 
             return services;
         }
