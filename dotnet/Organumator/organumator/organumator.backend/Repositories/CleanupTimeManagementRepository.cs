@@ -10,9 +10,11 @@ namespace organumator.Repositories
         private static readonly object _lock = new();
         private static readonly JsonSerializerOptions _json = new() { WriteIndented = true };
 
-        public CleanupTimeManagementRepository(IWebHostEnvironment env)
+        public CleanupTimeManagementRepository(IWebHostEnvironment env, IConfiguration config)
         {
-            _dir = Path.Combine(env.ContentRootPath, "Data", "json", env.EnvironmentName.ToLower());
+            var dataPath = config["TimeTrackings:DataPath"] ?? "organizing/time-trackings";
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            _dir = Path.Combine(documentsPath, dataPath, env.EnvironmentName.ToLower());
             Directory.CreateDirectory(_dir);
         }
 
@@ -22,7 +24,7 @@ namespace organumator.Repositories
         {
             var dir = Path.Combine(_dir, $"{date:yyyy}", $"{date:MM}", WeekOfMonth(date));
             Directory.CreateDirectory(dir);
-            return Path.Combine(dir, $"{date:yyyy-MM-dd}.json");
+            return Path.Combine(dir, $"cleanup-{date:yyyy-MM-dd}.json");
         }
 
         private List<CleanupTimeManagement> ReadDay(DateOnly date)
@@ -36,7 +38,7 @@ namespace organumator.Repositories
             File.WriteAllText(FilePathForDate(date), JsonSerializer.Serialize(records, _json));
 
         private List<CleanupTimeManagement> ReadAllDays() =>
-            Directory.GetFiles(_dir, "????-??-??.json", SearchOption.AllDirectories)
+            Directory.GetFiles(_dir, "cleanup-????-??-??.json", SearchOption.AllDirectories)
                 .SelectMany(path => JsonSerializer.Deserialize<List<CleanupTimeManagement>>(File.ReadAllText(path)) ?? [])
                 .ToList();
 
@@ -73,6 +75,34 @@ namespace organumator.Repositories
             }
         }
 
+        public Task<List<(DateOnly Date, int Count, long TotalDurationSeconds)>> GetDaysWithDataAsync()
+        {
+            lock (_lock)
+            {
+                var days = Directory.GetFiles(_dir, "cleanup-????-??-??.json", SearchOption.AllDirectories)
+                    .Select(path =>
+                    {
+                        var date = DateOnly.Parse(Path.GetFileNameWithoutExtension(path).Substring("cleanup-".Length));
+                        var records = ReadDay(date);
+                        var totalSeconds = (long)records
+                            .Where(r => r.FinishedAt.HasValue)
+                            .Sum(r => (r.FinishedAt!.Value - r.StartedAt).TotalSeconds);
+                        return (Date: date, Count: records.Count, TotalDurationSeconds: totalSeconds);
+                    })
+                    .OrderByDescending(d => d.Date)
+                    .ToList();
+                return Task.FromResult(days);
+            }
+        }
+
+        public Task<List<CleanupTimeManagement>> GetByDayAsync(DateOnly date)
+        {
+            lock (_lock)
+            {
+                return Task.FromResult(ReadDay(date).OrderByDescending(r => r.StartedAt).ToList());
+            }
+        }
+
         public Task<List<CleanupTimeManagement>> GetAllAsync()
         {
             lock (_lock)
@@ -88,6 +118,32 @@ namespace organumator.Repositories
                 var record = ReadAllDays().FirstOrDefault(r => r.Id == id)
                     ?? throw new Exception($"CleanupTimeManagement with id {id} not found.");
                 return Task.FromResult(record);
+            }
+        }
+
+        public Task DeleteByDayAsync(DateOnly date)
+        {
+            lock (_lock)
+            {
+                var path = FilePathForDate(date);
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                    var weekDir = Path.Combine(_dir, $"{date:yyyy}", $"{date:MM}", WeekOfMonth(date));
+                    if (Directory.Exists(weekDir) && !Directory.EnumerateFileSystemEntries(weekDir).Any())
+                    {
+                        Directory.Delete(weekDir);
+                        var monthDir = Path.Combine(_dir, $"{date:yyyy}", $"{date:MM}");
+                        if (Directory.Exists(monthDir) && !Directory.EnumerateFileSystemEntries(monthDir).Any())
+                        {
+                            Directory.Delete(monthDir);
+                            var yearDir = Path.Combine(_dir, $"{date:yyyy}");
+                            if (Directory.Exists(yearDir) && !Directory.EnumerateFileSystemEntries(yearDir).Any())
+                                Directory.Delete(yearDir);
+                        }
+                    }
+                }
+                return Task.CompletedTask;
             }
         }
 

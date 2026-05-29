@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Mappers;
 
@@ -12,6 +13,20 @@ namespace organumator.Controllers
         public async Task<IActionResult> GetAll()
         {
             var records = await repository.GetAllAsync();
+            return Ok(records.Select(r => r.ToDto()));
+        }
+
+        [HttpGet("DaysWithData")]
+        public async Task<IActionResult> GetDaysWithData()
+        {
+            var days = await repository.GetDaysWithDataAsync();
+            return Ok(days.Select(d => new CleanupDaySummaryDto { Date = d.Date, Count = d.Count, TotalDurationSeconds = d.TotalDurationSeconds }));
+        }
+
+        [HttpGet("day/{date}")]
+        public async Task<IActionResult> GetByDay(DateOnly date)
+        {
+            var records = await repository.GetByDayAsync(date);
             return Ok(records.Select(r => r.ToDto()));
         }
 
@@ -34,6 +49,13 @@ namespace organumator.Controllers
         {
             var record = await repository.SaveFinishAsync(id, DateTime.Now);
             return Ok(record.ToDto());
+        }
+
+        [HttpDelete("day/{date}")]
+        public async Task<IActionResult> DeleteByDay(DateOnly date)
+        {
+            await repository.DeleteByDayAsync(date);
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

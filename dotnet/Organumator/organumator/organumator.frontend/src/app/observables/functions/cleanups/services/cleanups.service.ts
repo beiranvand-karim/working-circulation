@@ -26,4 +26,16 @@ export class CleanupsService {
   getById(id: number) {
     return this.httpClient.get<CleanupsModel>(`${this.apiUrl}/${id}`);
   }
+
+  getDaysWithData() {
+    return this.httpClient.get<{ date: string; count: number; totalDurationSeconds: number }[]>(`${this.apiUrl}/DaysWithData`);
+  }
+
+  getByDay(date: string) {
+    return this.httpClient.get<CleanupsModel[]>(`${this.apiUrl}/day/${date}`);
+  }
+
+  deleteByDay(date: string) {
+    return this.httpClient.delete(`${this.apiUrl}/day/${date}`);
+  }
 }

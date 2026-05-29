@@ -1,2 +1,6 @@
-<cleanup-create-one (created)="listAll.refresh()"></cleanup-create-one>
-<cleanup-list-all #listAll></cleanup-list-all>
+<nav>
+  <button mat-icon-button (click)="back()"><mat-icon>arrow_back</mat-icon></button>
+  <button mat-icon-button (click)="forward()"><mat-icon>arrow_forward</mat-icon></button>
+</nav>
+
+<router-outlet></router-outlet>
