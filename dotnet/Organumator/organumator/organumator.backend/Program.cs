@@ -22,6 +22,7 @@ builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("R
 builder.Services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
 builder.Services.AddHostedService<RabbitMqConsumer>();
 builder.Services.AddHostedService<VacuumCleaningsCommandConsumer>();
+builder.Services.AddHostedService<ClothesWearingCommandConsumer>();
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {

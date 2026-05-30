@@ -9,6 +9,7 @@ import { VacuumCleaningsView } from './observables/functions/vacuum-cleanings/co
 import { CleanupsView } from './observables/functions/cleanups/compositions/cleanups-view/cleanups-view'
 import { cleanupsRoutes } from './observables/functions/cleanups/cleanups.routes'
 import { SimcardChargingsView } from './observables/functions/simcard-chargings/compositions/simcard-chargings-view/simcard-chargings-view'
+import { ClothesWearingsView } from './observables/functions/clothes-wearings/compositions/clothes-wearings-view/clothes-wearings-view'
 
 export const routes: Routes = [
   { path: 'around-brushing', component: AroundBrushingView },
@@ -20,4 +21,5 @@ export const routes: Routes = [
   { path: 'vacuum-cleanings', component: VacuumCleaningsView },
   { path: 'cleanups', component: CleanupsView, children: cleanupsRoutes },
   { path: 'simcard-chargings', component: SimcardChargingsView },
+  { path: 'clothes-wearings', component: ClothesWearingsView },
 ]

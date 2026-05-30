@@ -29,6 +29,9 @@ namespace organumator.Extensions
             services.AddScoped<VacuumCleaningsRepository>();
             services.AddScoped<IVacuumCleaningsRepository, CachedVacuumCleaningsRepository>();
 
+            services.AddScoped<ClothesWearingRepository>();
+            services.AddScoped<IClothesWearingRepository, CachedClothesWearingRepository>();
+
             services.AddScoped<ICleanupTimeManagementRepository, CleanupTimeManagementRepository>();
             services.AddScoped<ISimcardChargingRepository, SimcardChargingRepository>();
 

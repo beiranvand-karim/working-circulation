@@ -1,0 +1,17 @@
+<div class="form">
+  <mat-form-field>
+    <mat-label>Differentiator</mat-label>
+    <input matInput [(ngModel)]="differentiator" placeholder="e.g. blue jeans" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Wearing Start</mat-label>
+    <input matInput [matDatepicker]="startDatePicker" [(ngModel)]="startDate" />
+    <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="create()" [disabled]="!isValid">
+    Add
+  </button>
+</div>

@@ -10,5 +10,6 @@ namespace organumator.Messaging
         public string ExchangeName { get; set; } = "organumator-dev";
         public string QueueName { get; set; } = "organumator-dev.events";
         public string CommandQueueName { get; set; } = "organumator-dev.vacuum-cleanings.commands";
+        public string ClothesWearingCommandQueueName { get; set; } = "organumator-dev.clothes-wearing.commands";
     }
 }

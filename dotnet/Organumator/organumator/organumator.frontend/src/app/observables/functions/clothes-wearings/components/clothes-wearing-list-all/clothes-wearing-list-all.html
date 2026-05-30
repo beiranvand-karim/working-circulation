@@ -1,0 +1,40 @@
+<button mat-button (click)="refresh()">Refresh</button>
+
+@if (loading) {
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+<mat-table [dataSource]="clothesWearings$">
+  <ng-container matColumnDef="differentiator">
+    <mat-header-cell *matHeaderCellDef>Item</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ item.differentiator }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="wearingStart">
+    <mat-header-cell *matHeaderCellDef>Start</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ item.wearingStart | date:'yyyy-MM-dd' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="wearingFinish">
+    <mat-header-cell *matHeaderCellDef>Finish</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ item.wearingFinish ? (item.wearingFinish | date:'yyyy-MM-dd') : 'In progress' }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="duration">
+    <mat-header-cell *matHeaderCellDef>Days</mat-header-cell>
+    <mat-cell *matCellDef="let item">{{ durationInDays(item) }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let item">
+      @if (!isFinished(item)) {
+        <button mat-button color="accent" (click)="finish(item)">Finish</button>
+      }
+      <clothes-wearing-delete-one [itemId]="item.id" (deleted)="refresh()" />
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
