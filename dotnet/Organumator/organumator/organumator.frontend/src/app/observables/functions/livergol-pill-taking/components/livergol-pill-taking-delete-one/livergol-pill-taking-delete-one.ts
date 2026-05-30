@@ -1,6 +1,6 @@
-import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core';
-import { LivergolPillTakingService } from '../../services/livergol-pill-taking.service';
-import { Subject } from 'rxjs';
+import { Component, EventEmitter, inject, Input, OnDestroy, Output } from '@angular/core'
+import { LivergolPillTakingService } from '../../services/livergol-pill-taking.service'
+import { Subject, takeUntil } from 'rxjs'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 
@@ -17,18 +17,15 @@ export class LivergolPillTakingDeleteOne implements OnDestroy {
   @Output() deleted = new EventEmitter<void>()
   @Input() itemId!: number
 
+  delete() {
+    this.livergolPillTakingService.delete(this.itemId).pipe(takeUntil(this.destroy$)).subscribe({
+      next: () => this.deleted.emit(),
+      error: error => console.error('Failed to delete pill taking:', error),
+    })
+  }
+
   ngOnDestroy(): void {
     this.destroy$.next()
     this.destroy$.complete()
-  }
-
-  delete() {
-    this.livergolPillTakingService.delete(this.itemId).subscribe({
-      next: () => {
-        console.log('Pill taking deleted successfully')
-        this.deleted.emit()
-      },
-      error: error => console.error('Failed to delete pill taking:', error),
-    })
   }
 }

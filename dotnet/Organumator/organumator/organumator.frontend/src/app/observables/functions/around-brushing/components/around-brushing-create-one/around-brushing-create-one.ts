@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnDestroy, Output, inject } from '@angular/core'
 import { AroundBrushingService } from '../../services/around-brushing.service'
-import { Subject } from 'rxjs'
+import { Subject, takeUntil } from 'rxjs'
 import { MatButtonModule } from '@angular/material/button'
 
 @Component({
@@ -16,16 +16,14 @@ export class AroundBrushingCreateOne implements OnDestroy {
   @Output() created = new EventEmitter<void>()
   private readonly destroy$ = new Subject<void>()
 
-
   create() {
-    this.aroundBrushingService.create().subscribe({
+    this.aroundBrushingService.create().pipe(takeUntil(this.destroy$)).subscribe({
       next: () => this.created.emit(),
       error: error => console.error('Failed to create item:', error)
     })
   }
 
   ngOnDestroy(): void {
-    // Clean up any subscriptions if necessary
     this.destroy$.next()
     this.destroy$.complete()
   }

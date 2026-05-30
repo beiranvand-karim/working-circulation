@@ -1,5 +1,6 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core'
+import { Component, EventEmitter, OnDestroy, inject, Output } from '@angular/core'
 import { SimcardChargingService } from '../../services/simcard-charging.service'
+import { Subject, takeUntil } from 'rxjs'
 import { MatButtonModule } from '@angular/material/button'
 
 @Component({
@@ -9,17 +10,20 @@ import { MatButtonModule } from '@angular/material/button'
   styleUrl: './simcard-charging-create-one.scss',
   providers: [SimcardChargingService],
 })
-export class SimcardChargingCreateOne {
+export class SimcardChargingCreateOne implements OnDestroy {
   private readonly simcardChargingService = inject(SimcardChargingService)
+  private readonly destroy$ = new Subject<void>()
   @Output() created = new EventEmitter<void>()
 
   create() {
-    this.simcardChargingService.create().subscribe({
-      next: () => {
-        console.log('Item created successfully')
-        this.created.emit()
-      },
+    this.simcardChargingService.create().pipe(takeUntil(this.destroy$)).subscribe({
+      next: () => this.created.emit(),
       error: error => console.error('Failed to create item:', error),
     })
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next()
+    this.destroy$.complete()
   }
 }

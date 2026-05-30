@@ -17,7 +17,7 @@ import { ClothesWearingDeleteOne } from '../clothes-wearing-delete-one/clothes-w
 })
 export class ClothesWearingListAll implements OnDestroy {
   private readonly clothesWearingService = inject(ClothesWearingService)
-  destroy$ = new Subject<void>()
+  private destroy$ = new Subject<void>()
 
   loading = false
   clothesWearings$ = this.load()
