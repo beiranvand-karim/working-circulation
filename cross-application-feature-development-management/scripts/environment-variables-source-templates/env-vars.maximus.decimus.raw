@@ -43,7 +43,6 @@ RiderLocation
 GuestApplicationLocation
 HostApplicationLocation
 PrimaryApplicationLocation
-SecondaryApplicationLocation
 GuestApplicationProjectLocation
 GuestApplicationProjectName
 HostApplicationProjectLocation
