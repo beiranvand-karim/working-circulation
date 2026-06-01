@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using organumator.Messaging;
+using organumator.Messaging.ClothesWearing;
 using organumator.Models;
 
 namespace organumator.Controllers

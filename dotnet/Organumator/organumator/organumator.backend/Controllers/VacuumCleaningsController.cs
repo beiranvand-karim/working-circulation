@@ -1,18 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using organumator.Messaging;
+using organumator.Messaging.VacuumCleanings;
 using organumator.Models;
 
 namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VacuumCleaningsController(IRabbitMqPublisher publisher) : ControllerBase
+    public class VacuumCleaningsController(IRabbitMqPublisher publisher, IOptions<RabbitMqSettings> settings) : ControllerBase
     {
+        private readonly string Queue = settings.Value.CommandQueueName;
+
         [HttpGet]
         public async Task<IEnumerable<VacuumCleanings>> Get()
         {
             var result = await publisher.QueryAsync<List<VacuumCleanings>>(
-                new VacuumCleaningsCommand { Action = "GetAll" });
+                new VacuumCleaningsCommand { Action = "GetAll" }, Queue);
             return result ?? [];
         }
 
@@ -20,7 +24,7 @@ namespace organumator.Controllers
         public async Task<ActionResult<VacuumCleanings>> GetById(int id)
         {
             var result = await publisher.QueryAsync<VacuumCleanings>(
-                new VacuumCleaningsCommand { Action = "GetById", Id = id });
+                new VacuumCleaningsCommand { Action = "GetById", Id = id }, Queue);
             return result is null ? NotFound() : result;
         }
 
@@ -28,7 +32,7 @@ namespace organumator.Controllers
         public async Task<ActionResult<VacuumCleanings>> Create(VacuumCleanings vacuumCleanings)
         {
             var created = await publisher.QueryAsync<VacuumCleanings>(
-                new VacuumCleaningsCommand { Action = "Create", Payload = vacuumCleanings });
+                new VacuumCleaningsCommand { Action = "Create", Payload = vacuumCleanings }, Queue);
             return CreatedAtAction(nameof(GetById), new { id = created!.Id }, created);
         }
 
@@ -37,14 +41,14 @@ namespace organumator.Controllers
         {
             if (id != vacuumCleanings.Id)
                 return BadRequest("Id in URL does not match Id in body.");
-            publisher.PublishCommand(new VacuumCleaningsCommand { Action = "Update", Payload = vacuumCleanings });
+            publisher.PublishCommand(new VacuumCleaningsCommand { Action = "Update", Payload = vacuumCleanings }, Queue);
             return Accepted();
         }
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            publisher.PublishCommand(new VacuumCleaningsCommand { Action = "Delete", Id = id });
+            publisher.PublishCommand(new VacuumCleaningsCommand { Action = "Delete", Id = id }, Queue);
             return Accepted();
         }
     }

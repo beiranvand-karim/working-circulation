@@ -6,7 +6,7 @@ using organumator.Models;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace organumator.Messaging
+namespace organumator.Messaging.VacuumCleanings
 {
     public class VacuumCleaningsCommandConsumer : BackgroundService
     {
@@ -92,7 +92,7 @@ namespace organumator.Messaging
             var created = await repository.AddVacuumCleaningsAsync(command.Payload);
             _publisher.Publish(new EventMessage
             {
-                EntityName = nameof(VacuumCleanings),
+                EntityName = nameof(Models.VacuumCleanings),
                 Action = "Created",
                 Payload = created
             });
@@ -106,7 +106,7 @@ namespace organumator.Messaging
             var updated = await repository.UpdateVacuumCleaningsAsync(command.Payload);
             _publisher.Publish(new EventMessage
             {
-                EntityName = nameof(VacuumCleanings),
+                EntityName = nameof(Models.VacuumCleanings),
                 Action = "Updated",
                 Payload = updated
             });
@@ -119,7 +119,7 @@ namespace organumator.Messaging
             await repository.DeleteVacuumCleaningsAsync(command.Id.Value);
             _publisher.Publish(new EventMessage
             {
-                EntityName = nameof(VacuumCleanings),
+                EntityName = nameof(Models.VacuumCleanings),
                 Action = "Deleted",
                 Payload = new { Id = command.Id.Value }
             });
@@ -134,7 +134,7 @@ namespace organumator.Messaging
 
         private async Task HandleGetById(VacuumCleaningsCommand command, IVacuumCleaningsRepository repository, IBasicProperties props)
         {
-            if (!command.Id.HasValue) { Reply<VacuumCleanings?>(null, props); return; }
+            if (!command.Id.HasValue) { Reply<Models.VacuumCleanings?>(null, props); return; }
             try
             {
                 var item = await repository.GetVacuumCleaningsByIdAsync(command.Id.Value);
@@ -142,7 +142,7 @@ namespace organumator.Messaging
             }
             catch (Exception)
             {
-                Reply<VacuumCleanings?>(null, props);
+                Reply<Models.VacuumCleanings?>(null, props);
             }
         }
 

@@ -1,5 +1,26 @@
 # RabbitMQ Request/Reply
 
+## What is RPC?
+
+RPC (Remote Procedure Call) is a pattern that makes a call to a remote service feel like a local function call — you send a request and block waiting for a response, even though it travels over a network.
+
+Message queues are normally fire-and-forget. RPC adds a reply mechanism on top:
+
+- The caller attaches a `ReplyTo` queue and a `CorrelationId` to its message, then waits.
+- The consumer processes the command and publishes the result back to `ReplyTo` with the same `CorrelationId`.
+- The caller resumes with the response.
+
+```
+Caller                    Queue                Consumer
+  |---[cmd + ReplyTo]------>|                     |
+  |                         |---[dispatch cmd]---->|
+  |   (waiting...)          |                     |
+  |<---[result]-------------|-----[Reply()]--------|
+  |   (resumes)
+```
+
+## This project
+
 `QueryAsync` implements the RabbitMQ Request/Reply pattern — a way to do synchronous-feeling calls over an async message bus.
 
 ## Steps

@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 using organumator.Data;
 using organumator.Extensions;
 using organumator.Messaging;
+using organumator.Messaging.ClothesWearing;
+using organumator.Messaging.VacuumCleanings;
 
 var builder = WebApplication.CreateBuilder(args);
 

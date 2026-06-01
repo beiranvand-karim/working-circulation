@@ -47,49 +47,6 @@ namespace organumator.Messaging
             _channel.BasicPublish(_exchangeName, _queueName, properties, body);
         }
 
-        public void PublishCommand(VacuumCleaningsCommand command)
-        {
-            var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(command));
-            var properties = _channel.CreateBasicProperties();
-            properties.Persistent = true;
-            _channel.BasicPublish(_exchangeName, _commandQueueName, properties, body);
-        }
-
-        public async Task<T?> QueryAsync<T>(VacuumCleaningsCommand command, TimeSpan? timeout = null)
-        {
-            var correlationId = Guid.NewGuid().ToString();
-            var replyChannel = _connection.CreateModel();
-            try
-            {
-                var replyQueue = replyChannel.QueueDeclare(exclusive: true, autoDelete: true);
-                var tcs = new TaskCompletionSource<byte[]>(TaskCreationOptions.RunContinuationsAsynchronously);
-
-                var consumer = new EventingBasicConsumer(replyChannel);
-                consumer.Received += (_, ea) =>
-                {
-                    if (ea.BasicProperties.CorrelationId == correlationId)
-                        tcs.TrySetResult(ea.Body.ToArray());
-                };
-                replyChannel.BasicConsume(replyQueue.QueueName, autoAck: true, consumer);
-
-                var props = _channel.CreateBasicProperties();
-                props.CorrelationId = correlationId;
-                props.ReplyTo = replyQueue.QueueName;
-                _channel.BasicPublish(_exchangeName, _commandQueueName,
-                    props, Encoding.UTF8.GetBytes(JsonSerializer.Serialize(command)));
-
-                using var cts = new CancellationTokenSource(timeout ?? TimeSpan.FromSeconds(10));
-                cts.Token.Register(() => tcs.TrySetException(new TimeoutException("QueryAsync timed out")));
-
-                return JsonSerializer.Deserialize<T>(await tcs.Task);
-            }
-            finally
-            {
-                replyChannel.Close();
-                replyChannel.Dispose();
-            }
-        }
-
         public void PublishCommand(object command, string routingKey)
         {
             var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(command, command.GetType()));
@@ -137,6 +94,7 @@ namespace organumator.Messaging
         {
             _channel?.Close();
             _connection?.Close();
+            GC.SuppressFinalize(this);
         }
     }
 }

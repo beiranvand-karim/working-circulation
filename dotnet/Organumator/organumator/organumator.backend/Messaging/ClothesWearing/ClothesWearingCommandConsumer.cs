@@ -6,7 +6,7 @@ using organumator.Models;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace organumator.Messaging
+namespace organumator.Messaging.ClothesWearing
 {
     public class ClothesWearingCommandConsumer : BackgroundService
     {
@@ -68,12 +68,12 @@ namespace organumator.Messaging
                 {
                     await (command.Action switch
                     {
-                        "Create"  => HandleCreate(command, repository, ea.BasicProperties),
-                        "Update"  => HandleUpdate(command, repository),
-                        "Delete"  => HandleDelete(command, repository),
-                        "GetAll"  => HandleGetAll(repository, ea.BasicProperties),
+                        "Create" => HandleCreate(command, repository, ea.BasicProperties),
+                        "Update" => HandleUpdate(command, repository),
+                        "Delete" => HandleDelete(command, repository),
+                        "GetAll" => HandleGetAll(repository, ea.BasicProperties),
                         "GetById" => HandleGetById(command, repository, ea.BasicProperties),
-                        _         => Task.CompletedTask
+                        _ => Task.CompletedTask
                     });
 
                     _channel.BasicAck(ea.DeliveryTag, multiple: false);
@@ -137,7 +137,7 @@ namespace organumator.Messaging
 
         private async Task HandleGetById(ClothesWearingCommand command, IClothesWearingRepository repository, IBasicProperties props)
         {
-            if (!command.Id.HasValue) { Reply<ClothesWearing?>(null, props); return; }
+            if (!command.Id.HasValue) { Reply<Models.ClothesWearing?>(null, props); return; }
             try
             {
                 var item = await repository.GetClothesWearingByIdAsync(command.Id.Value);
@@ -145,7 +145,7 @@ namespace organumator.Messaging
             }
             catch (Exception)
             {
-                Reply<ClothesWearing?>(null, props);
+                Reply<Models.ClothesWearing?>(null, props);
             }
         }
 
