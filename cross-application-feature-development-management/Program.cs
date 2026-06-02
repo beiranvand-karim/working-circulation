@@ -85,6 +85,8 @@ namespace cross_application_feature_development_management
                     services.AddTransient<IIdeExecutiveFileLocation, IdeExecutiveFileLocation>();
                     services.AddTransient<IApplicationName, ApplicationName>();
                     services.AddTransient<IIdeName, IdeName>();
+                    services.AddTransient<IdeJetbrainsRiderMultitudePrimaryActionOpen>();
+
                 })
                 .UseSerilog()
                 .Build();
