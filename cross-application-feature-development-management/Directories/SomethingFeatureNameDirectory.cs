@@ -15,13 +15,6 @@ namespace cross_application_feature_development_management.Directories
         IStringHelpers stringHelpers
         ) : ISomethingFeatureNameDirectory
     {
-        private readonly ICommandLineArgs commandLineArgs = commandLineArgs;
-        private readonly IDirectoriesNameToKeyMap directoriesNameToKeyMap = directoriesNameToKeyMap;
-        private readonly IFeatureNameDirectory featureNameDirectory = featureNameDirectory;
-        private readonly IHostingDirectory hostingDirectory = hostingDirectory;
-        private readonly ILogger<SomethingFeatureNameDirectory> logger = logger;
-        private readonly IStringHelpers stringHelpers = stringHelpers;
-
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
             string fileNamePath,
             Dictionary<string, string> environmentVariablesSourceDictionary
@@ -97,6 +90,15 @@ namespace cross_application_feature_development_management.Directories
                         break;
                     }
                     case "STARTUP_DIRECTORY_LOCATION":
+                    case "IS_OPENNING_FEND_HOST_ADDRESS":
+                    case "IS_OPENNING_FEND_GUEST_ADDRESS":
+                    case "IS_OPENNING_BEND_ADDRESS":
+                    case "IS_OPENNING_CALLS_ADDRESS":
+                    case "IS_OPENNING_TOOLS_ADDRESS":
+                    case "IS_OPENNING_NOTES_MESSAGES_ADDRESS":
+                    case "IS_OPENNING_WEB_LINKS_ADDRESS":
+                    case "IS_OPENNING_FEATURE_SELF_ADDRESS":
+                    case "IS_OPENNING_FEND_ADDRESS":
                         environmentVariablesSourceDictionary.TryGetValue(key, out var val1);
                         fileContentDictionaryToWriteToFile.Add(key, val1 ?? "");
                         break;
