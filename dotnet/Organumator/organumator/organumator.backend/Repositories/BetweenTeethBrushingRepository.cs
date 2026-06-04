@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using organumator.Data;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -25,11 +26,22 @@ namespace organumator.Repositories
             }
         }
 
-        public async Task<IEnumerable<BetweenTeethBrushing>> GetAllBetweenTeethBrushingAsync()
+        public async Task<PagedResult<BetweenTeethBrushing>> GetAllBetweenTeethBrushingPagedAsync(int pageNumber, int pageSize)
         {
-            return await applicationDbContext.BetweenTeethBrushings
+            var totalCount = await applicationDbContext.BetweenTeethBrushings.CountAsync();
+            var items = await applicationDbContext.BetweenTeethBrushings
                 .OrderByDescending(x => x.PerformedOnDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<BetweenTeethBrushing>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<BetweenTeethBrushing> GetBetweenTeethBrushingByIdAsync(int id)

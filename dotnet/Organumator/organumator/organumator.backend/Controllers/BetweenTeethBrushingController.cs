@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -6,13 +7,22 @@ namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class BetweenTeethBrushingController(IBetweenTeethBrushingRepository betweenTeethBrushingRepository) : ControllerBase
+    public class BetweenTeethBrushingController(
+        IBetweenTeethBrushingRepository betweenTeethBrushingRepository,
+        IConfiguration configuration) : ControllerBase
     {
+        private int DefaultPageSize =>
+            configuration.GetValue<int>("Pagination:DefaultPageSize");
+
         [HttpGet]
-        public async Task<IActionResult> GetAllBetweenTeethBrushing()
+        public async Task<IActionResult> GetAllBetweenTeethBrushing(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            var betweenTeethBrushing = await betweenTeethBrushingRepository.GetAllBetweenTeethBrushingAsync();
-            return Ok(betweenTeethBrushing);
+            var result = await betweenTeethBrushingRepository.GetAllBetweenTeethBrushingPagedAsync(
+                pageNumber,
+                pageSize ?? DefaultPageSize);
+            return Ok(result);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBetweenTeethBrushingById(int id)

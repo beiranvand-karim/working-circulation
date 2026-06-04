@@ -1,0 +1,10 @@
+::ng-deep mat-paginator .mat-mdc-paginator-container {
+  justify-content: flex-start;
+}
+
+.page-count {
+  display: block;
+  font-size: 0.875rem;
+  color: #666;
+  margin-top: 4px;
+}

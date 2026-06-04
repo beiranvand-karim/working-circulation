@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { BetweenTeethBrushing } from "../models/between-teeth-brushing.model";
+import { BetweenTeethBrushing, PagedResult } from "../models/between-teeth-brushing.model";
 
 @Injectable()
 export class BetweenTeethBrushingService {
@@ -8,9 +8,12 @@ export class BetweenTeethBrushingService {
 
   private readonly apiUrl = 'https://localhost:7036/api/BetweenTeethBrushing';
 
-    getAll() {
-        return this.httpClient.get<BetweenTeethBrushing[]>(this.apiUrl);
-    }
+  getAll(pageNumber: number, pageSize: number) {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber)
+      .set('pageSize', pageSize)
+    return this.httpClient.get<PagedResult<BetweenTeethBrushing>>(this.apiUrl, { params });
+  }
     
     create() {
         return this.httpClient.post(this.apiUrl, {
