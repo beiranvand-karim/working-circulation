@@ -1,14 +1,18 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import { inject, Injectable } from '@angular/core'
-import { AroundBrushingItemModel } from '../../../../around-brushing/models/around-brushing.model'
+import { AroundBrushingItemModel, PagedResult } from '../../../../around-brushing/models/around-brushing.model'
 
 @Injectable()
 export class AroundBrushingService {
   private readonly httpClient = inject(HttpClient)
 
-  getAll() {
-    return this.httpClient.get<AroundBrushingItemModel[]>(
-      'https://localhost:7036/api/AroundBrushing'
+  getAll(pageNumber: number, pageSize: number) {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber)
+      .set('pageSize', pageSize)
+    return this.httpClient.get<PagedResult<AroundBrushingItemModel>>(
+      'https://localhost:7036/api/AroundBrushing',
+      { params }
     )
   }
 

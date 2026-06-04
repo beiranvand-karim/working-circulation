@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -6,13 +7,21 @@ namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AroundBrushingController(IAroundBrushingRepository _aroundBrushingRepository) : ControllerBase
+    public class AroundBrushingController(
+        IAroundBrushingRepository _aroundBrushingRepository,
+        IConfiguration configuration) : ControllerBase
     {
+        private int DefaultPageSize =>
+            configuration.GetValue<int>("Pagination:DefaultPageSize");
 
         [HttpGet]
-        public async Task<IEnumerable<AroundBrushing>> Get()
+        public async Task<PagedResult<AroundBrushing>> Get(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            return await _aroundBrushingRepository.GetAllAroundBrushingsAsync();
+            return await _aroundBrushingRepository.GetAllAroundBrushingsPagedAsync(
+                pageNumber,
+                pageSize ?? DefaultPageSize);
         }
 
         [HttpGet("{id}")]

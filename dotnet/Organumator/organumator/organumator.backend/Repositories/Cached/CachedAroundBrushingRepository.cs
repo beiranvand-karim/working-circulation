@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Caching.Distributed;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 using organumator.Repositories;
@@ -10,20 +11,23 @@ namespace organumator.Repositories.Cached
         AroundBrushingRepository inner,
         IDistributedCache cache) : IAroundBrushingRepository
     {
-        private const string AllKey = "AroundBrushings:all";
         private static readonly DistributedCacheEntryOptions CacheOptions = new()
         {
             AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
         };
 
-        public async Task<List<AroundBrushing>> GetAllAroundBrushingsAsync()
-        {
-            var cached = await cache.GetStringAsync(AllKey);
-            if (cached is not null)
-                return JsonSerializer.Deserialize<List<AroundBrushing>>(cached)!;
+        private static string PageKey(int pageNumber, int pageSize) =>
+            $"AroundBrushings:page:{pageNumber}:size:{pageSize}";
 
-            var result = await inner.GetAllAroundBrushingsAsync();
-            await cache.SetStringAsync(AllKey, JsonSerializer.Serialize(result), CacheOptions);
+        public async Task<PagedResult<AroundBrushing>> GetAllAroundBrushingsPagedAsync(int pageNumber, int pageSize)
+        {
+            var key = PageKey(pageNumber, pageSize);
+            var cached = await cache.GetStringAsync(key);
+            if (cached is not null)
+                return JsonSerializer.Deserialize<PagedResult<AroundBrushing>>(cached)!;
+
+            var result = await inner.GetAllAroundBrushingsPagedAsync(pageNumber, pageSize);
+            await cache.SetStringAsync(key, JsonSerializer.Serialize(result), CacheOptions);
             return result;
         }
 
@@ -33,21 +37,31 @@ namespace organumator.Repositories.Cached
         public async Task<AroundBrushing> AddAroundBrushingAsync(AroundBrushing aroundBrushing)
         {
             var result = await inner.AddAroundBrushingAsync(aroundBrushing);
-            await cache.RemoveAsync(AllKey);
+            await InvalidatePageCachesAsync();
             return result;
         }
 
         public async Task<AroundBrushing> UpdateAroundBrushingAsync(AroundBrushing aroundBrushing)
         {
             var result = await inner.UpdateAroundBrushingAsync(aroundBrushing);
-            await cache.RemoveAsync(AllKey);
+            await InvalidatePageCachesAsync();
             return result;
         }
 
         public async Task DeleteAroundBrushingAsync(int id)
         {
             await inner.DeleteAroundBrushingAsync(id);
-            await cache.RemoveAsync(AllKey);
+            await InvalidatePageCachesAsync();
+        }
+
+        private async Task InvalidatePageCachesAsync()
+        {
+            int[] commonPageSizes = [5, 8, 10, 20, 25, 50];
+            var removals = new List<Task>();
+            foreach (var size in commonPageSizes)
+                for (var page = 1; page <= 20; page++)
+                    removals.Add(cache.RemoveAsync(PageKey(page, size)));
+            await Task.WhenAll(removals);
         }
     }
 }

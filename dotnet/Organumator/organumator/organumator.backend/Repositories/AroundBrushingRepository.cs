@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using organumator.Data;
+using organumator.Dtos;
 using organumator.Interfaces;
 
 namespace organumator.Repositories
@@ -14,11 +15,22 @@ namespace organumator.Repositories
             return aroundBrushing;
         }
 
-        public async Task<List<Models.AroundBrushing>> GetAllAroundBrushingsAsync()
+        public async Task<PagedResult<Models.AroundBrushing>> GetAllAroundBrushingsPagedAsync(int pageNumber, int pageSize)
         {
-            return await _context.AroundBrushings
+            var totalCount = await _context.AroundBrushings.CountAsync();
+            var items = await _context.AroundBrushings
                 .OrderByDescending(x => x.PerformedOnDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<Models.AroundBrushing>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<Models.AroundBrushing> GetAroundBrushingByIdAsync(int id)
