@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using organumator.Data;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -15,11 +16,22 @@ namespace organumator.Repositories
             return silvermanPillTaking;
         }
 
-        public async Task<List<SilvermanPillTaking>> GetAllSilvermanPillTakingsAsync()
+        public async Task<PagedResult<SilvermanPillTaking>> GetAllSilvermanPillTakingsPagedAsync(int pageNumber, int pageSize)
         {
-            return await applicationDbContext.SilvermanPillTakings
+            var totalCount = await applicationDbContext.SilvermanPillTakings.CountAsync();
+            var items = await applicationDbContext.SilvermanPillTakings
                 .OrderByDescending(x => x.PerformedOnDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<SilvermanPillTaking>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<SilvermanPillTaking> GetSilvermanPillTakingByIdAsync(int id)

@@ -1,15 +1,18 @@
-
 using Microsoft.AspNetCore.Mvc;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
 namespace organumator.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
-    public class SilvermanPillTakingController(ISilvermanPillTakingRepository silvermanPillTakingRepository) : ControllerBase
+    public class SilvermanPillTakingController(
+        ISilvermanPillTakingRepository silvermanPillTakingRepository,
+        IConfiguration configuration) : ControllerBase
     {
+        private int DefaultPageSize =>
+            configuration.GetValue<int>("Pagination:DefaultPageSize");
 
         [HttpPost]
         public async Task<IActionResult> AddSilvermanPillTaking([FromBody] SilvermanPillTaking silvermanPillTaking)
@@ -19,10 +22,14 @@ namespace organumator.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllSilvermanPillTakings()
+        public async Task<IActionResult> GetAllSilvermanPillTakings(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            var silvermanPillTakings = await silvermanPillTakingRepository.GetAllSilvermanPillTakingsAsync();
-            return Ok(silvermanPillTakings);
+            var result = await silvermanPillTakingRepository.GetAllSilvermanPillTakingsPagedAsync(
+                pageNumber,
+                pageSize ?? DefaultPageSize);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

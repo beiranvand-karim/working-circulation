@@ -1,7 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { SilvermanPillTakingItemModel } from "../models/silverman-pill-taking.model";
-
+import { SilvermanPillTakingItemModel, PagedResult } from "../models/silverman-pill-taking.model";
 
 @Injectable()
 export class SilvermanPillTakingService {
@@ -9,8 +8,11 @@ export class SilvermanPillTakingService {
 
     private readonly apiUrl = 'https://localhost:7036/api/SilvermanPillTaking';
 
-    getAll() {
-        return this.httpClient.get<SilvermanPillTakingItemModel[]>(this.apiUrl);
+    getAll(pageNumber: number, pageSize: number) {
+        const params = new HttpParams()
+            .set('pageNumber', pageNumber)
+            .set('pageSize', pageSize)
+        return this.httpClient.get<PagedResult<SilvermanPillTakingItemModel>>(this.apiUrl, { params });
     }
 
     create() {
