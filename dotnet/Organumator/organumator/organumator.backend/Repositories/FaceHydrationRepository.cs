@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using organumator.Data;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -25,11 +26,22 @@ namespace organumator.Repositories
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task<List<FaceHydration>> GetAllFaceHydrationsAsync()
+        public async Task<PagedResult<FaceHydration>> GetAllFaceHydrationsPagedAsync(int pageNumber, int pageSize)
         {
-            return await applicationDbContext.FaceHydrations
+            var totalCount = await applicationDbContext.FaceHydrations.CountAsync();
+            var items = await applicationDbContext.FaceHydrations
                 .OrderByDescending(x => x.PerformedOnDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<FaceHydration>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<FaceHydration> GetFaceHydrationByIdAsync(int id)
@@ -41,7 +53,7 @@ namespace organumator.Repositories
                 _ => faceHydration
             };
         }
-        
+
         public async Task<FaceHydration> UpdateFaceHydrationAsync(FaceHydration faceHydration)
         {
             var existingFaceHydration = await applicationDbContext.FaceHydrations.FirstOrDefaultAsync(x => x.Id == faceHydration.Id);

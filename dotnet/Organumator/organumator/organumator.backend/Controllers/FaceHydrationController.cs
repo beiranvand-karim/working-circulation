@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -6,13 +7,21 @@ namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FaceHydrationController(IFaceHydrationRepository faceHydrationRepository) : ControllerBase
+    public class FaceHydrationController(
+        IFaceHydrationRepository faceHydrationRepository,
+        IConfiguration configuration) : ControllerBase
     {
+        private int DefaultPageSize =>
+            configuration.GetValue<int>("Pagination:DefaultPageSize");
 
         [HttpGet]
-        public async Task<IEnumerable<FaceHydration>> Get()
+        public async Task<PagedResult<FaceHydration>> Get(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            return await faceHydrationRepository.GetAllFaceHydrationsAsync();
+            return await faceHydrationRepository.GetAllFaceHydrationsPagedAsync(
+                pageNumber,
+                pageSize ?? DefaultPageSize);
         }
 
         [HttpGet("{id}")]
