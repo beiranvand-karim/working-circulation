@@ -5,13 +5,20 @@ namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CalciferolTakingController(ICalciferolTakingRepository repository): ControllerBase
+    public class CalciferolTakingController(
+        ICalciferolTakingRepository repository,
+        IConfiguration configuration) : ControllerBase
     {
+        private int DefaultPageSize =>
+            configuration.GetValue<int>("Pagination:DefaultPageSize");
+
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            var items = await repository.GetAllAsync();
-            return Ok(items);
+            var result = await repository.GetAllPagedAsync(pageNumber, pageSize ?? DefaultPageSize);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

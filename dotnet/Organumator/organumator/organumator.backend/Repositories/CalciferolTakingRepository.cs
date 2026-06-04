@@ -1,4 +1,5 @@
 using organumator.Data;
+using organumator.Dtos;
 using organumator.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,11 +8,22 @@ namespace organumator.Repositories
     public class CalciferolTakingRepository(ApplicationDbContext applicationDbContext): ICalciferolTakingRepository
     {
 
-        public async Task<IEnumerable<Models.CalciferolTakingModel>> GetAllAsync()
+        public async Task<PagedResult<Models.CalciferolTakingModel>> GetAllPagedAsync(int pageNumber, int pageSize)
         {
-            return await applicationDbContext.CalciferolTakings
+            var totalCount = await applicationDbContext.CalciferolTakings.CountAsync();
+            var items = await applicationDbContext.CalciferolTakings
                 .OrderByDescending(x => x.PerformedOnDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<Models.CalciferolTakingModel>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<Models.CalciferolTakingModel> GetByIdAsync(int id)
