@@ -1,24 +1,31 @@
 <button mat-button (click)="refresh()">Refresh</button>
 
-@if (items$ | async; as items) {
-  @if (items.length === 0) {
-    <p>No simcard chargings recorded yet.</p>
-  } @else {
-    <mat-table [dataSource]="items">
-      <ng-container matColumnDef="chargedAt">
-        <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
-        <mat-cell *matCellDef="let item">{{ item.chargedAt | date:'medium' }}</mat-cell>
-      </ng-container>
+@if (items.length === 0) {
+  <p>No simcard chargings recorded yet.</p>
+} @else {
+  <mat-table [dataSource]="items">
+    <ng-container matColumnDef="chargedAt">
+      <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{ item.chargedAt | date:'medium' }}</mat-cell>
+    </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <mat-header-cell *matHeaderCellDef></mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          <simcard-charging-delete-one [itemId]="item.id" (deleted)="refresh()" />
-        </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        <simcard-charging-delete-one [itemId]="item.id" (deleted)="refresh()" />
+      </mat-cell>
+    </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-  }
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 }
+
+<mat-paginator
+  [length]="totalCount"
+  [pageSize]="pageSize"
+  [pageIndex]="pageNumber - 1"
+  [pageSizeOptions]="[5, 8, 10, 20, 50]"
+  (page)="onPageChange($event)"
+/>
+<span class="page-count">Page {{ pageNumber }} of {{ totalPages }}</span>

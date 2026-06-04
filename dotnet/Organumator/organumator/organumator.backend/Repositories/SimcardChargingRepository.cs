@@ -1,4 +1,5 @@
 using System.Text.Json;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -56,11 +57,19 @@ namespace organumator.Repositories
             }
         }
 
-        public Task<List<SimcardCharging>> GetAllAsync()
+        public Task<PagedResult<SimcardCharging>> GetAllPagedAsync(int pageNumber, int pageSize)
         {
             lock (_lock)
             {
-                return Task.FromResult(ReadAllDays().OrderByDescending(r => r.ChargedAt).ToList());
+                var all = ReadAllDays().OrderByDescending(r => r.ChargedAt).ToList();
+                var items = all.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToList();
+                return Task.FromResult(new PagedResult<SimcardCharging>
+                {
+                    Items = items,
+                    TotalCount = all.Count,
+                    PageNumber = pageNumber,
+                    PageSize = pageSize
+                });
             }
         }
 
