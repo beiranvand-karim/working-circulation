@@ -1,14 +1,17 @@
 import { inject, Injectable } from '@angular/core'
-import { ClothesWearing } from '../models/clothes-wearing.model'
-import { HttpClient } from '@angular/common/http'
+import { ClothesWearing, PagedResult } from '../models/clothes-wearing.model'
+import { HttpClient, HttpParams } from '@angular/common/http'
 
 @Injectable()
 export class ClothesWearingService {
   private readonly httpClient: HttpClient = inject(HttpClient)
   apiUrl = 'https://localhost:7036/api/ClothesWearings'
 
-  getAll() {
-    return this.httpClient.get<ClothesWearing[]>(this.apiUrl)
+  getAll(pageNumber: number, pageSize: number) {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber)
+      .set('pageSize', pageSize)
+    return this.httpClient.get<PagedResult<ClothesWearing>>(this.apiUrl, { params })
   }
 
   add(clothesWearing: ClothesWearing) {

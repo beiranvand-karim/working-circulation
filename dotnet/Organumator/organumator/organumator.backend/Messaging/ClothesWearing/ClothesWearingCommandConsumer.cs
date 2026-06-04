@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 using RabbitMQ.Client;
@@ -71,7 +72,7 @@ namespace organumator.Messaging.ClothesWearing
                         "Create" => HandleCreate(command, repository, ea.BasicProperties),
                         "Update" => HandleUpdate(command, repository),
                         "Delete" => HandleDelete(command, repository),
-                        "GetAll" => HandleGetAll(repository, ea.BasicProperties),
+                        "GetAll" => HandleGetAll(command, repository, ea.BasicProperties),
                         "GetById" => HandleGetById(command, repository, ea.BasicProperties),
                         _ => Task.CompletedTask
                     });
@@ -129,10 +130,10 @@ namespace organumator.Messaging.ClothesWearing
             _logger.LogInformation("ClothesWearing deleted: {Id}", command.Id.Value);
         }
 
-        private async Task HandleGetAll(IClothesWearingRepository repository, IBasicProperties props)
+        private async Task HandleGetAll(ClothesWearingCommand command, IClothesWearingRepository repository, IBasicProperties props)
         {
-            var all = await repository.GetAllClothesWearingsAsync();
-            Reply(all, props);
+            var result = await repository.GetAllClothesWearingsPagedAsync(command.PageNumber, command.PageSize);
+            Reply(result, props);
         }
 
         private async Task HandleGetById(ClothesWearingCommand command, IClothesWearingRepository repository, IBasicProperties props)

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using organumator.Dtos;
 using organumator.Messaging;
 using organumator.Messaging.ClothesWearing;
 using organumator.Models;
@@ -8,16 +9,27 @@ namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ClothesWearingsController(IRabbitMqPublisher publisher, IOptions<RabbitMqSettings> settings) : ControllerBase
+    public class ClothesWearingsController(
+        IRabbitMqPublisher publisher,
+        IOptions<RabbitMqSettings> settings,
+        IConfiguration configuration) : ControllerBase
     {
         private readonly string Queue = settings.Value.ClothesWearingCommandQueueName;
+        private int DefaultPageSize => configuration.GetValue<int>("Pagination:DefaultPageSize");
 
         [HttpGet]
-        public async Task<IEnumerable<ClothesWearing>> Get()
+        public async Task<ActionResult<PagedResult<ClothesWearing>>> Get(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            var result = await publisher.QueryAsync<List<ClothesWearing>>(
-                new ClothesWearingCommand { Action = "GetAll" }, Queue);
-            return result ?? [];
+            var result = await publisher.QueryAsync<PagedResult<ClothesWearing>>(
+                new ClothesWearingCommand
+                {
+                    Action = "GetAll",
+                    PageNumber = pageNumber,
+                    PageSize = pageSize ?? DefaultPageSize
+                }, Queue);
+            return result is null ? NotFound() : Ok(result);
         }
 
         [HttpGet("{id}")]
