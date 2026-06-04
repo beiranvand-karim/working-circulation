@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -6,8 +7,12 @@ namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LivergolPillTakingController(ILivergolPillTakingRepository livergolPillTakingRepository) : ControllerBase
+    public class LivergolPillTakingController(
+        ILivergolPillTakingRepository livergolPillTakingRepository,
+        IConfiguration configuration) : ControllerBase
     {
+        private int DefaultPageSize =>
+            configuration.GetValue<int>("Pagination:DefaultPageSize");
 
         [HttpPost]
         public async Task<IActionResult> AddLivergolPillTaking([FromBody] LivergolPillTakingModel livergolPillTaking)
@@ -17,10 +22,14 @@ namespace organumator.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllLivergolPillTakings()
+        public async Task<IActionResult> GetAllLivergolPillTakings(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            var pillTakings = await livergolPillTakingRepository.GetAllLivergolPillTakingsAsync();
-            return Ok(pillTakings);
+            var result = await livergolPillTakingRepository.GetAllLivergolPillTakingsPagedAsync(
+                pageNumber,
+                pageSize ?? DefaultPageSize);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]

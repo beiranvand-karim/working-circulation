@@ -1,14 +1,18 @@
 import { inject, Injectable } from "@angular/core"
-import { LivergolPillTakingItemModel } from "../models/livergol-pill-taking.model"
-import { HttpClient } from "@angular/common/http"
+import { LivergolPillTakingItemModel, PagedResult } from "../models/livergol-pill-taking.model"
+import { HttpClient, HttpParams } from "@angular/common/http"
 
 @Injectable()
 export class LivergolPillTakingService {
     private readonly httpClient = inject(HttpClient)
 
-    getAll() {
-        return this.httpClient.get<LivergolPillTakingItemModel[]>(
-            'https://localhost:7036/api/LivergolPillTaking'
+    getAll(pageNumber: number, pageSize: number) {
+        const params = new HttpParams()
+            .set('pageNumber', pageNumber)
+            .set('pageSize', pageSize)
+        return this.httpClient.get<PagedResult<LivergolPillTakingItemModel>>(
+            'https://localhost:7036/api/LivergolPillTaking',
+            { params }
         )
     }
 

@@ -1,4 +1,5 @@
 using organumator.Data;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 using Microsoft.EntityFrameworkCore;
@@ -25,11 +26,22 @@ namespace organumator.Repositories
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task<List<LivergolPillTakingModel>> GetAllLivergolPillTakingsAsync()
+        public async Task<PagedResult<LivergolPillTakingModel>> GetAllLivergolPillTakingsPagedAsync(int pageNumber, int pageSize)
         {
-            return await applicationDbContext.LivergolPillTakings
+            var totalCount = await applicationDbContext.LivergolPillTakings.CountAsync();
+            var items = await applicationDbContext.LivergolPillTakings
                 .OrderByDescending(x => x.PerformedOnDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<LivergolPillTakingModel>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<LivergolPillTakingModel> GetLivergolPillTakingByIdAsync(int id)
