@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using organumator.Data;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 
@@ -22,11 +23,22 @@ namespace organumator.Repositories
             await applicationDbContext.SaveChangesAsync();
         }
 
-        public async Task<List<VacuumCleanings>> GetAllVacuumCleaningsAsync()
+        public async Task<PagedResult<VacuumCleanings>> GetAllVacuumCleaningsPagedAsync(int pageNumber, int pageSize)
         {
-            return await applicationDbContext.VacuumCleanings
+            var totalCount = await applicationDbContext.VacuumCleanings.CountAsync();
+            var items = await applicationDbContext.VacuumCleanings
                 .OrderByDescending(x => x.PerformedOnDate)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
+
+            return new PagedResult<VacuumCleanings>
+            {
+                Items = items,
+                TotalCount = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
         }
 
         public async Task<VacuumCleanings> GetVacuumCleaningsByIdAsync(int id)

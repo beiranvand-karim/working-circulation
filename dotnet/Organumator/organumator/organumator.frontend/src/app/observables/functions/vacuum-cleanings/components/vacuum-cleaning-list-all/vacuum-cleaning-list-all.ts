@@ -1,35 +1,53 @@
-import { Component, inject, OnDestroy } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { VacuumCleaningsService } from '../../services/vacuum-cleanings.service'
-import { Subject } from 'rxjs'
+import { VacuumCleanings, PagedResult } from '../../models/vacuum-cleanings.model'
 import { DatePipe } from '@angular/common'
 import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button'
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator'
 import { VacuumCleaningDeleteOne } from '../vacuum-cleaning-delete-one/vacuum-cleaning-delete-one'
+import { PAGINATION_PAGE_SIZE } from '../../../../../pagination.config'
 
 @Component({
   selector: 'vacuum-cleaning-list-all',
-  imports: [DatePipe, MatTableModule, MatButtonModule, VacuumCleaningDeleteOne],
+  imports: [DatePipe, MatTableModule, MatButtonModule, MatPaginatorModule, VacuumCleaningDeleteOne],
   templateUrl: './vacuum-cleaning-list-all.html',
   styleUrl: './vacuum-cleaning-list-all.scss',
   providers: [VacuumCleaningsService],
 })
-export class VacuumCleaningListAll implements OnDestroy {
+export class VacuumCleaningListAll {
   private readonly vacuumCleaningsService = inject(VacuumCleaningsService)
-  destroy$ = new Subject<void>()
+  protected readonly defaultPageSize = inject(PAGINATION_PAGE_SIZE)
 
-  vacuumCleanings$ = this.vacuumCleaningsService.getAll()
   displayedColumns = ['performedOnDate', 'actions']
 
+  protected pageNumber = 1
+  protected pageSize = this.defaultPageSize
+  protected totalCount = 0
+  protected totalPages = 0
+  protected items: VacuumCleanings[] = []
+
+  constructor() {
+    this.loadPage()
+  }
+
+  onPageChange(event: PageEvent) {
+    this.pageNumber = event.pageIndex + 1
+    this.pageSize = event.pageSize
+    this.loadPage()
+  }
+
   refresh() {
-    this.getAll()
+    this.loadPage()
   }
 
-  getAll() {
-    this.vacuumCleanings$ = this.vacuumCleaningsService.getAll()
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next()
-    this.destroy$.complete()
+  private loadPage() {
+    this.vacuumCleaningsService.getAll(this.pageNumber, this.pageSize).subscribe({
+      next: (result: PagedResult<VacuumCleanings>) => {
+        this.items = result.items
+        this.totalCount = result.totalCount
+        this.totalPages = result.totalPages
+      },
+    })
   }
 }

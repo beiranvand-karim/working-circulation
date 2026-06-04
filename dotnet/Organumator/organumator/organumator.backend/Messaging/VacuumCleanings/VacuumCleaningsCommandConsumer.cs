@@ -1,6 +1,7 @@
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Options;
+using organumator.Dtos;
 using organumator.Interfaces;
 using organumator.Models;
 using RabbitMQ.Client;
@@ -68,7 +69,7 @@ namespace organumator.Messaging.VacuumCleanings
                         "Create"  => HandleCreate(command, repository, ea.BasicProperties),
                         "Update"  => HandleUpdate(command, repository),
                         "Delete"  => HandleDelete(command, repository),
-                        "GetAll"  => HandleGetAll(repository, ea.BasicProperties),
+                        "GetAll"  => HandleGetAll(command, repository, ea.BasicProperties),
                         "GetById" => HandleGetById(command, repository, ea.BasicProperties),
                         _         => Task.CompletedTask
                     });
@@ -126,10 +127,10 @@ namespace organumator.Messaging.VacuumCleanings
             _logger.LogInformation("VacuumCleanings deleted: {Id}", command.Id.Value);
         }
 
-        private async Task HandleGetAll(IVacuumCleaningsRepository repository, IBasicProperties props)
+        private async Task HandleGetAll(VacuumCleaningsCommand command, IVacuumCleaningsRepository repository, IBasicProperties props)
         {
-            var all = await repository.GetAllVacuumCleaningsAsync();
-            Reply(all, props);
+            var result = await repository.GetAllVacuumCleaningsPagedAsync(command.PageNumber, command.PageSize);
+            Reply(result, props);
         }
 
         private async Task HandleGetById(VacuumCleaningsCommand command, IVacuumCleaningsRepository repository, IBasicProperties props)

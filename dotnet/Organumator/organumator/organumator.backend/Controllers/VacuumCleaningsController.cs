@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using organumator.Dtos;
 using organumator.Messaging;
 using organumator.Messaging.VacuumCleanings;
 using organumator.Models;
@@ -8,16 +9,27 @@ namespace organumator.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class VacuumCleaningsController(IRabbitMqPublisher publisher, IOptions<RabbitMqSettings> settings) : ControllerBase
+    public class VacuumCleaningsController(
+        IRabbitMqPublisher publisher,
+        IOptions<RabbitMqSettings> settings,
+        IConfiguration configuration) : ControllerBase
     {
         private readonly string Queue = settings.Value.CommandQueueName;
+        private int DefaultPageSize => configuration.GetValue<int>("Pagination:DefaultPageSize");
 
         [HttpGet]
-        public async Task<IEnumerable<VacuumCleanings>> Get()
+        public async Task<ActionResult<PagedResult<VacuumCleanings>>> Get(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int? pageSize = null)
         {
-            var result = await publisher.QueryAsync<List<VacuumCleanings>>(
-                new VacuumCleaningsCommand { Action = "GetAll" }, Queue);
-            return result ?? [];
+            var result = await publisher.QueryAsync<PagedResult<VacuumCleanings>>(
+                new VacuumCleaningsCommand
+                {
+                    Action = "GetAll",
+                    PageNumber = pageNumber,
+                    PageSize = pageSize ?? DefaultPageSize
+                }, Queue);
+            return result is null ? NotFound() : Ok(result);
         }
 
         [HttpGet("{id}")]

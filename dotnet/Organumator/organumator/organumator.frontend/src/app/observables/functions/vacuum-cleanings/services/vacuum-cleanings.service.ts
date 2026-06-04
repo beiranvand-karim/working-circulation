@@ -1,14 +1,17 @@
 import { inject, Injectable } from '@angular/core'
-import { VacuumCleanings } from '../models/vacuum-cleanings.model'
-import { HttpClient } from '@angular/common/http'
+import { VacuumCleanings, PagedResult } from '../models/vacuum-cleanings.model'
+import { HttpClient, HttpParams } from '@angular/common/http'
 
 @Injectable()
 export class VacuumCleaningsService {
   private readonly httpClient: HttpClient = inject(HttpClient)
   apiUrl = 'https://localhost:7036/api/VacuumCleanings'
 
-  getAll() {
-    return this.httpClient.get<VacuumCleanings[]>(this.apiUrl)
+  getAll(pageNumber: number, pageSize: number) {
+    const params = new HttpParams()
+      .set('pageNumber', pageNumber)
+      .set('pageSize', pageSize)
+    return this.httpClient.get<PagedResult<VacuumCleanings>>(this.apiUrl, { params })
   }
 
   add(vacuumCleaning: VacuumCleanings) {
