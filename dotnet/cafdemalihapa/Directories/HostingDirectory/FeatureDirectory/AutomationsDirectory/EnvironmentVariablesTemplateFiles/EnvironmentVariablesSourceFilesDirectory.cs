@@ -1,5 +1,6 @@
+using cafdemalihapa.Applications;
+using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles;
 using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesTemplatesDirectory;
-using cafdemalihapa.Names;
 using Microsoft.Extensions.Logging;
 
 namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles
@@ -24,11 +25,14 @@ namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.Automation
             DirectoriesMultitudeCommandingOrderRectoActionShut directoriesMultitudeCommandingOrderRectoActionShut,
             DirectoriesMultitudeServingOrderRectoActionOpen directoriesMultitudeServingOrderRectoActionOpen,
             DirectoriesMultitudeServingOrderRectoActionShut directoriesMultitudeServingOrderRectoActionShut,
+            EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
             ILogger<EnvironmentVariablesSourceFilesDirectory> logger
         )
     {
-        public void Populate(string destinationDirectory, Dictionary<string, string> environmentVariablesSourceDictionary)
+        public void Populate()
         {
+            var destinationDirectory = environmentVariablesFilesDirectory.GetPath();
+            var environmentVariablesSourceDictionary = environmentVariablesFilesDirectory.PairUp();
             var templateSourceDirectory = environmentVariablesTemplatesDirectory.GetPath();
 
             foreach (var templateFile in Directory.EnumerateFiles(templateSourceDirectory))

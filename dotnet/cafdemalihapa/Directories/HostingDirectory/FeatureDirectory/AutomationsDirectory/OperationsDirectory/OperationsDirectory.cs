@@ -17,8 +17,9 @@ namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.Automation
             return operationsDirectory;
         }
 
-        public void ReplaceFileNamesWithPaths(string giversPath)
+        public void ReplaceFileNamesWithPaths()
         {
+            var giversPath = Path.Combine(automationsDirectory.GetPath(), "commands");
             var pathToTarget = GetPath();
             foreach (var filePath in Directory.EnumerateFiles(pathToTarget))
             {

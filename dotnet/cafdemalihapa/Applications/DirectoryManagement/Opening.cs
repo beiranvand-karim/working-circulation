@@ -119,7 +119,7 @@ namespace cafdemalihapa.Applications.DirectoryManagement
                 myProcess.StartInfo.UseShellExecute = false;
                 myProcess.StartInfo.FileName = "explorer.exe";
                 myProcess.StartInfo.CreateNoWindow = true;
-                var normalizedPath = PathUtility.NormalizeSlashes(path, PathUtility.SlashStyle.ForceBackslash);
+                var normalizedPath = path.NormalizeSlashes(PathUtility.SlashStyle.ForceBackslash);
 
                 logger.LogInformation("path: {path}", path);
                 logger.LogInformation("normalizedPath: {normalizedPath}", normalizedPath);

@@ -3,7 +3,7 @@ using System.Text.Json;
 using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesSource.SeparationFilement;
 using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesSource.Files.Jsons;
 
-namespace cafdemalihapa.Names
+namespace cafdemalihapa.Applications
 {
     public class Something(
             PersistentVariablesFile persistentVariablesFile,

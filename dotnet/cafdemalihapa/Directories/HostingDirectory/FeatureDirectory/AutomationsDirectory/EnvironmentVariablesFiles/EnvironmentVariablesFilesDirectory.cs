@@ -1,6 +1,4 @@
-using cafdemalihapa.Applications.Cafdemalihapa;
-using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesSource;
-using cafdemalihapa.Names;
+using cafdemalihapa.Applications;
 
 namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles
 {

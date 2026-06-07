@@ -2,7 +2,7 @@ namespace cafdemalihapa.Applications
 {
     public static class PathUtility
     {
-        public static string NormalizeSlashes(string path, SlashStyle style = SlashStyle.AutoByOS)
+        public static string NormalizeSlashes(this string path, SlashStyle style = SlashStyle.AutoByOS)
         {
             switch (style)
             {

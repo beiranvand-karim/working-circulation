@@ -1,16 +1,19 @@
+using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.CommandsDirectory;
 
 namespace cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.PowerShellScriptsDirectory
 {
     public class PowerShellScriptsDirectory
     (
         ScriptsDirectory scriptsDirectory,
-        Directories directories
+        Directories directories,
+        CommandsDirectory commandsDirectory
     )
     {
         const string directoryNameInSourceCode = "powershell-scripts";
 
-        public void CopyContentToDirectory(string destinationDirectory)
+        public void CopyContentToDirectory()
         {
+            var destinationDirectory = commandsDirectory.GetPath();
             var sourceDirectory = GetPath();
             directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }

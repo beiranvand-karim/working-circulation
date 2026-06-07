@@ -17,39 +17,41 @@ namespace cafdemalihapa.Applications.Cafdemalihapa
         EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
         AutomationsDirectory automationsDirectory,
         OperationsDirectory operationsDirectory,
-        CommandsDirectory commandsDirectory
+        CommandsDirectory commandsDirectory,
+        FolderViewConfigurator folderViewConfigurator
     )
     {
         public void Run()
         {
             try
             {
-                featureDirectory.Create();
+                CreateDirectories();
 
-                automationsDirectory.Create();
+                environmentVariablesSourceFilesDirectory.Populate();
 
-                environmentVariablesFilesDirectory.Create();
-                var environmentVariablesFilesDirectoryPath = environmentVariablesFilesDirectory.GetPath();
-                var environmentVariablesSourceDictionary = environmentVariablesFilesDirectory.PairUp();
+                powerShellScriptsDirectory.CopyContentToDirectory();
+                commandsDirectory.ReplaceFileNamesWithPaths();
 
-                environmentVariablesSourceFilesDirectory.Populate(environmentVariablesFilesDirectoryPath, environmentVariablesSourceDictionary);
+                operationsDirectory.ReplaceFileNamesWithPaths();
 
-                commandsDirectory.Create();
-                var commandsDirectoryPath = commandsDirectory.GetPath();
-                powerShellScriptsDirectory.CopyContentToDirectory(commandsDirectoryPath);
-                commandsDirectory.ReplaceFileNamesWithPaths(environmentVariablesSourceDictionary);
-
-                operationsDirectory.Create();
-                var operationsDirectoryPath = operationsDirectory.GetPath();
-                operationsDirectory.ReplaceFileNamesWithPaths(commandsDirectoryPath);
+                folderViewConfigurator.Configure();
             }
             catch (Exception ex)
             {
                 logger.LogInformation("Cafdemalihapa: An error occurred while running the application.");
                 logger.LogInformation("_________________________________________________");
-                logger.LogError(ex.ToString());
+                logger.LogError(ex, "Cafdemalihapa: An unhandled error occurred while running the application.");
                 logger.LogInformation("_________________________________________________");
             }
+        }
+
+        public void CreateDirectories()
+        {
+            featureDirectory.Create();
+            automationsDirectory.Create();
+            environmentVariablesFilesDirectory.Create();
+            commandsDirectory.Create();
+            operationsDirectory.Create();
         }
     }
 }

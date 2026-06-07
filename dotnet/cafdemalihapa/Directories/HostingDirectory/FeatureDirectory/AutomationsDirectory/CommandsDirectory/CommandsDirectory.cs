@@ -42,8 +42,9 @@ namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.Automation
             return operationsDirectory;
         }
 
-        public void ReplaceFileNamesWithPaths(Dictionary<string, string> environmentVariablesSourceDictionary)
+        public void ReplaceFileNamesWithPaths()
         {
+            var environmentVariablesSourceDictionary = environmentVariablesFilesDirectory.PairUp();
             var commandsDirectoryPath = GetPath();
             var giversPath = environmentVariablesFilesDirectory.GetPath();
             var runHostApplicationPath = Path.Combine(commandsDirectoryPath, "run-primary-application.ps1");

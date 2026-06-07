@@ -1,3 +1,4 @@
+using cafdemalihapa.Applications;
 using cafdemalihapa.Applications.Cafdemalihapa;
 using cafdemalihapa.Applications.DirectoryManagement;
 using cafdemalihapa.Applications.IdeManagement;
@@ -101,6 +102,7 @@ namespace cafdemalihapa
             services.AddSingleton<Creation>();
             services.AddSingleton<Opening>();
             services.AddSingleton<Shutting>();
+            services.AddSingleton<FolderViewConfigurator>();
             services.AddSingleton<CodeBaseDirectory>();
             services.AddSingleton<CodeBase>();
             services.AddSingleton<DirectoryToBeOpen>();
