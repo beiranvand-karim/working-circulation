@@ -10,40 +10,19 @@ namespace cafdemalihapa.Applications
         DirectoryManagement.DirectoryManagement directoryManagement
         )
     {
-        private string GetApplication()
-        {
-            var application = CommandLineArgs.GetByKey("--application");
-            return application;
-        }
-
-        private bool IsCafdemalihapa()
-        {
-            return GetApplication() == "cafdemalihapa";
-        }
-
-        private bool IsNotepadPlusPlusFileManagementApplication()
-        {
-            return GetApplication() == "notepad-plus-plus-file-management";
-        }
-
-        private bool IsIdeManagementApplication()
-        {
-            return GetApplication() == "ide-management";
-        }
-
         public void Run()
         {
-            if (IsCafdemalihapa())
+            if (Applications.Get().IsCafdemalihapa())
             {
                 cafdemalihapa.Run();
             }
 
-            if (IsNotepadPlusPlusFileManagementApplication())
+            if (Applications.Get().IsNotepadPlusPlusFileManagementApplication())
             {
                 notepadPlusPlusFileManagementCommandSwitcher.Run();
             }
 
-            if(IsIdeManagementApplication())
+            if (Applications.Get().IsIdeManagementApplication())
             {
                 ideManagement.Run();
             }

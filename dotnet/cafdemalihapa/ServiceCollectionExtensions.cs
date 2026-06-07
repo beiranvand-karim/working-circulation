@@ -98,6 +98,9 @@ namespace cafdemalihapa
             services.AddSingleton<RepositoryDirectory>();
             services.AddSingleton<MutantVariablesFile>();
             services.AddSingleton<DirectoryManagement>();
+            services.AddSingleton<Creation>();
+            services.AddSingleton<Opening>();
+            services.AddSingleton<Shutting>();
             services.AddSingleton<CodeBaseDirectory>();
             services.AddSingleton<CodeBase>();
             services.AddSingleton<DirectoryToBeOpen>();

@@ -1,3 +1,5 @@
+using cafdemalihapa.Files;
+
 namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages
 {
     public class NotesAndMessagesDirectory(
@@ -18,6 +20,12 @@ namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.NotesAndMe
             {
                 Directory.CreateDirectory(path);
             }
+        }
+
+        public void CreateFiles()
+        {
+            var path = GetPath();
+            FileService.CreateNumberedFiles(path);
         }
     }
 }

@@ -1,3 +1,4 @@
+using cafdemalihapa.Files;
 using cafdemalihapa.Names;
 
 namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory
@@ -31,6 +32,12 @@ namespace cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.FrontEndDi
             {
                 Directory.CreateDirectory(path);
             }
+        }
+
+        public void CreateFiles()
+        {
+            var path = GetPath();
+            FileService.CreateNumberedFiles(path);
         }
     }
 }
