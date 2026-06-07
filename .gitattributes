@@ -1,0 +1,30 @@
+# ---------------------------------------------------------------------------
+# Line-ending policy
+#
+# Goal: keep line endings deterministic regardless of each contributor's
+# `core.autocrlf` setting, so diffs don't show spurious LF<->CRLF changes.
+#
+# How it works:
+#   * In the repository, text files are stored normalized to LF.
+#   * On checkout, the working-tree ending is decided by the rules below.
+#   * Windows-native scripts (.ps1/.bat/.cmd) are checked out as CRLF because
+#     they are run by Windows tooling that expects CRLF.
+#   * Unix scripts (.sh) are forced to LF so they stay executable on Linux/macOS.
+#
+# See LINE-ENDINGS.md for the rationale and the one-time renormalize command.
+# ---------------------------------------------------------------------------
+
+# Default: let Git detect text vs binary and normalize text to LF in the repo.
+* text=auto
+
+# Windows-native scripts — check out as CRLF.
+*.ps1   text eol=crlf
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# Unix shell scripts — must stay LF.
+*.sh    text eol=lf
+
+# Explicit binary files — never normalize or diff as text.
+*.ico   binary
+*.db    binary
