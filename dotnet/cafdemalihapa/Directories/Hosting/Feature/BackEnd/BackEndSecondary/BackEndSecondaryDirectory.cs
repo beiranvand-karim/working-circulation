@@ -3,13 +3,12 @@ using cafdemalihapa.Names;
 namespace cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary
 {
     public class BackEndSecondaryDirectory(
-            SecondaryApplication secondaryApplication,
-            BackEndDirectory backEndDirectory
+            SecondaryApplication secondaryApplication
         )
     {
         public string GetName()
         {
-            var backEndDirectoryName = backEndDirectory.GetName();
+            var backEndDirectoryName = BackEndDirectory.GetName();
             var secondaryApplicationName = secondaryApplication.GetName();
             var name = $"{backEndDirectoryName}.{secondaryApplicationName}";
             return name;
@@ -17,7 +16,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary
 
         public string GetPath()
         {
-            var backEndDirectoryPath = backEndDirectory.GetPath();
+            var backEndDirectoryPath = BackEndDirectory.GetPath();
             var name = GetName();
 
             var backEndSecondaryDirectoryPath = Path.Combine(backEndDirectoryPath, name);

@@ -9,7 +9,6 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
         FeatureName featureName,
         SecondaryApplication secondaryApplication,
         PrimaryApplication primaryApplication,
-        HostingDirectory hostingDirectory,
         StringHelpers stringHelpers,
         ILogger<NotepadPlusPlusOpenAll> logger
     )
@@ -58,7 +57,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             }
                         case "HOSTING_DIRECTORY":
                             {
-                                var val = hostingDirectory.GetPath();
+                                var val = HostingDirectory.GetPath();
                                 var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;

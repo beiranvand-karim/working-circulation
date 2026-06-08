@@ -1,9 +1,6 @@
 namespace cafdemalihapa.Directories.Hosting.Feature.Data
 {
-    public class DataDirectory
-    (
-        FeatureDirectory featureDirectory
-    )
+    public class DataDirectory()
     {
         public string GetName()
         {
@@ -12,7 +9,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Data
         public string GetPath()
         {
             var directoryName = GetName();
-            var featureDirectoryPath = featureDirectory.GetPath();
+            var featureDirectoryPath = FeatureDirectory.GetPath();
             var dataDirectory = Path.Combine(featureDirectoryPath, directoryName);
             return dataDirectory;
         }

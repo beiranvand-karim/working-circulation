@@ -1,14 +1,11 @@
 namespace cafdemalihapa.Directories.Hosting.Feature.Calls
 {
-    public class CallsDirectory
-    (
-        FeatureDirectory featureDirectory
-    )
+    public class CallsDirectory()
     {
         public string GetPath()
         {
             var directoryName = "calls";
-            var featureDirectoryPath = featureDirectory.GetPath();
+            var featureDirectoryPath = FeatureDirectory.GetPath();
             var notesAndMessages = Path.Combine(featureDirectoryPath, directoryName);
             return notesAndMessages;
         }

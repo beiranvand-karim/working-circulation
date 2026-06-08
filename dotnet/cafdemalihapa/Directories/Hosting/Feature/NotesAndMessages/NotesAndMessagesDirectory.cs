@@ -2,14 +2,12 @@ using cafdemalihapa.Files;
 
 namespace cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages
 {
-    public class NotesAndMessagesDirectory(
-            FeatureDirectory featureDirectory
-        )
+    public class NotesAndMessagesDirectory()
     {
         public string GetPath()
         {
             var directoryName = "notes and messages";
-            var featureDirectoryPath = featureDirectory.GetPath();
+            var featureDirectoryPath = FeatureDirectory.GetPath();
             var notesAndMessages = Path.Combine(featureDirectoryPath, directoryName);
             return notesAndMessages;
         }

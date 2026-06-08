@@ -1,14 +1,11 @@
 namespace cafdemalihapa.Directories.Hosting.Feature.WebLinks
 {
-    public class WebLinksDirectory
-    (
-        FeatureDirectory featureDirectory
-    )
+    public class WebLinksDirectory()
     {
         public string GetPath()
         {
             var directoryName = "web links";
-            var featureDirectoryPath = featureDirectory.GetPath();
+            var featureDirectoryPath = FeatureDirectory.GetPath();
             var notesAndMessages = Path.Combine(featureDirectoryPath, directoryName);
             return notesAndMessages;
         }

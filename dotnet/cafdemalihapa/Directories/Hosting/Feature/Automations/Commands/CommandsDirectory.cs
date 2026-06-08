@@ -17,7 +17,6 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
     public class CommandsDirectory(
         AutomationsDirectory automationsDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-        FeatureDirectory featureDirectory,
         FrontEnd.FrontEndDirectory frontEndDirectory,
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
@@ -28,7 +27,6 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
         ToolsDirectory toolsDirectory,
         CallsDirectory callsDirectory,
         WebLinksDirectory webLinksDirectory,
-        BackEndDirectory backEndDirectory,
         BackEndPrimaryDirectory backEndPrimaryDirectory,
         BackEndSecondaryDirectory backEndSecondaryDirectory,
         DataDirectory dataDirectory,
@@ -74,12 +72,12 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
                         break;
                     case "directories-multitude-commanding-order-recto-action-shut":
                     case "directories-multitude-serving-order-recto-action-shut":
-                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", featureDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", FeatureDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "OPERATIONS_DIRECTORY_PATH", operationsDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath());
-                        DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", backEndDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", BackEndDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_HOST_ADDRESS", backEndPrimaryDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_GUEST_ADDRESS", backEndSecondaryDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", callsDirectory.GetPath());

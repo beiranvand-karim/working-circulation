@@ -53,8 +53,6 @@ namespace cafdemalihapa
             services.AddTransient<CommandLineArgs>();
             services.AddTransient<ScriptsDirectory>();
             services.AddTransient<EnvironmentVariablesTemplatesDirectory>();
-            services.AddTransient<HostingDirectory>();
-            services.AddTransient<FeatureDirectory>();
             services.AddTransient<EnvironmentVariablesFilesDirectory>();
             services.AddTransient<WorkingCirculationDirectory>();
             services.AddTransient<EnvironmentVariablesSourceDirectory>();
@@ -94,7 +92,6 @@ namespace cafdemalihapa
             services.AddSingleton<CallsDirectory>();
             services.AddSingleton<WebLinksDirectory>();
             services.AddSingleton<DataDirectory>();
-            services.AddSingleton<BackEndDirectory>();
             services.AddSingleton<BackEndPrimaryDirectory>();
             services.AddSingleton<BackEndSecondaryDirectory>();
             services.AddSingleton<CafdemalihapaDirectory>();

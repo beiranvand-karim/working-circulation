@@ -13,13 +13,11 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
 {
     public class DirectoriesMultitudeServingOrderRectoActionShut
     (
-        FeatureDirectory featureDirectory,
         StringHelpers stringHelpers,
         Operations.OperationsDirectory operationsDirectory,
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
         FrontEnd.FrontEndDirectory frontEndDirectory,
-        BackEndDirectory backEndDirectory,
         CallsDirectory callsDirectory,
         ToolsDirectory toolsDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
@@ -83,7 +81,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                                 }
                             case "FEATURE_SELF_ADDRESS":
                                 {
-                                    var featureDirectoryPath = featureDirectory.GetPath();
+                                    var featureDirectoryPath = FeatureDirectory.GetPath();
                                     var valueToWrite = stringHelpers.WrapInQuotationMarks(featureDirectoryPath);
                                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                                     break;
@@ -104,7 +102,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                                 }
                             case "BEND_ADDRESS":
                                 {
-                                    var backEndDirectoryPath = backEndDirectory.GetPath();
+                                    var backEndDirectoryPath = BackEndDirectory.GetPath();
                                     var valueToWrite = stringHelpers.WrapInQuotationMarks(backEndDirectoryPath);
                                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                                     break;

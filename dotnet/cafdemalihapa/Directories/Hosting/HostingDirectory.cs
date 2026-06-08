@@ -1,8 +1,8 @@
 namespace cafdemalihapa.Directories.Hosting
 {
-    public class HostingDirectory
+    public static class HostingDirectory
     {
-        public string GetPath()
+        public static string GetPath()
         {
             var hostingDirectoryPath = CommandLineArgs.GetByKey("--hosting-directory");
             return hostingDirectoryPath;

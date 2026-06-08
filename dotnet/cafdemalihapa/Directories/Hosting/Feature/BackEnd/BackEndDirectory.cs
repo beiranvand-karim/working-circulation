@@ -1,22 +1,19 @@
 namespace cafdemalihapa.Directories.Hosting.Feature.BackEnd
 {
-    public class BackEndDirectory
-    (
-        FeatureDirectory featureDirectory
-    )
+    public static class BackEndDirectory
     {
-        public string GetName()
+        public static string GetName()
         {
             return "bend";
         }
-        public string GetPath()
+        public static string GetPath()
         {
             var directoryName = GetName();
-            var featureDirectoryPath = featureDirectory.GetPath();
+            var featureDirectoryPath = FeatureDirectory.GetPath();
             var notesAndMessages = Path.Combine(featureDirectoryPath, directoryName);
             return notesAndMessages;
         }
-        public void Create()
+        public static void Create()
         {
             var path = GetPath();
             if(!Directory.Exists(path))

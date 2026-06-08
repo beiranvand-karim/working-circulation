@@ -1,19 +1,17 @@
 namespace cafdemalihapa.Directories.Hosting.Feature
 {
-    public class FeatureDirectory(
-            HostingDirectory hostingDirectory
-        )
+    public static class FeatureDirectory
     {
-        public void Create()
+        public static void Create()
         {
             var featureDirectoryPath = GetPath();
             Directory.CreateDirectory(featureDirectoryPath);
         }
 
-        public string GetPath()
+        public static string GetPath()
         {
             var featureName = CommandLineArgs.GetByKey("--feature-name");
-            var hostingDirectoryName = hostingDirectory.GetPath();
+            var hostingDirectoryName = HostingDirectory.GetPath();
             var featureDirectoryPath = Path.Combine(hostingDirectoryName, featureName);
             return featureDirectoryPath;
         }

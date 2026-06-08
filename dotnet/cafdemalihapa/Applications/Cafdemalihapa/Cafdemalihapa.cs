@@ -14,7 +14,6 @@ namespace cafdemalihapa.Applications.Cafdemalihapa
 {
     public class Cafdemalihapa(
         ILogger<Cafdemalihapa> logger,
-        FeatureDirectory featureDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
         PowerShellScriptsDirectory powerShellScriptsDirectory,
         EnvironmentVariablesSourceFilesDirectory environmentVariablesSourceFilesDirectory,
@@ -50,7 +49,7 @@ namespace cafdemalihapa.Applications.Cafdemalihapa
 
         public void CreateDirectories()
         {
-            featureDirectory.Create();
+            FeatureDirectory.Create();
             automationsDirectory.Create();
             environmentVariablesFilesDirectory.Create();
             commandsDirectory.Create();

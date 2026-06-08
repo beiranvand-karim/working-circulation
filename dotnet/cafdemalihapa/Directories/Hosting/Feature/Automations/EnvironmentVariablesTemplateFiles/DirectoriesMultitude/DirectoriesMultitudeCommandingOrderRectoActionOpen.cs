@@ -13,7 +13,6 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
         PrimaryApplication primaryApplication,
         SecondaryApplication secondaryApplication,
         FeatureName featureName,
-        HostingDirectory hostingDirectory,
         RepositoryDirectory repositoryDirectory,
         CodeBase codeBase,
         ILogger<DirectoriesMultitudeCommandingOrderRectoActionOpen> logger
@@ -122,7 +121,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                                 }
                             case "HOSTING_DIRECTORY":
                                 {
-                                    var val3 = hostingDirectory.GetPath();
+                                    var val3 = HostingDirectory.GetPath();
                                     var wrappedVal = stringHelpers.WrapInQuotationMarks(val3);
                                     fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                     break;

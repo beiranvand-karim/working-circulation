@@ -23,13 +23,11 @@ namespace cafdemalihapa.Applications.DirectoryManagement
     public class Opening
     (
         ILogger<Opening> logger,
-        FeatureDirectory featureDirectory,
         AutomationsDirectory automationsDirectory,
         CommandsDirectory commandsDirectory,
         OperationsDirectory operationsDirectory,
         DataDirectory dataDirectory,
         ToolsDirectory toolsDirectory,
-        BackEndDirectory backEndDirectory,
         BackEndPrimaryDirectory backEndPrimaryDirectory,
         BackEndSecondaryDirectory backEndSecondaryDirectory,
         CallsDirectory callsDirectory,
@@ -64,12 +62,12 @@ namespace cafdemalihapa.Applications.DirectoryManagement
 
             var directoriesToOpen = new Dictionary<string, string>
             {
-                { "IS_OPENING_FEATURE_SELF_ADDRESS", featureDirectory.GetPath() },
+                { "IS_OPENING_FEATURE_SELF_ADDRESS", FeatureDirectory.GetPath() },
                 { "IS_OPENING_AUTOMATIONS_DIRECTORY", automationsDirectory.GetPath() },
                 { "IS_OPENING_COMMANDS_DIRECTORY", commandsDirectory.GetPath() },
                 { "IS_OPENING_ENVIRONMENT_VARIABLES_FILES_DIRECTORY", environmentVariablesFilesDirectory.GetPath() },
                 { "IS_OPENING_OPERATIONS_DIRECTORY", operationsDirectory.GetPath() },
-                { "IS_OPENING_BEND_ADDRESS", backEndDirectory.GetPath() },
+                { "IS_OPENING_BEND_ADDRESS", BackEndDirectory.GetPath() },
                 { "IS_OPENING_BEND_PRIMARY_ADDRESS", backEndPrimaryDirectory.GetPath() },
                 { "IS_OPENING_BEND_SECONDARY_ADDRESS", backEndSecondaryDirectory.GetPath() },
                 { "IS_OPENING_DATA_DIRECTORY", dataDirectory.GetPath() },

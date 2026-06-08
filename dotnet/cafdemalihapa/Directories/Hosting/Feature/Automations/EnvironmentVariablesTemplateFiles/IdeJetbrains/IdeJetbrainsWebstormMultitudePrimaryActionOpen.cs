@@ -7,7 +7,6 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
 {
     public class IdeJetbrainsWebstormMultitudePrimaryActionOpen(
         FeatureName featureName,
-        HostingDirectory hostingDirectory,
         PrimaryApplication primaryApplication,
         StringHelpers stringHelpers,
         ILogger<IdeJetbrainsWebstormMultitudePrimaryActionOpen> logger
@@ -50,7 +49,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             }
                         case "HOSTING_DIRECTORY":
                             {
-                                var val = hostingDirectory.GetPath();
+                                var val = HostingDirectory.GetPath();
                                 var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;

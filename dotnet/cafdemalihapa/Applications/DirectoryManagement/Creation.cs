@@ -16,7 +16,6 @@ namespace cafdemalihapa.Applications.DirectoryManagement
     (
         DataDirectory dataDirectory,
         ToolsDirectory toolsDirectory,
-        BackEndDirectory backEndDirectory,
         BackEndPrimaryDirectory backEndPrimaryDirectory,
         BackEndSecondaryDirectory backEndSecondaryDirectory,
         CallsDirectory callsDirectory,
@@ -42,7 +41,7 @@ namespace cafdemalihapa.Applications.DirectoryManagement
             var directoriesToCreate = new List<Action>
             {
                 toolsDirectory.Create,
-                backEndDirectory.Create,
+                BackEndDirectory.Create,
                 backEndPrimaryDirectory.Create,
                 backEndSecondaryDirectory.Create,
                 callsDirectory.Create,

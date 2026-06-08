@@ -1,8 +1,6 @@
 namespace cafdemalihapa.Directories.Hosting.Feature.Automations
 {
-    public class AutomationsDirectory(
-            FeatureDirectory featureDirectory
-        )
+    public class AutomationsDirectory()
     {
         public void Create()
         {
@@ -11,7 +9,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations
         }
         public string GetPath()
         {
-            var directory = featureDirectory.GetPath();
+            var directory = FeatureDirectory.GetPath();
             var automationsDirectory = Path.Combine(directory, "automations");
             return automationsDirectory;
         }
