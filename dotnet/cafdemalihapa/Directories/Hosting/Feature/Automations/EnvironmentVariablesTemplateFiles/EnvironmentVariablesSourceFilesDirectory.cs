@@ -3,6 +3,7 @@ using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariables
 using cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesTemplates;
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.DirectoriesMultitude;
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeJetbrains;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeMicrosoft;
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.Notepad;
 using Microsoft.Extensions.Logging;
 
@@ -21,6 +22,10 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
             IdeJetbrainsWebstormMultitudeSecondaryActionShut ideJetbrainsWebstormMultitudeSecondaryActionShut,
             IdeJetbrainsRiderMultitudePrimaryActionShut ideJetbrainsRiderMultitudePrimaryActionShut,
             IdeJetbrainsRiderMultitudeSecondaryActionShut ideJetbrainsRiderMultitudeSecondaryActionShut,
+            IdeMicrosoftVscodeMultitudePrimaryActionOpen ideMicrosoftVscodeMultitudePrimaryActionOpen,
+            IdeMicrosoftVscodeMultitudeSecondaryActionOpen ideMicrosoftVscodeMultitudeSecondaryActionOpen,
+            IdeMicrosoftVscodeMultitudePrimaryActionShut ideMicrosoftVscodeMultitudePrimaryActionShut,
+            IdeMicrosoftVscodeMultitudeSecondaryActionShut ideMicrosoftVscodeMultitudeSecondaryActionShut,
             EnvironmentVariablesTemplatesDirectory environmentVariablesTemplatesDirectory,
             DirectoriesMultitudeServingOrderReverseActionOpen directoriesMultitudeServingOrderReverseActionOpen,
             DirectoriesMultitudeCommandingOrderReverseActionOpen directoriesMultitudeCommandingOrderReverseActionOpen,
@@ -85,6 +90,14 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                         "ide-jetbrains-rider-multitude-primary-action-shut.env" => ideJetbrainsRiderMultitudePrimaryActionShut.PairUpVariablesWithTheirValue(templateFile,
                             environmentVariablesSourceDictionary),
                         "ide-jetbrains-rider-multitude-secondary-action-shut.env" => ideJetbrainsRiderMultitudeSecondaryActionShut.PairUpVariablesWithTheirValue(templateFile,
+                            environmentVariablesSourceDictionary),
+                        "ide-microsoft-vscode-multitude-primary-action-open.env" => ideMicrosoftVscodeMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile,
+                            environmentVariablesSourceDictionary),
+                        "ide-microsoft-vscode-multitude-secondary-action-open.env" => ideMicrosoftVscodeMultitudeSecondaryActionOpen.PairUpVariablesWithTheirValue(templateFile,
+                            environmentVariablesSourceDictionary),
+                        "ide-microsoft-vscode-multitude-primary-action-shut.env" => ideMicrosoftVscodeMultitudePrimaryActionShut.PairUpVariablesWithTheirValue(templateFile,
+                            environmentVariablesSourceDictionary),
+                        "ide-microsoft-vscode-multitude-secondary-action-shut.env" => ideMicrosoftVscodeMultitudeSecondaryActionShut.PairUpVariablesWithTheirValue(templateFile,
                             environmentVariablesSourceDictionary),
                         _ => Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     };

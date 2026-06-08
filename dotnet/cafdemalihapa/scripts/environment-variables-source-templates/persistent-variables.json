@@ -33,6 +33,7 @@
     "ZscalerClientConnector": "zscaler/client/connector",
     "RiderLocation": "C:\\Program Files\\JetBrains\\JetBrains Rider 2026.1.2\\bin\\rider64.exe",
     "WebstormLocation": "C:\\Program Files\\JetBrains\\WebStorm 2026.1.3\\bin\\webstorm64.exe",
+    "VscodeLocation": "C:\\Users\\beira\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
     "DockerLoginName": "docker/login/name",
     "AzureClientSecretFromEnvironmentVariables": "azure/client/secret/from/environment/variables",
      "CafdemExecutiveFileAddress": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemalihapa\\bin\\Debug\\net8.0\\cafdemalihapa.exe",

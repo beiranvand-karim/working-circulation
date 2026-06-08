@@ -1,6 +1,7 @@
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles;
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.DirectoriesMultitude;
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeJetbrains;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeMicrosoft;
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.Notepad;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +25,10 @@ namespace cafdemalihapa
             services.AddTransient<IdeJetbrainsWebstormMultitudeSecondaryActionShut>();
             services.AddTransient<IdeJetbrainsRiderMultitudePrimaryActionShut>();
             services.AddTransient<IdeJetbrainsRiderMultitudeSecondaryActionShut>();
+            services.AddTransient<IdeMicrosoftVscodeMultitudePrimaryActionOpen>();
+            services.AddTransient<IdeMicrosoftVscodeMultitudeSecondaryActionOpen>();
+            services.AddTransient<IdeMicrosoftVscodeMultitudePrimaryActionShut>();
+            services.AddTransient<IdeMicrosoftVscodeMultitudeSecondaryActionShut>();
 
             return services;
         }

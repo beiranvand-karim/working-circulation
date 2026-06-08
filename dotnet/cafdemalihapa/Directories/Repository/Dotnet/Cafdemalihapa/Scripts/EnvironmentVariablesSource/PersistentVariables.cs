@@ -37,6 +37,7 @@ namespace cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Envi
         public string? RiderLocation { get; set; }
         public string? AllInclusiveDirectoryAddress { get; set; }
         public string? WebstormLocation { get; set; }
+        public string? VscodeLocation { get; set; }
         public string? CafdemExecutiveFileAddress { get; set; }
         public string? CafdemExecutiveFileAddressContainingDirectory { get; set; }
         public string? DockerLoginName { get; set; }
