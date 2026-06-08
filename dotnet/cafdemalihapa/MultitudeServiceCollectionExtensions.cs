@@ -29,6 +29,10 @@ namespace cafdemalihapa
             services.AddTransient<IdeMicrosoftVscodeMultitudeSecondaryActionOpen>();
             services.AddTransient<IdeMicrosoftVscodeMultitudePrimaryActionShut>();
             services.AddTransient<IdeMicrosoftVscodeMultitudeSecondaryActionShut>();
+            services.AddTransient<IdeMicrosoftVscodeInsidersMultitudePrimaryActionOpen>();
+            services.AddTransient<IdeMicrosoftVscodeInsidersMultitudeSecondaryActionOpen>();
+            services.AddTransient<IdeMicrosoftVscodeInsidersMultitudePrimaryActionShut>();
+            services.AddTransient<IdeMicrosoftVscodeInsidersMultitudeSecondaryActionShut>();
 
             return services;
         }
