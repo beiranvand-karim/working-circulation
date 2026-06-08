@@ -7,7 +7,7 @@ namespace cafdemalihapa.Directories
             var workingCirculationDirectoryName = GetPath();
 
             var environmentVariablesManagementDirectoryName =
-                Path.Combine(workingCirculationDirectoryName, "EnvironmeentVariablesManagement");
+                Path.Combine(workingCirculationDirectoryName, "EnvironmentVariablesManagement");
 
             return environmentVariablesManagementDirectoryName;
         }

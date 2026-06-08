@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Text.Json;
 using cafdemalihapa.Directories.Applications;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.ProcessesMetaData;
 using cafdemalihapa.Files.Executables;
 using cafdemalihapa.Names;
 using Microsoft.Extensions.Logging;

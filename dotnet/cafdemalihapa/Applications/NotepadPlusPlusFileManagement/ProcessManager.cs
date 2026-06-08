@@ -1,16 +1,16 @@
 using System.Diagnostics;
 using System.Text.Json;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.ProcessesMetaData;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndHost;
+using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Files.Executables;
 using Microsoft.Extensions.Logging;
 
 namespace cafdemalihapa.Applications.NotepadPlusPlusFileManagement
 {
     public class ProcessManager(
-        NotePadPlusPlus notePadPlusPlus,
+        NotepadPlusPlus notePadPlusPlus,
         ILogger<ProcessManager> logger,
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,

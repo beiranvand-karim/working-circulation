@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json;
-using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesSource.SeparationFilement;
-using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.EnvironmentVariablesSource.Files.Jsons;
+using cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.SeparationFilement;
+using cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.Files.Jsons;
 
 namespace cafdemalihapa.Applications
 {

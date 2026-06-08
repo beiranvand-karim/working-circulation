@@ -1,14 +1,14 @@
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.BackEnd;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.BackEnd.BackEndPrimaryDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.BackEnd.BackEndSecondaryDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.Calls;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.DataDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndGuestDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.FrontEndDirectory.FrontEndHostDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.NotesAndMessages;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.Tools;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.WebLinks;
+using cafdemalihapa.Directories.Hosting.Feature.BackEnd;
+using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndPrimary;
+using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary;
+using cafdemalihapa.Directories.Hosting.Feature.Calls;
+using cafdemalihapa.Directories.Hosting.Feature.Data;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndHost;
+using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
+using cafdemalihapa.Directories.Hosting.Feature.Tools;
+using cafdemalihapa.Directories.Hosting.Feature.WebLinks;
 
 namespace cafdemalihapa.Applications.DirectoryManagement
 {

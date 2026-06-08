@@ -1,10 +1,13 @@
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.CommandsDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.OperationsDirectory;
-using cafdemalihapa.Directories.Repository.DotnetDirectory.Cafdemalihapa.Scripts.PowerShellScriptsDirectory;
+using cafdemalihapa.Directories.Hosting.Feature;
+using cafdemalihapa.Directories.Hosting.Feature.Automations;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.Commands;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesFiles;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.DirectoriesMultitude;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeJetbrains;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.Notepad;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.Operations;
+using cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.PowerShellScripts;
 using Microsoft.Extensions.Logging;
 
 namespace cafdemalihapa.Applications.Cafdemalihapa

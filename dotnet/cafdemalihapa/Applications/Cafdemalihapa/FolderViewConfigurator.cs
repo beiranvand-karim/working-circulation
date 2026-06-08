@@ -1,6 +1,6 @@
 using System.Runtime.Versioning;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.CommandsDirectory;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesFiles;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.Commands;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesFiles;
 
 namespace cafdemalihapa.Applications.Cafdemalihapa
 {

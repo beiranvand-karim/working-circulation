@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.ProcessesMetaDataDirectory;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.ProcessesMetaData;
 using Microsoft.Extensions.Logging;
 
 namespace cafdemalihapa.Applications.NotepadPlusPlusFileManagement

@@ -1,4 +1,7 @@
-using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.EnvironmentVariablesTemplateFiles;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.DirectoriesMultitude;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeJetbrains;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.Notepad;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace cafdemalihapa
