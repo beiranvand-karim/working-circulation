@@ -11,8 +11,8 @@ dotnet run `
     --application "directory-management" `
     --command "create" `
     --feature-name "$feature_name" `
-    --executive-file-directory "$working_directory\\Debugnet8.0\\cafdemalihapa" `
-    --scripts-directory "$working_directory\\scripts" `
+    --executive-file-directory "$working_directory\Debug\net8.0\cafdemalihapa" `
+    --scripts-directory "$working_directory\scripts" `
     --hosting-directory "$hosting_directory" `
     --primary-application-name "$primary_application_name" `
     --secondary-application-name "$secondary_application_name"

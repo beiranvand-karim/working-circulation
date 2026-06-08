@@ -1,12 +1,12 @@
 $feature_name = "feature-name-one"
 $primary_application_name = "augustus"
 $secondary_application_name = "decimus"
-$notepaddpp_execute_file_location = "C:\\Program Files\\Notepad++\\notepad++.exe"
-$repository_directory = "C:\\workplace\\GitHub\\working-circulation"
-$working_directory = "$repository_directory\\dotnet\\cafdemalihapa"
-$hosting_directory = "C:\\workplace\\feature-development"
+$notepaddpp_execute_file_location = "C:\Program Files\Notepad++\notepad++.exe"
+$repository_directory = "C:\workplace\GitHub\working-circulation"
+$working_directory = "$repository_directory\dotnet\cafdemalihapa"
+$hosting_directory = "C:\workplace\feature-development"
 
-# $feature_directory = "$hosting_directory\\$feature_name"
+# $feature_directory = "$hosting_directory\$feature_name"
 # Remove-Item -Recurse -Force -Path $feature_directory
 
 Push-Location $working_directory

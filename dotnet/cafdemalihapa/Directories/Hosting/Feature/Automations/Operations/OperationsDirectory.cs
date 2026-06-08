@@ -1,8 +1,7 @@
 namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Operations
 {
     public class OperationsDirectory(
-        AutomationsDirectory automationsDirectory,
-        Directories directories
+        AutomationsDirectory automationsDirectory
         )
     {
         public void Create()
@@ -26,7 +25,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Operations
                 var fileName = Path.GetFileNameWithoutExtension(filePath);
                 var giverFileName = $"{fileName}.ps1";
                 var giverPath = Path.Combine(giversPath, giverFileName);
-                directories.ReplaceFileNameWithPath(filePath, giverPath);
+                DirectoryServices.ReplaceFileNameWithPath(filePath, giverPath);
             }
         }
     }

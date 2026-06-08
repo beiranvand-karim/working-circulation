@@ -1,6 +1,6 @@
 $feature_name = "feature-name-two"
-$hosting_directory = "C:\\workplace\\feature-development"
-$feature_directory = "$hosting_directory\\$feature_name"
+$hosting_directory = "C:\workplace\feature-development"
+$feature_directory = "$hosting_directory\$feature_name"
 
 <#
 .SYNOPSIS

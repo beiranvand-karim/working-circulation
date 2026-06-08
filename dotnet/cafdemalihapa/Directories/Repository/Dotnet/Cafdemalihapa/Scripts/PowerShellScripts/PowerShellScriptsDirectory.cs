@@ -5,7 +5,6 @@ namespace cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Powe
     public class PowerShellScriptsDirectory
     (
         ScriptsDirectory scriptsDirectory,
-        Directories directories,
         CommandsDirectory commandsDirectory
     )
     {
@@ -15,7 +14,7 @@ namespace cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Powe
         {
             var destinationDirectory = commandsDirectory.GetPath();
             var sourceDirectory = GetPath();
-            directories.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
+            DirectoryServices.CopyContentOfSourceDirectoryToDestinationDirectory(sourceDirectory, destinationDirectory);
         }
 
         public string GetPath()

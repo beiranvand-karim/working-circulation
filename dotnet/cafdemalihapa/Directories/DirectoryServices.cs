@@ -1,8 +1,8 @@
 namespace cafdemalihapa.Directories
 {
-    public class Directories
+    public static class DirectoryServices
     {
-        public void ReplaceFileNameWithPath(string receiverPath, string giverPath)
+        public static void ReplaceFileNameWithPath(string receiverPath, string giverPath)
         {
             var fileName = Path.GetFileName(giverPath);
             var text = File.ReadAllText(receiverPath) ?? throw new ArgumentNullException(nameof(receiverPath));
@@ -10,14 +10,14 @@ namespace cafdemalihapa.Directories
             File.WriteAllText(receiverPath, text);
         }
 
-        public void ReplaceFileNameWithPath(string receiverPath, string repalcee, string replacer)
+        public static void ReplaceFileNameWithPath(string receiverPath, string repalcee, string replacer)
         {
             var text = File.ReadAllText(receiverPath) ?? throw new ArgumentNullException(nameof(receiverPath));
             text = text.Replace(repalcee, replacer);
             File.WriteAllText(receiverPath, text);
         }
 
-        public void CopyFileToDestinationDirectory(string file, string destinationDirectory)
+        public static void CopyFileToDestinationDirectory(string file, string destinationDirectory)
         {
             var fileName = Path.GetFileName(file);
             var destFileName = Path.GetFileName(fileName);
@@ -25,7 +25,7 @@ namespace cafdemalihapa.Directories
             File.Copy(file, destFilePathIncludingName);
         }
 
-        public void CopyContentOfSourceDirectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
+        public static void CopyContentOfSourceDirectoryToDestinationDirectory(string sourceDirectory, string destinationDirectory)
         {
             foreach (var file in Directory.EnumerateFiles(sourceDirectory))
             {

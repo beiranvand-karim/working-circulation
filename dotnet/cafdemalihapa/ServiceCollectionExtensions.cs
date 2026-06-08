@@ -64,7 +64,6 @@ namespace cafdemalihapa
             services.AddTransient<Something>();
             services.AddTransient<DirectoriesMultitudeStartupActionOpen>();
             services.AddTransient<StringHelpers>();
-            services.AddTransient<Directories.Directories>();
             services.AddTransient<FeatureName>();
             services.AddTransient<NotepadPlusPlusOpenAll>();
             services.AddTransient<EnvironmentVariablesSourceFilesDirectory>();

@@ -1,6 +1,10 @@
 using cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesFiles;
+using cafdemalihapa.Directories.Hosting.Feature.Automations.ProcessesMetaData;
 using cafdemalihapa.Directories.Hosting.Feature.BackEnd;
+using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndPrimary;
+using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.Calls;
+using cafdemalihapa.Directories.Hosting.Feature.Data;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndHost;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
@@ -14,7 +18,6 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
         AutomationsDirectory automationsDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
         FeatureDirectory featureDirectory,
-        Directories directories,
         FrontEnd.FrontEndDirectory frontEndDirectory,
         FrontEndHostDirectory frontEndHostDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
@@ -25,7 +28,11 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
         ToolsDirectory toolsDirectory,
         CallsDirectory callsDirectory,
         WebLinksDirectory webLinksDirectory,
-        BackEndDirectory backEndDirectory
+        BackEndDirectory backEndDirectory,
+        BackEndPrimaryDirectory backEndPrimaryDirectory,
+        BackEndSecondaryDirectory backEndSecondaryDirectory,
+        DataDirectory dataDirectory,
+        ProcessesMetaDataDirectory processesMetaDataDirectory
     )
     {
         const string directoryNameInFeature = "commands";
@@ -56,52 +63,58 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
                 var giverFileName = $"{fileName}.env";
                 var giverPath = Path.Combine(giversPath, giverFileName);
 
-                directories.ReplaceFileNameWithPath(filePath, giverPath);
+                DirectoryServices.ReplaceFileNameWithPath(filePath, giverPath);
 
                 switch (fileName)
                 {
                     case "aggregate-all-multitude-commanding-order-recto-action-open":
                     case "aggregate-all-multitude-commanding-order-reverse-action-open":
-                        directories.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
-                        directories.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
                         break;
                     case "directories-multitude-commanding-order-recto-action-shut":
                     case "directories-multitude-serving-order-recto-action-shut":
-                        directories.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", featureDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "OPERATIONS_DIRECTORY_PATH", operationsDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", backEndDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", callsDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", toolsDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", notesAndMessagesDirectory.GetPath());
-                        directories.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", webLinksDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", featureDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "OPERATIONS_DIRECTORY_PATH", operationsDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", backEndDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_HOST_ADDRESS", backEndPrimaryDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_GUEST_ADDRESS", backEndSecondaryDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", callsDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", toolsDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", notesAndMessagesDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "WEB_LINKS_ADDRESS", webLinksDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "DATA_ADDRESS", dataDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "ENVIRONMENT_VARIABLES_FILES_ADDRESS", environmentVariablesFilesDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "AUTOMATIONS_ADDRESS", automationsDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "PROCESSES_META_DATA_ADDRESS", processesMetaDataDirectory.GetPath());
                         break;
                     case "all":
-                        directories.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
-                        directories.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
                         break;
                     case "dotnet-multitude-primary-action-run":
-                        directories.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runHostApplicationPath);
                         break;
                     case "dotnet-multitude-secondary-action-run":
-                        directories.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
                         break;
                     case "docker-network-secondary-multitude-primary-action-stop":
-                        directories.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName());
                         break;
                     case "docker-network-secondary-multitude-secondary-action-stop":
-                        directories.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName());
                         break;
                     case "docker-network-secondary-multitude-two-action-stop":
-                        directories.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName());
-                        directories.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName());
                         break;
                     case "docker-network-secondary-multitude-all-action-start":
                         if(environmentVariablesSourceDictionary.TryGetValue("AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", out var azureClientSecretFromEnvironmentVariables))
                         {
-                            directories.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables);
+                            DirectoryServices.ReplaceFileNameWithPath(filePath, "AZURE_CLIENT_SECRET_FROM_ENVIRONMENT_VARIABLES", azureClientSecretFromEnvironmentVariables);
                         }
                         break;
                 }
