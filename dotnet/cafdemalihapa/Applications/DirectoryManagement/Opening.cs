@@ -1,5 +1,4 @@
-using System.Diagnostics;
-using System.Runtime.InteropServices;
+using cafdemalihapa.Applications.DirectoryManagement.DirectoryOpenStrategies;
 using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory;
 using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory;
 using cafdemalihapa.Directories.HostingDirectory.FeatureDirectory.AutomationsDirectory.CommandsDirectory;
@@ -40,7 +39,8 @@ namespace cafdemalihapa.Applications.DirectoryManagement
         NotesAndMessagesDirectory notesAndMessagesDirectory,
         WebLinksDirectory webLinksDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
-        DirectoryToBeOpen directoryToBeOpen
+        DirectoryToBeOpen directoryToBeOpen,
+        IEnumerable<IDirectoryOpenStrategy> directoryOpenStrategies
     )
     {
         public void OpenDirectoryToBeOpen()
@@ -99,49 +99,15 @@ namespace cafdemalihapa.Applications.DirectoryManagement
 
         public void OpenDirectories(string path)
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            var strategy = directoryOpenStrategies.FirstOrDefault(s => s.CanHandle());
+
+            if (strategy is null)
             {
-                logger.LogInformation("path: {path}", path);
-
-                using Process myProcess = new();
-                myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.FileName = "open";
-                myProcess.StartInfo.CreateNoWindow = true;
-                myProcess.StartInfo.ArgumentList.Add(path);
-
-                myProcess.Start();
-                logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-
-                using Process myProcess = new();
-                myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.FileName = "explorer.exe";
-                myProcess.StartInfo.CreateNoWindow = true;
-                var normalizedPath = path.NormalizeSlashes(PathUtility.SlashStyle.ForceBackslash);
-
-                logger.LogInformation("path: {path}", path);
-                logger.LogInformation("normalizedPath: {normalizedPath}", normalizedPath);
-
-                myProcess.StartInfo.ArgumentList.Add(normalizedPath);
-
-                myProcess.Start();
-                logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                using Process myProcess = new();
-                myProcess.StartInfo.UseShellExecute = false;
-                myProcess.StartInfo.FileName = "xdg-open";
-                myProcess.StartInfo.CreateNoWindow = true;
-                myProcess.StartInfo.ArgumentList.Add(path);
-
-                myProcess.Start();
-                logger.LogInformation("path: {path}", path);
-                logger.LogInformation("myProcess: {myProcess}", myProcess.Id);
+                logger.LogWarning("Opening: no directory-open strategy supports the current operating system.");
+                return;
             }
 
+            strategy.Open(path);
         }
     }
 }

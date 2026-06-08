@@ -1,6 +1,7 @@
 using cafdemalihapa.Applications;
 using cafdemalihapa.Applications.Cafdemalihapa;
 using cafdemalihapa.Applications.DirectoryManagement;
+using cafdemalihapa.Applications.DirectoryManagement.DirectoryOpenStrategies;
 using cafdemalihapa.Applications.IdeManagement;
 using cafdemalihapa.Applications.NotepadPlusPlusFileManagement;
 using cafdemalihapa.Directories;
@@ -101,6 +102,9 @@ namespace cafdemalihapa
             services.AddSingleton<DirectoryManagement>();
             services.AddSingleton<Creation>();
             services.AddSingleton<Opening>();
+            services.AddSingleton<IDirectoryOpenStrategy, MacDirectoryOpenStrategy>();
+            services.AddSingleton<IDirectoryOpenStrategy, WindowsDirectoryOpenStrategy>();
+            services.AddSingleton<IDirectoryOpenStrategy, LinuxDirectoryOpenStrategy>();
             services.AddSingleton<Shutting>();
             services.AddSingleton<FolderViewConfigurator>();
             services.AddSingleton<CodeBaseDirectory>();
