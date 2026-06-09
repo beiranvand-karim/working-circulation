@@ -7,7 +7,7 @@ namespace cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Envi
         public string? DockerComposeStopAlongWithArguments { get; set; }
         public string? DirectoryManagementExecutiveFileAddress { get; set; }
         public string? DirectoryManagementExecutiveFileAddressContainingDirectory { get; set; }
-        public string? FendHostAddress { get; set; }
+        public string? FendPrimaryAddress { get; set; }
         public string? FendGuestAddress { get; set; }
         public string? BendAddress { get; set; }
         public string? CallsAddress { get; set; }

@@ -7,7 +7,6 @@ namespace cross_application_feature_development_management.Directories.Repositor
         public string? PrimaryApplicationName { get; set; }
         public string? SecondaryApplicationName { get; set; }
         public string? GuestApplicationLocation { get; set; }
-        public string? HostApplicationLocation { get; set; }
         public string? GuestApplicationProjectLocation { get; set; }
         public string? GuestApplicationProjectName { get; set; }
         public string? HostApplicationProjectLocation { get; set; }

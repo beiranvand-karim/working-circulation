@@ -8,10 +8,10 @@ get-content "directories-multitude-commanding-order-recto-action-shut.env" | For
 $feature_self_address = [uri]'FEATURE_SELF_ADDRESS';
 $operations_directory_path = [uri]'OPERATIONS_DIRECTORY_PATH';
 $fend_address = [uri]'FEND_ADDRESS';
-$fend_host_address = [uri]'FEND_HOST_ADDRESS';
+$fend_primary_address = [uri]'FEND_PRIMARY_ADDRESS';
 $fend_guest_address = [uri]'FEND_GUEST_ADDRESS';
 $bend_address = [uri]'BEND_ADDRESS';
-$bend_host_address = [uri]'BEND_HOST_ADDRESS';
+$bend_primary_address = [uri]'BEND_PRIMARY_ADDRESS';
 $bend_guest_address = [uri]'BEND_GUEST_ADDRESS';
 $calls_address = [uri]'CALLS_ADDRESS';
 $tools_address = [uri]'TOOLS_ADDRESS';
@@ -26,10 +26,10 @@ $directories_collection = @(
     $feature_self_address,
     $operations_directory_path,
     $fend_address,
-    $fend_host_address,
+    $fend_primary_address,
     $fend_guest_address,
     $bend_address,
-    $bend_host_address,
+    $bend_primary_address,
     $bend_guest_address,
     $calls_address,
     $tools_address,

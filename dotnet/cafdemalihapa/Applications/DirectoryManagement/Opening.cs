@@ -11,7 +11,7 @@ using cafdemalihapa.Directories.Hosting.Feature.Calls;
 using cafdemalihapa.Directories.Hosting.Feature.Data;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
-using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndHost;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Directories.Hosting.Feature.Tools;
 using cafdemalihapa.Directories.Hosting.Feature.WebLinks;
@@ -32,7 +32,7 @@ namespace cafdemalihapa.Applications.DirectoryManagement
         BackEndSecondaryDirectory backEndSecondaryDirectory,
         CallsDirectory callsDirectory,
         FrontEndDirectory frontEndDirectory,
-        FrontEndHostDirectory frontEndHostDirectory,
+        FrontEndPrimaryDirectory frontEndPrimaryDirectory,
         FrontEndGuestDirectory frontEndGuestDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
         WebLinksDirectory webLinksDirectory,
@@ -72,9 +72,9 @@ namespace cafdemalihapa.Applications.DirectoryManagement
                 { "IS_OPENING_BEND_SECONDARY_ADDRESS", backEndSecondaryDirectory.GetPath() },
                 { "IS_OPENING_DATA_DIRECTORY", dataDirectory.GetPath() },
                 { "IS_OPENING_FEND_ADDRESS", frontEndDirectory.GetPath() },
-                { "IS_OPENING_FEND_HOST_ADDRESS", frontEndHostDirectory.GetPath() },
+                { "IS_OPENING_FEND_HOST_ADDRESS", frontEndPrimaryDirectory.GetPath() },
                 { "IS_OPENING_FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath() },
-                { "IS_OPENING_FEND_PRIMARY_ADDRESS", frontEndHostDirectory.GetPath() },
+                { "IS_OPENING_FEND_PRIMARY_ADDRESS", frontEndPrimaryDirectory.GetPath() },
                 { "IS_OPENING_FEND_SECONDARY_ADDRESS", frontEndGuestDirectory.GetPath() },
                 { "IS_OPENING_CALLS_ADDRESS", callsDirectory.GetPath() },
                 { "IS_OPENING_TOOLS_ADDRESS", toolsDirectory.GetPath() },

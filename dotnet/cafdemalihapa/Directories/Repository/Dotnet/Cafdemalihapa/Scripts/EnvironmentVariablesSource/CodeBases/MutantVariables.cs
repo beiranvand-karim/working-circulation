@@ -7,11 +7,10 @@ namespace cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Envi
         public string? PrimaryApplicationName { get; set; }
         public string? SecondaryApplicationName { get; set; }
         public string? GuestApplicationLocation { get; set; }
-        public string? HostApplicationLocation { get; set; }
         public string? GuestApplicationProjectLocation { get; set; }
         public string? GuestApplicationProjectName { get; set; }
-        public string? HostApplicationProjectLocation { get; set; }
-        public string? HostApplicationProjectName { get; set; }
+        public string? PrimaryApplicationProjectLocation { get; set; }
+        public string? PrimaryApplicationProjectName { get; set; }
         public string? GuestClientappLocation { get; set; }
         public string? HostClientappLocation { get; set; }
         public bool? IsOpeningFeatureSelfAddress { get; set; }
@@ -20,7 +19,7 @@ namespace cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Envi
         public bool? IsOpeningEnvironmentVariablesFilesDirectory { get; set; }
         public bool? IsOpeningOperationsDirectory { get; set; }
         public bool? IsOpeningDataDirectory { get; set; }
-        public bool? IsOpeningFendHostAddress { get; set; }
+        public bool? IsOpeningFendPrimaryAddress { get; set; }
         public bool? IsOpeningFendGuestAddress { get; set; }
         public bool? IsOpeningBendAddress { get; set; }
         public bool? IsOpeningBendPrimaryAddress { get; set; }

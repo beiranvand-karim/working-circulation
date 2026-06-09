@@ -43,7 +43,6 @@
     "ZscalerClientConnector": "zscaler/client/connector",
     "RiderLocation": "rider/location",
     "GuestApplicationLocation": "guest/application/location",
-    "HostApplicationLocation": "host/application/location",
     "PrimaryApplicationLocation": "primary/application/location",
     "SecondaryApplicationLocation": "secondary/application/location",
     "GuestApplicationProjectLocation": "guest/application/project/location",
