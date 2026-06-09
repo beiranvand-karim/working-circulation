@@ -1,0 +1,1 @@
+.\zy-Create-Avalonia.ps1 -UseFuncUI
