@@ -1,6 +1,6 @@
-<#> fina = file name = ide-microsoft-vscode-multitude-primary-action-open.ps1 #>
+<#> fina = file name = ide-microsoft-vscode-default-multitude-primary-action-open.ps1 #>
 
-get-content "ide-microsoft-vscode-multitude-primary-action-open.env" | ForEach-Object {
+get-content "ide-microsoft-vscode-default-multitude-primary-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }

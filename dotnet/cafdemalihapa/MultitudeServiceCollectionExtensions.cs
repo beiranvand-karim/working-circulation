@@ -25,10 +25,10 @@ namespace cafdemalihapa
             services.AddTransient<IdeJetbrainsWebstormMultitudeSecondaryActionShut>();
             services.AddTransient<IdeJetbrainsRiderMultitudePrimaryActionShut>();
             services.AddTransient<IdeJetbrainsRiderMultitudeSecondaryActionShut>();
-            services.AddTransient<IdeMicrosoftVscodeMultitudePrimaryActionOpen>();
-            services.AddTransient<IdeMicrosoftVscodeMultitudeSecondaryActionOpen>();
-            services.AddTransient<IdeMicrosoftVscodeMultitudePrimaryActionShut>();
-            services.AddTransient<IdeMicrosoftVscodeMultitudeSecondaryActionShut>();
+            services.AddTransient<IdeMicrosoftVscodeDefaultMultitudePrimaryActionOpen>();
+            services.AddTransient<IdeMicrosoftVscodeDefaultMultitudeSecondaryActionOpen>();
+            services.AddTransient<IdeMicrosoftVscodeDefaultMultitudePrimaryActionShut>();
+            services.AddTransient<IdeMicrosoftVscodeDefaultMultitudeSecondaryActionShut>();
             services.AddTransient<IdeMicrosoftVscodeInsidersMultitudePrimaryActionOpen>();
             services.AddTransient<IdeMicrosoftVscodeInsidersMultitudeSecondaryActionOpen>();
             services.AddTransient<IdeMicrosoftVscodeInsidersMultitudePrimaryActionShut>();

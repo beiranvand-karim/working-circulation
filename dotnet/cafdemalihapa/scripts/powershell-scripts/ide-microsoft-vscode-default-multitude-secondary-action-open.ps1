@@ -1,6 +1,6 @@
-<#> fina = file name = ide-microsoft-vscode-multitude-secondary-action-shut.ps1 #>
+<#> fina = file name = ide-microsoft-vscode-default-multitude-secondary-action-open.ps1 #>
 
-get-content "ide-microsoft-vscode-multitude-secondary-action-shut.env" | ForEach-Object {
+get-content "ide-microsoft-vscode-default-multitude-secondary-action-open.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
@@ -18,6 +18,11 @@ $ArgumentList =(
 
 Push-Location $env:CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
 
-start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList $ArgumentList
-
+if ($IsLinux) {
+    start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList $ArgumentList
+    [Console]::ReadKey($true)
+}
+else {
+    start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList $ArgumentList
+}
 Pop-Location

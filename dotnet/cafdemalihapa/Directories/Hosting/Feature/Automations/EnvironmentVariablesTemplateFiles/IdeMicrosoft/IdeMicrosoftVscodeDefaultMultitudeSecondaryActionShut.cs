@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeMicrosoft
 {
-    public class IdeMicrosoftVscodeMultitudePrimaryActionShut(
+    public class IdeMicrosoftVscodeDefaultMultitudeSecondaryActionShut(
         FeatureName featureName,
-        PrimaryApplication primaryApplication,
+        SecondaryApplication secondaryApplication,
         StringHelpers stringHelpers,
-        ILogger<IdeMicrosoftVscodeMultitudePrimaryActionShut> logger
+        ILogger<IdeMicrosoftVscodeDefaultMultitudeSecondaryActionShut> logger
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -40,9 +40,9 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
                             }
-                        case "PRIMARY_APPLICATION_NAME":
+                        case "SECONDARY_APPLICATION_NAME":
                             {
-                                var val = primaryApplication.GetName();
+                                var val = secondaryApplication.GetName();
                                 var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
@@ -68,7 +68,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             }
                         case "IDE_NAME":
                             {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks("vscode");
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("vscode-default");
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
                             }
@@ -93,7 +93,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                 }
                 catch (Exception)
                 {
-                    logger.LogError("IdeMicrosoftVscodeMultitudePrimaryActionShut: the key could not be processed: {Key}", key);
+                    logger.LogError("IdeMicrosoftVscodeDefaultMultitudeSecondaryActionShut: the key could not be processed: {Key}", key);
                 }
             }
             return fileContentDictionaryToWriteToFile;

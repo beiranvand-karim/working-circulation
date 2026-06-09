@@ -1,6 +1,6 @@
-<#> fina = file name = ide-microsoft-vscode-multitude-primary-action-shut.ps1 #>
+<#> fina = file name = ide-microsoft-vscode-default-multitude-secondary-action-shut.ps1 #>
 
-get-content "ide-microsoft-vscode-multitude-primary-action-shut.env" | ForEach-Object {
+get-content "ide-microsoft-vscode-default-multitude-secondary-action-shut.env" | ForEach-Object {
     $name, $value = $_.split("=")
     set-content env:\$name $value
 }
@@ -9,9 +9,9 @@ $ArgumentList =(
     "--application $env:APPLICATION" +
     " --command $env:COMMAND" +
     " --ide-execute-file-location $env:VSCODE_LOCATION" +
-    " --application-location $env:PRIMARY_APPLICATION_LOCATION" +
+    " --application-location $env:SECONDARY_APPLICATION_LOCATION" +
     " --ide-name $env:IDE_NAME" +
-    " --application-name $env:PRIMARY_APPLICATION_NAME" +
+    " --application-name $env:SECONDARY_APPLICATION_NAME" +
     " --feature-name $env:FEATURE_NAME" +
     " --hosting-directory $env:HOSTING_DIRECTORY"
     )

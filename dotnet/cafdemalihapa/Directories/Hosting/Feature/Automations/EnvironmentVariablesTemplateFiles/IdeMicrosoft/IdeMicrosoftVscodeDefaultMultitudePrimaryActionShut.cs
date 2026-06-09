@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeMicrosoft
 {
-    public class IdeMicrosoftVscodeMultitudeSecondaryActionOpen(
+    public class IdeMicrosoftVscodeDefaultMultitudePrimaryActionShut(
         FeatureName featureName,
-        SecondaryApplication secondaryApplication,
+        PrimaryApplication primaryApplication,
         StringHelpers stringHelpers,
-        ILogger<IdeMicrosoftVscodeMultitudeSecondaryActionOpen> logger
+        ILogger<IdeMicrosoftVscodeDefaultMultitudePrimaryActionShut> logger
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -40,9 +40,9 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
                             }
-                        case "SECONDARY_APPLICATION_NAME":
+                        case "PRIMARY_APPLICATION_NAME":
                             {
-                                var val = secondaryApplication.GetName();
+                                var val = primaryApplication.GetName();
                                 var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
@@ -56,7 +56,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             }
                         case "COMMAND":
                             {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks("open");
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("close");
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
                             }
@@ -68,29 +68,19 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             }
                         case "IDE_NAME":
                             {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks("vscode");
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("vscode-default");
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                                break;
-                            }
-                        case "VSCODE_LOCATION":
-                            {
-                                if (environmentVariablesSourceDictionary.TryGetValue(key, out var keyValue))
-                                {
-                                    var wrappedVal = stringHelpers.WrapInQuotationMarks(keyValue);
-                                    fileContentDictionaryToWriteToFile.Add(key, wrappedVal);
-                                }
                                 break;
                             }
                         case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
                             {
-                                if (environmentVariablesSourceDictionary.TryGetValue(
+                                environmentVariablesSourceDictionary.TryGetValue(
                                     "CAFDEM_EXECUTIVE_FILE_ADDRESS",
-                                    out var cafdemExecutiveFileAddress))
-                                {
-                                    var striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress);
-                                    var dirName = Path.GetDirectoryName(striped);
-                                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
-                                }
+                                    out var notepadPlusPlusFileManagementExecutiveFileLocation
+                                );
+                                var striped = stringHelpers.StripQuotationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
+                                var dirName = Path.GetDirectoryName(striped);
+                                fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
                                 break;
                             }
                         default:
@@ -103,7 +93,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                 }
                 catch (Exception)
                 {
-                    logger.LogError("IdeMicrosoftVscodeMultitudeSecondaryActionOpen: the key could not be processed: {Key}", key);
+                    logger.LogError("IdeMicrosoftVscodeDefaultMultitudePrimaryActionShut: the key could not be processed: {Key}", key);
                 }
             }
             return fileContentDictionaryToWriteToFile;

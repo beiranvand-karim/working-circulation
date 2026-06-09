@@ -5,12 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeMicrosoft
 {
-    public class IdeMicrosoftVscodeMultitudePrimaryActionOpen(
+    public class IdeMicrosoftVscodeDefaultMultitudeSecondaryActionOpen(
         FeatureName featureName,
         SecondaryApplication secondaryApplication,
-        PrimaryApplication primaryApplication,
         StringHelpers stringHelpers,
-        ILogger<IdeMicrosoftVscodeMultitudePrimaryActionOpen> logger
+        ILogger<IdeMicrosoftVscodeDefaultMultitudeSecondaryActionOpen> logger
     )
     {
         public Dictionary<string, string> PairUpVariablesWithTheirValue(
@@ -37,13 +36,6 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                         case "FEATURE_NAME":
                             {
                                 var val = featureName.GetName();
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
-                                fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
-                                break;
-                            }
-                        case "PRIMARY_APPLICATION_NAME":
-                            {
-                                var val = primaryApplication.GetName();
                                 var wrappedVal = stringHelpers.WrapInQuotationMarks(val);
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
@@ -76,7 +68,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             }
                         case "IDE_NAME":
                             {
-                                var wrappedVal = stringHelpers.WrapInQuotationMarks("vscode");
+                                var wrappedVal = stringHelpers.WrapInQuotationMarks("vscode-default");
                                 fileContentDictionaryToWriteToFile.Add(key, wrappedVal ?? "");
                                 break;
                             }
@@ -91,13 +83,14 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             }
                         case "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY":
                             {
-                                environmentVariablesSourceDictionary.TryGetValue(
+                                if (environmentVariablesSourceDictionary.TryGetValue(
                                     "CAFDEM_EXECUTIVE_FILE_ADDRESS",
-                                    out var notepadPlusPlusFileManagementExecutiveFileLocation
-                                );
-                                var striped = stringHelpers.StripQuotationMarks(notepadPlusPlusFileManagementExecutiveFileLocation ?? "");
-                                var dirName = Path.GetDirectoryName(striped);
-                                fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                    out var cafdemExecutiveFileAddress))
+                                {
+                                    var striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress);
+                                    var dirName = Path.GetDirectoryName(striped);
+                                    fileContentDictionaryToWriteToFile.Add(key, dirName ?? "");
+                                }
                                 break;
                             }
                         default:
@@ -110,7 +103,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                 }
                 catch (Exception)
                 {
-                    logger.LogError("IdeMicrosoftVscodeMultitudePrimaryActionOpen: the key could not be processed: {Key}", key);
+                    logger.LogError("IdeMicrosoftVscodeDefaultMultitudeSecondaryActionOpen: the key could not be processed: {Key}", key);
                 }
             }
             return fileContentDictionaryToWriteToFile;
