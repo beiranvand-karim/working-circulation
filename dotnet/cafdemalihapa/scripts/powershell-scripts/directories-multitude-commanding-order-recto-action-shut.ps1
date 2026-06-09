@@ -9,10 +9,10 @@ $feature_self_address = [uri]'FEATURE_SELF_ADDRESS';
 $operations_directory_path = [uri]'OPERATIONS_DIRECTORY_PATH';
 $fend_address = [uri]'FEND_ADDRESS';
 $fend_primary_address = [uri]'FEND_PRIMARY_ADDRESS';
-$fend_guest_address = [uri]'FEND_GUEST_ADDRESS';
+$fend_secondary_address = [uri]'FEND_SECONDARY_ADDRESS';
 $bend_address = [uri]'BEND_ADDRESS';
 $bend_primary_address = [uri]'BEND_PRIMARY_ADDRESS';
-$bend_guest_address = [uri]'BEND_GUEST_ADDRESS';
+$bend_secondary_address = [uri]'BEND_SECONDARY_ADDRESS';
 $calls_address = [uri]'CALLS_ADDRESS';
 $tools_address = [uri]'TOOLS_ADDRESS';
 $notes_messages_address = [uri]'NOTES_MESSAGES_ADDRESS';
@@ -27,10 +27,10 @@ $directories_collection = @(
     $operations_directory_path,
     $fend_address,
     $fend_primary_address,
-    $fend_guest_address,
+    $fend_secondary_address,
     $bend_address,
     $bend_primary_address,
-    $bend_guest_address,
+    $bend_secondary_address,
     $calls_address,
     $tools_address,
     $notes_messages_address,

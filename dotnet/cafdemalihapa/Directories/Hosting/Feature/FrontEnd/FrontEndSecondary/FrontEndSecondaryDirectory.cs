@@ -1,9 +1,9 @@
 using cafdemalihapa.Files;
 using cafdemalihapa.Names;
 
-namespace cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest
+namespace cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary
 {
-    public class FrontEndGuestDirectory(
+    public class FrontEndSecondaryDirectory(
             SecondaryApplication secondaryApplication,
             FrontEndDirectory frontEndDirectory
         )
@@ -11,8 +11,8 @@ namespace cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest
         public string GetName()
         {
             var frontEndDirectoryName = frontEndDirectory.GetName();
-            var guestApplication = secondaryApplication.GetName();
-            var name = $"{frontEndDirectoryName}.{guestApplication}";
+            var secondaryApplicationName = secondaryApplication.GetName();
+            var name = $"{frontEndDirectoryName}.{secondaryApplicationName}";
             return name;
         }
 
@@ -21,8 +21,8 @@ namespace cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest
             var frontEndDirectoryPath = frontEndDirectory.GetPath();
             var name = GetName();
 
-            var frontEndGuestDirectoryPath = Path.Combine(frontEndDirectoryPath, name);
-            return frontEndGuestDirectoryPath;
+            var frontEndSecondaryDirectoryPath = Path.Combine(frontEndDirectoryPath, name);
+            return frontEndSecondaryDirectoryPath;
         }
 
         public void Create()

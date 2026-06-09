@@ -5,7 +5,7 @@ using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.Calls;
 using cafdemalihapa.Directories.Hosting.Feature.Data;
-using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Directories.Hosting.Feature.Tools;
@@ -19,7 +19,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
         FrontEnd.FrontEndDirectory frontEndDirectory,
         FrontEndPrimaryDirectory frontEndPrimaryDirectory,
-        FrontEndGuestDirectory frontEndGuestDirectory,
+        FrontEndSecondaryDirectory frontEndSecondaryDirectory,
         SecondaryApplication secondaryApplication,
         PrimaryApplication primaryApplication,
         Operations.OperationsDirectory operationsDirectory,
@@ -53,7 +53,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
             var commandsDirectoryPath = GetPath();
             var giversPath = environmentVariablesFilesDirectory.GetPath();
             var runPrimaryApplicationPath = Path.Combine(commandsDirectoryPath, "run-primary-application.ps1");
-            var runGuestApplicationPath = Path.Combine(commandsDirectoryPath, "run-secondary-application.ps1");
+            var runSecondaryApplicationPath = Path.Combine(commandsDirectoryPath, "run-secondary-application.ps1");
 
             foreach (var filePath in Directory.EnumerateFiles(commandsDirectoryPath))
             {
@@ -68,7 +68,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
                     case "aggregate-all-multitude-commanding-order-recto-action-open":
                     case "aggregate-all-multitude-commanding-order-reverse-action-open":
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runPrimaryApplicationPath);
-                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runSecondaryApplicationPath);
                         break;
                     case "directories-multitude-commanding-order-recto-action-shut":
                     case "directories-multitude-serving-order-recto-action-shut":
@@ -76,10 +76,10 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "OPERATIONS_DIRECTORY_PATH", operationsDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_ADDRESS", frontEndDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_PRIMARY_ADDRESS", frontEndPrimaryDirectory.GetPath());
-                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "FEND_SECONDARY_ADDRESS", frontEndSecondaryDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_ADDRESS", BackEndDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_PRIMARY_ADDRESS", backEndPrimaryDirectory.GetPath());
-                        DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_GUEST_ADDRESS", backEndSecondaryDirectory.GetPath());
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "BEND_SECONDARY_ADDRESS", backEndSecondaryDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "CALLS_ADDRESS", callsDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "TOOLS_ADDRESS", toolsDirectory.GetPath());
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "NOTES_MESSAGES_ADDRESS", notesAndMessagesDirectory.GetPath());
@@ -91,13 +91,13 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.Commands
                         break;
                     case "all":
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runPrimaryApplicationPath);
-                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runSecondaryApplicationPath);
                         break;
                     case "dotnet-multitude-primary-action-run":
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runPrimaryApplicationPath);
                         break;
                     case "dotnet-multitude-secondary-action-run":
-                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runGuestApplicationPath);
+                        DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runSecondaryApplicationPath);
                         break;
                     case "docker-network-secondary-multitude-primary-action-stop":
                         DirectoryServices.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName());

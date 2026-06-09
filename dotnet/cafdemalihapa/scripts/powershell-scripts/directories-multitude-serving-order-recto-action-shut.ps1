@@ -7,14 +7,14 @@ get-content "directories-multitude-serving-order-recto-action-shut.env" | ForEac
 
 $fend_address = [uri]'FEND_ADDRESS';
 $fend_primary_address = [uri]'FEND_PRIMARY_ADDRESS';
-$fend_guest_address = [uri]'FEND_GUEST_ADDRESS';
+$fend_secondary_address = [uri]'FEND_SECONDARY_ADDRESS';
 $bend_address = [uri]'BEND_ADDRESS';
 $calls_address = [uri]'CALLS_ADDRESS';
 $tools_address = [uri]'TOOLS_ADDRESS';
 $notes_messages_address = [uri]'NOTES_MESSAGES_ADDRESS';
 $web_links_address = [uri]'WEB_LINKS_ADDRESS';
 
-$directories_collection = @($fend_address, $fend_primary_address, $fend_guest_address , $bend_address , $calls_address , $tools_address, $notes_messages_address , $web_links_address);
+$directories_collection = @($fend_address, $fend_primary_address, $fend_secondary_address , $bend_address , $calls_address , $tools_address, $notes_messages_address , $web_links_address);
 
 foreach ($d in $directories_collection) {
     Write-Host "folder: " $d.AbsoluteUri

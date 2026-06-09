@@ -23,7 +23,7 @@ using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.Calls;
 using cafdemalihapa.Directories.Hosting.Feature.Data;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd;
-using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Directories.Hosting.Feature.Tools;
@@ -70,7 +70,7 @@ namespace cafdemalihapa
             services.AddTransient<NotepadPlusPlusMultitudeAllOrderReverseActionOpen>();
             services.AddTransient<FrontEndDirectory>();
             services.AddTransient<FrontEndPrimaryDirectory>();
-            services.AddTransient<FrontEndGuestDirectory>();
+            services.AddTransient<FrontEndSecondaryDirectory>();
             services.AddTransient<NotepadPlusPlus>();
             services.AddTransient<DirectoryOperations>();
             services.AddTransient<NotesAndMessagesDirectory>();

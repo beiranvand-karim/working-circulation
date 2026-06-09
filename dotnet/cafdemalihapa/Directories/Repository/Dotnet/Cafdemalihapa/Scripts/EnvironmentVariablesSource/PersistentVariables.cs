@@ -8,7 +8,7 @@ namespace cafdemalihapa.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Envi
         public string? DirectoryManagementExecutiveFileAddress { get; set; }
         public string? DirectoryManagementExecutiveFileAddressContainingDirectory { get; set; }
         public string? FendPrimaryAddress { get; set; }
-        public string? FendGuestAddress { get; set; }
+        public string? FendSecondaryAddress { get; set; }
         public string? BendAddress { get; set; }
         public string? CallsAddress { get; set; }
         public string? ToolsAddress { get; set; }

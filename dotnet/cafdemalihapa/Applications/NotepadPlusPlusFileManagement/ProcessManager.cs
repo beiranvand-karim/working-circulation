@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using System.Text.Json;
 using cafdemalihapa.Directories.Hosting.Feature.Automations.ProcessesMetaData;
-using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Files.Executables;
@@ -13,7 +13,7 @@ namespace cafdemalihapa.Applications.NotepadPlusPlusFileManagement
         NotepadPlusPlus notePadPlusPlus,
         ILogger<ProcessManager> logger,
         FrontEndPrimaryDirectory frontEndPrimaryDirectory,
-        FrontEndGuestDirectory frontEndGuestDirectory,
+        FrontEndSecondaryDirectory frontEndSecondaryDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
         ProcessesMetaDataDirectory processesMetaDataDirectory
         )
@@ -23,7 +23,7 @@ namespace cafdemalihapa.Applications.NotepadPlusPlusFileManagement
             try
             {
                 var a = frontEndPrimaryDirectory.GetPath();
-                var b = frontEndGuestDirectory.GetPath();
+                var b = frontEndSecondaryDirectory.GetPath();
                 var c = notesAndMessagesDirectory.GetPath();
                 ProcessInformationGroup processInformationGroup = new();
 

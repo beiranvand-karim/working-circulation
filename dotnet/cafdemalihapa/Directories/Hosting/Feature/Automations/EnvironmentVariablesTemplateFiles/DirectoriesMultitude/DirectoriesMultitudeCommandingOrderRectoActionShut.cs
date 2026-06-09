@@ -1,7 +1,7 @@
 using System.Text;
 using cafdemalihapa.Directories.Hosting.Feature.BackEnd;
 using cafdemalihapa.Directories.Hosting.Feature.Calls;
-using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Directories.Hosting.Feature.Tools;
@@ -16,7 +16,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
         StringHelpers stringHelpers,
         Operations.OperationsDirectory operationsDirectory,
         FrontEndPrimaryDirectory frontEndPrimaryDirectory,
-        FrontEndGuestDirectory frontEndGuestDirectory,
+        FrontEndSecondaryDirectory frontEndSecondaryDirectory,
         FrontEnd.FrontEndDirectory frontEndDirectory,
         CallsDirectory callsDirectory,
         ToolsDirectory toolsDirectory,
@@ -72,10 +72,10 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                                     break;
                                 }
-                            case "FEND_GUEST_ADDRESS":
+                            case "FEND_SECONDARY_ADDRESS":
                                 {
-                                    var frontEndGuestDirectoryPath = frontEndGuestDirectory.GetPath();
-                                    var valueToWrite = stringHelpers.WrapInQuotationMarks(frontEndGuestDirectoryPath);
+                                    var frontEndSecondaryDirectoryPath = frontEndSecondaryDirectory.GetPath();
+                                    var valueToWrite = stringHelpers.WrapInQuotationMarks(frontEndSecondaryDirectoryPath);
                                     fileContentDictionaryToWriteToFile.Add(key, valueToWrite ?? "");
                                     break;
                                 }
@@ -138,7 +138,7 @@ namespace cafdemalihapa.Directories.Hosting.Feature.Automations.EnvironmentVaria
                             case "STARTUP_DIRECTORY_LOCATION":
                             case "IS_OPENING_OPERATIONS_DIRECTORY":
                             case "IS_OPENING_FEND_PRIMARY_ADDRESS":
-                            case "IS_OPENING_FEND_GUEST_ADDRESS":
+                            case "IS_OPENING_FEND_SECONDARY_ADDRESS":
                             case "IS_OPENING_BEND_ADDRESS":
                             case "IS_OPENING_CALLS_ADDRESS":
                             case "IS_OPENING_TOOLS_ADDRESS":

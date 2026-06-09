@@ -10,7 +10,7 @@ using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.Calls;
 using cafdemalihapa.Directories.Hosting.Feature.Data;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd;
-using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Directories.Hosting.Feature.Tools;
@@ -33,7 +33,7 @@ namespace cafdemalihapa.Applications.DirectoryManagement
         CallsDirectory callsDirectory,
         FrontEndDirectory frontEndDirectory,
         FrontEndPrimaryDirectory frontEndPrimaryDirectory,
-        FrontEndGuestDirectory frontEndGuestDirectory,
+        FrontEndSecondaryDirectory frontEndSecondaryDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
         WebLinksDirectory webLinksDirectory,
         EnvironmentVariablesFilesDirectory environmentVariablesFilesDirectory,
@@ -72,10 +72,8 @@ namespace cafdemalihapa.Applications.DirectoryManagement
                 { "IS_OPENING_BEND_SECONDARY_ADDRESS", backEndSecondaryDirectory.GetPath() },
                 { "IS_OPENING_DATA_DIRECTORY", dataDirectory.GetPath() },
                 { "IS_OPENING_FEND_ADDRESS", frontEndDirectory.GetPath() },
-                { "IS_OPENING_FEND_HOST_ADDRESS", frontEndPrimaryDirectory.GetPath() },
-                { "IS_OPENING_FEND_GUEST_ADDRESS", frontEndGuestDirectory.GetPath() },
                 { "IS_OPENING_FEND_PRIMARY_ADDRESS", frontEndPrimaryDirectory.GetPath() },
-                { "IS_OPENING_FEND_SECONDARY_ADDRESS", frontEndGuestDirectory.GetPath() },
+                { "IS_OPENING_FEND_SECONDARY_ADDRESS", frontEndSecondaryDirectory.GetPath() },
                 { "IS_OPENING_CALLS_ADDRESS", callsDirectory.GetPath() },
                 { "IS_OPENING_TOOLS_ADDRESS", toolsDirectory.GetPath() },
                 { "IS_OPENING_NOTES_MESSAGES_ADDRESS", notesAndMessagesDirectory.GetPath() },

@@ -4,7 +4,7 @@ using cafdemalihapa.Directories.Hosting.Feature.BackEnd.BackEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.Calls;
 using cafdemalihapa.Directories.Hosting.Feature.Data;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd;
-using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndGuest;
+using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary;
 using cafdemalihapa.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary;
 using cafdemalihapa.Directories.Hosting.Feature.NotesAndMessages;
 using cafdemalihapa.Directories.Hosting.Feature.Tools;
@@ -21,7 +21,7 @@ namespace cafdemalihapa.Applications.DirectoryManagement
         CallsDirectory callsDirectory,
         FrontEndDirectory frontEndDirectory,
         FrontEndPrimaryDirectory frontEndPrimaryDirectory,
-        FrontEndGuestDirectory frontEndGuestDirectory,
+        FrontEndSecondaryDirectory frontEndSecondaryDirectory,
         NotesAndMessagesDirectory notesAndMessagesDirectory,
         WebLinksDirectory webLinksDirectory
     )
@@ -48,7 +48,7 @@ namespace cafdemalihapa.Applications.DirectoryManagement
                 dataDirectory.Create,
                 frontEndDirectory.Create,
                 frontEndPrimaryDirectory.Create,
-                frontEndGuestDirectory.Create,
+                frontEndSecondaryDirectory.Create,
                 notesAndMessagesDirectory.Create,
                 webLinksDirectory.Create,
             };
@@ -64,7 +64,7 @@ namespace cafdemalihapa.Applications.DirectoryManagement
             var filesToCreate = new List<Action>
             {
                 frontEndPrimaryDirectory.CreateFiles,
-                frontEndGuestDirectory.CreateFiles,
+                frontEndSecondaryDirectory.CreateFiles,
                 notesAndMessagesDirectory.CreateFiles,
             };
 
