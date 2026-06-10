@@ -1,12 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="Program.fs" />
-  </ItemGroup>
+  <!-- Compile items are split by dependency layer across the msbuild/ folder.
+       F# is compile-order sensitive, so these imports MUST stay in this order. -->
+  <Import Project="msbuild/Compile.1.Foundation.props" />
+  <Import Project="msbuild/Compile.2.Directories.props" />
+  <Import Project="msbuild/Compile.3.Applications.props" />
+  <Import Project="msbuild/Compile.4.Composition.props" />
+
+  <Import Project="msbuild/Items.props" />
+  <Import Project="msbuild/Packages.props" />
 
 </Project>

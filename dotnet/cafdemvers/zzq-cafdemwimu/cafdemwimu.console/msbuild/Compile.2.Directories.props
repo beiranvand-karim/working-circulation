@@ -1,0 +1,74 @@
+<Project>
+
+  <!-- Layer 2: the Directories tree. Applications/Something.fs is woven in at the
+       point where its dependencies (the EnvironmentVariablesSource JSON file
+       classes) are available and before its dependent (EnvironmentVariablesFilesDirectory). -->
+  <ItemGroup>
+    <Compile Include="Directories/NullHelpers.fs" />
+    <Compile Include="Directories/Hosting/HostingDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/FeatureDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndDirectory.fs" />
+    <Compile Include="Directories/DirectoryServices.fs" />
+    <Compile Include="Directories/WorkingCirculationDirectory.fs" />
+    <Compile Include="Directories/Repository/RepositoryDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/DotnetDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/CafdemalihapaDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/ScriptsDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/EnvironmentVariablesSourceDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/CodeBases/CodeBaseDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariables.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/PersistentVariables.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariablesFile.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/PersistentVariablesFile.fs" />
+    <Compile Include="Applications/Something.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/Alone/AloneDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesTemplates/EnvironmentVariablesTemplatesDirectory.fs" />
+    <Compile Include="Directories/Applications/ApplicationLocation.fs" />
+    <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndPrimary/FrontEndPrimaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndSecondary/FrontEndSecondaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndPrimary/BackEndPrimaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndSecondary/BackEndSecondaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Calls/CallsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Data/DataDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/NotesAndMessages/NotesAndMessagesDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Tools/ToolsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/WebLinks/WebLinksDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/AutomationsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Operations/OperationsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/ProcessesMetaData/ProcessesMetaDataDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesFiles/EnvironmentVariablesFilesDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/DirectoriesMultitude/DirectoriesMultitudeCommandingOrderRectoActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/DirectoriesMultitude/DirectoriesMultitudeCommandingOrderReverseActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/DirectoriesMultitude/DirectoriesMultitudeServingOrderRectoActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/DirectoriesMultitude/DirectoriesMultitudeServingOrderReverseActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/DirectoriesMultitude/DirectoriesMultitudeStartupActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/DirectoriesMultitude/DirectoriesMultitudeCommandingOrderRectoActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/DirectoriesMultitude/DirectoriesMultitudeServingOrderRectoActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsRiderMultitudePrimaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsRiderMultitudePrimaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsRiderMultitudeSecondaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsRiderMultitudeSecondaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsWebstormMultitudePrimaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsWebstormMultitudePrimaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsWebstormMultitudeSecondaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeJetbrains/IdeJetbrainsWebstormMultitudeSecondaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeDefaultMultitudePrimaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeDefaultMultitudePrimaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeDefaultMultitudeSecondaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeDefaultMultitudeSecondaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeInsidersMultitudePrimaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeInsidersMultitudePrimaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeInsidersMultitudeSecondaryActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/IdeMicrosoft/IdeMicrosoftVscodeInsidersMultitudeSecondaryActionShut.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/Notepad/NotepadPlusPlusAllClose.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/Notepad/NotepadPlusPlusMultitudeAllOrderReverseActionOpen.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/Notepad/NotepadPlusPlusOpenAll.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Commands/CommandsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Commands/RunPrimayApplication.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Commands/RunSecondaryApplication.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/EnvironmentVariablesSourceFilesDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/PowerShellScripts/PowerShellScriptsDirectory.fs" />
+  </ItemGroup>
+
+</Project>

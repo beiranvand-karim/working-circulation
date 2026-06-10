@@ -1,0 +1,22 @@
+<Project>
+
+  <!-- Layer 1: leaf utilities with no project dependencies beyond CommandLineArgs.
+       CodeBase lives in Applications but is a dependency of the Directories layer,
+       so it is compiled here. -->
+  <ItemGroup>
+    <Compile Include="CommandLineArgs.fs" />
+    <Compile Include="Names/ApplicationName.fs" />
+    <Compile Include="Names/FeatureName.fs" />
+    <Compile Include="Names/IdeName.fs" />
+    <Compile Include="Names/PrimaryApplication.fs" />
+    <Compile Include="Names/SecondaryApplication.fs" />
+    <Compile Include="Names/DirectoryToBeOpen.fs" />
+    <Compile Include="Files/FileService.fs" />
+    <Compile Include="Files/Executables/IdeExecutiveFileLocation.fs" />
+    <Compile Include="Files/Executables/NotepadPlusPlus.fs" />
+    <Compile Include="Files/Executables/NotePadPlusPlusFileManagementExecutiveFile.fs" />
+    <Compile Include="Helpers/StringHelpers.fs" />
+    <Compile Include="Applications/Cafdemalihapa/CodeBase.fs" />
+  </ItemGroup>
+
+</Project>

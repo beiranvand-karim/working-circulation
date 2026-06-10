@@ -1,0 +1,10 @@
+<Project>
+
+  <!-- Non-compiled content files. -->
+  <ItemGroup>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,32 @@
+<Project>
+
+  <!-- Layer 3: the Applications tree (CodeBase and Something were compiled earlier
+       as dependencies of the Directories layer). -->
+  <ItemGroup>
+    <Compile Include="Applications/Applications.fs" />
+    <Compile Include="Applications/PathUtility.fs" />
+    <Compile Include="Applications/DirectoryManagement/Commands.fs" />
+    <Compile Include="Applications/DirectoryManagement/DirectoryOpenStrategies/IDirectoryOpenStrategy.fs" />
+    <Compile Include="Applications/DirectoryManagement/DirectoryOpenStrategies/DirectoryOpenStrategy.fs" />
+    <Compile Include="Applications/DirectoryManagement/DirectoryOpenStrategies/LinuxDirectoryOpenStrategy.fs" />
+    <Compile Include="Applications/DirectoryManagement/DirectoryOpenStrategies/MacDirectoryOpenStrategy.fs" />
+    <Compile Include="Applications/DirectoryManagement/DirectoryOpenStrategies/WindowsDirectoryOpenStrategy.fs" />
+    <Compile Include="Applications/DirectoryManagement/Creation.fs" />
+    <Compile Include="Applications/DirectoryManagement/Opening.fs" />
+    <Compile Include="Applications/DirectoryManagement/Shutting.fs" />
+    <Compile Include="Applications/DirectoryManagement/DirectoryManagement.fs" />
+    <Compile Include="Applications/IdeManagement/IdeProcessInformation.fs" />
+    <Compile Include="Applications/IdeManagement/ProcessInformationGroup.fs" />
+    <Compile Include="Applications/IdeManagement/IdeProcessManagement.fs" />
+    <Compile Include="Applications/IdeManagement/IdeManagement.fs" />
+    <Compile Include="Applications/NotepadPlusPlusFileManagement/ProcessInformation.fs" />
+    <Compile Include="Applications/NotepadPlusPlusFileManagement/ProcessInformationGroup.fs" />
+    <Compile Include="Applications/NotepadPlusPlusFileManagement/ProcessManager.fs" />
+    <Compile Include="Applications/NotepadPlusPlusFileManagement/CloseProcessManagement.fs" />
+    <Compile Include="Applications/NotepadPlusPlusFileManagement/NotepadPlusPlusFileManagementCommandSwitcher.fs" />
+    <Compile Include="Applications/Cafdemalihapa/FolderViewConfigurator.fs" />
+    <Compile Include="Applications/Cafdemalihapa/Cafdemalihapa.fs" />
+    <Compile Include="Applications/ApplicationSwitcher.fs" />
+  </ItemGroup>
+
+</Project>

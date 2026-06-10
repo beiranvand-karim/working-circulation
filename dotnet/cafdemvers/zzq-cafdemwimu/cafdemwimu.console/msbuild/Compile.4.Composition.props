@@ -1,0 +1,12 @@
+<Project>
+
+  <!-- Layer 4: composition root — helpers, DI registration, and the entry point.
+       Program.fs must be the last compiled file (it carries the [<EntryPoint>]). -->
+  <ItemGroup>
+    <Compile Include="DirectoryOperations.fs" />
+    <Compile Include="MultitudeServiceCollectionExtensions.fs" />
+    <Compile Include="ServiceCollectionExtensions.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+
+</Project>
