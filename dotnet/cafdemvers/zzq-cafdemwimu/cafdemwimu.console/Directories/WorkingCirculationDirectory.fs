@@ -9,9 +9,3 @@ type WorkingCirculationDirectory() =
         let workingCirculationDirectoryName =
             Path.Combine(CommandLineArgs.GetByKey(repositoryDirectoryNameKey), "WorkingCirculation")
         workingCirculationDirectoryName
-
-    member this.GetName() =
-        let workingCirculationDirectoryName = this.GetPath()
-        let environmentVariablesManagementDirectoryName =
-            Path.Combine(workingCirculationDirectoryName, "EnvironmentVariablesManagement")
-        environmentVariablesManagementDirectoryName

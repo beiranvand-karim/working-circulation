@@ -32,6 +32,7 @@ type Something(persistentVariablesFile: PersistentVariablesFile, mutantVariables
         str
         |> Seq.mapi (fun i x -> if i > 0 && Char.IsUpper x then "_" + string x else string x)
         |> String.concat ""
+        
         |> fun s -> s.ToLower()
 
     static member private ReadKeyValueFromJsonFile<'T>(path: string) =

@@ -10,6 +10,7 @@
     <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndDirectory.fs" />
     <Compile Include="Directories/DirectoryServices.fs" />
     <Compile Include="Directories/WorkingCirculationDirectory.fs" />
+    <Compile Include="Directories/WorkingDirectory.fs" />
     <Compile Include="Directories/Repository/RepositoryDirectory.fs" />
     <Compile Include="Directories/Repository/Dotnet/DotnetDirectory.fs" />
     <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/CafdemalihapaDirectory.fs" />

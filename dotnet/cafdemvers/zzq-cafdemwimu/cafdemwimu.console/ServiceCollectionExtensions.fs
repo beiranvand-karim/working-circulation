@@ -54,6 +54,7 @@ type ServiceCollectionExtensions =
         services.AddTransient<EnvironmentVariablesTemplatesDirectory>() |> ignore
         services.AddTransient<EnvironmentVariablesFilesDirectory>() |> ignore
         services.AddTransient<WorkingCirculationDirectory>() |> ignore
+        services.AddTransient<WorkingDirectory>() |> ignore
         services.AddTransient<EnvironmentVariablesSourceDirectory>() |> ignore
         services.AddTransient<PowerShellScriptsDirectory>() |> ignore
         services.AddTransient<PrimaryApplication>() |> ignore
