@@ -1,8 +1,8 @@
-namespace cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Alone
+namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.Alone
 
 open System.IO
 open cafdemwimu.console.Names
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts
 
 type AloneDirectory(secondaryApplication: SecondaryApplication, scriptsDirectory: ScriptsDirectory) =
     member _.GetName() =

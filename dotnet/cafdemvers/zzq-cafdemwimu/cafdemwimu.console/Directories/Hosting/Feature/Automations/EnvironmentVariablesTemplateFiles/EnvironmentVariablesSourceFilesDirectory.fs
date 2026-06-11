@@ -8,7 +8,7 @@ open cafdemwimu.console.Directories.Hosting.Feature.Automations.EnvironmentVaria
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeJetbrains
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.IdeMicrosoft
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles.Notepad
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesTemplates
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesTemplates
 
 type EnvironmentVariablesSourceFilesDirectory
     (

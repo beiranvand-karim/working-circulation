@@ -32,14 +32,13 @@ open cafdemwimu.console.Directories.Hosting.Feature.Tools
 open cafdemwimu.console.Directories.Hosting.Feature.WebLinks
 open cafdemwimu.console.Directories.Repository
 open cafdemwimu.console.Directories.Repository.Dotnet
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Alone
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.CodeBases
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.Files.Jsons
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesTemplates
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.PowerShellScripts
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.Alone
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.CodeBases
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.Files.Jsons
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesTemplates
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.PowerShellScripts
 open cafdemwimu.console.Files.Executables
 open cafdemwimu.console.Helpers
 open cafdemwimu.console.Names
@@ -54,7 +53,6 @@ type ServiceCollectionExtensions =
         services.AddTransient<EnvironmentVariablesTemplatesDirectory>() |> ignore
         services.AddTransient<EnvironmentVariablesFilesDirectory>() |> ignore
         services.AddTransient<WorkingCirculationDirectory>() |> ignore
-        services.AddTransient<WorkingDirectory>() |> ignore
         services.AddTransient<EnvironmentVariablesSourceDirectory>() |> ignore
         services.AddTransient<PowerShellScriptsDirectory>() |> ignore
         services.AddTransient<PrimaryApplication>() |> ignore
@@ -94,8 +92,6 @@ type ServiceCollectionExtensions =
         services.AddSingleton<DataDirectory>() |> ignore
         services.AddSingleton<BackEndPrimaryDirectory>() |> ignore
         services.AddSingleton<BackEndSecondaryDirectory>() |> ignore
-        services.AddSingleton<CafdemalihapaDirectory>() |> ignore
-        services.AddSingleton<DotnetDirectory>() |> ignore
         services.AddSingleton<RepositoryDirectory>() |> ignore
         services.AddSingleton<MutantVariablesFile>() |> ignore
         services.AddSingleton<DirectoryManagement>() |> ignore

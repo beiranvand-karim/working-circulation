@@ -7,7 +7,7 @@ open Microsoft.Extensions.Logging
 open cafdemwimu.console.Applications.Cafdemalihapa
 open cafdemwimu.console.Directories.NullHelpers
 open cafdemwimu.console.Directories.Hosting
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts
 open cafdemwimu.console.Directories.Repository
 open cafdemwimu.console.Helpers
 open cafdemwimu.console.Names

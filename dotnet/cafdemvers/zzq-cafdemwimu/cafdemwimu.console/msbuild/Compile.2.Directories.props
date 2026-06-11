@@ -10,20 +10,17 @@
     <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndDirectory.fs" />
     <Compile Include="Directories/DirectoryServices.fs" />
     <Compile Include="Directories/WorkingCirculationDirectory.fs" />
-    <Compile Include="Directories/WorkingDirectory.fs" />
     <Compile Include="Directories/Repository/RepositoryDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/DotnetDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/CafdemalihapaDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/ScriptsDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/EnvironmentVariablesSourceDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/CodeBases/CodeBaseDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariables.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/PersistentVariables.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariablesFile.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesSource/PersistentVariablesFile.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/ScriptsDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/EnvironmentVariablesSourceDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/CodeBases/CodeBaseDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariables.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/PersistentVariables.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariablesFile.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/PersistentVariablesFile.fs" />
     <Compile Include="Applications/Something.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/Alone/AloneDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/EnvironmentVariablesTemplates/EnvironmentVariablesTemplatesDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/Alone/AloneDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesTemplates/EnvironmentVariablesTemplatesDirectory.fs" />
     <Compile Include="Directories/Applications/ApplicationLocation.fs" />
     <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndDirectory.fs" />
     <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndPrimary/FrontEndPrimaryDirectory.fs" />
@@ -69,7 +66,7 @@
     <Compile Include="Directories/Hosting/Feature/Automations/Commands/RunPrimayApplication.fs" />
     <Compile Include="Directories/Hosting/Feature/Automations/Commands/RunSecondaryApplication.fs" />
     <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/EnvironmentVariablesSourceFilesDirectory.fs" />
-    <Compile Include="Directories/Repository/Dotnet/Cafdemalihapa/Scripts/PowerShellScripts/PowerShellScriptsDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/PowerShellScripts/PowerShellScriptsDirectory.fs" />
   </ItemGroup>
 
 </Project>

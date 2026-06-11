@@ -1,4 +1,4 @@
-namespace cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts
+namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts
 
 open cafdemwimu.console
 

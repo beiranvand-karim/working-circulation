@@ -1,8 +1,8 @@
-namespace cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.Files.Jsons
+namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.Files.Jsons
 
 open System.IO
 open cafdemwimu.console.Names
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.CodeBases
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.CodeBases
 
 type MutantVariablesFile(primaryApplication: PrimaryApplication, secondaryApplication: SecondaryApplication, codeBaseDirectory: CodeBaseDirectory) =
     member _.GetName() =

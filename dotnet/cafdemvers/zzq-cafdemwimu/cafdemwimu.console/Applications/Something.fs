@@ -5,8 +5,8 @@ open System.IO
 open System.Text
 open System.Linq
 open System.Collections.Generic
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.SeparationFilement
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesSource.Files.Jsons
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.SeparationFilement
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.Files.Jsons
 
 type Something(persistentVariablesFile: PersistentVariablesFile, mutantVariablesFile: MutantVariablesFile) =
 

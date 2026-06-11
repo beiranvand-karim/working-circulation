@@ -7,7 +7,7 @@ open cafdemwimu.console.Directories.Hosting.Feature.Automations.Commands
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.EnvironmentVariablesFiles
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.EnvironmentVariablesTemplateFiles
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.Operations
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.PowerShellScripts
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.PowerShellScripts
 
 type Cafdemalihapa
     (

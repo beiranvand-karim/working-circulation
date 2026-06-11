@@ -1,8 +1,8 @@
-namespace cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.EnvironmentVariablesTemplates
+namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesTemplates
 
 open System.IO
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts
-open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts.Alone
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.Alone
 
 type EnvironmentVariablesTemplatesDirectory(aloneDirectory: AloneDirectory, scriptsDirectory: ScriptsDirectory) =
     member _.GetPath() =
