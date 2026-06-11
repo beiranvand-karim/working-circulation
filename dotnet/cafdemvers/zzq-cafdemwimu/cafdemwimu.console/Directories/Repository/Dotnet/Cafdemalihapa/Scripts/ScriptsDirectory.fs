@@ -1,10 +1,10 @@
 namespace cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts
 
-open System.IO
-open cafdemwimu.console.Directories
+open cafdemwimu.console
 
-type ScriptsDirectory(workingDirectory: WorkingDirectory) =
+type ScriptsDirectory() =
     member _.GetPath() =
-        let workingDirectoryPath = workingDirectory.GetPath()
-        let scriptsDirectoryPath = Path.Combine(workingDirectoryPath, "scripts")
-        scriptsDirectoryPath
+        let scriptsDirectoryNameKey = "--scripts-directory"
+        let scriptsDirectoryName =
+            CommandLineArgs.GetByKey(scriptsDirectoryNameKey)
+        scriptsDirectoryName

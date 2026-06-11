@@ -7,6 +7,7 @@ open Microsoft.Extensions.Logging
 open cafdemwimu.console.Applications.Cafdemalihapa
 open cafdemwimu.console.Directories.NullHelpers
 open cafdemwimu.console.Directories.Hosting
+open cafdemwimu.console.Directories.Repository.Dotnet.Cafdemalihapa.Scripts
 open cafdemwimu.console.Directories.Repository
 open cafdemwimu.console.Helpers
 open cafdemwimu.console.Names
@@ -19,6 +20,7 @@ type DirectoriesMultitudeServingOrderReverseActionOpen
         featureName: FeatureName,
         repositoryDirectory: RepositoryDirectory,
         codeBase: CodeBase,
+        scriptsDirectory: ScriptsDirectory,
         logger: ILogger<DirectoriesMultitudeServingOrderReverseActionOpen>
     ) =
     member _.PairUpVariablesWithTheirValue(fileNamePath: string, environmentVariablesSourceDictionary: Dictionary<string, string>) =
@@ -55,6 +57,7 @@ type DirectoriesMultitudeServingOrderReverseActionOpen
                     | "PRIMARY_APPLICATION_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(primaryApplication.GetName()))
                     | "SECONDARY_APPLICATION_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(secondaryApplication.GetName()))
                     | "HOSTING_DIRECTORY" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(HostingDirectory.GetPath()))
+                    | "SCRIPTS_DIRECTORY" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(scriptsDirectory.GetPath()))
                     | _ ->
                         let _, val2 = environmentVariablesSourceDictionary.TryGetValue key
                         fileContentDictionaryToWriteToFile.Add(key, orEmpty val2)

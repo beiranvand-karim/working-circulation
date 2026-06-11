@@ -5,12 +5,13 @@ $secondary_application_name = "decimus"
 
 $repository_directory = "C:\workplace\GitHub\working-circulation"
 $working_directory = "$repository_directory\dotnet\cafdemvers\zzq-cafdemwimu\cafdemwimu.console"
+$scripts_directory = "$working_directory\scripts"
 $hosting_directory = "C:\workplace\feature-development"
 $feature_directory = "$hosting_directory\$feature_name"
 
-Write-Host $feature_directory
+# Write-Host $feature_directory
 
-Remove-Item -Recurse -Force -Path $feature_directory
+# Remove-Item -Recurse -Force -Path $feature_directory
 
 Push-Location $working_directory
 
@@ -20,6 +21,7 @@ dotnet run `
     --code-base "codebase" `
     --feature-name "$feature_name" `
     --executive-file-directory "$repository_directory\dotnet\cafdemvers\zzq-cafdemwimu\cafdemwimu.console\bin\Debug\net10.0\cafdemwimu.console.exe" `
+    --scripts-directory "$scripts_directory" `
     --repository-directory "$repository_directory" `
     --hosting-directory "$hosting_directory" `
     --primary-application-name "$primary_application_name" `

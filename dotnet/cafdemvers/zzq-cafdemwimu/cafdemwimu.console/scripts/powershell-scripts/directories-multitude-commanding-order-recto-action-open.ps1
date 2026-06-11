@@ -16,7 +16,8 @@ $ArgumentList =(
     " --hosting-directory $env:HOSTING_DIRECTORY" +
     " --repository-directory $env:REPOSITORY_DIRECTORY" +
     " --primary-application-name $env:PRIMARY_APPLICATION_NAME" +
-    " --secondary-application-name $env:SECONDARY_APPLICATION_NAME"
+    " --secondary-application-name $env:SECONDARY_APPLICATION_NAME" +
+    " --scripts-directory $env:SCRIPTS_DIRECTORY"
     )
 
 Push-Location $env:CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY

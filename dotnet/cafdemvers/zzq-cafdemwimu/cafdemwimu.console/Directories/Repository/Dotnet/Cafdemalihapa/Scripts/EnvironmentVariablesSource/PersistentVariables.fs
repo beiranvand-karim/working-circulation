@@ -23,6 +23,7 @@ type PersistentVariables =
       NotepaddppExecuteFileLocation: string
       FeatureName: string
       HostingDirectory: string
+      ScriptsDirectory: string
       Application: string
       CodeBase: string
       Command: string

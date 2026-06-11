@@ -21,6 +21,7 @@
     "NotepaddppExecuteFileLocation": "C:\\Program Files\\Notepad++\\notepad++.exe",
     "FeatureName": "feature/name",
     "HostingDirectory": "hosting/directory",
+    "ScriptsDirectory": "scripts/directory",
     "PrimaryApplicationName": "primary/application/name",
     "SecondaryApplicationName": "secondary/application/name",
     "Command": "command",
@@ -37,6 +38,6 @@
     "VscodeInsidersLocation": "C:\\Users\\beira\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\Code - Insiders.exe",
     "DockerLoginName": "docker/login/name",
     "AzureClientSecretFromEnvironmentVariables": "azure/client/secret/from/environment/variables",
-     "CafdemExecutiveFileAddress": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemalihapa\\bin\\Debug\\net8.0\\cafdemalihapa.exe",
+     "CafdemExecutiveFileAddress": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\bin\\Debug\\net10.0\\cafdemwimu.console.exe",
     "CafdemExecutiveFileAddressContainingDirectory": "cafdem/executive/file/address/containing/directory"
 }
