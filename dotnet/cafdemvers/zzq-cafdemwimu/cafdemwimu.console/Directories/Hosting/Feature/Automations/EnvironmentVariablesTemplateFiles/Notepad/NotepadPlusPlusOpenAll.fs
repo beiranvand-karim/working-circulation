@@ -41,9 +41,9 @@ type NotepadPlusPlusOpenAll
                     match environmentVariablesSourceDictionary.TryGetValue key with
                     | true, keyValue -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(keyValue))
                     | _ -> ()
-                | "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY" ->
-                    let _, notepadPlusPlusFileManagementExecutiveFileLocation = environmentVariablesSourceDictionary.TryGetValue("NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_LOCATION")
-                    let striped = stringHelpers.StripQuotationMarks(orEmpty notepadPlusPlusFileManagementExecutiveFileLocation)
+                | "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY" ->
+                    let _, cafdemExecutiveFileAddress = environmentVariablesSourceDictionary.TryGetValue("CAFDEM_EXECUTIVE_FILE_ADDRESS")
+                    let striped = stringHelpers.StripQuotationMarks(orEmpty cafdemExecutiveFileAddress)
                     let dirName = Path.GetDirectoryName(striped: string)
                     fileContentDictionaryToWriteToFile.Add(key, orEmpty dirName)
                 | _ ->

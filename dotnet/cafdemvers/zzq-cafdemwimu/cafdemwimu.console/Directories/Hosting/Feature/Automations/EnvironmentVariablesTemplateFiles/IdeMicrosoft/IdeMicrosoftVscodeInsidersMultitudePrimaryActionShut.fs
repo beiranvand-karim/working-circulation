@@ -37,8 +37,8 @@ type IdeMicrosoftVscodeInsidersMultitudePrimaryActionShut
                 | "APPLICATION" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks("ide-management"))
                 | "IDE_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks("vscode-insiders"))
                 | "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY" ->
-                    let _, notepadPlusPlusFileManagementExecutiveFileLocation = environmentVariablesSourceDictionary.TryGetValue("CAFDEM_EXECUTIVE_FILE_ADDRESS")
-                    let striped = stringHelpers.StripQuotationMarks(orEmpty notepadPlusPlusFileManagementExecutiveFileLocation)
+                    let _, cafdemExecutiveFileAddress = environmentVariablesSourceDictionary.TryGetValue("CAFDEM_EXECUTIVE_FILE_ADDRESS")
+                    let striped = stringHelpers.StripQuotationMarks(orEmpty cafdemExecutiveFileAddress)
                     let dirName = Path.GetDirectoryName(striped: string)
                     fileContentDictionaryToWriteToFile.Add(key, orEmpty dirName)
                 | _ ->

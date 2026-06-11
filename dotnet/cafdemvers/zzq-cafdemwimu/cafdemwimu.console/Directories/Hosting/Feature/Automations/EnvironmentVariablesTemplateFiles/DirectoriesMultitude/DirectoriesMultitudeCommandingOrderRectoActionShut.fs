@@ -46,12 +46,12 @@ type DirectoriesMultitudeCommandingOrderRectoActionShut
             | true, valFromSource ->
                 try
                     match key with
-                    | "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS" ->
+                    | "CAFDEM_EXECUTIVE_FILE_ADDRESS" ->
                         fileContentDictionaryToWriteToFile.Add(key, orEmpty valFromSource)
-                    | "DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY" ->
-                        match environmentVariablesSourceDictionary.TryGetValue("DIRECTORY_MANAGEMENT_EXECUTIVE_FILE_ADDRESS") with
-                        | true, directoryManagementExecutiveFileAddress ->
-                            let striped = stringHelpers.StripQuotationMarks(directoryManagementExecutiveFileAddress)
+                    | "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY" ->
+                        match environmentVariablesSourceDictionary.TryGetValue("CAFDEM_EXECUTIVE_FILE_ADDRESS") with
+                        | true, cafdemExecutiveFileAddress ->
+                            let striped = stringHelpers.StripQuotationMarks(cafdemExecutiveFileAddress)
                             let dirName = Path.GetDirectoryName(striped: string)
                             if not (isNull dirName) then
                                 fileContentDictionaryToWriteToFile.Add(key, dirName)

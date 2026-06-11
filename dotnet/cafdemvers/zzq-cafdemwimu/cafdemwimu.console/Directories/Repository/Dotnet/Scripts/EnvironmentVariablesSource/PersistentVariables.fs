@@ -5,8 +5,6 @@ type PersistentVariables =
     { DockerCliLocation: string
       ApplicationComposeFileLocation: string
       DockerComposeStopAlongWithArguments: string
-      DirectoryManagementExecutiveFileAddress: string
-      DirectoryManagementExecutiveFileAddressContainingDirectory: string
       FendPrimaryAddress: string
       FendSecondaryAddress: string
       BendAddress: string
@@ -18,8 +16,6 @@ type PersistentVariables =
       FendAddress: string
       StartupDirectoryLocation: string
       InfrastructureComposeFileLocation: string
-      NotepadPlusPlusFileManagementExecutiveFileContainingDirectory: string
-      NotepadPlusPlusFileManagementExecutiveFileLocation: string
       NotepaddppExecuteFileLocation: string
       FeatureName: string
       HostingDirectory: string

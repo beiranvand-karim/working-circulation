@@ -2,8 +2,6 @@
     "DockerCliLocation": "docker/cli/location/",
     "ApplicationComposeFileLocation": "application/compose/file/location",
     "DockerComposeStopAlongWithArguments": "docker/compose/stop/along/with/arguments",
-    "DirectoryManagementExecutiveFileAddress": "directory/management/executive/file/address",
-    "DirectoryManagementExecutiveFileAddressContainingDirectory": "directory/management/executive/file/address/containing/directory",
     "FeatureSelfAddress": "feature/self/address",
     "OperationsDirectoryPath": "operations/directory/path",
     "FendPrimaryAddress": "fend/primary/address",
@@ -16,8 +14,6 @@
     "FendAddress": "fend/address",
     "StartupDirectoryLocation": "startup/directory/location",
     "InfrastructureComposeFileLocation": "infrastructure/compose/file/location",
-    "NotepadPlusPlusFileManagementExecutiveFileContainingDirectory": "notepad/plus/plus/file/management/executive/file/containing/directory",
-    "NotepadPlusPlusFileManagementExecutiveFileLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemalihapa\\bin\\Debug\\net8.0\\cafdemalihapa.exe",
     "NotepaddppExecuteFileLocation": "C:\\Program Files\\Notepad++\\notepad++.exe",
     "FeatureName": "feature/name",
     "HostingDirectory": "hosting/directory",
@@ -38,6 +34,6 @@
     "VscodeInsidersLocation": "C:\\Users\\beira\\AppData\\Local\\Programs\\Microsoft VS Code Insiders\\Code - Insiders.exe",
     "DockerLoginName": "docker/login/name",
     "AzureClientSecretFromEnvironmentVariables": "azure/client/secret/from/environment/variables",
-     "CafdemExecutiveFileAddress": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\bin\\Debug\\net10.0\\cafdemwimu.console.exe",
+    "CafdemExecutiveFileAddress": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\bin\\Debug\\net10.0\\cafdemwimu.console.exe",
     "CafdemExecutiveFileAddressContainingDirectory": "cafdem/executive/file/address/containing/directory"
 }

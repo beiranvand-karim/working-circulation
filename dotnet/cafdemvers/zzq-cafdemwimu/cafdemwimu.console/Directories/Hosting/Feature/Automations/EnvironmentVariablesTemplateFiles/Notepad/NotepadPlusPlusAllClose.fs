@@ -37,9 +37,9 @@ type NotepadPlusPlusAllClose
                 | "HOSTING_DIRECTORY" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(HostingDirectory.GetPath()))
                 | "COMMAND" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks("close"))
                 | "APPLICATION" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks("notepad-plus-plus-file-management"))
-                | "NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY" ->
-                    let _, notepadPlusPlusFileManagementExecutiveFileLocation = environmentVariablesSourceDictionary.TryGetValue("NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_LOCATION")
-                    let striped = stringHelpers.StripQuotationMarks(orEmpty notepadPlusPlusFileManagementExecutiveFileLocation)
+                | "CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY" ->
+                    let _, cafdemExecutiveFileAddress = environmentVariablesSourceDictionary.TryGetValue("CAFDEM_EXECUTIVE_FILE_ADDRESS")
+                    let striped = stringHelpers.StripQuotationMarks(orEmpty cafdemExecutiveFileAddress)
                     let dirName = Path.GetDirectoryName(striped: string)
                     fileContentDictionaryToWriteToFile.Add(key, orEmpty dirName)
                 | _ ->

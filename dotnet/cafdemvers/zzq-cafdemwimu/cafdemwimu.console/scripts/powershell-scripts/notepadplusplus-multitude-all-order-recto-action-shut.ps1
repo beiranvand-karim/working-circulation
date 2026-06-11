@@ -15,8 +15,8 @@ $ArgumentList =(
     " --secondary-application-name $env:SECONDARY_APPLICATION_NAME"
     )
 
-Push-Location $env:NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_CONTAINING_DIRECTORY
+Push-Location $env:CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY
 
-start-process -FilePath $env:NOTEPAD_PLUS_PLUS_FILE_MANAGEMENT_EXECUTIVE_FILE_LOCATION -ArgumentList $ArgumentList
+start-process -FilePath $env:CAFDEM_EXECUTIVE_FILE_ADDRESS -ArgumentList $ArgumentList
 
 Pop-Location
