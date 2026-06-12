@@ -3,14 +3,23 @@ namespace cafdemwimu.console.Applications
 open System
 open System.IO
 open System.Text
+open System.Text.Json
 open System.Linq
 open System.Collections.Generic
-open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.SeparationFilement
+open Microsoft.Extensions.Logging
+open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource
 open cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.Files.Jsons
 
-type Something(persistentVariablesFile: PersistentVariablesFile, mutantVariablesFile: MutantVariablesFile) =
+type Something
+    (
+        persistentVariablesFile: PersistentVariablesFile,
+        mutantVariablesFile: MutantVariablesFile,
+        logger: ILogger<Something>
+    ) =
 
-    static member PairUpVariablesWithTheirValue(fileNamePath: string, environmentVariablesSourceDictionary: Dictionary<string, string>) =
+    static member PairUpVariablesWithTheirValue
+        (fileNamePath: string, environmentVariablesSourceDictionary: Dictionary<string, string>)
+        =
         let fileContentDictionaryToWriteToFile = Dictionary<string, string>()
 
         let bufferSize = 128
@@ -18,6 +27,7 @@ type Something(persistentVariablesFile: PersistentVariablesFile, mutantVariables
         use streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize)
 
         let mutable line = streamReader.ReadLine()
+
         while not (isNull line) do
             let brokenLine = line.Split('=')
             let key = brokenLine.[0]
@@ -32,7 +42,7 @@ type Something(persistentVariablesFile: PersistentVariablesFile, mutantVariables
         str
         |> Seq.mapi (fun i x -> if i > 0 && Char.IsUpper x then "_" + string x else string x)
         |> String.concat ""
-        
+
         |> fun s -> s.ToLower()
 
     static member private ReadKeyValueFromJsonFile<'T>(path: string) =
@@ -41,44 +51,50 @@ type Something(persistentVariablesFile: PersistentVariablesFile, mutantVariables
         use r = new StreamReader(path)
         let rawJsonData = r.ReadToEnd()
 
-        let variables = Newtonsoft.Json.JsonConvert.DeserializeObject<'T>(rawJsonData)
+        let options = JsonSerializerOptions(PropertyNameCaseInsensitive = true)
+        let variables = JsonSerializer.Deserialize<'T>(rawJsonData, options)
 
-        let variablesSerialized = System.Text.Json.JsonSerializer.Serialize(variables)
-        let root = Newtonsoft.Json.Linq.JObject.Parse(variablesSerialized)
+        let variablesSerialized = JsonSerializer.Serialize(variables)
+        use document = JsonDocument.Parse(variablesSerialized)
 
         // Flatten the (possibly nested) object into UPPER_SNAKE keys, using leaf
         // property names so nested groups (e.g. "PrimaryApplication") still produce
         // the flat env keys (PRIMARY_APPLICATION_LOCATION, ...) that the templates expect.
-        let rec flatten (jObject: Newtonsoft.Json.Linq.JObject) =
-            for property in jObject.Properties() do
-                match property.Value.Type with
-                | Newtonsoft.Json.Linq.JTokenType.Object ->
-                    flatten (property.Value :?> Newtonsoft.Json.Linq.JObject)
+        let rec flatten (element: JsonElement) =
+            for property in element.EnumerateObject() do
+                match property.Value.ValueKind with
+                | JsonValueKind.Object -> flatten property.Value
                 | _ ->
                     let key = (Something.ToUnderscoreCase property.Name).ToUpper()
+
                     let value =
-                        match property.Value.Type with
-                        | Newtonsoft.Json.Linq.JTokenType.Null -> ""
-                        | Newtonsoft.Json.Linq.JTokenType.Boolean -> property.Value.ToString().ToLower()
+                        match property.Value.ValueKind with
+                        | JsonValueKind.Null -> ""
+                        | JsonValueKind.True -> "true"
+                        | JsonValueKind.False -> "false"
+                        | JsonValueKind.String -> property.Value.GetString()
                         | _ -> property.Value.ToString()
+
                     fileContentDictionary.[key] <- value
 
-        flatten root
+        flatten document.RootElement
 
         fileContentDictionary
 
     member _.PairUpEnvironmentVariablesSeparationFilement() =
-        let mutantVariablesFilePath = mutantVariablesFile.GetPath()
-        let mutantVariablesDictionary =
+        let mutantVariablesFilePath: string = mutantVariablesFile.GetPath()
+        let persistentVariablesFilePath: string = persistentVariablesFile.GetPath()
+
+        let mutantVariablesDictionary: Dictionary<string, string> =
             Something.ReadKeyValueFromJsonFile<MutantVariables>(mutantVariablesFilePath)
 
-        let persistentVariablesFilePath = persistentVariablesFile.GetPath()
-        let persistentVariablesDictionary =
+
+        let persistentVariablesDictionary: Dictionary<string, string> =
             Something.ReadKeyValueFromJsonFile<PersistentVariables>(persistentVariablesFilePath)
 
-        let environmentVariablesConcatenated =
+        let environmentVariablesConcatenated: Dictionary<string, string> =
             mutantVariablesDictionary
                 .Concat(persistentVariablesDictionary)
-                .ToDictionary((fun entry -> entry.Key), (fun entry -> entry.Value))
+                .ToDictionary((fun (entry: KeyValuePair<string, string>) -> entry.Key), (fun entry -> entry.Value))
 
         environmentVariablesConcatenated

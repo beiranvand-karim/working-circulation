@@ -1,4 +1,4 @@
-namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.SeparationFilement
+namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource
 
 open System
 
@@ -7,29 +7,28 @@ type PrimaryApplicationSettings =
     { PrimaryApplicationLocation: string
       PrimaryClientappLocation: string
       PrimaryApplicationProjectLocation: string
-      PrimaryApplicationProjectName: string }
+      PrimaryApplicationProjectName: string
+      PrimaryApplicationName: string }
 
 [<CLIMutable>]
 type SecondaryApplicationSettings =
     { SecondaryApplicationLocation: string
       SecondaryClientappLocation: string
       SecondaryApplicationProjectLocation: string
-      SecondaryApplicationProjectName: string }
+      SecondaryApplicationProjectName: string
+      SecondaryApplicationName: string }
 
 [<CLIMutable>]
 type TertiaryApplicationSettings =
     { TertiaryApplicationLocation: string
       TertiaryApplicationProjectLocation: string
       TertiaryApplicationProjectName: string
-      TertiaryClientappLocation: string }
+      TertiaryClientappLocation: string
+      TertiaryApplicationName: string }
 
 [<CLIMutable>]
 type MutantVariables =
-    { IsRiderSecondaryApplicationRunningPermissionGrantable: Nullable<bool>
-      IsWebstormSecondaryClientappRunningPermissionGrantable: Nullable<bool>
-      PrimaryApplicationName: string
-      SecondaryApplicationName: string
-      IsOpeningFeatureSelfAddress: Nullable<bool>
+    { IsOpeningFeatureSelfAddress: Nullable<bool>
       IsOpeningAutomationsDirectory: Nullable<bool>
       IsOpeningCommandsDirectory: Nullable<bool>
       IsOpeningEnvironmentVariablesFilesDirectory: Nullable<bool>
@@ -47,9 +46,6 @@ type MutantVariables =
       IsOpeningFendAddress: Nullable<bool>
       PrimaryApplication: PrimaryApplicationSettings
       SecondaryApplication: SecondaryApplicationSettings
-      IsRiderTertiaryApplicationRunningPermissionGrantable: Nullable<bool>
-      IsWebstormTertiaryClientappRunningPermissionGrantable: Nullable<bool>
-      TertiaryApplicationName: string
       IsOpeningFendTertiaryAddress: Nullable<bool>
       IsOpeningBendTertiaryAddress: Nullable<bool>
       TertiaryApplication: TertiaryApplicationSettings }

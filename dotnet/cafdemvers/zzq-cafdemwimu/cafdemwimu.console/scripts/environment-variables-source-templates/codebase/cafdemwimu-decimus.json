@@ -1,6 +1,4 @@
 {
-    "IsRiderSecondaryApplicationRunningPermissionGrantable": true,
-    "IsWebstormSecondaryClientappRunningPermissionGrantable": false,
     "IsOpeningFeatureSelfAddress": true,
     "IsOpeningAutomationsDirectory": true,
     "IsOpeningCommandsDirectory": true,
@@ -21,23 +19,24 @@
         "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu",
         "PrimaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\ca.workers\\ca.workers.git",
         "PrimaryApplicationProjectLocation": "primary/application/project/location",
-        "PrimaryApplicationProjectName": "primary/application/project/name"
+        "PrimaryApplicationProjectName": "primary/application/project/name",
+        "PrimaryApplicationName": "primary/application/name"
     },
     "SecondaryApplication": {
         "SecondaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console",
         "SecondaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\ca.workers\\ca.workers.ca",
         "SecondaryApplicationProjectLocation": "secondary/application/project/location",
-        "SecondaryApplicationProjectName": "secondary/application/project/name"
+        "SecondaryApplicationProjectName": "secondary/application/project/name",
+        "SecondaryApplicationName": "secondary/application/name"
     },
-    "IsRiderTertiaryApplicationRunningPermissionGrantable": false,
-    "IsWebstormTertiaryClientappRunningPermissionGrantable": false,
     "IsOpeningFendTertiaryAddress": false,
     "IsOpeningBendTertiaryAddress": false,
     "TertiaryApplication": {
-        "TertiaryApplicationLocation": "tertiary/application/location",
+        "TertiaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.opes.scripts",
         "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
         "TertiaryApplicationProjectName": "tertiary/application/project/name",
-        "TertiaryClientappLocation": "tertiary/clientapp/location"
+        "TertiaryClientappLocation": "tertiary/clientapp/location",
+        "TertiaryApplicationName": "tertiary/application/name"
     },
     "AllInclusiveDirectoryAddress": "all/inclusive/directory/address"
 }

@@ -5,6 +5,7 @@
        so it is compiled here. -->
   <ItemGroup>
     <Compile Include="CommandLineArgs.fs" />
+    <Compile Include="Helpers/StringHelpers.fs" />
     <Compile Include="Names/ApplicationName.fs" />
     <Compile Include="Names/FeatureName.fs" />
     <Compile Include="Names/IdeName.fs" />
@@ -16,7 +17,6 @@
     <Compile Include="Files/Executables/IdeExecutiveFileLocation.fs" />
     <Compile Include="Files/Executables/NotepadPlusPlus.fs" />
     <Compile Include="Files/Executables/NotePadPlusPlusFileManagementExecutiveFile.fs" />
-    <Compile Include="Helpers/StringHelpers.fs" />
     <Compile Include="Applications/Cafdemalihapa/CodeBase.fs" />
   </ItemGroup>
 

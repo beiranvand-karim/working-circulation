@@ -2,6 +2,7 @@ namespace cafdemwimu.console.Applications.NotepadPlusPlusFileManagement
 
 open System.Diagnostics
 open System.IO
+open System.Text.Json
 open Microsoft.Extensions.Logging
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.ProcessesMetaData
 
@@ -16,7 +17,7 @@ type CloseProcessManagement
         let json =
             use r = new StreamReader(notepadPlusPlusFileProcessesMetaDataDirectory)
             r.ReadToEnd()
-        let readProcessInformationGroup = Newtonsoft.Json.JsonConvert.DeserializeObject<ProcessInformationGroup>(json)
+        let readProcessInformationGroup = JsonSerializer.Deserialize<ProcessInformationGroup>(json)
 
         logger.LogInformation("items, {items}", readProcessInformationGroup)
 

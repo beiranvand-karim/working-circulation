@@ -1,0 +1,23 @@
+<Project>
+
+  <!-- Layer 2b: Hosting/Feature directory tree (front-end, back-end, and automations roots). -->
+  <ItemGroup>
+    <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndPrimary/FrontEndPrimaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndSecondary/FrontEndSecondaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/FrontEnd/FrontEndTertiary/FrontEndTertiaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndPrimary/BackEndPrimaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndSecondary/BackEndSecondaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndTertiary/BackEndTertiaryDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Calls/CallsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Data/DataDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/NotesAndMessages/NotesAndMessagesDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Tools/ToolsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/WebLinks/WebLinksDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/AutomationsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Operations/OperationsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/ProcessesMetaData/ProcessesMetaDataDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesFiles/EnvironmentVariablesFilesDirectory.fs" />
+  </ItemGroup>
+
+</Project>

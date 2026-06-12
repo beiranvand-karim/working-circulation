@@ -1,0 +1,14 @@
+<Project>
+
+  <!-- Layer 2d: Commands, the source-files generator, and the PowerShell-scripts directory.
+       These depend on the template-file classes (layer 2c) and the feature tree (layer 2b). -->
+  <ItemGroup>
+    <Compile Include="Directories/Hosting/Feature/Automations/Commands/CommandsDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Commands/RunPrimayApplication.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Commands/RunSecondaryApplication.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/Commands/RunTertiaryApplication.fs" />
+    <Compile Include="Directories/Hosting/Feature/Automations/EnvironmentVariablesTemplateFiles/EnvironmentVariablesSourceFilesDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/PowerShellScripts/PowerShellScriptsDirectory.fs" />
+  </ItemGroup>
+
+</Project>

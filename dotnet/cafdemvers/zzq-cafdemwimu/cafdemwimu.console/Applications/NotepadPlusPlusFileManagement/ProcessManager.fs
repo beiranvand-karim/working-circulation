@@ -91,5 +91,5 @@ type ProcessManager
         let json =
             use r = new StreamReader(notepadPlusPlusFileProcessesMetaDataDirectory)
             r.ReadToEnd()
-        let _items = Newtonsoft.Json.JsonConvert.DeserializeObject<ProcessInformationGroup>(json)
+        let _items = JsonSerializer.Deserialize<ProcessInformationGroup>(json)
         ()

@@ -1,0 +1,28 @@
+<Project>
+
+  <!-- Layer 2a: Directories core + Repository/Scripts EnvironmentVariablesSource sources.
+       Applications/Something.fs is woven in at the point where its dependencies (the
+       EnvironmentVariablesSource JSON file classes) are available and before its
+       dependent (EnvironmentVariablesFilesDirectory in layer 2b). -->
+  <ItemGroup>
+    <Compile Include="Directories/NullHelpers.fs" />
+    <Compile Include="Directories/Hosting/HostingDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/FeatureDirectory.fs" />
+    <Compile Include="Directories/Hosting/Feature/BackEnd/BackEndDirectory.fs" />
+    <Compile Include="Directories/DirectoryServices.fs" />
+    <Compile Include="Directories/WorkingCirculationDirectory.fs" />
+    <Compile Include="Directories/Repository/RepositoryDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/ScriptsDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/EnvironmentVariablesSourceDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/CodeBases/CodeBaseDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariables.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/PersistentVariables.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/CodeBases/MutantVariablesFile.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesSource/PersistentVariablesFile.fs" />
+    <Compile Include="Applications/Something.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/Alone/AloneDirectory.fs" />
+    <Compile Include="Directories/Repository/Dotnet/Scripts/EnvironmentVariablesTemplates/EnvironmentVariablesTemplatesDirectory.fs" />
+    <Compile Include="Directories/Applications/ApplicationLocation.fs" />
+  </ItemGroup>
+
+</Project>

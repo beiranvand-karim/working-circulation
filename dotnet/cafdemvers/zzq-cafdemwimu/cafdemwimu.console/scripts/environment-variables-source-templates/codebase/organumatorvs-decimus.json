@@ -1,6 +1,4 @@
 {
-    "IsRiderSecondaryApplicationRunningPermissionGrantable": true,
-    "IsWebstormSecondaryClientappRunningPermissionGrantable": false,
     "IsOpeningFeatureSelfAddress": true,
     "IsOpeningAutomationsDirectory": true,
     "IsOpeningCommandsDirectory": true,
@@ -18,26 +16,27 @@
     "IsOpeningNotesMessagesAddress": true,
     "IsOpeningWebLinksAddress": true,
     "PrimaryApplication": {
-        "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.backend",
+        "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator",
         "PrimaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.frontend",
         "PrimaryApplicationProjectLocation": "primary/application/project/location",
-        "PrimaryApplicationProjectName": "primary/application/project/name"
+        "PrimaryApplicationProjectName": "primary/application/project/name",
+        "PrimaryApplicationName": "primary/application/name"
     },
     "SecondaryApplication": {
-        "SecondaryApplicationLocation": "secondary/application/location",
-        "SecondaryClientappLocation": "secondary/clientapp/location",
+        "SecondaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.backend",
+        "SecondaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.workers\\organumator.workers.git",
         "SecondaryApplicationProjectLocation": "secondary/application/project/location",
-        "SecondaryApplicationProjectName": "secondary/application/project/name"
+        "SecondaryApplicationProjectName": "secondary/application/project/name",
+        "SecondaryApplicationName": "secondary/application/name"
     },
-    "IsRiderTertiaryApplicationRunningPermissionGrantable": false,
-    "IsWebstormTertiaryClientappRunningPermissionGrantable": false,
     "IsOpeningFendTertiaryAddress": false,
     "IsOpeningBendTertiaryAddress": false,
     "TertiaryApplication": {
-        "TertiaryApplicationLocation": "tertiary/application/location",
-        "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
+        "TertiaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.workers\\organumator.workers.dotnet",
+        "TertiaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.workers\\organumator.workers.ng",
+        "TertiaryApplicationProjectLocation": "",
         "TertiaryApplicationProjectName": "tertiary/application/project/name",
-        "TertiaryClientappLocation": "tertiary/clientapp/location"
+        "TertiaryApplicationName": "tertiary/application/name"
     },
     "AllInclusiveDirectoryAddress": "all/inclusive/directory/address"
 }

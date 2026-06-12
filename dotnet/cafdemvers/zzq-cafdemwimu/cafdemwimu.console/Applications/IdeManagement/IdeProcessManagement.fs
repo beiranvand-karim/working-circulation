@@ -54,7 +54,7 @@ type IdeProcessManagement
             let json =
                 use r = new StreamReader(ideManagementProcessesMetaDataFile)
                 r.ReadToEnd()
-            let ideProcessInformationGroup_json = Newtonsoft.Json.JsonConvert.DeserializeObject<IdeProcessInformationGroup>(json)
+            let ideProcessInformationGroup_json = JsonSerializer.Deserialize<IdeProcessInformationGroup>(json)
             if not (isNull ideProcessInformationGroup_json) then
                 ideProcessInformationGroup_json.AddInFront(pro)
             let ideProcessInformationGroup_Serialized1 = JsonSerializer.Serialize(ideProcessInformationGroup_json)
@@ -71,7 +71,7 @@ type IdeProcessManagement
             let json =
                 use r = new StreamReader(ideManagementProcessesMetaDataFile)
                 r.ReadToEnd()
-            let ideProcessInformationGroup_json = Newtonsoft.Json.JsonConvert.DeserializeObject<IdeProcessInformationGroup>(json)
+            let ideProcessInformationGroup_json = JsonSerializer.Deserialize<IdeProcessInformationGroup>(json)
 
             if not (isNull ideProcessInformationGroup_json) then
                 let matches (p: IdeProcessInformation) =

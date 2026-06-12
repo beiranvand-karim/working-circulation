@@ -8,7 +8,10 @@
   <!-- Compile items are split by dependency layer across the msbuild/ folder.
        F# is compile-order sensitive, so these imports MUST stay in this order. -->
   <Import Project="msbuild/Compile.1.Foundation.props" />
-  <Import Project="msbuild/Compile.2.Directories.props" />
+  <Import Project="msbuild/Compile.2a.Directories.Sources.props" />
+  <Import Project="msbuild/Compile.2b.Directories.Feature.props" />
+  <Import Project="msbuild/Compile.2c.Directories.TemplateFiles.props" />
+  <Import Project="msbuild/Compile.2d.Directories.Commands.props" />
   <Import Project="msbuild/Compile.3.Applications.props" />
   <Import Project="msbuild/Compile.4.Composition.props" />
 

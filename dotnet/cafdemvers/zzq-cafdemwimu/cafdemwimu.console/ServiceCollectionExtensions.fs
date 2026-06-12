@@ -11,7 +11,6 @@ open cafdemwimu.console.Applications.IdeManagement
 open cafdemwimu.console.Applications.NotepadPlusPlusFileManagement
 open cafdemwimu.console.Directories
 open cafdemwimu.console.Directories.Applications
-open cafdemwimu.console.Directories.Hosting.Feature
 open cafdemwimu.console.Directories.Hosting.Feature.Automations
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.Commands
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.EnvironmentVariablesFiles

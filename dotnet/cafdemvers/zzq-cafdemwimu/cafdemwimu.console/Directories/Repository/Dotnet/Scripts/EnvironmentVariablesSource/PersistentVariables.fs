@@ -1,4 +1,4 @@
-namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource.SeparationFilement
+namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVariablesSource
 
 [<CLIMutable>]
 type PersistentVariables =
