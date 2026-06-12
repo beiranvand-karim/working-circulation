@@ -31,4 +31,13 @@ type MutantVariables =
       PrimaryApplicationLocation: string
       SecondaryApplicationLocation: string
       PrimaryClientappLocation: string
-      SecondaryClientappLocation: string }
+      SecondaryClientappLocation: string
+      IsRiderTertiaryApplicationRunningPermissionGrantable: Nullable<bool>
+      IsWebstormTertiaryClientappRunningPermissionGrantable: Nullable<bool>
+      TertiaryApplicationName: string
+      TertiaryApplicationProjectLocation: string
+      TertiaryApplicationProjectName: string
+      IsOpeningFendTertiaryAddress: Nullable<bool>
+      IsOpeningBendTertiaryAddress: Nullable<bool>
+      TertiaryApplicationLocation: string
+      TertiaryClientappLocation: string }

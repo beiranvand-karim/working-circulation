@@ -10,6 +10,7 @@ open cafdemwimu.console.Files.Executables
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.ProcessesMetaData
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary
+open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndTertiary
 open cafdemwimu.console.Directories.Hosting.Feature.NotesAndMessages
 
 type ProcessManager
@@ -18,6 +19,7 @@ type ProcessManager
         logger: ILogger<ProcessManager>,
         frontEndPrimaryDirectory: FrontEndPrimaryDirectory,
         frontEndSecondaryDirectory: FrontEndSecondaryDirectory,
+        frontEndTertiaryDirectory: FrontEndTertiaryDirectory,
         notesAndMessagesDirectory: NotesAndMessagesDirectory,
         processesMetaDataDirectory: ProcessesMetaDataDirectory
     ) =
@@ -47,12 +49,15 @@ type ProcessManager
         try
             let a = frontEndPrimaryDirectory.GetPath()
             let b = frontEndSecondaryDirectory.GetPath()
+            let d = frontEndTertiaryDirectory.GetPath()
             let c = notesAndMessagesDirectory.GetPath()
             let processInformationGroup = ProcessInformationGroup()
 
             let orderValue = CommandLineArgs.GetByKey("--order")
 
             if orderValue = "reverse" then
+                this.StartProcess(d, processInformationGroup)
+                Thread.Sleep(100)
                 this.StartProcess(b, processInformationGroup)
                 Thread.Sleep(100)
                 this.StartProcess(a, processInformationGroup)
@@ -62,6 +67,8 @@ type ProcessManager
                 this.StartProcess(a, processInformationGroup)
                 Thread.Sleep(100)
                 this.StartProcess(b, processInformationGroup)
+                Thread.Sleep(100)
+                this.StartProcess(d, processInformationGroup)
                 Thread.Sleep(100)
                 this.StartProcess(c, processInformationGroup)
 

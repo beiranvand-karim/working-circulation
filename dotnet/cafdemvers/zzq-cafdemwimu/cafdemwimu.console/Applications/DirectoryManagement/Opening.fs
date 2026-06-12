@@ -15,11 +15,13 @@ open cafdemwimu.console.Directories.Hosting.Feature.Automations.Operations
 open cafdemwimu.console.Directories.Hosting.Feature.BackEnd
 open cafdemwimu.console.Directories.Hosting.Feature.BackEnd.BackEndPrimary
 open cafdemwimu.console.Directories.Hosting.Feature.BackEnd.BackEndSecondary
+open cafdemwimu.console.Directories.Hosting.Feature.BackEnd.BackEndTertiary
 open cafdemwimu.console.Directories.Hosting.Feature.Calls
 open cafdemwimu.console.Directories.Hosting.Feature.Data
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary
+open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndTertiary
 open cafdemwimu.console.Directories.Hosting.Feature.NotesAndMessages
 open cafdemwimu.console.Directories.Hosting.Feature.Tools
 open cafdemwimu.console.Directories.Hosting.Feature.WebLinks
@@ -34,10 +36,12 @@ type Opening
         toolsDirectory: ToolsDirectory,
         backEndPrimaryDirectory: BackEndPrimaryDirectory,
         backEndSecondaryDirectory: BackEndSecondaryDirectory,
+        backEndTertiaryDirectory: BackEndTertiaryDirectory,
         callsDirectory: CallsDirectory,
         frontEndDirectory: FrontEndDirectory,
         frontEndPrimaryDirectory: FrontEndPrimaryDirectory,
         frontEndSecondaryDirectory: FrontEndSecondaryDirectory,
+        frontEndTertiaryDirectory: FrontEndTertiaryDirectory,
         notesAndMessagesDirectory: NotesAndMessagesDirectory,
         webLinksDirectory: WebLinksDirectory,
         environmentVariablesFilesDirectory: EnvironmentVariablesFilesDirectory,
@@ -62,10 +66,12 @@ type Opening
             directoriesToOpen.Add("IS_OPENING_BEND_ADDRESS", BackEndDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_BEND_PRIMARY_ADDRESS", backEndPrimaryDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_BEND_SECONDARY_ADDRESS", backEndSecondaryDirectory.GetPath())
+            directoriesToOpen.Add("IS_OPENING_BEND_TERTIARY_ADDRESS", backEndTertiaryDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_DATA_DIRECTORY", dataDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_FEND_ADDRESS", frontEndDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_FEND_PRIMARY_ADDRESS", frontEndPrimaryDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_FEND_SECONDARY_ADDRESS", frontEndSecondaryDirectory.GetPath())
+            directoriesToOpen.Add("IS_OPENING_FEND_TERTIARY_ADDRESS", frontEndTertiaryDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_CALLS_ADDRESS", callsDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_TOOLS_ADDRESS", toolsDirectory.GetPath())
             directoriesToOpen.Add("IS_OPENING_NOTES_MESSAGES_ADDRESS", notesAndMessagesDirectory.GetPath())

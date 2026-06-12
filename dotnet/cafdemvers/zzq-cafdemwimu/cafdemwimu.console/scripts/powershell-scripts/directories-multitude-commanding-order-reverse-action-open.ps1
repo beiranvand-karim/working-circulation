@@ -17,6 +17,7 @@ $ArgumentList =(
     " --repository-directory $env:REPOSITORY_DIRECTORY" +
     " --primary-application-name $env:PRIMARY_APPLICATION_NAME" +
     " --secondary-application-name $env:SECONDARY_APPLICATION_NAME" +
+    " --tertiary-application-name $env:TERTIARY_APPLICATION_NAME" +
     " --scripts-directory $env:SCRIPTS_DIRECTORY"
     )
 

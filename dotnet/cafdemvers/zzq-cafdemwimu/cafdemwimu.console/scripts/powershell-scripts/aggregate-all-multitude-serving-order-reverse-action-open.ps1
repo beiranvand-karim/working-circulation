@@ -30,11 +30,21 @@ Start-Sleep -Seconds 10
 
 if ($env:IS_WEBSTORM_SECONDARY_CLIENTAPP_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
     Start-Sleep -Seconds 10
-    & "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-webstorm-multitude-primary-action-open.ps1"
+    if ($env:IS_RIDER_TERTIARY_APPLICATION_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
+    Start-Sleep -Seconds 10
+    & "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-rider-multitude-tertiary-action-open.ps1"
+}
+
+& "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-webstorm-multitude-primary-action-open.ps1"
 }
 
 
 Start-Sleep -Seconds 10
+if ($env:IS_WEBSTORM_TERTIARY_CLIENTAPP_RUNNING_PERMISSION_GRANTABLE -eq $true ) {
+    Start-Sleep -Seconds 10
+    & "$(Split-Path $MyInvocation.MyCommand.Path)/ide-jetbrains-webstorm-multitude-tertiary-action-open.ps1"
+}
+
 & "$(Split-Path $MyInvocation.MyCommand.Path)/notepadplusplus-multitude-all-order-reverse-action-open.ps1"
 
 Start-Sleep -Seconds 10

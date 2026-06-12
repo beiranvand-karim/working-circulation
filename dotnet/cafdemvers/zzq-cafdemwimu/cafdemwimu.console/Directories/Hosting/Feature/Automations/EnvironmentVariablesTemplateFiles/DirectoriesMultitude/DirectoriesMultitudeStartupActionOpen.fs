@@ -16,6 +16,7 @@ type DirectoriesMultitudeStartupActionOpen
         stringHelpers: StringHelpers,
         primaryApplication: PrimaryApplication,
         secondaryApplication: SecondaryApplication,
+        tertiaryApplication: TertiaryApplication,
         featureName: FeatureName,
         repositoryDirectory: RepositoryDirectory,
         codeBase: CodeBase,
@@ -59,6 +60,7 @@ type DirectoriesMultitudeStartupActionOpen
                     | "FEATURE_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(featureName.GetName()))
                     | "CODE_BASE" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(codeBase.GetCodeBaseValue()))
                     | "SECONDARY_APPLICATION_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(secondaryApplication.GetName()))
+                    | "TERTIARY_APPLICATION_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(tertiaryApplication.GetName()))
                     | "HOSTING_DIRECTORY" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(HostingDirectory.GetPath()))
                     | _ ->
                         let _, val2 = environmentVariablesSourceDictionary.TryGetValue key

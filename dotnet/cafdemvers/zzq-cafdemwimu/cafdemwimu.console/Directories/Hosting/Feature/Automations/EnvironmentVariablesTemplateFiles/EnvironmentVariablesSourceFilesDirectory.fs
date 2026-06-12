@@ -18,20 +18,28 @@ type EnvironmentVariablesSourceFilesDirectory
         notepadPlusPlusMultitudeAllOrderReverseActionOpen: NotepadPlusPlusMultitudeAllOrderReverseActionOpen,
         ideJetbrainsRiderMultitudePrimaryActionOpen: IdeJetbrainsRiderMultitudePrimaryActionOpen,
         ideJetbrainsRiderMultitudeSecondaryActionOpen: IdeJetbrainsRiderMultitudeSecondaryActionOpen,
+        ideJetbrainsRiderMultitudeTertiaryActionOpen: IdeJetbrainsRiderMultitudeTertiaryActionOpen,
         ideJetbrainsWebstormMultitudePrimaryActionOpen: IdeJetbrainsWebstormMultitudePrimaryActionOpen,
         ideJetbrainsWebstormMultitudeSecondaryActionOpen: IdeJetbrainsWebstormMultitudeSecondaryActionOpen,
+        ideJetbrainsWebstormMultitudeTertiaryActionOpen: IdeJetbrainsWebstormMultitudeTertiaryActionOpen,
         ideJetbrainsWebstormMultitudePrimaryActionShut: IdeJetbrainsWebstormMultitudePrimaryActionShut,
         ideJetbrainsWebstormMultitudeSecondaryActionShut: IdeJetbrainsWebstormMultitudeSecondaryActionShut,
+        ideJetbrainsWebstormMultitudeTertiaryActionShut: IdeJetbrainsWebstormMultitudeTertiaryActionShut,
         ideJetbrainsRiderMultitudePrimaryActionShut: IdeJetbrainsRiderMultitudePrimaryActionShut,
         ideJetbrainsRiderMultitudeSecondaryActionShut: IdeJetbrainsRiderMultitudeSecondaryActionShut,
+        ideJetbrainsRiderMultitudeTertiaryActionShut: IdeJetbrainsRiderMultitudeTertiaryActionShut,
         ideMicrosoftVscodeDefaultMultitudePrimaryActionOpen: IdeMicrosoftVscodeDefaultMultitudePrimaryActionOpen,
         ideMicrosoftVscodeDefaultMultitudeSecondaryActionOpen: IdeMicrosoftVscodeDefaultMultitudeSecondaryActionOpen,
+        ideMicrosoftVscodeDefaultMultitudeTertiaryActionOpen: IdeMicrosoftVscodeDefaultMultitudeTertiaryActionOpen,
         ideMicrosoftVscodeDefaultMultitudePrimaryActionShut: IdeMicrosoftVscodeDefaultMultitudePrimaryActionShut,
         ideMicrosoftVscodeDefaultMultitudeSecondaryActionShut: IdeMicrosoftVscodeDefaultMultitudeSecondaryActionShut,
+        ideMicrosoftVscodeDefaultMultitudeTertiaryActionShut: IdeMicrosoftVscodeDefaultMultitudeTertiaryActionShut,
         ideMicrosoftVscodeInsidersMultitudePrimaryActionOpen: IdeMicrosoftVscodeInsidersMultitudePrimaryActionOpen,
         ideMicrosoftVscodeInsidersMultitudeSecondaryActionOpen: IdeMicrosoftVscodeInsidersMultitudeSecondaryActionOpen,
+        ideMicrosoftVscodeInsidersMultitudeTertiaryActionOpen: IdeMicrosoftVscodeInsidersMultitudeTertiaryActionOpen,
         ideMicrosoftVscodeInsidersMultitudePrimaryActionShut: IdeMicrosoftVscodeInsidersMultitudePrimaryActionShut,
         ideMicrosoftVscodeInsidersMultitudeSecondaryActionShut: IdeMicrosoftVscodeInsidersMultitudeSecondaryActionShut,
+        ideMicrosoftVscodeInsidersMultitudeTertiaryActionShut: IdeMicrosoftVscodeInsidersMultitudeTertiaryActionShut,
         environmentVariablesTemplatesDirectory: EnvironmentVariablesTemplatesDirectory,
         directoriesMultitudeServingOrderReverseActionOpen: DirectoriesMultitudeServingOrderReverseActionOpen,
         directoriesMultitudeCommandingOrderReverseActionOpen: DirectoriesMultitudeCommandingOrderReverseActionOpen,
@@ -67,20 +75,28 @@ type EnvironmentVariablesSourceFilesDirectory
                     | "notepadplusplus-multitude-all-order-recto-action-shut.env" -> notePadPlusPlusAllClose.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-rider-multitude-primary-action-open.env" -> ideJetbrainsRiderMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-rider-multitude-secondary-action-open.env" -> ideJetbrainsRiderMultitudeSecondaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-jetbrains-rider-multitude-tertiary-action-open.env" -> ideJetbrainsRiderMultitudeTertiaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-webstorm-multitude-primary-action-open.env" -> ideJetbrainsWebstormMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-webstorm-multitude-secondary-action-open.env" -> ideJetbrainsWebstormMultitudeSecondaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-jetbrains-webstorm-multitude-tertiary-action-open.env" -> ideJetbrainsWebstormMultitudeTertiaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-webstorm-multitude-primary-action-shut.env" -> ideJetbrainsWebstormMultitudePrimaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-webstorm-multitude-secondary-action-shut.env" -> ideJetbrainsWebstormMultitudeSecondaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-jetbrains-webstorm-multitude-tertiary-action-shut.env" -> ideJetbrainsWebstormMultitudeTertiaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-rider-multitude-primary-action-shut.env" -> ideJetbrainsRiderMultitudePrimaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-jetbrains-rider-multitude-secondary-action-shut.env" -> ideJetbrainsRiderMultitudeSecondaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-jetbrains-rider-multitude-tertiary-action-shut.env" -> ideJetbrainsRiderMultitudeTertiaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-default-multitude-primary-action-open.env" -> ideMicrosoftVscodeDefaultMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-default-multitude-secondary-action-open.env" -> ideMicrosoftVscodeDefaultMultitudeSecondaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-microsoft-vscode-default-multitude-tertiary-action-open.env" -> ideMicrosoftVscodeDefaultMultitudeTertiaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-default-multitude-primary-action-shut.env" -> ideMicrosoftVscodeDefaultMultitudePrimaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-default-multitude-secondary-action-shut.env" -> ideMicrosoftVscodeDefaultMultitudeSecondaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-microsoft-vscode-default-multitude-tertiary-action-shut.env" -> ideMicrosoftVscodeDefaultMultitudeTertiaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-insiders-multitude-primary-action-open.env" -> ideMicrosoftVscodeInsidersMultitudePrimaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-insiders-multitude-secondary-action-open.env" -> ideMicrosoftVscodeInsidersMultitudeSecondaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-microsoft-vscode-insiders-multitude-tertiary-action-open.env" -> ideMicrosoftVscodeInsidersMultitudeTertiaryActionOpen.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-insiders-multitude-primary-action-shut.env" -> ideMicrosoftVscodeInsidersMultitudePrimaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | "ide-microsoft-vscode-insiders-multitude-secondary-action-shut.env" -> ideMicrosoftVscodeInsidersMultitudeSecondaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
+                    | "ide-microsoft-vscode-insiders-multitude-tertiary-action-shut.env" -> ideMicrosoftVscodeInsidersMultitudeTertiaryActionShut.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
                     | _ -> Something.PairUpVariablesWithTheirValue(templateFile, environmentVariablesSourceDictionary)
 
                 use fs = File.Create(destFile)

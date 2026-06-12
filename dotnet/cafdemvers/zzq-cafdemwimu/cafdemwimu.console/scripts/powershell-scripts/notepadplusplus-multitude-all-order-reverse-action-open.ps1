@@ -13,7 +13,8 @@ $ArgumentList =(
     " --feature-name $env:FEATURE_NAME" +
     " --hosting-directory $env:HOSTING_DIRECTORY" +
     " --primary-application-name $env:PRIMARY_APPLICATION_NAME" +
-    " --secondary-application-name $env:SECONDARY_APPLICATION_NAME"
+    " --secondary-application-name $env:SECONDARY_APPLICATION_NAME" +
+    " --tertiary-application-name $env:TERTIARY_APPLICATION_NAME"
     )
 
 Push-Location $env:CAFDEM_EXECUTIVE_FILE_ADDRESS_CONTAINING_DIRECTORY

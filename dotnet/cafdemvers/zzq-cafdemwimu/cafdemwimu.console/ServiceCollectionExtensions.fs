@@ -22,11 +22,13 @@ open cafdemwimu.console.Directories.Hosting.Feature.Automations.Operations
 open cafdemwimu.console.Directories.Hosting.Feature.Automations.ProcessesMetaData
 open cafdemwimu.console.Directories.Hosting.Feature.BackEnd.BackEndPrimary
 open cafdemwimu.console.Directories.Hosting.Feature.BackEnd.BackEndSecondary
+open cafdemwimu.console.Directories.Hosting.Feature.BackEnd.BackEndTertiary
 open cafdemwimu.console.Directories.Hosting.Feature.Calls
 open cafdemwimu.console.Directories.Hosting.Feature.Data
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndPrimary
 open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndSecondary
+open cafdemwimu.console.Directories.Hosting.Feature.FrontEnd.FrontEndTertiary
 open cafdemwimu.console.Directories.Hosting.Feature.NotesAndMessages
 open cafdemwimu.console.Directories.Hosting.Feature.Tools
 open cafdemwimu.console.Directories.Hosting.Feature.WebLinks
@@ -57,6 +59,7 @@ type ServiceCollectionExtensions =
         services.AddTransient<PowerShellScriptsDirectory>() |> ignore
         services.AddTransient<PrimaryApplication>() |> ignore
         services.AddTransient<SecondaryApplication>() |> ignore
+        services.AddTransient<TertiaryApplication>() |> ignore
         services.AddTransient<Something>() |> ignore
         services.AddTransient<DirectoriesMultitudeStartupActionOpen>() |> ignore
         services.AddTransient<StringHelpers>() |> ignore
@@ -69,6 +72,7 @@ type ServiceCollectionExtensions =
         services.AddTransient<FrontEndDirectory>() |> ignore
         services.AddTransient<FrontEndPrimaryDirectory>() |> ignore
         services.AddTransient<FrontEndSecondaryDirectory>() |> ignore
+        services.AddTransient<FrontEndTertiaryDirectory>() |> ignore
         services.AddTransient<NotepadPlusPlus>() |> ignore
         services.AddTransient<DirectoryOperations>() |> ignore
         services.AddTransient<NotesAndMessagesDirectory>() |> ignore
@@ -92,6 +96,7 @@ type ServiceCollectionExtensions =
         services.AddSingleton<DataDirectory>() |> ignore
         services.AddSingleton<BackEndPrimaryDirectory>() |> ignore
         services.AddSingleton<BackEndSecondaryDirectory>() |> ignore
+        services.AddSingleton<BackEndTertiaryDirectory>() |> ignore
         services.AddSingleton<RepositoryDirectory>() |> ignore
         services.AddSingleton<MutantVariablesFile>() |> ignore
         services.AddSingleton<DirectoryManagement>() |> ignore

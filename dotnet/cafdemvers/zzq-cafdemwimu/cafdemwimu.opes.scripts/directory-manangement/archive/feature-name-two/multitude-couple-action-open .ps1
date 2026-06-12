@@ -1,6 +1,7 @@
 $feature_name = "feature-name-two"
 $primary_application_name = "augustus"
 $secondary_application_name = "decimus"
+$tertiary_application_name = "meridius"
 $hosting_directory = "C:\workplace\feature-development"
 $repository_directory = "C:\workplace\GitHub\working-circulation"
 $working_directory = "$repository_directory\dotnet\cafdemvers\zzq-cafdemwimu\cafdemwimu.console"
@@ -18,6 +19,7 @@ dotnet run `
     --hosting-directory "$hosting_directory" `
     --primary-application-name "$primary_application_name" `
     --secondary-application-name "$secondary_application_name" `
+    --tertiary-application-name "$tertiary_application_name" `
     --repository-directory "$repository_directory"
 
 Pop-Location;

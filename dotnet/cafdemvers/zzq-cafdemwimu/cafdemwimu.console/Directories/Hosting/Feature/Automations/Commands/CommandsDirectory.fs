@@ -28,6 +28,7 @@ type CommandsDirectory
         frontEndPrimaryDirectory: FrontEndPrimaryDirectory,
         frontEndSecondaryDirectory: FrontEndSecondaryDirectory,
         secondaryApplication: SecondaryApplication,
+        tertiaryApplication: TertiaryApplication,
         primaryApplication: PrimaryApplication,
         operationsDirectory: OperationsDirectory,
         notesAndMessagesDirectory: NotesAndMessagesDirectory,
@@ -56,6 +57,7 @@ type CommandsDirectory
         let giversPath = environmentVariablesFilesDirectory.GetPath()
         let runPrimaryApplicationPath = Path.Combine(commandsDirectoryPath, "run-primary-application.ps1")
         let runSecondaryApplicationPath = Path.Combine(commandsDirectoryPath, "run-secondary-application.ps1")
+        let runTertiaryApplicationPath = Path.Combine(commandsDirectoryPath, "run-tertiary-application.ps1")
 
         for filePath in Directory.EnumerateFiles(commandsDirectoryPath) do
             let fileName = Path.GetFileNameWithoutExtension(filePath)
@@ -69,6 +71,7 @@ type CommandsDirectory
             | "aggregate-all-multitude-commanding-order-reverse-action-open" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runPrimaryApplicationPath)
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runSecondaryApplicationPath)
+                DirectoryServices.ReplaceFileNameWithPath(filePath, "run-tertiary-application.ps1", runTertiaryApplicationPath)
             | "directories-multitude-commanding-order-recto-action-shut"
             | "directories-multitude-serving-order-recto-action-shut" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "FEATURE_SELF_ADDRESS", FeatureDirectory.GetPath())
@@ -90,14 +93,19 @@ type CommandsDirectory
             | "all" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runPrimaryApplicationPath)
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runSecondaryApplicationPath)
+                DirectoryServices.ReplaceFileNameWithPath(filePath, "run-tertiary-application.ps1", runTertiaryApplicationPath)
             | "dotnet-multitude-primary-action-run" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "run-primary-application.ps1", runPrimaryApplicationPath)
             | "dotnet-multitude-secondary-action-run" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "run-secondary-application.ps1", runSecondaryApplicationPath)
+            | "dotnet-multitude-tertiary-action-run" ->
+                DirectoryServices.ReplaceFileNameWithPath(filePath, "run-tertiary-application.ps1", runTertiaryApplicationPath)
             | "docker-network-secondary-multitude-primary-action-stop" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName())
             | "docker-network-secondary-multitude-secondary-action-stop" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName())
+            | "docker-network-secondary-multitude-tertiary-action-stop" ->
+                DirectoryServices.ReplaceFileNameWithPath(filePath, "tertiary-application-name", tertiaryApplication.GetName())
             | "docker-network-secondary-multitude-two-action-stop" ->
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "primary-application-name", primaryApplication.GetName())
                 DirectoryServices.ReplaceFileNameWithPath(filePath, "secondary-application-name", secondaryApplication.GetName())

@@ -10,6 +10,7 @@
     <Compile Include="Names/IdeName.fs" />
     <Compile Include="Names/PrimaryApplication.fs" />
     <Compile Include="Names/SecondaryApplication.fs" />
+    <Compile Include="Names/TertiaryApplication.fs" />
     <Compile Include="Names/DirectoryToBeOpen.fs" />
     <Compile Include="Files/FileService.fs" />
     <Compile Include="Files/Executables/IdeExecutiveFileLocation.fs" />

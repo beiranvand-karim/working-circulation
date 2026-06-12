@@ -13,6 +13,7 @@ type NotepadPlusPlusOpenAll
     (
         featureName: FeatureName,
         secondaryApplication: SecondaryApplication,
+        tertiaryApplication: TertiaryApplication,
         primaryApplication: PrimaryApplication,
         stringHelpers: StringHelpers,
         logger: ILogger<NotepadPlusPlusOpenAll>
@@ -34,6 +35,7 @@ type NotepadPlusPlusOpenAll
                 | "FEATURE_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(featureName.GetName()))
                 | "PRIMARY_APPLICATION_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(primaryApplication.GetName()))
                 | "SECONDARY_APPLICATION_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(secondaryApplication.GetName()))
+                | "TERTIARY_APPLICATION_NAME" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(tertiaryApplication.GetName()))
                 | "HOSTING_DIRECTORY" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks(HostingDirectory.GetPath()))
                 | "APPLICATION" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks("notepad-plus-plus-file-management"))
                 | "COMMAND" -> fileContentDictionaryToWriteToFile.Add(key, stringHelpers.WrapInQuotationMarks("open"))
