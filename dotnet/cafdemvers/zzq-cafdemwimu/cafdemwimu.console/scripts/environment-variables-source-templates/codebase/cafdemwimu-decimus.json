@@ -17,21 +17,27 @@
     "IsOpeningToolsAddress": false,
     "IsOpeningNotesMessagesAddress": false,
     "IsOpeningWebLinksAddress": false,
-    "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu",
-    "SecondaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console",
-    "PrimaryClientappLocation":"C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\ca.workers\\ca.workers.git",
-    "SecondaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\ca.workers\\ca.workers.ca",
-    "SecondaryApplicationProjectLocation": "secondary/application/project/location",
-    "SecondaryApplicationProjectName": "secondary/application/project/name",
+    "PrimaryApplication": {
+        "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu",
+        "PrimaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\ca.workers\\ca.workers.git",
+        "PrimaryApplicationProjectLocation": "primary/application/project/location",
+        "PrimaryApplicationProjectName": "primary/application/project/name"
+    },
+    "SecondaryApplication": {
+        "SecondaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console",
+        "SecondaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemvers\\zzq-cafdemwimu\\cafdemwimu.console\\ca.workers\\ca.workers.ca",
+        "SecondaryApplicationProjectLocation": "secondary/application/project/location",
+        "SecondaryApplicationProjectName": "secondary/application/project/name"
+    },
     "IsRiderTertiaryApplicationRunningPermissionGrantable": false,
     "IsWebstormTertiaryClientappRunningPermissionGrantable": false,
     "IsOpeningFendTertiaryAddress": false,
     "IsOpeningBendTertiaryAddress": false,
-    "TertiaryApplicationLocation": "tertiary/application/location",
-    "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
-    "TertiaryApplicationProjectName": "tertiary/application/project/name",
-    "TertiaryClientappLocation": "tertiary/clientapp/location",
-    "PrimaryApplicationProjectLocation": "primary/application/project/location",
-    "PrimaryApplicationProjectName": "primary/application/project/name",
+    "TertiaryApplication": {
+        "TertiaryApplicationLocation": "tertiary/application/location",
+        "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
+        "TertiaryApplicationProjectName": "tertiary/application/project/name",
+        "TertiaryClientappLocation": "tertiary/clientapp/location"
+    },
     "AllInclusiveDirectoryAddress": "all/inclusive/directory/address"
 }

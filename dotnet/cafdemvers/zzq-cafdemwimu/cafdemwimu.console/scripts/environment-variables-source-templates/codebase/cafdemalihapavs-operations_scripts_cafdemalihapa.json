@@ -17,21 +17,27 @@
     "IsOpeningToolsAddress": false,
     "IsOpeningNotesMessagesAddress": false,
     "IsOpeningWebLinksAddress": false,
-    "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemalihapa",
-    "SecondaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\operations-scripts\\cafdemalihapa",
-    "SecondaryApplicationProjectLocation": "secondary/application/project/location",
-    "SecondaryApplicationProjectName": "secondary/application/project/name",
+    "PrimaryApplication": {
+        "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\cafdemalihapa",
+        "PrimaryClientappLocation": "primary/clientapp/location",
+        "PrimaryApplicationProjectLocation": "primary/application/project/location",
+        "PrimaryApplicationProjectName": "primary/application/project/name"
+    },
+    "SecondaryApplication": {
+        "SecondaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\operations-scripts\\cafdemalihapa",
+        "SecondaryClientappLocation": "secondary/clientapp/location",
+        "SecondaryApplicationProjectLocation": "secondary/application/project/location",
+        "SecondaryApplicationProjectName": "secondary/application/project/name"
+    },
     "IsRiderTertiaryApplicationRunningPermissionGrantable": false,
     "IsWebstormTertiaryClientappRunningPermissionGrantable": false,
     "IsOpeningFendTertiaryAddress": false,
     "IsOpeningBendTertiaryAddress": false,
-    "TertiaryApplicationLocation": "tertiary/application/location",
-    "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
-    "TertiaryApplicationProjectName": "tertiary/application/project/name",
-    "TertiaryClientappLocation": "tertiary/clientapp/location",
-    "PrimaryApplicationProjectLocation": "primary/application/project/location",
-    "PrimaryApplicationProjectName": "primary/application/project/name",
-    "AllInclusiveDirectoryAddress": "all/inclusive/directory/address",
-    "PrimaryClientappLocation":"primary/clientapp/location",
-    "SecondaryClientappLocation": "secondary/clientapp/location"
+    "TertiaryApplication": {
+        "TertiaryApplicationLocation": "tertiary/application/location",
+        "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
+        "TertiaryApplicationProjectName": "tertiary/application/project/name",
+        "TertiaryClientappLocation": "tertiary/clientapp/location"
+    },
+    "AllInclusiveDirectoryAddress": "all/inclusive/directory/address"
 }

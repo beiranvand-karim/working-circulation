@@ -3,15 +3,32 @@ namespace cafdemwimu.console.Directories.Repository.Dotnet.Scripts.EnvironmentVa
 open System
 
 [<CLIMutable>]
+type PrimaryApplicationSettings =
+    { PrimaryApplicationLocation: string
+      PrimaryClientappLocation: string
+      PrimaryApplicationProjectLocation: string
+      PrimaryApplicationProjectName: string }
+
+[<CLIMutable>]
+type SecondaryApplicationSettings =
+    { SecondaryApplicationLocation: string
+      SecondaryClientappLocation: string
+      SecondaryApplicationProjectLocation: string
+      SecondaryApplicationProjectName: string }
+
+[<CLIMutable>]
+type TertiaryApplicationSettings =
+    { TertiaryApplicationLocation: string
+      TertiaryApplicationProjectLocation: string
+      TertiaryApplicationProjectName: string
+      TertiaryClientappLocation: string }
+
+[<CLIMutable>]
 type MutantVariables =
     { IsRiderSecondaryApplicationRunningPermissionGrantable: Nullable<bool>
       IsWebstormSecondaryClientappRunningPermissionGrantable: Nullable<bool>
       PrimaryApplicationName: string
       SecondaryApplicationName: string
-      SecondaryApplicationProjectLocation: string
-      SecondaryApplicationProjectName: string
-      PrimaryApplicationProjectLocation: string
-      PrimaryApplicationProjectName: string
       IsOpeningFeatureSelfAddress: Nullable<bool>
       IsOpeningAutomationsDirectory: Nullable<bool>
       IsOpeningCommandsDirectory: Nullable<bool>
@@ -28,16 +45,11 @@ type MutantVariables =
       IsOpeningNotesMessagesAddress: Nullable<bool>
       IsOpeningWebLinksAddress: Nullable<bool>
       IsOpeningFendAddress: Nullable<bool>
-      PrimaryApplicationLocation: string
-      SecondaryApplicationLocation: string
-      PrimaryClientappLocation: string
-      SecondaryClientappLocation: string
+      PrimaryApplication: PrimaryApplicationSettings
+      SecondaryApplication: SecondaryApplicationSettings
       IsRiderTertiaryApplicationRunningPermissionGrantable: Nullable<bool>
       IsWebstormTertiaryClientappRunningPermissionGrantable: Nullable<bool>
       TertiaryApplicationName: string
-      TertiaryApplicationProjectLocation: string
-      TertiaryApplicationProjectName: string
       IsOpeningFendTertiaryAddress: Nullable<bool>
       IsOpeningBendTertiaryAddress: Nullable<bool>
-      TertiaryApplicationLocation: string
-      TertiaryClientappLocation: string }
+      TertiaryApplication: TertiaryApplicationSettings }

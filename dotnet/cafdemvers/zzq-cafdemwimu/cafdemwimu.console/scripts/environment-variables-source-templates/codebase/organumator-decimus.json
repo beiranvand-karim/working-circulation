@@ -17,21 +17,27 @@
     "IsOpeningToolsAddress": true,
     "IsOpeningNotesMessagesAddress": true,
     "IsOpeningWebLinksAddress": true,
-    "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.backend\\organumator.sln",
-    "SecondaryApplicationLocation": "secondary/application/location",
-    "SecondaryApplicationProjectLocation": "secondary/application/project/location",
-    "SecondaryApplicationProjectName": "secondary/application/project/name",
+    "PrimaryApplication": {
+        "PrimaryApplicationLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.backend\\organumator.sln",
+        "PrimaryClientappLocation": "C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.frontend",
+        "PrimaryApplicationProjectLocation": "primary/application/project/location",
+        "PrimaryApplicationProjectName": "primary/application/project/name"
+    },
+    "SecondaryApplication": {
+        "SecondaryApplicationLocation": "secondary/application/location",
+        "SecondaryClientappLocation": "secondary/clientapp/location",
+        "SecondaryApplicationProjectLocation": "secondary/application/project/location",
+        "SecondaryApplicationProjectName": "secondary/application/project/name"
+    },
     "IsRiderTertiaryApplicationRunningPermissionGrantable": false,
     "IsWebstormTertiaryClientappRunningPermissionGrantable": false,
     "IsOpeningFendTertiaryAddress": false,
     "IsOpeningBendTertiaryAddress": false,
-    "TertiaryApplicationLocation": "tertiary/application/location",
-    "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
-    "TertiaryApplicationProjectName": "tertiary/application/project/name",
-    "TertiaryClientappLocation": "tertiary/clientapp/location",
-    "PrimaryApplicationProjectLocation": "primary/application/project/location",
-    "PrimaryApplicationProjectName": "primary/application/project/name",
-    "AllInclusiveDirectoryAddress": "all/inclusive/directory/address",
-    "PrimaryClientappLocation":"C:\\workplace\\GitHub\\working-circulation\\dotnet\\Organumator\\organumator\\organumator.frontend",
-    "SecondaryClientappLocation": "secondary/clientapp/location"
+    "TertiaryApplication": {
+        "TertiaryApplicationLocation": "tertiary/application/location",
+        "TertiaryApplicationProjectLocation": "tertiary/application/project/location",
+        "TertiaryApplicationProjectName": "tertiary/application/project/name",
+        "TertiaryClientappLocation": "tertiary/clientapp/location"
+    },
+    "AllInclusiveDirectoryAddress": "all/inclusive/directory/address"
 }

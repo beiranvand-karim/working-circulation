@@ -44,11 +44,26 @@ type Something(persistentVariablesFile: PersistentVariablesFile, mutantVariables
         let variables = Newtonsoft.Json.JsonConvert.DeserializeObject<'T>(rawJsonData)
 
         let variablesSerialized = System.Text.Json.JsonSerializer.Serialize(variables)
-        let dict = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, string>>(variablesSerialized)
-        for kv in dict do
-            let key = (Something.ToUnderscoreCase kv.Key).ToUpper()
-            let value = kv.Value
-            fileContentDictionary.Add(key, value)
+        let root = Newtonsoft.Json.Linq.JObject.Parse(variablesSerialized)
+
+        // Flatten the (possibly nested) object into UPPER_SNAKE keys, using leaf
+        // property names so nested groups (e.g. "PrimaryApplication") still produce
+        // the flat env keys (PRIMARY_APPLICATION_LOCATION, ...) that the templates expect.
+        let rec flatten (jObject: Newtonsoft.Json.Linq.JObject) =
+            for property in jObject.Properties() do
+                match property.Value.Type with
+                | Newtonsoft.Json.Linq.JTokenType.Object ->
+                    flatten (property.Value :?> Newtonsoft.Json.Linq.JObject)
+                | _ ->
+                    let key = (Something.ToUnderscoreCase property.Name).ToUpper()
+                    let value =
+                        match property.Value.Type with
+                        | Newtonsoft.Json.Linq.JTokenType.Null -> ""
+                        | Newtonsoft.Json.Linq.JTokenType.Boolean -> property.Value.ToString().ToLower()
+                        | _ -> property.Value.ToString()
+                    fileContentDictionary.[key] <- value
+
+        flatten root
 
         fileContentDictionary
 
