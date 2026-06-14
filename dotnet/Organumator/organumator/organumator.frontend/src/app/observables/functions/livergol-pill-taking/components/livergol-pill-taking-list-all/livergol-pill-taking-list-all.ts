@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, signal } from '@angular/core'
 import { LivergolPillTakingDeleteOne } from '../livergol-pill-taking-delete-one/livergol-pill-taking-delete-one'
 import { DatePipe } from '@angular/common'
 import { MatTableModule } from '@angular/material/table'
@@ -21,19 +21,19 @@ export class LivergolPillTakingListAll {
 
   displayedColumns = ['performedOnDate', 'actions']
 
-  protected pageNumber = 1
-  protected pageSize = this.defaultPageSize
-  protected totalCount = 0
-  protected totalPages = 0
-  protected items: LivergolPillTakingItemModel[] = []
+  protected pageNumber = signal(1)
+  protected pageSize = signal(this.defaultPageSize)
+  protected totalCount = signal(0)
+  protected totalPages = signal(0)
+  protected items = signal<LivergolPillTakingItemModel[]>([])
 
   constructor() {
     this.loadPage()
   }
 
   onPageChange(event: PageEvent) {
-    this.pageNumber = event.pageIndex + 1
-    this.pageSize = event.pageSize
+    this.pageNumber.set(event.pageIndex + 1)
+    this.pageSize.set(event.pageSize)
     this.loadPage()
   }
 
@@ -50,11 +50,11 @@ export class LivergolPillTakingListAll {
   }
 
   private loadPage() {
-    this.livergolPillTakingService.getAll(this.pageNumber, this.pageSize).subscribe({
+    this.livergolPillTakingService.getAll(this.pageNumber(), this.pageSize()).subscribe({
       next: (result: PagedResult<LivergolPillTakingItemModel>) => {
-        this.items = result.items
-        this.totalCount = result.totalCount
-        this.totalPages = result.totalPages
+        this.items.set(result.items)
+        this.totalCount.set(result.totalCount)
+        this.totalPages.set(result.totalPages)
       },
     })
   }

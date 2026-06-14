@@ -1,9 +1,9 @@
 <button mat-button (click)="refresh()">Refresh</button>
 
-@if (items.length === 0) {
+@if (items().length === 0) {
   <p>No simcard chargings recorded yet.</p>
 } @else {
-  <mat-table [dataSource]="items">
+  <mat-table [dataSource]="items()">
     <ng-container matColumnDef="chargedAt">
       <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
       <mat-cell *matCellDef="let item">{{ item.chargedAt | date:'medium' }}</mat-cell>
@@ -22,10 +22,10 @@
 }
 
 <mat-paginator
-  [length]="totalCount"
-  [pageSize]="pageSize"
-  [pageIndex]="pageNumber - 1"
+  [length]="totalCount()"
+  [pageSize]="pageSize()"
+  [pageIndex]="pageNumber() - 1"
   [pageSizeOptions]="[5, 8, 10, 20, 50]"
   (page)="onPageChange($event)"
 />
-<span class="page-count">Page {{ pageNumber }} of {{ totalPages }}</span>
+<span class="page-count">Page {{ pageNumber() }} of {{ totalPages() }}</span>

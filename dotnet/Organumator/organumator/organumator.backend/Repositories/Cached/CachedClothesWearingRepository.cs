@@ -36,6 +36,7 @@ namespace organumator.Repositories.Cached
 
         public async Task<ClothesWearing> AddClothesWearingAsync(ClothesWearing clothesWearing)
         {
+            ArgumentNullException.ThrowIfNull(clothesWearing);
             var result = await inner.AddClothesWearingAsync(clothesWearing);
             await InvalidatePageCachesAsync();
             return result;
@@ -43,6 +44,7 @@ namespace organumator.Repositories.Cached
 
         public async Task<ClothesWearing> UpdateClothesWearingAsync(ClothesWearing clothesWearing)
         {
+            ArgumentNullException.ThrowIfNull(clothesWearing);
             var result = await inner.UpdateClothesWearingAsync(clothesWearing);
             await InvalidatePageCachesAsync();
             return result;

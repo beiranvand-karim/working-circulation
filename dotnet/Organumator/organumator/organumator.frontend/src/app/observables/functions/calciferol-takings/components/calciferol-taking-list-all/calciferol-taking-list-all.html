@@ -1,6 +1,6 @@
 <button mat-button (click)="refresh()">Refresh</button>
 
-<mat-table [dataSource]="items">
+<mat-table [dataSource]="items()">
   <ng-container matColumnDef="performedOnDate">
     <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
     <mat-cell *matCellDef="let item">{{ item.performedOnDate | date:'medium' }}</mat-cell>
@@ -18,10 +18,10 @@
 </mat-table>
 
 <mat-paginator
-  [length]="totalCount"
-  [pageSize]="pageSize"
-  [pageIndex]="pageNumber - 1"
+  [length]="totalCount()"
+  [pageSize]="pageSize()"
+  [pageIndex]="pageNumber() - 1"
   [pageSizeOptions]="[5, 8, 10, 20, 50]"
   (page)="onPageChange($event)"
 />
-<span class="page-count">Page {{ pageNumber }} of {{ totalPages }}</span>
+<span class="page-count">Page {{ pageNumber() }} of {{ totalPages() }}</span>

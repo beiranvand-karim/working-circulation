@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core'
+import { Component, inject, signal } from '@angular/core'
 import { FaceHydrationService } from '../../services/face-hydration.service'
 import { FaceHydrationItemModel, PagedResult } from '../../models/face-hydration.model'
 import { FaceHydrationDeleteOne } from '../face-hydration-delete-one/face-hydration-delete-one'
@@ -21,19 +21,19 @@ export class FaceHydrationListAll {
 
   displayedColumns = ['performedOnDate', 'actions']
 
-  protected pageNumber = 1
-  protected pageSize = this.defaultPageSize
-  protected totalCount = 0
-  protected totalPages = 0
-  protected items: FaceHydrationItemModel[] = []
+  protected pageNumber = signal(1)
+  protected pageSize = signal(this.defaultPageSize)
+  protected totalCount = signal(0)
+  protected totalPages = signal(0)
+  protected items = signal<FaceHydrationItemModel[]>([])
 
   constructor() {
     this.loadPage()
   }
 
   onPageChange(event: PageEvent) {
-    this.pageNumber = event.pageIndex + 1
-    this.pageSize = event.pageSize
+    this.pageNumber.set(event.pageIndex + 1)
+    this.pageSize.set(event.pageSize)
     this.loadPage()
   }
 
@@ -42,11 +42,11 @@ export class FaceHydrationListAll {
   }
 
   private loadPage() {
-    this.faceHydrationService.getAll(this.pageNumber, this.pageSize).subscribe({
+    this.faceHydrationService.getAll(this.pageNumber(), this.pageSize()).subscribe({
       next: (result: PagedResult<FaceHydrationItemModel>) => {
-        this.items = result.items
-        this.totalCount = result.totalCount
-        this.totalPages = result.totalPages
+        this.items.set(result.items)
+        this.totalCount.set(result.totalCount)
+        this.totalPages.set(result.totalPages)
       },
     })
   }

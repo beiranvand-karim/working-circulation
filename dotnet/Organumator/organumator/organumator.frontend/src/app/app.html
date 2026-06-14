@@ -2,16 +2,16 @@
 
   <mat-sidenav #sidenav mode="side" opened>
     <mat-nav-list>
-      <a mat-list-item routerLink="/around-brushing">Around Brushing</a>
-      <a mat-list-item routerLink="/face-hydration">Face Hydration</a>
-      <a mat-list-item routerLink="/silverman-pill-taking">Silverman Pill Taking</a>
-      <a mat-list-item routerLink="/livergol-pill-taking">Livergol Pill Taking</a>
-      <a mat-list-item routerLink="/between-teeth-brushing">Between Teeth Brushing</a>
-      <a mat-list-item routerLink="/calciferol-pill-takings">Calciferol Pill Takings</a>
-      <a mat-list-item routerLink="/vacuum-cleanings">Vacuum Cleanings</a>
-      <a mat-list-item routerLink="/cleanups">Cleanups</a>
-      <a mat-list-item routerLink="/simcard-chargings">Simcard Chargings</a>
-      <a mat-list-item routerLink="/clothes-wearings">Clothes Wearings</a>
+      <a mat-list-item routerLink="/around-brushing" routerLinkActive #rlaAroundBrushing="routerLinkActive" [activated]="rlaAroundBrushing.isActive">Around Brushing</a>
+      <a mat-list-item routerLink="/face-hydration" routerLinkActive #rlaFaceHydration="routerLinkActive" [activated]="rlaFaceHydration.isActive">Face Hydration</a>
+      <a mat-list-item routerLink="/silverman-pill-taking" routerLinkActive #rlaSilverman="routerLinkActive" [activated]="rlaSilverman.isActive">Silverman Pill Taking</a>
+      <a mat-list-item routerLink="/livergol-pill-taking" routerLinkActive #rlaLivergol="routerLinkActive" [activated]="rlaLivergol.isActive">Livergol Pill Taking</a>
+      <a mat-list-item routerLink="/between-teeth-brushing" routerLinkActive #rlaBetweenTeeth="routerLinkActive" [activated]="rlaBetweenTeeth.isActive">Between Teeth Brushing</a>
+      <a mat-list-item routerLink="/calciferol-pill-takings" routerLinkActive #rlaCalciferol="routerLinkActive" [activated]="rlaCalciferol.isActive">Calciferol Pill Takings</a>
+      <a mat-list-item routerLink="/vacuum-cleanings" routerLinkActive #rlaVacuum="routerLinkActive" [activated]="rlaVacuum.isActive">Vacuum Cleanings</a>
+      <a mat-list-item routerLink="/cleanups" routerLinkActive #rlaCleanups="routerLinkActive" [activated]="rlaCleanups.isActive">Cleanups</a>
+      <a mat-list-item routerLink="/simcard-chargings" routerLinkActive #rlaSimcard="routerLinkActive" [activated]="rlaSimcard.isActive">Simcard Chargings</a>
+      <a mat-list-item routerLink="/clothes-wearings" routerLinkActive #rlaClothes="routerLinkActive" [activated]="rlaClothes.isActive">Clothes Wearings</a>
     </mat-nav-list>
   </mat-sidenav>
 
@@ -21,6 +21,8 @@
         <mat-icon>menu</mat-icon>
       </button>
       <span>Organumator</span>
+      <span class="toolbar-spacer"></span>
+      <environment-indicator />
     </mat-toolbar>
     <div class="content">
       <router-outlet />

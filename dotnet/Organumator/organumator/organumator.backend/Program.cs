@@ -2,9 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using organumator.Data;
 using organumator.Extensions;
-using organumator.Messaging;
-using organumator.Messaging.ClothesWearing;
-using organumator.Messaging.VacuumCleanings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,19 +9,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddRepositories();
+var redisCacheEnabled = builder.Configuration.GetValue<bool>("Redis:Enabled");
 
-builder.Services.AddStackExchangeRedisCache(options =>
+if (redisCacheEnabled)
 {
-    options.Configuration = builder.Configuration["Redis:ConnectionString"];
-    options.InstanceName = builder.Configuration["Redis:InstanceName"];
-});
+    builder.Services.AddStackExchangeRedisCache(options =>
+    {
+        options.Configuration = builder.Configuration["Redis:ConnectionString"];
+        options.InstanceName = builder.Configuration["Redis:InstanceName"];
+    });
+}
 
-builder.Services.Configure<RabbitMqSettings>(builder.Configuration.GetSection("RabbitMQ"));
-builder.Services.AddSingleton<IRabbitMqPublisher, RabbitMqPublisher>();
-builder.Services.AddHostedService<RabbitMqConsumer>();
-builder.Services.AddHostedService<VacuumCleaningsCommandConsumer>();
-builder.Services.AddHostedService<ClothesWearingCommandConsumer>();
+builder.Services.AddRepositories(redisCacheEnabled);
+
+builder.Services.AddMessaging(builder.Configuration);
 
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
 {
@@ -46,6 +44,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+await app.ClearProductionCacheAsync();
 
 app.UseCors();
 

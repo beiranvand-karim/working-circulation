@@ -1,0 +1,5 @@
+@if (environment(); as env) {
+  <span class="env-badge" [class.env-production]="env === 'Production'" [class.env-development]="env === 'Development'">
+    {{ env }}
+  </span>
+}

@@ -46,6 +46,7 @@ namespace organumator.Repositories
 
         public Task<ClothesWearing> AddClothesWearingAsync(ClothesWearing clothesWearing)
         {
+            ArgumentNullException.ThrowIfNull(clothesWearing);
             lock (_lock)
             {
                 var date = DateOnly.FromDateTime(clothesWearing.WearingStart);
@@ -85,6 +86,7 @@ namespace organumator.Repositories
 
         public Task<ClothesWearing> UpdateClothesWearingAsync(ClothesWearing clothesWearing)
         {
+            ArgumentNullException.ThrowIfNull(clothesWearing);
             lock (_lock)
             {
                 var existing = ReadAllDays().FirstOrDefault(r => r.Id == clothesWearing.Id)

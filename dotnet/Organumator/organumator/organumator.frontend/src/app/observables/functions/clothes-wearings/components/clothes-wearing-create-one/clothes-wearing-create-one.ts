@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, Output } from '@angular/core'
+import { Component, EventEmitter, Injectable, OnDestroy, Output } from '@angular/core'
 import { ClothesWearingService } from '../../services/clothes-wearing.service'
 import { Subject, takeUntil } from 'rxjs'
 import { MatButtonModule } from '@angular/material/button'
@@ -8,6 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker'
 import { DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core'
 import { FormsModule } from '@angular/forms'
 
+@Injectable()
 class YmdDateAdapter extends NativeDateAdapter {
   override format(date: Date): string {
     const y = date.getFullYear()

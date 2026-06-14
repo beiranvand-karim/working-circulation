@@ -1,0 +1,19 @@
+.env-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: #616161;
+  color: #fff;
+}
+
+.env-development {
+  background: #2e7d32;
+}
+
+.env-production {
+  background: #c62828;
+}

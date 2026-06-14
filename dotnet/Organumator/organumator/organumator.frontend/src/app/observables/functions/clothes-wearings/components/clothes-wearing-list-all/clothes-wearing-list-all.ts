@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy } from '@angular/core'
+import { Component, inject, OnDestroy, signal } from '@angular/core'
 import { ClothesWearingService } from '../../services/clothes-wearing.service'
 import { ClothesWearing, PagedResult } from '../../models/clothes-wearing.model'
 import { Subject, takeUntil } from 'rxjs'
@@ -24,20 +24,20 @@ export class ClothesWearingListAll implements OnDestroy {
 
   displayedColumns = ['differentiator', 'wearingStart', 'wearingFinish', 'duration', 'actions']
 
-  loading = false
-  protected pageNumber = 1
-  protected pageSize = this.defaultPageSize
-  protected totalCount = 0
-  protected totalPages = 0
-  protected items: ClothesWearing[] = []
+  protected loading = signal(false)
+  protected pageNumber = signal(1)
+  protected pageSize = signal(this.defaultPageSize)
+  protected totalCount = signal(0)
+  protected totalPages = signal(0)
+  protected items = signal<ClothesWearing[]>([])
 
   constructor() {
     this.loadPage()
   }
 
   onPageChange(event: PageEvent) {
-    this.pageNumber = event.pageIndex + 1
-    this.pageSize = event.pageSize
+    this.pageNumber.set(event.pageIndex + 1)
+    this.pageSize.set(event.pageSize)
     this.loadPage()
   }
 
@@ -66,17 +66,17 @@ export class ClothesWearingListAll implements OnDestroy {
   }
 
   private loadPage() {
-    this.loading = true
-    this.clothesWearingService.getAll(this.pageNumber, this.pageSize)
+    this.loading.set(true)
+    this.clothesWearingService.getAll(this.pageNumber(), this.pageSize())
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (result: PagedResult<ClothesWearing>) => {
-          this.items = result.items
-          this.totalCount = result.totalCount
-          this.totalPages = result.totalPages
-          this.loading = false
+          this.items.set(result.items)
+          this.totalCount.set(result.totalCount)
+          this.totalPages.set(result.totalPages)
+          this.loading.set(false)
         },
-        error: () => { this.loading = false },
+        error: () => { this.loading.set(false) },
       })
   }
 
